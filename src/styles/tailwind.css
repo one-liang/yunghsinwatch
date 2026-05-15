@@ -1,0 +1,6 @@
+/* Tailwind v4 CSS-first 入口；builder 會在建置時注入每個頁面的掃描來源。 */
+@import "tailwindcss" source(none);
+
+@theme {
+  --font-sans: Inter, ui-sans-serif, system-ui, sans-serif;
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailwind HTML Template</title>
+  </head>
+  <body class="flex min-h-screen flex-col bg-zinc-950 text-white">
+    <Header />
+
+    <main class="flex-1 px-6 py-16">
+      <section class="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1fr_420px] md:items-center">
+        <div>
+          <p class="mb-4 text-sm font-semibold uppercase tracking-wide text-cyan-300">Static HTML Builder</p>
+          <h1 class="max-w-3xl text-5xl font-semibold leading-tight md:text-7xl">
+            Tailwind pages with Vue-like HTML components.
+          </h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
+            Build readable HTML, CSS, and JS files that can be opened directly from the dist folder.
+          </p>
+          <a class="mt-8 inline-flex rounded-md bg-cyan-300 px-5 py-3 text-sm font-semibold text-zinc-950" href="./about.html">
+            View about page
+          </a>
+        </div>
+        <img class="w-full max-w-[420px] justify-self-center rounded-lg border border-white/20 bg-zinc-900 md:justify-self-end" src="../assets/images/hero.svg" alt="Abstract interface preview">
+      </section>
+    </main>
+
+    <Footer />
+  </body>
+</html>
