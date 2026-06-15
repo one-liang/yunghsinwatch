@@ -7,6 +7,12 @@ import { buildSite, loadConfig } from "./builder-core.mjs";
 const rootDir = process.cwd();
 const branch = process.env.DEPLOY_BRANCH ?? "demo";
 const remote = process.env.DEPLOY_REMOTE ?? "origin";
+// 額外鏡像推送的 remote（預設 yunghsin → for-demo）。
+// 推送前會檢查 remote 是否存在，缺少時自動略過，因此乾淨 clone 上是安全的 no-op。
+const mirrorRemotes = (process.env.DEPLOY_MIRROR_REMOTES ?? "yunghsin")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
 const worktreeDir = path.join(rootDir, ".cache", "deploy-worktree");
 
 function git(args, options = {}) {
@@ -96,6 +102,21 @@ try {
       shell: false,
     });
     console.log(`deployed to ${remote}/${branch}.`);
+
+    // 鏡像推送同一份 demo 分支到額外 remote（如 for-demo）
+    for (const mirror of mirrorRemotes) {
+      if (mirror === remote) continue;
+      if (!gitQuiet(["remote", "get-url", mirror])) {
+        console.log(`mirror remote "${mirror}" not configured, skipped.`);
+        continue;
+      }
+      execFileSync("git", ["push", "-u", mirror, branch], {
+        cwd: worktreeDir,
+        stdio: "inherit",
+        shell: false,
+      });
+      console.log(`mirrored to ${mirror}/${branch}.`);
+    }
   }
 } finally {
   // 7. 清理 worktree
