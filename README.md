@@ -1,4 +1,4 @@
-# Tailwind HTML Template
+# Yunghsinwatch
 
 這是一個以 Vite + Tailwind CSS v4 製作的靜態 HTML 範本。它支援類 Vue 的自閉合組件標籤，例如 `<c-header />`，並在開發與建置時自動組合頁面 HTML、Tailwind CSS、組件 CSS、頁面 CSS、組件 JS 與頁面 JS。
 
@@ -190,4 +190,4 @@ npm run deploy
 
 **Settings → Pages → Build and deployment → Source: `Deploy from a branch` → Branch: `demo` / `(root)`**
 
-之後 demo 網址為 `https://<account>.github.io/<repo>/`（本專案為 `https://one-liang.github.io/tailwind-template/`）。因為輸出全為相對路徑，子路徑下也能正確載入頁面、CSS、圖片與頁面間連結。日後要更新 demo，只要再跑一次 `npm run deploy`。
+之後 demo 網址為 `https://<account>.github.io/<repo>/`（本專案為 `https://one-liang.github.io/yunghsinwatch/`）。因為輸出全為相對路徑，子路徑下也能正確載入頁面、CSS、圖片與頁面間連結。日後要更新 demo，只要再跑一次 `npm run deploy`。
