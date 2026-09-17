@@ -1,5 +1,9 @@
 @import "tailwindcss" source(none);
 
+/* 英文語系變體：i18n runtime 會把 <html lang> 設成 en，
+   讓 HTML 能用 `en:type-label-nav-md` 這種寫法直接指定英文版排版。 */
+@custom-variant en (&:where(html[lang="en"] *));
+
 @font-face {
   font-family: "Playfair Display";
   font-style: normal;
@@ -14,6 +18,14 @@
   font-weight: 500;
   font-display: swap;
   src: url("../assets/fonts/playfair-display-latin-500-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/inter-latin-400-normal.woff2") format("woff2");
 }
 
 @font-face {
@@ -95,6 +107,21 @@
   line-height: 2.1875rem;
 }
 
+@utility type-display-sm {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+/* Figma 未定義 MD/SM 斷點的英文品牌文字，暫以中文 MD 的 16/24 級數對應，待設計確認。 */
+@utility type-display-xs {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
 @utility type-heading-xl {
   font-family: var(--font-heading);
   font-size: 2.5rem;
@@ -127,6 +154,20 @@
   font-family: var(--font-heading);
   font-size: 1.25rem;
   font-weight: 500;
+  line-height: 2rem;
+}
+
+@utility type-heading-2xs {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+@utility type-body-xl {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 400;
   line-height: 2rem;
 }
 
@@ -170,4 +211,32 @@
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
+}
+
+@utility type-label-nav-lg {
+  font-family: var(--font-label);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 2rem;
+}
+
+@utility type-label-nav-md {
+  font-family: var(--font-label);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+}
+
+@utility type-label-nav-sm {
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.375rem;
+}
+
+@utility type-label-lang-md {
+  font-family: var(--font-label);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.75rem;
 }

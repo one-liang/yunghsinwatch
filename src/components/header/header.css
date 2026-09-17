@@ -1,0 +1,201 @@
+.site-header__brand-line:empty {
+  display: none;
+}
+
+/* ---------- 桌機（lg 以上） ---------- */
+
+.site-header__nav {
+  display: none;
+}
+
+@media (min-width: 64rem) {
+  .site-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 172px;
+    transition: height 0.2s ease;
+  }
+
+  .site-header__bar {
+    transition: height 0.2s ease;
+  }
+
+  .site-header__logo {
+    transition:
+      width 0.2s ease,
+      height 0.2s ease;
+  }
+
+  .site-header__nav {
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+    left: 0;
+    display: block;
+  }
+
+  .site-header.is-scrolled {
+    height: 88px;
+    justify-content: center;
+  }
+
+  .site-header.is-scrolled .site-header__bar {
+    height: 80px;
+  }
+
+  .site-header.is-scrolled .site-header__logo {
+    width: 106px;
+    height: 56px;
+  }
+
+  .site-header.is-scrolled .site-header__brand-text {
+    display: none;
+  }
+
+  .site-header.is-scrolled .site-header__nav {
+    position: static;
+    inset: auto;
+  }
+}
+
+@media (min-width: 64rem) and (max-width: 79.9375rem) {
+  .site-header.is-scrolled .site-header__menu-link,
+  .site-header.is-scrolled .site-header__lang-link {
+    padding-inline: 1rem;
+  }
+
+  .site-header.is-scrolled .site-header__cta {
+    padding-inline: 0.5rem;
+  }
+
+  .site-header.is-scrolled .site-header__lang-link::after {
+    right: 1rem;
+    left: 1rem;
+  }
+}
+
+/* ---------- 桌機下拉子選單 ---------- */
+
+.site-header__submenu {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0s linear 0.2s;
+  transform: translate(-50%, -0.5rem);
+}
+
+.site-header__dropdown:hover .site-header__submenu,
+.site-header__dropdown:focus-within .site-header__submenu,
+.site-header__dropdown.is-open .site-header__submenu {
+  visibility: visible;
+  opacity: 1;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0s;
+  transform: translate(-50%, 0);
+}
+
+.site-header__caret {
+  transition: transform 0.2s ease;
+}
+
+.site-header__dropdown:hover .site-header__caret,
+.site-header__dropdown:focus-within .site-header__caret,
+.site-header__dropdown.is-open .site-header__caret {
+  transform: rotate(180deg);
+}
+
+.site-header__dropdown:hover .site-header__menu-link,
+.site-header__dropdown:focus-within .site-header__menu-link,
+.site-header__dropdown.is-open .site-header__menu-link {
+  color: var(--color-brand-gold);
+}
+
+/* ---------- 語言切換 ---------- */
+
+.site-header__lang-link::after {
+  position: absolute;
+  right: 1.5rem;
+  bottom: 0.6875rem;
+  left: 1.5rem;
+  height: 1px;
+  background-color: var(--color-brand-gold);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  content: "";
+}
+
+.site-header__lang-link[data-active="true"] {
+  color: var(--color-brand-gold);
+}
+
+.site-header__lang-link[data-active="true"]::after {
+  opacity: 1;
+}
+
+.site-header__drawer .site-header__lang-link::after {
+  display: none;
+}
+
+/* ---------- 預約按鈕 ---------- */
+
+.site-header__cta {
+  transition:
+    border-color 0.2s ease,
+    background-image 0.2s ease;
+}
+
+.site-header__cta:hover {
+  border-color: #aea472;
+  background-image: linear-gradient(rgb(0 0 0 / 12%), rgb(0 0 0 / 12%));
+}
+
+/* ---------- 行動版抽屜 ---------- */
+
+.site-header__drawer {
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0s linear 0.2s;
+  transform: translateX(100%);
+}
+
+.site-header__drawer.is-open {
+  visibility: visible;
+  opacity: 1;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0s;
+  transform: translateX(0);
+}
+
+@media (min-width: 64rem) {
+  .site-header__drawer {
+    display: none;
+  }
+}
+
+.site-header__accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.2s ease;
+}
+
+.site-header__accordion-panel > * {
+  overflow: hidden;
+}
+
+.site-header__accordion.is-open .site-header__accordion-panel {
+  grid-template-rows: 1fr;
+}
+
+.site-header__accordion.is-open .site-header__caret {
+  transform: rotate(180deg);
+}
