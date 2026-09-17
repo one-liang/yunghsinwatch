@@ -245,6 +245,49 @@ test("rewrites component css asset urls relative to generated page css", async (
   }
 });
 
+test("rewrites css asset urls to public asset paths in dev mode", async () => {
+  const root = await makeFixture();
+
+  try {
+    const cssPath = path.join(root, "src/components/header/header.css");
+    const css = await readFile(cssPath, "utf8");
+    const rewritten = rewriteCssUrls({
+      css,
+      sourceCssPath: cssPath,
+      rootDir: root,
+      assetsDir: path.join(root, "src/assets"),
+      outputCssPath: path.join(root, "dist/assets/css/index.css"),
+      mode: "dev",
+    });
+
+    assert.match(rewritten, /url\("\/assets\/images\/header\.png"\)/);
+    assert.match(rewritten, /url\("\/assets\/fonts\/demo\.woff2"\)/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("preserves external and out-of-assets css urls", async () => {
+  const root = await makeFixture();
+
+  try {
+    const cssPath = path.join(root, "src/components/header/header.css");
+    const css = `.remote { background: url("https://example.com/image.png"); }
+.outside { background: url("../../../private.png"); }`;
+    const rewritten = rewriteCssUrls({
+      css,
+      sourceCssPath: cssPath,
+      rootDir: root,
+      assetsDir: path.join(root, "src/assets"),
+      outputCssPath: path.join(root, "dist/assets/css/index.css"),
+    });
+
+    assert.equal(rewritten, css);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("rewrites html asset urls for direct-open dist pages", async () => {
   const root = await makeFixture();
 

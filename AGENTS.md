@@ -17,6 +17,10 @@
 
 遵循 `.prettierrc.json`：2 空格縮排、雙引號、分號、100 字元行寬及 LF 換行。優先使用 Tailwind utility；全域 token 寫入 `@theme`，sidecar CSS 僅用於複雜 selector、動畫或資源 URL。組件採 kebab-case，例如 `src/components/site-banner/site-banner.html`，並以純自閉合 `<c-site-banner />` 引用；不支援 props 或 slots。頁面腳本路徑須對應頁面，例如 `src/pages/news/detail.html` 對應 `src/js/news/detail.js`。
 
+## 字型與排版
+
+字型與語意排版的單一事實來源是 `src/styles/tailwind.css`。英文展示文字使用 Playfair Display（`type-display-*`），中文標題使用 Noto Serif TC（`type-heading-*`），中文內文使用 Noto Sans TC（`type-body-*`），標籤、UI 元件、數字與 Copyright 使用 Inter（`type-label-*`）。實作 Figma 畫面前，先讀取目標節點的 font family、weight、size 與 line-height，再映射既有 utility；Figma 未定義的值不得自行猜測。字型檔、來源與授權記錄在 `src/assets/fonts/README.md`；只加入設計實際使用的語系子集與字重。
+
 ## 測試準則
 
 測試使用 `node:test` 與 `node:assert`，檔名遵循 `tests/*.test.mjs`。修改 `scripts/builder-core.mjs`、URL 改寫或組件展開行為時，須新增成功與錯誤案例。可用 `node --test tests/builder.test.mjs` 執行單檔測試；目前沒有明訂覆蓋率門檻。

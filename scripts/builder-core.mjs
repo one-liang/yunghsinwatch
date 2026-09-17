@@ -181,7 +181,7 @@ export async function renderDevCss(pageName, config) {
   const outputInfo = getPageOutputInfo(pagePath, config);
   const rendered = await renderPage(pagePath, config, { htmlAssetMode: "dev" });
 
-  return buildPageCssText(rendered, config, outputInfo);
+  return buildPageCssText(rendered, config, outputInfo, { cssAssetMode: "dev" });
 }
 
 export async function renderDevJs(pageName, config) {
@@ -192,8 +192,17 @@ export async function renderDevJs(pageName, config) {
   return buildPageJsText(rendered, config);
 }
 
-export async function buildPageCssText(renderedPage, config, outputInfo) {
-  const tailwindCss = await compileTailwindCss(renderedPage, config, outputInfo.pageName);
+export async function buildPageCssText(renderedPage, config, outputInfo, options = {}) {
+  const cssAssetMode = options.cssAssetMode ?? "build";
+  const compiledTailwindCss = await compileTailwindCss(renderedPage, config, outputInfo.pageName);
+  const tailwindCss = rewriteCssUrls({
+    css: compiledTailwindCss,
+    sourceCssPath: config.tailwindEntry,
+    rootDir: config.rootDir,
+    assetsDir: config.assetsDir,
+    outputCssPath: outputInfo.cssOutputPath,
+    mode: cssAssetMode,
+  });
   const chunks = [tailwindCss.trimEnd()];
 
   for (const cssPath of renderedPage.componentCssFiles) {
@@ -206,6 +215,7 @@ export async function buildPageCssText(renderedPage, config, outputInfo) {
         rootDir: config.rootDir,
         assetsDir: config.assetsDir,
         outputCssPath: outputInfo.cssOutputPath,
+        mode: cssAssetMode,
       }).trimEnd()
     );
   }
@@ -220,6 +230,7 @@ export async function buildPageCssText(renderedPage, config, outputInfo) {
         rootDir: config.rootDir,
         assetsDir: config.assetsDir,
         outputCssPath: outputInfo.cssOutputPath,
+        mode: cssAssetMode,
       }).trimEnd()
     );
   }
@@ -245,10 +256,23 @@ export async function buildPageJsText(renderedPage, config = null) {
   return chunks.length ? `${chunks.join("\n\n")}\n` : "";
 }
 
-export function rewriteCssUrls({ css, sourceCssPath, rootDir, assetsDir, outputCssPath }) {
+export function rewriteCssUrls({
+  css,
+  sourceCssPath,
+  rootDir,
+  assetsDir,
+  outputCssPath,
+  mode = "build",
+}) {
   return css.replace(CSS_URL_RE, (match, quote, rawUrl) => {
     const resolved = resolveLocalAssetUrl(rawUrl, sourceCssPath, rootDir, assetsDir);
     if (!resolved) return match;
+
+    if (mode === "dev") {
+      const assetRelative = normalizePath(path.relative(assetsDir, resolved.filePath));
+      const devUrl = `/assets/${assetRelative}${resolved.suffix}`;
+      return `url(${quote || '"'}${devUrl}${quote || '"'})`;
+    }
 
     const relativeUrl =
       toHtmlRelativeUrl(
