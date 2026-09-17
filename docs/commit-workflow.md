@@ -1,7 +1,7 @@
 # Commit 流程規範
 
-本檔是 Codex 與 Claude Code 共用的 commit 規範，也是 `/commit` 指令的單一事實來源。
-工具端的進入點（`.claude/skills/commit/SKILL.md`、`.codex/prompts/commit.md`）只做轉介，
+本檔是 Codex 與 Claude Code 共用的 commit 規範，也是 commit 技能的單一事實來源。
+工具端的進入點（`.claude/skills/commit/SKILL.md`、`.agents/skills/commit/SKILL.md`）只做轉介，
 實際流程一律以本檔為準。
 
 ## 本專案的分支現況
@@ -33,13 +33,13 @@ git diff --cached
 
 ### 2. 判斷分支類型
 
-| 變更內容 | 分支前綴 |
-| --- | --- |
+| 變更內容                                | 分支前綴   |
+| --------------------------------------- | ---------- |
 | 新功能、新頁面、新組件、設計 token 匯入 | `feature/` |
-| 修復既有功能的 bug | `bugfix/` |
-| 緊急線上修復 | `hotfix/` |
-| 版本發布準備 | `release/` |
-| 設定、CI/CD、文件、工具鏈 | `chore/` |
+| 修復既有功能的 bug                      | `bugfix/`  |
+| 緊急線上修復                            | `hotfix/`  |
+| 版本發布準備                            | `release/` |
+| 設定、CI/CD、文件、工具鏈               | `chore/`   |
 
 分支名用 kebab-case 英文，例如 `feature/figma-color-tokens`、`chore/commit-skill`。
 
