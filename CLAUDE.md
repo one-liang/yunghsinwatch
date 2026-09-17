@@ -1,6 +1,9 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+@AGENTS.md
+
+本檔先匯入 Codex 與 Claude Code 共用的專案規範，以下內容補充 Claude Code
+需要的詳細指令與架構脈絡。若內容衝突，以 `AGENTS.md` 的共用規範為準。
 
 ## 常用指令
 
