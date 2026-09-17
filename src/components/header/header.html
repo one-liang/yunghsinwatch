@@ -1,15 +1,296 @@
-<header
-  class="site-header sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-zinc-950/90 px-6 py-4 backdrop-blur"
->
-  <a
-    class="site-header__brand flex items-center gap-3 type-label-eyebrow-lg text-white"
-    href="./index.html"
+<header class="site-header sticky top-0 z-40 bg-black text-white" data-site-header>
+  <div
+    class="site-header__bar mx-auto flex h-[68px] w-full max-w-[86rem] items-center justify-between px-5 lg:h-[112px] lg:px-12"
   >
-    <img class="site-header__logo size-8" src="../../assets/images/logo.svg" alt="Template logo" />
-    <span>Tailwind HTML</span>
-  </a>
-  <nav class="site-header__nav flex gap-4 type-label-eyebrow-lg text-zinc-300">
-    <a class="hover:text-white data-[active=true]:text-white" href="./index.html">Home</a>
-    <a class="hover:text-white data-[active=true]:text-white" href="./about.html">About</a>
-  </nav>
+    <a class="site-header__brand flex shrink-0 items-center gap-4 lg:gap-10" href="#">
+      <img
+        class="site-header__logo h-11 w-[83px] lg:h-[74px] lg:w-[140px]"
+        src="@assets/images/logo-patek-philippe-light.svg"
+        alt="Patek Philippe"
+      />
+      <span
+        class="site-header__brand-text flex flex-col justify-center text-center type-heading-2xs tracking-[1px] whitespace-nowrap lg:type-heading-md en:type-display-xs lg:en:type-display-sm"
+      >
+        <span class="site-header__brand-line" data-i18n="brand.line1">永新鐘錶百達翡麗專賣店</span>
+        <span class="site-header__brand-line" data-i18n="brand.line2"></span>
+      </span>
+    </a>
+
+    <nav class="site-header__nav" aria-label="主選單">
+      <ul class="flex items-center justify-center">
+        <li>
+          <a
+            class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+            href="#"
+          >
+            <span data-i18n="nav.collection">時計系列</span>
+          </a>
+        </li>
+        <li class="site-header__dropdown relative">
+          <button
+            class="site-header__menu-link flex cursor-pointer items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+            type="button"
+            data-dropdown-toggle
+            aria-expanded="false"
+            aria-controls="site-header-submenu"
+          >
+            <span data-i18n="nav.boutique">品牌專賣店</span>
+            <svg
+              class="site-header__caret size-4 shrink-0"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+          <ul
+            class="site-header__submenu absolute top-full left-1/2 z-10 min-w-full bg-[#303030]"
+            id="site-header-submenu"
+          >
+            <li>
+              <a
+                class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                href="#"
+                data-i18n="nav.boutique.store"
+              >
+                精品店
+              </a>
+            </li>
+            <li>
+              <a
+                class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                href="#"
+                data-i18n="nav.boutique.team"
+              >
+                我們的團隊
+              </a>
+            </li>
+            <li>
+              <a
+                class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                href="#"
+                data-i18n="nav.boutique.about"
+              >
+                關於永新
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+            href="#"
+          >
+            <span data-i18n="nav.service">維修保養</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+            href="#"
+          >
+            <span data-i18n="nav.contact">聯絡我們</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="site-header__actions hidden shrink-0 items-center gap-10 lg:flex">
+      <div class="flex items-center">
+        <button
+          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+          type="button"
+          data-lang-switch="zh"
+        >
+          <span data-i18n="lang.zh">ZH</span>
+        </button>
+        <span class="h-5 w-px shrink-0 bg-[#d4d4d4]" aria-hidden="true"></span>
+        <button
+          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+          type="button"
+          data-lang-switch="en"
+        >
+          <span data-i18n="lang.en">EN</span>
+        </button>
+      </div>
+      <a
+        class="site-header__cta flex items-center justify-center border border-brand-gold bg-brand-gold px-4 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+        href="#"
+        data-i18n="cta.booking"
+      >
+        預約服務
+      </a>
+    </div>
+
+    <button
+      class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold lg:hidden"
+      type="button"
+      data-drawer-open
+      aria-expanded="false"
+      aria-controls="site-header-drawer"
+      aria-label="開啟選單"
+      data-i18n-attr="aria-label:a11y.openMenu"
+    >
+      <svg class="size-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M21.3334 5C21.7629 5 22.1111 5.34822 22.1111 5.77778C22.1111 6.20733 21.7629 6.55556 21.3334 6.55556H2.66669C2.23714 6.55556 1.88892 6.20733 1.88892 5.77778C1.88892 5.34822 2.23714 5 2.66669 5H21.3334Z"
+          fill="currentColor"
+        />
+        <path
+          d="M21.3334 11.2222C21.7629 11.2222 22.1111 11.5704 22.1111 12C22.1111 12.4296 21.7629 12.7778 21.3334 12.7778H2.66669C2.23714 12.7778 1.88892 12.4296 1.88892 12C1.88892 11.5704 2.23714 11.2222 2.66669 11.2222H21.3334Z"
+          fill="currentColor"
+        />
+        <path
+          d="M21.3334 17.4444C21.7629 17.4444 22.1111 17.7927 22.1111 18.2222C22.1111 18.6518 21.7629 19 21.3334 19H2.66669C2.23714 19 1.88892 18.6518 1.88892 18.2222C1.88892 17.7927 2.23714 17.4444 2.66669 17.4444H21.3334Z"
+          fill="currentColor"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <div
+    class="site-header__drawer fixed inset-0 z-50 flex flex-col bg-black text-white"
+    id="site-header-drawer"
+    data-header-drawer
+    aria-hidden="true"
+  >
+    <div class="flex h-[68px] shrink-0 items-center justify-end px-5">
+      <button
+        class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold"
+        type="button"
+        data-drawer-close
+        aria-label="關閉選單"
+        data-i18n-attr="aria-label:a11y.closeMenu"
+      >
+        <svg class="size-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M17.2049 5.30799C17.6156 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+            fill="currentColor"
+          />
+          <path
+            d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6156 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6156 19.1027 17.2049 18.692Z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <nav class="shrink-0" aria-label="行動版主選單">
+      <ul>
+        <li>
+          <a
+            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+            href="#"
+          >
+            <span data-i18n="nav.collection">時計系列</span>
+          </a>
+        </li>
+        <li class="site-header__accordion" data-accordion>
+          <div
+            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] en:type-label-nav-lg"
+          >
+            <a class="flex-1 transition-colors duration-200 hover:text-brand-gold" href="#">
+              <span data-i18n="nav.boutique">品牌專賣店</span>
+            </a>
+            <button
+              class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold"
+              type="button"
+              data-accordion-toggle
+              aria-expanded="false"
+              aria-controls="site-header-drawer-submenu"
+              aria-label="展開子選單"
+              data-i18n-attr="aria-label:a11y.toggleSubmenu"
+            >
+              <svg
+                class="site-header__caret size-6 shrink-0"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="site-header__accordion-panel" id="site-header-drawer-submenu">
+            <ul class="bg-[#333333]">
+              <li>
+                <a
+                  class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                  href="#"
+                >
+                  <span data-i18n="nav.boutique.store">精品店</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                  href="#"
+                >
+                  <span data-i18n="nav.boutique.team">我們的團隊</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                  href="#"
+                >
+                  <span data-i18n="nav.boutique.about">關於永新</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a
+            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+            href="#"
+          >
+            <span data-i18n="nav.service">維修保養</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+            href="#"
+          >
+            <span data-i18n="nav.contact">聯絡我們</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="flex flex-1 items-end justify-between px-5 py-8">
+      <div class="flex items-center gap-2">
+        <button
+          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+          type="button"
+          data-lang-switch="zh"
+        >
+          <span data-i18n="lang.zh">ZH</span>
+        </button>
+        <span class="h-5 w-px shrink-0 bg-[#d4d4d4]" aria-hidden="true"></span>
+        <button
+          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+          type="button"
+          data-lang-switch="en"
+        >
+          <span data-i18n="lang.en">EN</span>
+        </button>
+      </div>
+      <a
+        class="site-header__cta flex w-40 items-center justify-center border border-brand-gold bg-brand-gold px-2 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+        href="#"
+        data-i18n="cta.booking"
+      >
+        預約服務
+      </a>
+    </div>
+  </div>
 </header>

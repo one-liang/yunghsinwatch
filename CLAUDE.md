@@ -41,6 +41,8 @@ node --test --test-name-pattern "<substring>" tests/builder.test.mjs
 - 缺少組件 HTML 會丟出錯誤；缺少 CSS/JS 則直接略過。
 - 每個組件的 CSS/JS 每頁最多只收集一次（透過 `seenCssFiles`/`seenJsFiles` 去重）。
 
+**全站 JS（`src/js/global/`）：** 這個目錄底下的 `.js` 會*每頁都載入*，依檔名排序後排在組件 JS 與頁面 JS **之前**（`discoverGlobalJsFiles` → `buildPageJsText`），也會一併餵給每頁的 Tailwind 掃描來源。用途是 i18n 字典這種「不屬於任何單一組件、但每頁都需要」的程式碼；目錄可用 `builder.config.mjs` 的 `globalJsDir` 覆寫。
+
 **每頁的 asset 打包：** 每個頁面會依序串接所有被引用的組件 CSS、接著該頁的 sidecar CSS，合併成單一檔案 `assets/css/<pageName>.css`；JS 同理，先組件 JS、後頁面 JS，合併成 `assets/js/<pageName>.js`。頁面 JS 位於 `src/js/<page-path>.js`（對應 `src/pages`）；組件 JS 位於 `src/js/component/<slug>.js`。**只有在串接後的內容 trim 後非空時，JS 才會被輸出並注入 `<script>`** —— 因此空的或未使用的 JS 檔不會留下 script tag。
 
 **每頁的 Tailwind 編譯（關鍵細節）：** Tailwind v4 會在 `compileTailwindCss` 中*為每個頁面分別編譯*。builder 會把該頁渲染後的 HTML *加上其所有 JS 來源*寫入 `.cache/tailwind/<pageName>/source.html`，產生一份強制 `@import "tailwindcss" source(none)` 的 input CSS，並用單一 `@source` 指向該檔案，接著呼叫 Tailwind CLI。結果是每頁的 CSS 只包含該頁實際用到的 utility。`src/styles/tailwind.css` 進入點（`@theme` 中的設計 token、共用的 `@utility` 定義）會被讀入，並在編譯前把其中的 `@import "tailwindcss"` 改寫為 `source(none)`。Tailwind CLI 會從 `node_modules/@tailwindcss/cli` 解析，找不到時退回 `npx @tailwindcss/cli`。
@@ -53,7 +55,7 @@ node --test --test-name-pattern "<substring>" tests/builder.test.mjs
 
 ## 設定檔
 
-- `builder.config.mjs` —— 來源 glob 與各目錄位置（`pages`、`componentsDir`、`pageJsDir`、`componentJsDir`、`assetsDir`、`outDir`、`componentTagPattern`）。`loadConfig` 會套用預設值，因此設定鍵都是選用的。
+- `builder.config.mjs` —— 來源 glob 與各目錄位置（`pages`、`componentsDir`、`pageJsDir`、`globalJsDir`、`componentJsDir`、`assetsDir`、`outDir`、`componentTagPattern`）。`loadConfig` 會套用預設值，因此設定鍵都是選用的。
 - `vite.config.js` —— 僅供開發伺服器使用（固定 `localhost:3000`、`strictPort`，忽略 `.cache/` 與 `dist/`）。
 
 ## 慣例

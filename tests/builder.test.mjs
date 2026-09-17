@@ -316,3 +316,61 @@ test("vite config uses localhost port 3000 and ignores generated folders", async
   assert.equal(config.server.strictPort, true);
   assert.deepEqual(config.server.watch.ignored, ["**/.cache/**", "**/dist/**"]);
 });
+
+test("collects src/js/global scripts on every page, sorted and ahead of component/page js", async () => {
+  const root = await makeFixture();
+
+  try {
+    await mkdir(path.join(root, "src/js/global"), { recursive: true });
+    await writeFile(
+      path.join(root, "src/js/global/b-second.js"),
+      `// 第二個全站檔
+window.globalSecond = true;
+`
+    );
+    await writeFile(
+      path.join(root, "src/js/global/a-first.js"),
+      `// 第一個全站檔
+window.globalFirst = true;
+`
+    );
+
+    const config = await loadConfig(root);
+    const result = await renderPage(path.join(root, "src/pages/index.html"), config);
+
+    assert.deepEqual(
+      result.globalJsFiles.map((filePath) => path.relative(root, filePath).replaceAll("\\", "/")),
+      ["src/js/global/a-first.js", "src/js/global/b-second.js"]
+    );
+
+    const js = await buildPageJsText(result, config);
+    assert.deepEqual(
+      [...js.matchAll(/^\/\* (.+) \*\/$/gm)].map((match) => match[1].replaceAll("\\", "/")),
+      [
+        "全站: src/js/global/a-first.js",
+        "全站: src/js/global/b-second.js",
+        "組件: src/js/component/header.js",
+        "頁面: src/js/index.js",
+      ]
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("omits the global js section when src/js/global is missing", async () => {
+  const root = await makeFixture();
+
+  try {
+    const config = await loadConfig(root);
+    const result = await renderPage(path.join(root, "src/pages/index.html"), config);
+
+    assert.deepEqual(result.globalJsFiles, []);
+
+    const js = await buildPageJsText(result, config);
+    assert.doesNotMatch(js, /全站:/);
+    assert.match(js, /^\/\* 組件: /);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

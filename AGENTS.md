@@ -2,7 +2,7 @@
 
 ## 專案結構與模組組織
 
-本專案是以 Vite 與 Tailwind CSS v4 製作的靜態網站建置器。頁面放在 `src/pages/`，共用 HTML 組件放在 `src/components/<slug>/`，頁面與組件腳本分別位於 `src/js/`、`src/js/component/`。全站 Tailwind token 與 utility 集中於 `src/styles/tailwind.css`，圖片與字型置於 `src/assets/`。建置核心、開發伺服器與部署工具在 `scripts/`；測試在 `tests/`。`dist/` 與 `.cache/` 是產生物，請勿手動編輯或提交。
+本專案是以 Vite 與 Tailwind CSS v4 製作的靜態網站建置器。頁面放在 `src/pages/`，共用 HTML 組件放在 `src/components/<slug>/`，頁面與組件腳本分別位於 `src/js/`、`src/js/component/`，每頁都要載入的全站腳本（例如 i18n 文字檔與 runtime）放在 `src/js/global/`。全站 Tailwind token 與 utility 集中於 `src/styles/tailwind.css`，圖片與字型置於 `src/assets/`。建置核心、開發伺服器與部署工具在 `scripts/`；測試在 `tests/`。`dist/` 與 `.cache/` 是產生物，請勿手動編輯或提交。
 
 ## 建置、測試與開發指令
 

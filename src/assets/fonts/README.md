@@ -4,7 +4,8 @@
 實際使用的語系子集與字重：
 
 - Playfair Display Latin：400、500；用於英文展示標題。
-- Inter Latin：500；用於標籤、UI 元件、數字、資料值及 Copyright。
+- Inter Latin：400、500；用於標籤、UI 元件、數字、資料值及 Copyright，
+  400 為英文版導覽列與按鈕文字（Figma Navbar 英文版）。
 - Noto Serif TC Traditional Chinese：500；用於中文大標、Modal 與文章標題。
 - Noto Sans TC Traditional Chinese：400、500；用於中文內文與 UI 說明文字。
 
