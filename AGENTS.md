@@ -25,6 +25,8 @@
 
 沿用 Git 歷史中的 Conventional Commits，例如 `feat(build): 新增頁面輸出`、`chore(ui): 調整首頁` 或 `docs: 更新說明`。每個 commit 聚焦單一目的。PR 應說明變更動機、驗證指令與相關 issue；視覺變更附前後截圖，部署或建置變更則列出受影響的輸出路徑。不要把 `dist/` 納入主分支；`npm run deploy` 會發佈至 `demo` 分支。
 
+完整的分支命名與 commit 流程見 `docs/commit-workflow.md`，該檔是兩個工具共用的單一事實來源。Claude Code 可用 `/commit`（`.claude/skills/commit/SKILL.md`），Codex 可用 `/commit`（`.codex/prompts/commit.md`），兩者都只是轉介到同一份規範。注意本專案**沒有** `develop` 分支，採沿用 git flow 命名但直接合併回 `main` 的輕量流程；未經使用者同意不得執行 `git flow init`。
+
 ## AI 工具協作
 
 `AGENTS.md` 是 Codex 與 Claude Code 的共用規範；`CLAUDE.md` 必須以 `@AGENTS.md` 匯入，再補充工具專用內容。開始修改前先執行 `git status --short`，保留其他工作者的既有變更。平行開發時，每個工具使用獨立 branch 與 git worktree，並避免同時修改相同檔案。交接前執行 `npm run format:check` 與 `npm run check`，清楚列出異動檔案、驗證結果及未完成事項。除非使用者明確要求，AI 工具不得執行 `npm run deploy`、push、rebase 或刪除分支。
