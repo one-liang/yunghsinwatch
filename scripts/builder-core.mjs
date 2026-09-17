@@ -32,6 +32,7 @@ export async function loadConfig(rootDir = process.cwd()) {
     pagesDir,
     componentsDir: path.resolve(rootDir, rawConfig.componentsDir ?? "src/components"),
     pageJsDir: path.resolve(rootDir, rawConfig.pageJsDir ?? "src/js"),
+    globalJsDir: path.resolve(rootDir, rawConfig.globalJsDir ?? "src/js/global"),
     componentJsDir: path.resolve(rootDir, rawConfig.componentJsDir ?? "src/js/component"),
     assetsDir: path.resolve(rootDir, rawConfig.assetsDir ?? "src/assets"),
     outDir: path.resolve(rootDir, rawConfig.outDir ?? "dist"),
@@ -43,6 +44,15 @@ export async function loadConfig(rootDir = process.cwd()) {
 export async function discoverPages(config) {
   const pages = await walkFiles(config.pagesDir, ".html");
   return pages.sort((a, b) => normalizePath(a).localeCompare(normalizePath(b)));
+}
+
+// 全站 JS：src/js/global/ 底下的檔案每頁都會載入，依檔名排序後排在組件 JS 之前。
+// 用途是 i18n 字典這類「不屬於任何單一組件、但每頁都需要」的程式碼。
+export async function discoverGlobalJsFiles(config) {
+  if (!config.globalJsDir) return [];
+
+  const files = await walkFiles(config.globalJsDir, ".js");
+  return files.sort((a, b) => normalizePath(a).localeCompare(normalizePath(b)));
 }
 
 export function getPageOutputInfo(pagePath, config) {
@@ -78,10 +88,12 @@ export async function renderPage(pagePath, config, options = {}) {
   const renderedHtml = await renderHtml(rewrittenHtml, context, pagePath);
   const pageCssFile = await sidecarFile(pagePath, ".css");
   const pageJsFile = await pageJsFileForPage(pagePath, config);
+  const globalJsFiles = await discoverGlobalJsFiles(config);
 
   return {
     pagePath,
     html: renderedHtml,
+    globalJsFiles,
     componentCssFiles: context.componentCssFiles,
     componentJsFiles: context.componentJsFiles,
     pageCssFile,
@@ -240,6 +252,12 @@ export async function buildPageCssText(renderedPage, config, outputInfo, options
 
 export async function buildPageJsText(renderedPage, config = null) {
   const chunks = [];
+
+  for (const jsPath of renderedPage.globalJsFiles ?? []) {
+    const js = await readFile(jsPath, "utf8");
+    chunks.push(sectionComment(`全站: ${sourceLabel(jsPath, config)}`));
+    chunks.push(js.trimEnd());
+  }
 
   for (const jsPath of renderedPage.componentJsFiles) {
     const js = await readFile(jsPath, "utf8");
@@ -528,6 +546,10 @@ async function compileTailwindCss(renderedPage, config, pageName) {
   const outputCssPath = path.join(cacheDir, "tailwind.css");
   const sourceHtmlPath = path.join(cacheDir, "source.html");
   const sourceParts = [renderedPage.html];
+
+  for (const jsPath of renderedPage.globalJsFiles ?? []) {
+    sourceParts.push(await readFile(jsPath, "utf8"));
+  }
 
   for (const jsPath of renderedPage.componentJsFiles) {
     sourceParts.push(await readFile(jsPath, "utf8"));
