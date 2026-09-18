@@ -3,38 +3,221 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tailwind HTML Template</title>
+    <meta
+      name="description"
+      content="永新鐘錶百達翡麗專賣店，探索百達翡麗時計、最新消息與預約服務。"
+    />
+    <link rel="icon" href="../assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/vendor/swiper/swiper-bundle.min.css" />
+    <title>永新鐘錶｜百達翡麗專賣店</title>
   </head>
-  <body class="flex min-h-screen flex-col bg-zinc-950 type-body-base text-white">
+  <body class="min-h-screen bg-white type-body-base text-black">
     <c-header />
 
-    <main class="flex-1 px-6 py-16">
-      <section class="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1fr_420px] md:items-center">
-        <div>
-          <p class="mb-4 type-label-eyebrow-lg tracking-wide text-cyan-300 uppercase">
-            Static HTML Builder
-          </p>
-          <h1 class="max-w-3xl type-display-md md:type-display-xl">
-            Tailwind pages with Vue-like HTML components.
-          </h1>
-          <p class="mt-6 max-w-2xl type-body-lg text-zinc-300">
-            Build readable HTML, CSS, and JS files that can be opened directly from the dist folder.
-          </p>
-          <a
-            class="mt-8 inline-flex rounded-md bg-cyan-300 px-5 py-3 type-label-eyebrow-lg text-zinc-950"
-            href="./about.html"
-          >
-            View about page
-          </a>
+    <!-- TODO(home-responsive): 待其他 Figma 尺寸完成後，補齊 XL／LG／MD／SM 版型。 -->
+    <main>
+      <section class="home-hero-swiper swiper h-[725px] w-full rounded-[4px] bg-black text-white">
+        <div class="swiper-wrapper">
+          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+            <img
+              class="absolute inset-0 size-full object-cover"
+              src="../assets/images/home/hero-nautilus.png"
+              alt=""
+            />
+
+            <div class="relative z-10 mx-auto h-full w-full max-w-[1344px] px-8">
+              <div class="absolute bottom-[164px] left-8 w-[min(600px,calc(100%_-_64px))]">
+                <p class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px]">
+                  百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年<br />四大限量紀念款
+                </p>
+              </div>
+
+              <button
+                class="absolute bottom-[85px] left-8 cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors duration-200 hover:bg-white hover:text-black"
+                type="button"
+              >
+                探索更多
+              </button>
+            </div>
+          </article>
+
+          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+            <img
+              class="absolute inset-0 size-full object-cover"
+              src="../assets/images/home/hero-nautilus.png"
+              alt=""
+            />
+
+            <div class="relative z-10 mx-auto h-full w-full max-w-[1344px] px-8">
+              <div class="absolute bottom-[164px] left-8 w-[min(600px,calc(100%_-_64px))]">
+                <p class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px]">
+                  百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年<br />四大限量紀念款
+                </p>
+              </div>
+
+              <button
+                class="absolute bottom-[85px] left-8 cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors duration-200 hover:bg-white hover:text-black"
+                type="button"
+              >
+                探索更多
+              </button>
+            </div>
+          </article>
+
+          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+            <img
+              class="absolute inset-0 size-full object-cover"
+              src="../assets/images/home/hero-nautilus.png"
+              alt=""
+            />
+
+            <div class="relative z-10 mx-auto h-full w-full max-w-[1344px] px-8">
+              <div class="absolute bottom-[164px] left-8 w-[min(600px,calc(100%_-_64px))]">
+                <p class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px]">
+                  百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年<br />四大限量紀念款
+                </p>
+              </div>
+
+              <button
+                class="absolute bottom-[85px] left-8 cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors duration-200 hover:bg-white hover:text-black"
+                type="button"
+              >
+                探索更多
+              </button>
+            </div>
+          </article>
         </div>
+
+        <div class="home-hero-pagination swiper-pagination"></div>
+      </section>
+
+      <section class="flex w-full flex-col items-center gap-14 py-[72px]">
+        <!-- TODO(home-video): 待影片檔或播放網址提供後，替換此 16:9 預留區。 -->
+        <div class="aspect-video w-[calc(100%_-_64px)] max-w-[1200px] bg-black"></div>
         <img
-          class="w-full max-w-[420px] justify-self-center rounded-lg border border-white/20 bg-zinc-900 md:justify-self-end"
-          src="../assets/images/hero.svg"
-          alt="Abstract interface preview"
+          class="size-14"
+          src="../assets/images/home/patek-philippe-mark.svg"
+          alt="Patek Philippe"
         />
+      </section>
+
+      <section class="relative bg-background py-28">
+        <span class="absolute top-[-40px] left-1/2 h-20 w-px -translate-x-1/2 bg-brand-gold"></span>
+
+        <div class="mx-auto flex w-[calc(100%_-_64px)] max-w-[1280px] flex-col gap-28">
+          <article
+            class="grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
+          >
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-4">
+                <p class="type-label-eyebrow-lg font-semibold text-brown-light uppercase">
+                  Aquanaut
+                </p>
+                <h2 class="type-heading-md tracking-[1px] text-brown-dark">
+                  首度加入日出日落<br />Grand Complications 6105G-001
+                </h2>
+              </div>
+              <p class="type-body-base tracking-[1px]">
+                當時間不再只是指針的流動，而化為一場關於宇宙運行的精密演繹，PATEK PHILIPPE Ref.
+                6105G-001 以嶄新高度重新定義天文複雜功能腕錶。此款 2026
+                年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
+              </p>
+            </div>
+            <img
+              class="h-[450px] w-full object-cover"
+              src="../assets/images/home/article-6105g.png"
+              alt="百達翡麗 Grand Complications 6105G-001 腕錶"
+              loading="lazy"
+            />
+          </article>
+
+          <article
+            class="grid min-h-[450px] grid-cols-[minmax(0,800px)_minmax(0,408px)] items-center gap-[72px]"
+          >
+            <img
+              class="h-[450px] w-full object-cover"
+              src="../assets/images/home/article-5396r.png"
+              alt="百達翡麗 5396R 年曆腕錶"
+              loading="lazy"
+            />
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-4">
+                <p class="type-label-eyebrow-lg font-semibold text-brown-light uppercase">
+                  Aquanaut
+                </p>
+                <h2 class="type-heading-md tracking-[1px] text-brown-dark">
+                  百達翡麗 5396R 年曆腕錶三十週年致敬之作
+                </h2>
+              </div>
+              <p class="type-body-base tracking-[1px]">
+                回顧現代高級製錶發展，一項真正具有影響力的複雜功能，往往不只是增加腕錶的技術含量，也可能重新改變市場對實用性的理解。1996
+                年，Patek Philippe 百達翡麗推出 Ref.
+                5035，首度將獲得專利的年曆複雜功能帶到世人面前。它既不是萬年曆的簡化版本，也不只是全日曆的小幅改良，而是一套能夠自動辨識
+                30 天與 31
+                天月份的機制。換句話說，佩戴者一年只需要在二月底手動調校一次。這項設計正好填補全日曆與萬年曆之間的空白，也憑藉更貼近日常使用的特性，逐漸成為百達翡麗最具代表性的複雜功能之一。
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
+          >
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-4">
+                <p class="type-label-eyebrow-lg font-semibold text-brown-light uppercase">
+                  Aquanaut
+                </p>
+                <h2 class="type-heading-md tracking-[1px] text-brown-dark">
+                  首度加入日出日落<br />Grand Complications 6105G-001
+                </h2>
+              </div>
+              <p class="type-body-base tracking-[1px]">
+                當時間不再只是指針的流動，而化為一場關於宇宙運行的精密演繹，PATEK PHILIPPE Ref.
+                6105G-001 以嶄新高度重新定義天文複雜功能腕錶。此款 2026
+                年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
+              </p>
+            </div>
+            <img
+              class="h-[450px] w-full object-cover"
+              src="../assets/images/home/article-6105g.png"
+              alt="百達翡麗 Grand Complications 6105G-001 腕錶"
+              loading="lazy"
+            />
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="relative flex h-[300px] items-center justify-center overflow-hidden text-white"
+      >
+        <img
+          class="absolute inset-0 size-full object-cover"
+          src="../assets/images/home/contact-background.png"
+          alt="百達翡麗時計工藝細節"
+        />
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div
+          class="relative flex w-[min(640px,calc(100%_-_64px))] flex-col items-center gap-6 text-center"
+        >
+          <h2 class="type-display-xl tracking-[2px]">CONTACT US</h2>
+          <p class="pt-2 type-heading-xs tracking-[1px]">
+            跟隨鏡頭走進高級製錶世界，從難得一見的視角，窺見汝拉山谷核心地帶中，工匠、設計師、工程師精雕細琢的匠心工藝。
+          </p>
+        </div>
+      </section>
+
+      <section class="flex h-[200px] items-center justify-center bg-brown-dark px-8 text-white">
+        <div class="flex items-center gap-14">
+          <h2 class="type-heading-xl tracking-[2px]">我要預約</h2>
+          <span class="h-6 w-px bg-white"></span>
+          <p class="text-right type-label-eyebrow-lg tracking-[1.5px] uppercase">
+            Schedule an Appointment
+          </p>
+        </div>
       </section>
     </main>
 
     <c-footer />
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
   </body>
 </html>

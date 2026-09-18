@@ -1,0 +1,25 @@
+.home-hero-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: 24px;
+  left: 50%;
+  display: flex;
+  width: auto;
+  gap: 10px;
+  transform: translateX(-50%);
+}
+
+.home-hero-pagination.swiper-pagination-bullets .swiper-pagination-bullet {
+  width: 8px;
+  height: 6px;
+  margin: 0;
+  border-radius: 8px;
+  background: #d9d9d9;
+  opacity: 0.5;
+  transition:
+    width 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.home-hero-pagination.swiper-pagination-bullets .swiper-pagination-bullet-active {
+  width: 40px;
+  opacity: 1;
+}
