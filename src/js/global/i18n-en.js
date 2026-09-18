@@ -18,7 +18,9 @@ window.SITE_I18N.en = {
   "lang.zh": "ZH",
   "lang.en": "EN",
 
-  "a11y.openMenu": "Open menu",
-  "a11y.closeMenu": "Close menu",
-  "a11y.toggleSubmenu": "Toggle submenu",
+  "footer.address":
+    "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City (next to First Bank)",
+  "footer.terms": "TERMS OF SERVICE",
+  "footer.privacy": "PRIVACY POLICY",
+  "footer.copyright": "© 2026 Yung Hsin Watch. All rights reserved.",
 };

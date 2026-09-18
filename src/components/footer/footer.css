@@ -1,0 +1,36 @@
+.site-footer__icon {
+  display: block;
+  flex: none;
+  background-color: currentColor;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+}
+
+.site-footer__icon--location {
+  -webkit-mask-image: url("../../assets/icons/location.svg");
+  mask-image: url("../../assets/icons/location.svg");
+}
+
+.site-footer__icon--call {
+  -webkit-mask-image: url("../../assets/icons/call.svg");
+  mask-image: url("../../assets/icons/call.svg");
+}
+
+.site-footer__icon--mail {
+  -webkit-mask-image: url("../../assets/icons/mail.svg");
+  mask-image: url("../../assets/icons/mail.svg");
+}
+
+.site-footer__icon--instagram {
+  -webkit-mask-image: url("../../assets/icons/instagram.svg");
+  mask-image: url("../../assets/icons/instagram.svg");
+}
+
+.site-footer__icon--facebook {
+  -webkit-mask-image: url("../../assets/icons/facebook.svg");
+  mask-image: url("../../assets/icons/facebook.svg");
+}
