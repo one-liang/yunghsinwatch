@@ -19,5 +19,8 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "latest",
     "vite": "latest"
+  },
+  "dependencies": {
+    "swiper": "^14.2.0"
   }
 }

@@ -163,7 +163,6 @@ npm run build
 
 ```text
 dist/index.html
-dist/about.html
 dist/assets/css/*.css
 dist/assets/js/*.js
 dist/assets/images/*
