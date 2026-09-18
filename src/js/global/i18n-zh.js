@@ -19,7 +19,8 @@ window.SITE_I18N.zh = {
   "lang.zh": "ZH",
   "lang.en": "EN",
 
-  "a11y.openMenu": "開啟選單",
-  "a11y.closeMenu": "關閉選單",
-  "a11y.toggleSubmenu": "展開子選單",
+  "footer.address": "台北市士林區忠誠路一段 82 號 (第一銀行旁)",
+  "footer.terms": "服務條款",
+  "footer.privacy": "隱私權政策",
+  "footer.copyright": "© 2026 Yung Hsin Watch. All rights reserved.",
 };

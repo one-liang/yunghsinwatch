@@ -16,7 +16,7 @@
       </span>
     </a>
 
-    <nav class="site-header__nav" aria-label="主選單">
+    <nav class="site-header__nav">
       <ul class="flex items-center justify-center">
         <li>
           <a
@@ -31,16 +31,9 @@
             class="site-header__menu-link flex cursor-pointer items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
             type="button"
             data-dropdown-toggle
-            aria-expanded="false"
-            aria-controls="site-header-submenu"
           >
             <span data-i18n="nav.boutique">品牌專賣店</span>
-            <svg
-              class="site-header__caret size-4 shrink-0"
-              viewBox="0 0 24 24"
-              fill="none"
-              aria-hidden="true"
-            >
+            <svg class="site-header__caret size-4 shrink-0" viewBox="0 0 24 24" fill="none">
               <path
                 d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
                 fill="currentColor"
@@ -108,7 +101,7 @@
         >
           <span data-i18n="lang.zh">ZH</span>
         </button>
-        <span class="h-5 w-px shrink-0 bg-[#d4d4d4]" aria-hidden="true"></span>
+        <span class="h-5 w-px shrink-0 bg-[#d4d4d4]"></span>
         <button
           class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
           type="button"
@@ -130,12 +123,8 @@
       class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold lg:hidden"
       type="button"
       data-drawer-open
-      aria-expanded="false"
-      aria-controls="site-header-drawer"
-      aria-label="開啟選單"
-      data-i18n-attr="aria-label:a11y.openMenu"
     >
-      <svg class="size-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <svg class="size-6" viewBox="0 0 24 24" fill="none">
         <path
           d="M21.3334 5C21.7629 5 22.1111 5.34822 22.1111 5.77778C22.1111 6.20733 21.7629 6.55556 21.3334 6.55556H2.66669C2.23714 6.55556 1.88892 6.20733 1.88892 5.77778C1.88892 5.34822 2.23714 5 2.66669 5H21.3334Z"
           fill="currentColor"
@@ -156,17 +145,14 @@
     class="site-header__drawer fixed inset-0 z-50 flex flex-col bg-black text-white"
     id="site-header-drawer"
     data-header-drawer
-    aria-hidden="true"
   >
     <div class="flex h-[68px] shrink-0 items-center justify-end px-5">
       <button
         class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold"
         type="button"
         data-drawer-close
-        aria-label="關閉選單"
-        data-i18n-attr="aria-label:a11y.closeMenu"
       >
-        <svg class="size-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <svg class="size-6" viewBox="0 0 24 24" fill="none">
           <path
             d="M17.2049 5.30799C17.6156 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
             fill="currentColor"
@@ -179,7 +165,7 @@
       </button>
     </div>
 
-    <nav class="shrink-0" aria-label="行動版主選單">
+    <nav class="shrink-0">
       <ul>
         <li>
           <a
@@ -200,17 +186,8 @@
               class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold"
               type="button"
               data-accordion-toggle
-              aria-expanded="false"
-              aria-controls="site-header-drawer-submenu"
-              aria-label="展開子選單"
-              data-i18n-attr="aria-label:a11y.toggleSubmenu"
             >
-              <svg
-                class="site-header__caret size-6 shrink-0"
-                viewBox="0 0 24 24"
-                fill="none"
-                aria-hidden="true"
-              >
+              <svg class="site-header__caret size-6 shrink-0" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
                   fill="currentColor"
@@ -275,7 +252,7 @@
         >
           <span data-i18n="lang.zh">ZH</span>
         </button>
-        <span class="h-5 w-px shrink-0 bg-[#d4d4d4]" aria-hidden="true"></span>
+        <span class="h-5 w-px shrink-0 bg-[#d4d4d4]"></span>
         <button
           class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
           type="button"
