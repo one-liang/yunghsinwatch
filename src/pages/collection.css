@@ -1,0 +1,41 @@
+/* Figma 的 XL／LG 使用 88px 精簡頁首；2XL 保留完整頁首與既有捲動縮合。 */
+@media (min-width: 64rem) and (max-width: 95.9375rem) {
+  .collection-page .site-header {
+    height: 88px;
+    justify-content: center;
+  }
+
+  .collection-page .site-header__bar {
+    height: 80px;
+  }
+
+  .collection-page .site-header__logo {
+    width: 106px;
+    height: 56px;
+  }
+
+  .collection-page .site-header__brand-text {
+    display: none;
+  }
+
+  .collection-page .site-header__nav {
+    position: static;
+    inset: auto;
+  }
+}
+
+@media (min-width: 64rem) and (max-width: 79.9375rem) {
+  .collection-page .site-header__menu-link,
+  .collection-page .site-header__lang-link {
+    padding-inline: 1rem;
+  }
+
+  .collection-page .site-header__cta {
+    padding-inline: 0.5rem;
+  }
+
+  .collection-page .site-header__lang-link::after {
+    right: 1rem;
+    left: 1rem;
+  }
+}

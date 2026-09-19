@@ -18,6 +18,13 @@ window.SITE_I18N.en = {
   "lang.zh": "ZH",
   "lang.en": "EN",
 
+  "collection.meta.title": "Patek Philippe Collection | Yung Hsin Watch",
+  "collection.meta.description":
+    "Explore the Patek Philippe collection and its enduring standards of watchmaking, quality, and innovation.",
+  "collection.heading": "Patek Philippe Collection",
+  "collection.description":
+    "The Patek Philippe collection comprises more than 150 models in regular production, each produced in small series to ensure the highest standards of quality embodied by the Patek Philippe Seal.",
+
   "footer.address":
     "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City (next to First Bank)",
   "footer.terms": "TERMS OF SERVICE",
