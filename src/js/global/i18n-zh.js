@@ -25,6 +25,15 @@ window.SITE_I18N.zh = {
   "collection.description":
     "百達翡麗常規系列擁有逾150個錶款型號，每款作品均限量生產，旨在確保符合百達翡麗印記的至高品質標準。",
 
+  "series.goldenEllipse.meta.title": "Golden Ellipse 系列｜永新鐘錶百達翡麗專賣店",
+  "series.goldenEllipse.meta.description":
+    "探索百達翡麗 Golden Ellipse 系列，感受經典橢圓造型與和諧比例所展現的優雅美學。",
+  "series.goldenEllipse.headingSuffix": " 系列",
+  "series.goldenEllipse.description":
+    "深入探索 Golden Ellipse 系列的迷人世界，其悠久歷史在百達翡麗各大時計中位列第二，僅次於 Calatrava 系列。",
+  "series.goldenEllipse.watchName": "GOLDEN ELLIPSE 腕錶",
+  "series.goldenEllipse.discoverTitle": "繼續探索",
+
   "footer.address": "台北市士林區忠誠路一段 82 號 (第一銀行旁)",
   "footer.terms": "服務條款",
   "footer.privacy": "隱私權政策",

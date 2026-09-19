@@ -25,6 +25,15 @@ window.SITE_I18N.en = {
   "collection.description":
     "The Patek Philippe collection comprises more than 150 models in regular production, each produced in small series to ensure the highest standards of quality embodied by the Patek Philippe Seal.",
 
+  "series.goldenEllipse.meta.title": "Golden Ellipse Collection | Yung Hsin Watch",
+  "series.goldenEllipse.meta.description":
+    "Discover the Patek Philippe Golden Ellipse collection and the elegant harmony of its iconic elliptical form.",
+  "series.goldenEllipse.headingSuffix": " COLLECTION",
+  "series.goldenEllipse.description":
+    "Discover the captivating world of the Golden Ellipse collection, whose long history ranks second among Patek Philippe collections, surpassed only by Calatrava.",
+  "series.goldenEllipse.watchName": "GOLDEN ELLIPSE WATCH",
+  "series.goldenEllipse.discoverTitle": "CONTINUE EXPLORING",
+
   "footer.address":
     "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City (next to First Bank)",
   "footer.terms": "TERMS OF SERVICE",

@@ -1,0 +1,186 @@
+.series-watch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 160px);
+  justify-content: center;
+  gap: 24px;
+  padding: 0 20px 32px;
+}
+
+.series-watch-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.series-watch-card > img {
+  width: 100%;
+  aspect-ratio: 272 / 381;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.series-watch-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+.series-watch-card__reference {
+  color: var(--color-brown-dark);
+  font-family: var(--font-label);
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 1px;
+}
+
+.series-watch-card__name {
+  font-family: var(--font-label);
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.series-discover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 20px;
+}
+
+.series-discover__grid {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.series-discover__card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.series-discover__card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.series-discover__card h3 {
+  font-family: var(--font-label);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 36px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 23.9375rem) {
+  .series-watch-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (min-width: 64rem) {
+  .series-watch-grid {
+    grid-template-columns: repeat(4, 196px);
+    gap: 48px;
+    padding: 0 48px 48px;
+  }
+
+  .series-discover {
+    gap: 32px;
+    padding: 64px 48px;
+  }
+
+  .series-discover__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px;
+    max-width: 928px;
+  }
+
+  .series-discover__card {
+    gap: 20px;
+  }
+
+  .series-discover__card h3 {
+    font-size: 28px;
+    line-height: 40px;
+  }
+}
+
+@media (min-width: 64rem) and (max-width: 95.9375rem) {
+  .series-page .site-header {
+    height: 88px;
+    justify-content: center;
+  }
+
+  .series-page .site-header__bar {
+    height: 80px;
+  }
+
+  .series-page .site-header__logo {
+    width: 106px;
+    height: 56px;
+  }
+
+  .series-page .site-header__brand-text {
+    display: none;
+  }
+
+  .series-page .site-header__nav {
+    position: static;
+    inset: auto;
+  }
+}
+
+@media (min-width: 64rem) and (max-width: 79.9375rem) {
+  .series-page .site-header__menu-link,
+  .series-page .site-header__lang-link {
+    padding-inline: 1rem;
+  }
+
+  .series-page .site-header__cta {
+    padding-inline: 0.5rem;
+  }
+
+  .series-page .site-header__lang-link::after {
+    right: 1rem;
+    left: 1rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  .series-watch-grid {
+    grid-template-columns: repeat(4, 248px);
+    gap: 64px;
+    padding: 0 48px 64px;
+  }
+
+  .series-discover {
+    gap: 56px;
+    padding-block: 80px;
+  }
+
+  .series-discover__grid {
+    gap: 64px;
+    max-width: 1184px;
+  }
+}
+
+@media (min-width: 96rem) {
+  .series-watch-grid {
+    grid-template-columns: repeat(4, 272px);
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  .series-discover__grid {
+    max-width: 1280px;
+  }
+}
