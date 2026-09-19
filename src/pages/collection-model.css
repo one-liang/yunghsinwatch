@@ -1,0 +1,340 @@
+/* ---------- 上半部：圖片展示 + 錶款資訊 ---------- */
+
+.model-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 20px;
+}
+
+/* ---------- 圖片展示輪播（Swiper） ---------- */
+
+.model-gallery {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 主圖容器給定比例，Swiper 的 .swiper-wrapper 才有可解析的高度可繼承。 */
+.model-gallery__main {
+  width: 100%;
+  aspect-ratio: 608 / 750;
+  border-radius: 4px;
+}
+
+/* Figma 的主圖貼齊容器底部裁切，縮圖則置中。 */
+.model-gallery__main img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.model-gallery__thumbs {
+  width: 100%;
+}
+
+.model-gallery__thumbs .swiper-slide {
+  aspect-ratio: 146 / 175;
+  border: 1px solid transparent;
+  background-color: var(--color-background);
+  cursor: pointer;
+}
+
+.model-gallery__thumbs .swiper-slide-thumb-active {
+  border-color: var(--color-brown-dark);
+}
+
+.model-gallery__thumbs img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- 錶款資訊 ---------- */
+
+.model-info {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.model-info__series {
+  align-self: flex-start;
+  border: 1px solid var(--color-brand-gold);
+  background-color: var(--color-brand-gold);
+  padding: 6px 12px;
+  color: var(--color-white);
+  font-family: var(--font-label);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.model-info__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.model-info__reference {
+  font-family: var(--font-label);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 32px;
+  letter-spacing: 1px;
+}
+
+.model-info__name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 8px;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: 1px;
+}
+
+.model-info__price {
+  font-family: var(--font-label);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+/* ---------- 規格表 ---------- */
+
+.model-specs {
+  display: flex;
+  flex-direction: column;
+}
+
+.model-specs__row {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid var(--color-background);
+  padding-block: 16px;
+  letter-spacing: 1px;
+}
+
+.model-specs__label {
+  width: 168px;
+  flex: none;
+  color: var(--color-brown-warm);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 28px;
+}
+
+.model-specs__value {
+  min-width: 0;
+  flex: 1 1 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 28px;
+}
+
+/* ---------- 推薦其他腕錶 ---------- */
+
+.model-recommend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 20px;
+}
+
+.model-recommend__grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 160px);
+  justify-content: center;
+  gap: 24px;
+}
+
+.model-watch-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.model-watch-card > img {
+  width: 100%;
+  aspect-ratio: 272 / 381;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.model-watch-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+.model-watch-card__reference {
+  font-family: var(--font-label);
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 1px;
+}
+
+.model-watch-card__name {
+  font-family: var(--font-label);
+  font-size: 18px;
+  line-height: 32px;
+}
+
+@media (max-width: 23.9375rem) {
+  .model-recommend__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+/* ---------- LG：單欄，規格表改為左標籤右內容 ---------- */
+
+@media (min-width: 64rem) {
+  .model-top {
+    gap: 48px;
+    padding: 48px;
+  }
+
+  .model-gallery {
+    max-width: 500px;
+  }
+
+  .model-info {
+    gap: 32px;
+  }
+
+  .model-info__reference {
+    font-size: 20px;
+    line-height: 36px;
+  }
+
+  .model-info__name {
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  .model-specs__row {
+    flex-direction: row;
+    padding-block: 20px;
+  }
+
+  .model-recommend {
+    padding: 64px 48px;
+  }
+
+  .model-recommend__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 48px;
+  }
+}
+
+/* Figma 的 XL／LG 使用 88px 精簡頁首；2XL 保留完整頁首與既有捲動縮合。 */
+@media (min-width: 64rem) and (max-width: 95.9375rem) {
+  .model-page .site-header {
+    height: 88px;
+    justify-content: center;
+  }
+
+  .model-page .site-header__bar {
+    height: 80px;
+  }
+
+  .model-page .site-header__logo {
+    width: 106px;
+    height: 56px;
+  }
+
+  .model-page .site-header__brand-text {
+    display: none;
+  }
+
+  .model-page .site-header__nav {
+    position: static;
+    inset: auto;
+  }
+}
+
+@media (min-width: 64rem) and (max-width: 79.9375rem) {
+  .model-page .site-header__menu-link,
+  .model-page .site-header__lang-link {
+    padding-inline: 1rem;
+  }
+
+  .model-page .site-header__cta {
+    padding-inline: 0.5rem;
+  }
+
+  .model-page .site-header__lang-link::after {
+    right: 1rem;
+    left: 1rem;
+  }
+}
+
+/* ---------- XL：圖片展示與資訊並排 ---------- */
+
+@media (min-width: 80rem) {
+  .model-top {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 64px;
+    padding: 64px 48px;
+  }
+
+  .model-gallery {
+    width: 500px;
+    max-width: none;
+    flex: none;
+  }
+
+  .model-info {
+    min-width: 0;
+    flex: 1 1 0;
+  }
+
+  .model-recommend {
+    padding: 80px 48px;
+  }
+
+  .model-recommend__grid {
+    gap: 64px;
+  }
+}
+
+/* ---------- 2XL：內容固定 1280 置中 ---------- */
+
+@media (min-width: 96rem) {
+  .model-top {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+
+  .model-gallery {
+    width: 600px;
+  }
+
+  .model-recommend {
+    padding-inline: 0;
+  }
+
+  .model-recommend__grid {
+    max-width: 1280px;
+  }
+}

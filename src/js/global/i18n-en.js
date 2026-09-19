@@ -25,6 +25,46 @@ window.SITE_I18N.en = {
   "collection.description":
     "The Patek Philippe collection comprises more than 150 models in regular production, each produced in small series to ensure the highest standards of quality embodied by the Patek Philippe Seal.",
 
+  "series.meta.title": "Golden Ellipse Collection | Yung Hsin Watch",
+  "series.meta.description":
+    "Discover the Patek Philippe Golden Ellipse collection and the elegant harmony of its iconic elliptical form.",
+  "series.headingSuffix": " COLLECTION",
+  "series.description":
+    "Discover the captivating world of the Golden Ellipse collection, whose long history ranks second among Patek Philippe collections, surpassed only by Calatrava.",
+  "series.watchName": "GOLDEN ELLIPSE WATCH",
+  "series.discoverTitle": "CONTINUE EXPLORING",
+
+  "model.meta.title": "Golden Ellipse 5204G-010 | Yung Hsin Watch",
+  "model.meta.description":
+    "Discover the Patek Philippe Golden Ellipse 5204G-010, pairing an olive green sunburst dial with a white gold case in perfectly harmonious proportions.",
+  "model.nameSuffix": " WATCH",
+  "model.description":
+    "CHR 29-535 PS Q manually wound movement with split-seconds chronograph and perpetual calendar. Two column wheels and a horizontal clutch. The 30-minute instantaneous counter sits at 3 o'clock and the small seconds at 9 o'clock. Seven patented innovations, six of them dedicated to the chronograph and one to the split-seconds mechanism. Navy blue sunburst dial with twin apertures at 12 o'clock for the day and month, a moon-phase display at 6 o'clock and the date shown by a hand. Tachymeter scale printed in white. 40 mm white gold case with a fully polished finish. Navy blue composite strap with a fabric pattern and contrasting red stitching, fitted with a patented white gold fold-over clasp. An additional dark blue alligator strap is supplied, continuing Patek Philippe's long tradition of astronomical timepieces.",
+  "model.recommendWatchName": "GOLDEN ELLIPSE WATCH",
+  "model.recommendTitle": "YOU MAY ALSO LIKE",
+
+  "model.spec.dial.label": "DIAL",
+  "model.spec.dial.value":
+    "Olive green sunburst with applied white gold baton hour markers; 18K gold dial plate; white gold “cheveu” hands",
+  "model.spec.case.label": "CASE",
+  "model.spec.case.value": "White gold; size: 31.1 x 35.6 mm; thickness: 5.9 mm",
+  "model.spec.waterResistance.label": "WATER RESISTANCE",
+  "model.spec.waterResistance.value": "Water resistant to 30 m",
+  "model.spec.caseBack.label": "CASE BACK",
+  "model.spec.caseBack.value": "Solid case back",
+  "model.spec.strap.label": "STRAP",
+  "model.spec.strap.value": "Calfskin, shiny olive green; white gold prong buckle",
+  "model.spec.gemSetting.label": "GEM SETTING",
+  "model.spec.gemSetting.value": "No gem setting",
+  "model.spec.movement.label": "MOVEMENT",
+  "model.spec.movement.value": "Caliber 240; ultra-thin; self-winding; frequency: 21,600 vph",
+  "model.spec.powerReserve.label": "POWER RESERVE",
+  "model.spec.powerReserve.value": "Minimum 48 hours",
+  "model.spec.display.label": "DISPLAY",
+  "model.spec.display.value": "Hours, minutes",
+  "model.spec.seal.label": "SEAL",
+  "model.spec.seal.value": "Patek Philippe Seal",
+
   "footer.address":
     "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City (next to First Bank)",
   "footer.terms": "TERMS OF SERVICE",
