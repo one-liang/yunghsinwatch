@@ -9,6 +9,16 @@
       data-i18n-attr="content:team.meta.description"
     />
     <link rel="icon" href="../assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/vendor/aos/aos.css" />
+    <!-- aos.css 會把 [data-aos] 設成 opacity:0，JS 停用時要把它還原，否則整頁空白。 -->
+    <noscript>
+      <style>
+        [data-aos] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
     <title data-i18n="team.meta.title">我們的團隊｜永新鐘錶百達翡麗專賣店</title>
   </head>
   <body class="team-page min-h-screen bg-white type-body-base text-black">
@@ -42,8 +52,9 @@
       </section>
 
       <!-- 成員卡：LG 以上左右交錯（偶數張反轉排列），LG 以下一律改成圖在上的直式堆疊。
-           每張卡的照片與文字欄各自掛 data-reveal-item，文字欄延後 120ms，
-           捲到時依序向上淡入（src/js/global/scroll-reveal.js）。
+           動態效果對齊 patekboutiquemiami.com/our-team：整張卡（照片＋文字）一起
+           向上淡入，不做圖文分段的 stagger —— 參考站是把 fadeInUp 掛在整列容器上，
+           delay 200ms（AOS，初始化在 src/js/global/aos.js）。
 
            簡介刻意用單一 <p> + whitespace-pre-line，段落之間靠 \n 斷行：i18n runtime
            只換 textContent，而同一位成員的中文是兩段、英文可能是三段，拆成多個 <p>
@@ -53,19 +64,16 @@
       >
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
             src="../assets/images/team/henry-lai.jpg"
             alt=""
             loading="lazy"
-            data-reveal-item
           />
-          <div
-            class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8"
-            data-reveal-item
-            style="--reveal-delay: 120ms"
-          >
+          <div class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8">
             <div class="flex flex-col gap-1 lg:gap-4">
               <p
                 class="type-body-lg font-medium text-brown-light xl:font-normal en:font-label xl:en:font-medium"
@@ -101,19 +109,16 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
             src="../assets/images/team/leo-chuang.jpg"
             alt=""
             loading="lazy"
-            data-reveal-item
           />
-          <div
-            class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8"
-            data-reveal-item
-            style="--reveal-delay: 120ms"
-          >
+          <div class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8">
             <div class="flex flex-col gap-1 lg:gap-4">
               <p
                 class="type-body-lg font-medium text-brown-light xl:font-normal en:font-label xl:en:font-medium"
@@ -147,19 +152,16 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
             src="../assets/images/team/jay-chien.jpg"
             alt=""
             loading="lazy"
-            data-reveal-item
           />
-          <div
-            class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8"
-            data-reveal-item
-            style="--reveal-delay: 120ms"
-          >
+          <div class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8">
             <div class="flex flex-col gap-1 lg:gap-4">
               <p
                 class="type-body-lg font-medium text-brown-light xl:font-normal en:font-label xl:en:font-medium"
@@ -192,19 +194,16 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
             src="../assets/images/team/carl-kao.jpg"
             alt=""
             loading="lazy"
-            data-reveal-item
           />
-          <div
-            class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8"
-            data-reveal-item
-            style="--reveal-delay: 120ms"
-          >
+          <div class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8">
             <div class="flex flex-col gap-1 lg:gap-4">
               <p
                 class="type-body-lg font-medium text-brown-light xl:font-normal en:font-label xl:en:font-medium"
@@ -237,19 +236,16 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
             src="../assets/images/team/elmo-wang.jpg"
             alt=""
             loading="lazy"
-            data-reveal-item
           />
-          <div
-            class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8"
-            data-reveal-item
-            style="--reveal-delay: 120ms"
-          >
+          <div class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8">
             <div class="flex flex-col gap-1 lg:gap-4">
               <p
                 class="type-body-lg font-medium text-brown-light xl:font-normal en:font-label xl:en:font-medium"
@@ -282,19 +278,16 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
             src="../assets/images/team/doris-chen.jpg"
             alt=""
             loading="lazy"
-            data-reveal-item
           />
-          <div
-            class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8"
-            data-reveal-item
-            style="--reveal-delay: 120ms"
-          >
+          <div class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8">
             <div class="flex flex-col gap-1 lg:gap-4">
               <p
                 class="type-body-lg font-medium text-brown-light xl:font-normal en:font-label xl:en:font-medium"
@@ -327,19 +320,16 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
             src="../assets/images/team/phoebe-chen.jpg"
             alt=""
             loading="lazy"
-            data-reveal-item
           />
-          <div
-            class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8"
-            data-reveal-item
-            style="--reveal-delay: 120ms"
-          >
+          <div class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8">
             <div class="flex flex-col gap-1 lg:gap-4">
               <p
                 class="type-body-lg font-medium text-brown-light xl:font-normal en:font-label xl:en:font-medium"
@@ -372,19 +362,16 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
+          data-aos="fade-up"
+          data-aos-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
             src="../assets/images/team/jessie-jiang.jpg"
             alt=""
             loading="lazy"
-            data-reveal-item
           />
-          <div
-            class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8"
-            data-reveal-item
-            style="--reveal-delay: 120ms"
-          >
+          <div class="flex w-full flex-col gap-4 lg:min-w-0 lg:flex-1 lg:gap-8">
             <div class="flex flex-col gap-1 lg:gap-4">
               <p
                 class="type-body-lg font-medium text-brown-light xl:font-normal en:font-label xl:en:font-medium"
@@ -418,5 +405,7 @@
     </main>
 
     <c-footer />
+
+    <script src="../assets/vendor/aos/aos.js"></script>
   </body>
 </html>
