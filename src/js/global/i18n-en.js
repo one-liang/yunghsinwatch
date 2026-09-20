@@ -65,6 +65,36 @@ window.SITE_I18N.en = {
   "model.spec.seal.label": "SEAL",
   "model.spec.seal.value": "Patek Philippe Seal",
 
+  "boutique.meta.title": "The Boutique | Yung Hsin Watch",
+  "boutique.meta.description":
+    "Step inside the Patek Philippe Boutique Taipei by Yung Hsin Watch, and find the official points of sale in Taipei.",
+  "boutique.hero.eyebrow": "Boutique",
+  "boutique.hero.title": "Patek Philippe Boutique Taipei",
+  "boutique.intro.title": "A Citadel of Time in the Spotlight",
+  "boutique.intro.body":
+    "Through rare craftsmanship and precise aesthetics, our salon carries tradition into innovation, and tells the story of time’s enduring brilliance.",
+  "boutique.story.body":
+    "In the long river of time, a timepiece is far more than an instrument.\nIt carries artistry, craftsmanship and emotion.\nWith profound expertise and a philosophy built on integrity,\nYung Hsin Watch has become a sanctuary for collectors.",
+  "boutique.story.bodySm":
+    "In the long river of time, a timepiece is far more than an instrument.\nIt carries artistry, craftsmanship and emotion.\nWith profound expertise and a philosophy built on integrity, Yung Hsin Watch has become a sanctuary for collectors.",
+  "boutique.carousel.prev": "Previous image",
+  "boutique.carousel.next": "Next image",
+  "boutique.appointment.title": "Make an Appointment",
+  "boutique.appointment.subtitle": "Book a private visit",
+
+  "store.view.list": "LIST VIEW",
+  "store.view.map": "MAP VIEW",
+  "store.map.title": "Map of our points of sale",
+
+  "store.yungHsin.name": "Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "store.yungHsin.address": "No. 82, Sec. 1, Jhongcheng Rd., 11148 Taipei",
+  "store.cortina.name": "Patek Philippe Boutique Taipei by Cortina Watch",
+  "store.cortina.address": "Taipei 101 Mall - 2F., No. 45, Shihfu Rd., 11049 Taipei",
+  "store.kingSign.name": "Patek Philippe Boutique Taipei by King Sign Watch",
+  "store.kingSign.address": "No. 231-1, Sec. 4, Zhongxiao E. Rd., 10692 Taipei",
+  "store.nineTwo.name": "Patek Philippe Boutique Taipei by Nine-Two Watch",
+  "store.nineTwo.address": "No. 109, Sec. 1, Yanping N. Rd., 10350 Taipei",
+
   "footer.address":
     "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City (next to First Bank)",
   "footer.terms": "TERMS OF SERVICE",

@@ -1,0 +1,216 @@
+<!-- 門市地圖區塊：LG 以上為左地圖、右列表；LG 以下改成「地圖／門市列表」切換。
+     店家資料直接寫在 HTML，JS 只負責切換視圖與更換 iframe 的 src。
+     data-store-query-zh / -en 是餵給 Google Maps embed 的查詢字串，依 <html lang>
+     取用，讓地圖上的標籤語系跟著網站語系走。 -->
+<section class="store-locator bg-background" data-store-locator data-view="map">
+  <div
+    class="store-locator__frame flex w-full flex-col lg:h-[384px] lg:flex-row-reverse xl:h-[480px] 2xl:h-[576px]"
+  >
+    <div class="store-locator__aside relative flex flex-col lg:w-[420px] lg:shrink-0 xl:w-[491px]">
+      <div class="store-locator__switch flex justify-center py-9 lg:hidden">
+        <button
+          class="store-locator__switch-button flex cursor-pointer items-center gap-2 rounded-full border-[0.8px] border-brown-warm px-6 py-3 type-label-nav-sm tracking-[1.5px] text-brown-warm uppercase transition-colors duration-200 hover:bg-brown-warm hover:text-white"
+          type="button"
+          data-store-switch
+        >
+          <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M3.5 6.25h17M3.5 12h17M3.5 17.75h17"
+              stroke="currentColor"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span class="store-locator__switch-label" data-store-switch-list>
+            <span data-i18n="store.view.list">門市列表</span>
+            <span class="store-locator__switch-count">4</span>
+          </span>
+          <span
+            class="store-locator__switch-label"
+            data-store-switch-map
+            data-i18n="store.view.map"
+          >
+            地圖檢視
+          </span>
+        </button>
+      </div>
+
+      <div class="store-locator__panel lg:h-full" data-store-panel>
+        <ul class="store-locator__list px-8 pb-12 lg:px-12 lg:py-8">
+          <li class="store-locator__item">
+            <button
+              class="store-locator__trigger border-b-[0.8px] border-brown-light/55"
+              type="button"
+              data-store-item
+              data-store-query-zh="永新鐘錶 台北市士林區忠誠路一段82號"
+              data-store-query-en="Yung Hsin Watch, No. 82, Sec. 1, Jhongcheng Rd., 11148 Taipei, Taiwan"
+              aria-current="true"
+            >
+              <span class="store-locator__item-head">
+                <span class="store-locator__item-title">
+                  <img
+                    class="store-locator__mark"
+                    src="@assets/images/home/patek-philippe-mark.svg"
+                    alt=""
+                  />
+                  <span class="store-locator__name" data-i18n="store.yungHsin.name">
+                    永新鐘錶百達翡麗專賣店
+                  </span>
+                </span>
+                <svg
+                  class="store-locator__chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 5.5 15.5 12 9 18.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="store-locator__address" data-i18n="store.yungHsin.address">
+                台北市士林區忠誠路一段 82 號
+              </span>
+            </button>
+          </li>
+
+          <li class="store-locator__item">
+            <button
+              class="store-locator__trigger border-b-[0.8px] border-brown-light/55"
+              type="button"
+              data-store-item
+              data-store-query-zh="高登鐘錶百達翡麗專賣店 台北市信義區市府路45號 台北101購物中心2樓"
+              data-store-query-en="Patek Philippe Boutique Taipei by Cortina Watch, Taipei 101 Mall 2F, No. 45, Shihfu Rd., 11049 Taipei, Taiwan"
+            >
+              <span class="store-locator__item-head">
+                <span class="store-locator__item-title">
+                  <img
+                    class="store-locator__mark"
+                    src="@assets/images/home/patek-philippe-mark.svg"
+                    alt=""
+                  />
+                  <span class="store-locator__name" data-i18n="store.cortina.name">
+                    高登鐘錶百達翡麗專賣店
+                  </span>
+                </span>
+                <svg
+                  class="store-locator__chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 5.5 15.5 12 9 18.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="store-locator__address" data-i18n="store.cortina.address">
+                台北市信義區市府路 45 號 台北 101 購物中心 2 樓
+              </span>
+            </button>
+          </li>
+
+          <li class="store-locator__item">
+            <button
+              class="store-locator__trigger border-b-[0.8px] border-brown-light/55"
+              type="button"
+              data-store-item
+              data-store-query-zh="金生儀鐘錶百達翡麗專賣店 台北市大安區忠孝東路四段231-1號"
+              data-store-query-en="Patek Philippe Boutique Taipei by King Sign Watch, No. 231-1, Sec. 4, Zhongxiao E. Rd., 10692 Taipei, Taiwan"
+            >
+              <span class="store-locator__item-head">
+                <span class="store-locator__item-title">
+                  <img
+                    class="store-locator__mark"
+                    src="@assets/images/home/patek-philippe-mark.svg"
+                    alt=""
+                  />
+                  <span class="store-locator__name" data-i18n="store.kingSign.name">
+                    金生儀鐘錶百達翡麗專賣店
+                  </span>
+                </span>
+                <svg
+                  class="store-locator__chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 5.5 15.5 12 9 18.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="store-locator__address" data-i18n="store.kingSign.address">
+                台北市大安區忠孝東路四段 231-1 號
+              </span>
+            </button>
+          </li>
+
+          <li class="store-locator__item">
+            <button
+              class="store-locator__trigger border-b-[0.8px] border-brown-light/55"
+              type="button"
+              data-store-item
+              data-store-query-zh="九二鐘錶百達翡麗專賣店 台北市大同區延平北路一段109號"
+              data-store-query-en="Patek Philippe Boutique Taipei by Nine-Two Watch, No. 109, Sec. 1, Yanping N. Rd., 10350 Taipei, Taiwan"
+            >
+              <span class="store-locator__item-head">
+                <span class="store-locator__item-title">
+                  <img
+                    class="store-locator__mark"
+                    src="@assets/images/home/patek-philippe-mark.svg"
+                    alt=""
+                  />
+                  <span class="store-locator__name" data-i18n="store.nineTwo.name">
+                    九二鐘錶百達翡麗專賣店
+                  </span>
+                </span>
+                <svg
+                  class="store-locator__chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 5.5 15.5 12 9 18.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span class="store-locator__address" data-i18n="store.nineTwo.address">
+                台北市大同區延平北路一段 109 號
+              </span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="store-locator__map relative h-[300px] lg:h-full lg:min-w-0 lg:flex-1">
+      <iframe
+        class="size-full border-0"
+        title="門市位置地圖"
+        data-i18n-attr="title:store.map.title"
+        data-store-map
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>
