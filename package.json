@@ -21,6 +21,7 @@
     "vite": "latest"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "swiper": "^14.2.0"
   }
 }
