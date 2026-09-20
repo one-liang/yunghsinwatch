@@ -68,6 +68,42 @@ window.SITE_I18N.zh = {
   "model.spec.seal.label": "印記",
   "model.spec.seal.value": "百達翡麗印記",
 
+  // 專賣店介紹頁（src/pages/boutique.html）與 store-locator 組件共用。
+  // 門市名稱與地址整理自百達翡麗官方銷售點的台灣地區列表，目前只列台北 4 處。
+  "boutique.meta.title": "品牌專賣店｜永新鐘錶百達翡麗專賣店",
+  "boutique.meta.description":
+    "走進永新鐘錶百達翡麗專賣店，感受稀缺工藝與精準美學交織的空間，並查詢台北地區的官方銷售點。",
+  "boutique.hero.eyebrow": "Boutique",
+  "boutique.hero.title": "永新鐘錶百達翡麗專賣店",
+  "boutique.intro.title": "聚光燈下的鐘錶城堡",
+  "boutique.intro.body":
+    "以「稀缺工藝」與「精準美學」，永新百達翡麗專館透過傳承與創新，訴說時間的璀璨永恆。",
+  // 換行靠 CSS 的 whitespace-pre-line 呈現；i18n runtime 只改 textContent，
+  // 寫 <br> 會在切語系時被吃掉。
+  "boutique.story.body":
+    "在時間的長河中，鐘錶不僅是計時工具，\n更是藝術、工藝與情感的載體。\n永新鐘錶以深厚的技藝底蘊與誠信的經營哲學，\n成為無數愛錶人士心中的殿堂。",
+  // MD 以下設計稿把最後兩句合成一段、讓它自然折行（共 4 行），
+  // 桌機則是四句各一行。兩種斷行差一行高度，所以拆成兩個 key。
+  "boutique.story.bodySm":
+    "在時間的長河中，鐘錶不僅是計時工具，\n更是藝術、工藝與情感的載體。\n永新鐘錶以深厚的技藝底蘊與誠信的經營哲學，成為無數愛錶人士心中的殿堂。",
+  "boutique.carousel.prev": "上一張",
+  "boutique.carousel.next": "下一張",
+  "boutique.appointment.title": "我要預約",
+  "boutique.appointment.subtitle": "Schedule an Appointment",
+
+  "store.view.list": "門市列表",
+  "store.view.map": "地圖檢視",
+  "store.map.title": "門市位置地圖",
+
+  "store.yungHsin.name": "永新鐘錶百達翡麗專賣店",
+  "store.yungHsin.address": "台北市士林區忠誠路一段 82 號",
+  "store.cortina.name": "高登鐘錶百達翡麗專賣店",
+  "store.cortina.address": "台北市信義區市府路 45 號 台北 101 購物中心 2 樓",
+  "store.kingSign.name": "金生儀鐘錶百達翡麗專賣店",
+  "store.kingSign.address": "台北市大安區忠孝東路四段 231-1 號",
+  "store.nineTwo.name": "九二鐘錶百達翡麗專賣店",
+  "store.nineTwo.address": "台北市大同區延平北路一段 109 號",
+
   "footer.address": "台北市士林區忠誠路一段 82 號 (第一銀行旁)",
   "footer.terms": "服務條款",
   "footer.privacy": "隱私權政策",
