@@ -4,6 +4,22 @@
    讓 HTML 能用 `en:type-label-nav-md` 這種寫法直接指定英文版排版。 */
 @custom-variant en (&:where(html[lang="en"] *));
 
+/* 滾動進場動畫的基底樣式，搭配 src/js/global/scroll-reveal.js。
+   隱藏狀態刻意綁在 html[data-reveal-ready]（由那支 JS 掛上），
+   JS 沒跑就不會有任何元素被藏起來。 */
+html[data-reveal-ready] [data-reveal-item] {
+  opacity: 0;
+  translate: 0 40px;
+  transition:
+    opacity 800ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0ms),
+    translate 800ms cubic-bezier(0.22, 0.61, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+html[data-reveal-ready] [data-reveal-item][data-reveal-visible] {
+  opacity: 1;
+  translate: 0 0;
+}
+
 @font-face {
   font-family: "Playfair Display";
   font-style: normal;
