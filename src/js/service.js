@@ -9,31 +9,31 @@
 // hidden，所以收合狀態下的內容不會被鍵盤或螢幕閱讀器讀到。
 //
 // 多個項目可以同時展開（設計稿 2XL 就是全部展開的狀態）。
-(function () {
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
   "use strict";
 
-  function toggle(trigger) {
-    var panel = document.getElementById(trigger.getAttribute("aria-controls"));
+  const toggle = (trigger) => {
+    const panel = document.getElementById(trigger.getAttribute("aria-controls"));
     if (!panel) return;
 
-    var expanded = trigger.getAttribute("aria-expanded") === "true";
+    const expanded = trigger.getAttribute("aria-expanded") === "true";
     trigger.setAttribute("aria-expanded", expanded ? "false" : "true");
+    panel.toggleAttribute("data-open", !expanded);
+  };
 
-    if (expanded) panel.removeAttribute("data-open");
-    else panel.setAttribute("data-open", "");
-  }
-
-  function init() {
-    document.querySelectorAll("[data-accordion]").forEach(function (accordion) {
-      accordion.addEventListener("click", function (event) {
-        var target = event.target;
+  const init = () => {
+    for (const accordion of document.querySelectorAll("[data-accordion]")) {
+      accordion.addEventListener("click", ({ target }) => {
         if (!(target instanceof Element)) return;
 
-        var trigger = target.closest("[data-accordion-trigger]");
+        const trigger = target.closest("[data-accordion-trigger]");
         if (trigger && accordion.contains(trigger)) toggle(trigger);
       });
-    });
-  }
+    }
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

@@ -7,75 +7,64 @@
 //
 // 用 Maps embed（?output=embed）而非 Maps JavaScript API，因此不需要 API key，
 // 代價是圖釘樣式固定、換店會整個 iframe 重載。
-(function () {
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
   "use strict";
 
-  var MOBILE_QUERY = "(max-width: 63.9375rem)";
+  const MOBILE_QUERY = "(max-width: 63.9375rem)";
 
-  function embedUrl(query, lang) {
-    return (
-      "https://www.google.com/maps?q=" +
-      encodeURIComponent(query) +
-      "&hl=" +
-      (lang === "en" ? "en" : "zh-TW") +
-      "&z=17&output=embed"
-    );
-  }
+  const embedUrl = (query, lang) =>
+    `https://www.google.com/maps?q=${encodeURIComponent(query)}&hl=${
+      lang === "en" ? "en" : "zh-TW"
+    }&z=17&output=embed`;
 
-  function currentLang() {
-    return String(document.documentElement.lang || "")
+  const currentLang = () =>
+    String(document.documentElement.lang ?? "")
       .toLowerCase()
-      .indexOf("en") === 0
+      .startsWith("en")
       ? "en"
       : "zh";
-  }
 
-  function setup(root) {
-    var frame = root.querySelector("[data-store-map]");
-    var items = Array.prototype.slice.call(root.querySelectorAll("[data-store-item]"));
-    var switcher = root.querySelector("[data-store-switch]");
+  const setup = (root) => {
+    const frame = root.querySelector("[data-store-map]");
+    const items = [...root.querySelectorAll("[data-store-item]")];
+    const switcher = root.querySelector("[data-store-switch]");
 
     if (!frame || !items.length) return;
 
-    function active() {
-      var found = items.filter(function (item) {
-        return item.getAttribute("aria-current") === "true";
-      });
-      return found[0] || items[0];
-    }
+    const active = () =>
+      items.find((item) => item.getAttribute("aria-current") === "true") ?? items[0];
 
-    function render() {
-      var item = active();
-      var lang = currentLang();
-      var query =
-        item.getAttribute("data-store-query-" + lang) || item.getAttribute("data-store-query-zh");
+    const render = () => {
+      const item = active();
+      const lang = currentLang();
+      const query =
+        item.dataset[`storeQuery${lang === "en" ? "En" : "Zh"}`] ?? item.dataset.storeQueryZh;
       if (!query) return;
 
-      var next = embedUrl(query, lang);
+      const next = embedUrl(query, lang);
       if (frame.getAttribute("src") !== next) frame.setAttribute("src", next);
-    }
+    };
 
-    function select(item) {
-      items.forEach(function (other) {
+    const select = (item) => {
+      for (const other of items) {
         other.setAttribute("aria-current", other === item ? "true" : "false");
-      });
+      }
       render();
 
       // 手機看的是單一視圖，選完門市就切回地圖，否則看不到剛選的位置。
-      if (window.matchMedia(MOBILE_QUERY).matches) root.setAttribute("data-view", "map");
+      if (window.matchMedia(MOBILE_QUERY).matches) root.dataset.view = "map";
+    };
+
+    for (const item of items) {
+      item.addEventListener("click", () => select(item));
     }
 
-    items.forEach(function (item) {
-      item.addEventListener("click", function () {
-        select(item);
-      });
+    switcher?.addEventListener("click", () => {
+      root.dataset.view = root.dataset.view === "list" ? "map" : "list";
     });
-
-    if (switcher) {
-      switcher.addEventListener("click", function () {
-        root.setAttribute("data-view", root.getAttribute("data-view") === "list" ? "map" : "list");
-      });
-    }
 
     new MutationObserver(render).observe(document.documentElement, {
       attributes: true,
@@ -83,11 +72,11 @@
     });
 
     render();
-  }
+  };
 
-  function init() {
-    document.querySelectorAll("[data-store-locator]").forEach(setup);
-  }
+  const init = () => {
+    for (const root of document.querySelectorAll("[data-store-locator]")) setup(root);
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
