@@ -100,6 +100,15 @@ html [data-aos="fade-left"] {
   src: url("../assets/fonts/noto-sans-tc-chinese-traditional-500-normal.woff2") format("woff2");
 }
 
+/* 700 只有服務條款／隱私權政策的條目標題用到（Figma：Noto Sans TC Bold 20/36）。 */
+@font-face {
+  font-family: "Noto Sans TC";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("../assets/fonts/noto-sans-tc-chinese-traditional-700-normal.woff2") format("woff2");
+}
+
 @theme {
   --font-display: "Playfair Display", ui-serif, Georgia, serif;
   --font-heading: "Noto Serif TC", ui-serif, serif;

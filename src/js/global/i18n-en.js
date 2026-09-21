@@ -241,6 +241,123 @@ window.SITE_I18N.en = {
   "contact.complete.body":
     "Thanks for contacting us. We will get back to you within 2 business days.",
 
+  "terms.meta.title": "Terms of Service | Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "terms.meta.description":
+    "Terms of Service for the Patek Philippe Boutique Taipei by Yung Hsin Watch website, covering conditions of use, membership, personal data, prohibited acts, and disclaimers.",
+  "terms.hero.eyebrow": "Terms",
+  "terms.hero.title": "Terms and Conditions of This Website",
+  "terms.intro":
+    'These Terms of Service (hereinafter referred to as "these Terms") are matters you must understand and agree to before accessing or using the services of this website. To protect your rights and legitimate use of the services of this website, please read these Terms in detail.',
+
+  "terms.operator.title": "Website Operator Information",
+  "terms.operator.p1":
+    'This website is owned and operated by [Yung Hsin Watch Co., Ltd.] (hereinafter referred to as "the Company").',
+  "terms.operator.p2": "The Company's relevant information is as follows:",
+  "terms.operator.p3": "Phone: 02-8866 1975",
+  "terms.operator.p4": "Customer Service Email：yung.hsin@xuite.net",
+  "terms.operator.p5": "Address：No. 28, Section 1, Zhongcheng Road, Shilin District, Taipei City",
+
+  "terms.conditions.title": "Conditions of Use",
+  "terms.conditions.p1":
+    "These Terms apply to users of this website. By browsing or using this website, you agree to and accept the version of these Terms effective at the time of browsing or use, and the content of these Terms constitutes a contract between you and the Company. If you do not agree to the content of these Terms, please stop browsing or using this website immediately.",
+  "terms.conditions.p2":
+    "The Company reserves the right to modify the content of these Terms at any time without prior notice. Once the content of these Terms is modified and announced on this website, if you continue to use this website, the modified content will become effective for you.",
+
+  "terms.registration.title": "Member Registration and Compliance with Regulations",
+  "terms.registration.p1":
+    "You may register as a member on this website. However, if you are under twenty years old, you must first obtain the consent of your legal representative before applying to become a member. Upon completion of the application process, it will be deemed that you have obtained the consent and understanding of your legal representative.",
+
+  "terms.memberData.title": "Member Data",
+  "terms.memberData.p1":
+    "Based on the use of various services provided by this website, you agree to provide accurate and detailed personal information when registering as a member. If there are any changes to your registered information afterwards, you should update it online at any time. If the personal information you provide is untrue, or if the originally registered information is outdated and not updated in a timely manner, the Company reserves the right to terminate your membership and eligibility to use various services at any time. If there is any false registration or impersonation of another person, you shall bear legal responsibility. If there is any suspicion of illegality, the Company may report it to judicial authorities.",
+
+  "terms.password.title": "Password and Account",
+  "terms.password.p1":
+    "If, for any reason, the account password is illegally used by others, the resulting related fees, costs, and losses shall be borne by the member. If the rights and interests of the Company or a third party are damaged, the member shall bear relevant legal and compensation responsibilities.",
+  "terms.password.p2":
+    "After you register as a member, you will obtain an account and password as credentials for accessing the member system of this website in the future. To maintain the personal rights and interests of members, when using the services of this website, members should use their own account and password to log in to the system and shall not provide, transfer, or authorize others to use their account or password. All actions performed using the same account and password to use the services of this website shall be deemed as actions of the member who owns the account and password, and the member shall bear full responsibility.",
+
+  "terms.personalData.title": "Use of Personal Data and Notification Matters",
+  "terms.personalData.p1":
+    'For the purpose of providing and optimizing website service-related functions, handling accounts, and marketing, the Company will collect, process, and utilize the personal data you provide, including but not limited to basic information such as name, gender, phone number, email, address, photos, as well as personal preferences, search records, purchase records, network location, browser type, payment information, and other directly or indirectly identifiable personal information generated from using this website\'s services (hereinafter collectively referred to as "Personal Data").',
+  "terms.personalData.p2":
+    "Your Personal Data will only be used within the necessary and reasonable scope of the aforementioned specific purposes, within and outside the Republic of China, until the aforementioned specific purposes cease to exist.",
+  "terms.personalData.p3":
+    "In accordance with Article 3 of the Personal Data Protection Act, you may request the Company to inquire about or review, make copies, supplement or correct, stop collecting/processing/utilizing, or delete your Personal Data. You may contact the Company via email to exercise the aforementioned rights, but the Company may charge necessary fees.",
+  "terms.personalData.p4":
+    "If you do not provide or fail to provide accurate Personal Data, or request to stop collecting/processing/utilizing/deleting Personal Data, the Company may not be able to provide services to you, or it may result in your inability to normally use all or part of the functions of this website.",
+
+  "terms.prohibited.title": "Prohibited Acts",
+  "terms.prohibited.intro":
+    "When using the services of this website, you shall not commit any of the following acts:",
+  "terms.prohibited.item1":
+    "Do not post or send various advertisements or graphics, text, or other representations suspected of being advertisements.",
+  "terms.prohibited.item2":
+    "Do not impersonate another person's personal data, password, or account to use the services of this website.",
+  "terms.prohibited.item3":
+    "Improper collection, disclosure, or provision of other people's personal data, registration data, usage record data, etc.",
+  "terms.prohibited.item4":
+    "Acts that interfere with the server or network system of this website's services, using cheating tools, other technical means to improperly operate this website's services, intentionally exploiting vulnerabilities in this website's services, or other acts that hinder the Company from providing this website's services or other users from using this website's services and create interference.",
+  "terms.prohibited.item5":
+    "Without the Company's consent, do not engage in or induce third parties to engage in buying, selling, leasing, gifting, or other commercial activities.",
+  "terms.prohibited.item6":
+    "Do not engage in acts that infringe or are suspected of infringing upon the reputation, privacy, intellectual property rights, or other rights of the Company or third parties.",
+  "terms.prohibited.item7":
+    "Do not engage in other acts that violate laws and regulations or are deemed inappropriate by the Company.",
+  "terms.prohibited.outro":
+    "The Company may periodically review the usage of members. If any violation of the preceding paragraph is found, the Company may directly prohibit members from using the services of this website, or suspend or terminate their membership. If there is any suspicion of illegality, the Company may proactively report it to judicial authorities.",
+
+  "terms.suspension.title": "Service Suspension and Modification",
+  "terms.suspension.intro":
+    "You understand that the services or functions provided by this website may be temporarily suspended or interrupted due to routine maintenance, replacement, or changes. The Company will notify you by announcement or other appropriate means before the suspension or interruption. However, in the following circumstances, all or part of the member services will be directly suspended or interrupted, and the Company shall not be liable for any inconvenience or damage caused thereby:",
+  "terms.suspension.item1": "You violate any government laws and regulations or these Terms.",
+  "terms.suspension.item2":
+    "Due to reasons beyond the Company's control, the member service information is displayed incorrectly, or is forged, altered, deleted, or captured, or the system is interrupted or cannot operate normally; or",
+  "terms.suspension.item3":
+    "When it is necessary to urgently relocate, replace, upgrade, maintain, or repair related hardware and software equipment.",
+
+  "terms.ip.title": "Statement of Intellectual Property Rights",
+  "terms.ip.p1":
+    "The Company owns intellectual property rights and other rights or has obtained authorization for all graphics, text, trademarks, files, information, web design, or other content and representations published on this website, except as otherwise provided by law. No one may reproduce, adapt, distribute, or otherwise engage in acts that hinder the rights and interests of the Company or third parties without the prior written consent of the Company.",
+
+  "terms.risk.title": "Assumption of Risk",
+  "terms.risk.p1":
+    "You understand that the use of various services provided on this website is based on your personal willingness, and you agree to bear any risks, including system damage to your terminal equipment or any data loss resulting from downloading data or images from this website, or obtaining data from the services of this website.",
+
+  "terms.disclaimer.title": "Disclaimer",
+  "terms.disclaimer.p1":
+    "The Company does not expressly or implicitly guarantee that the services of this website (including content) are free from factual or legal defects (including but not limited to stability, reliability, correctness, completeness, validity, suitability for specific purposes, security-related defects, errors, malfunctions, or infringement of others' rights). The Company is not responsible for providing services on this website without the aforementioned defects.",
+  "terms.disclaimer.p2":
+    "Except as otherwise provided by law, the Company shall not be liable for any direct or indirect damages and losses suffered by users due to the services of this website.",
+  "terms.disclaimer.p3":
+    "Other issues or disputes arising between users and other users or third parties on this website shall be resolved by the users and the other parties through negotiation, and the Company shall not intervene or bear any responsibility.",
+
+  "terms.liability.title": "Limitation of Liability",
+  "terms.liability.p1":
+    "The Company shall not be liable for any direct, special, incidental, indirect, or consequential damages arising from the use or inability to use this website, the purchase of goods from this website, the actions of other users of this website (whether online or offline), participation in Company activities, or any user-generated content, including any loss of profits or data loss. You assume full responsibility for your use of this website.",
+
+  "terms.thirdParty.title": "Third-Party Links",
+  "terms.thirdParty.p1":
+    "All links provided on the service-related web pages of this website may link to web pages of other individuals, companies, or organizations. The purpose of providing such links is solely to facilitate your own collection or acquisition of information. This website does not guarantee the authenticity, completeness, timeliness, or credibility of the products, services, or information provided on the linked web pages of such individuals, companies, or organizations, nor does it imply that such individuals, companies, or organizations have any employment, commission, agency, partnership, or other similar relationship with the Company.",
+
+  "terms.indemnity.title": "Indemnification",
+  "terms.indemnity.p1":
+    "If you violate relevant laws and regulations or these Terms, causing the Company or its affiliates, directors, managers, employees, trustees, agents, and other related assisting parties to suffer damages or incur expenses (including but not limited to attorney fees incurred in civil, criminal, and administrative proceedings), you shall bear the responsibility for damages or compensate for such expenses.",
+
+  "terms.general.title": "General Provisions",
+  "terms.general.p1":
+    "If any provision of these Terms is deemed invalid by a competent court, it shall not affect the validity and enforceability of other provisions in these Terms. Failure to enforce any provision in these Terms shall not be deemed a further or continuing waiver of the enforcement of that provision or other provisions. If the Company does not assert its rights or relevant provisions under these Terms, it shall not be deemed that the Company has waived its right to exercise such rights or enforce such provisions.",
+
+  "terms.notice.title": "Notices",
+  "terms.notice.before":
+    "If you need to notify the Company in accordance with these Terms, please send an email to the Company (email: ",
+  "terms.notice.after":
+    ") or mail a registered letter to the following address: No. 28, Section 1, Zhongcheng Road, Shilin District, Taipei City. The notice shall not be effective until the Company receives it.",
+
+  "terms.governingLaw.title": "Governing Law and Jurisdiction",
+  "terms.governingLaw.p1":
+    "The interpretation and application of these Terms, as well as the rights and obligations arising between you and the Company due to your use of the services of this website, shall be interpreted and applied in accordance with the laws of the Republic of China. If there is any litigation or dispute, both parties agree that the Taipei District Court shall be the court of first instance jurisdiction.",
+
   "store.view.list": "LIST VIEW",
   "store.view.map": "MAP VIEW",
   "store.map.title": "Map of our points of sale",
