@@ -110,13 +110,14 @@
           <span data-i18n="lang.en">EN</span>
         </button>
       </div>
-      <a
-        class="site-header__cta flex items-center justify-center border border-brand-gold bg-brand-gold px-4 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
-        href="#"
+      <button
+        class="site-header__cta flex cursor-pointer items-center justify-center border border-brand-gold bg-brand-gold px-4 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+        type="button"
+        data-booking-open
         data-i18n="cta.booking"
       >
         預約服務
-      </a>
+      </button>
     </div>
 
     <button
@@ -261,13 +262,19 @@
           <span data-i18n="lang.en">EN</span>
         </button>
       </div>
-      <a
-        class="site-header__cta flex w-40 items-center justify-center border border-brand-gold bg-brand-gold px-2 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
-        href="#"
+      <button
+        class="site-header__cta flex w-40 cursor-pointer items-center justify-center border border-brand-gold bg-brand-gold px-2 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+        type="button"
+        data-booking-open
         data-i18n="cta.booking"
       >
         預約服務
-      </a>
+      </button>
     </div>
   </div>
+
+  <!-- 預約彈跳視窗放在 header 裡，全站每頁都會有（header 是 sticky z-40、自成一個堆疊脈絡，
+       彈窗用 z-50 且 DOM 順序在抽屜之後，所以會蓋在抽屜與頁面內容之上）。
+       觸發鈕不限於這裡，任何帶 data-booking-open 的元素都會開啟它。 -->
+  <c-booking-modal />
 </header>

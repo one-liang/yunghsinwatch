@@ -1,0 +1,164 @@
+/* 預約彈跳視窗的動態效果。
+   開關的寫法沿用 header 行動版抽屜（src/components/header/header.css）的那一套：
+   用 .is-open 切換，並讓 visibility 的 transition 延遲到位移／淡出跑完才生效，
+   這樣關閉時面板才不會瞬間消失。
+
+   刻意不在這支檔案裡用 var(--color-*)：Tailwind 是每頁單獨編譯、只輸出該頁用得到的 theme
+   變數，sidecar CSS 引用沒被任何 utility 用過的 token 會解析失敗（見 store-locator.css 的註解）。
+   顏色一律寫在 HTML 的 utility 上。 */
+
+/* ---------- 遮罩與面板的進場／退場 ---------- */
+
+.booking-modal {
+  visibility: hidden;
+  transition: visibility 0s linear 0.3s;
+}
+
+.booking-modal.is-open {
+  visibility: visible;
+  transition: visibility 0s;
+}
+
+.booking-modal__scrim {
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+
+.booking-modal.is-open .booking-modal__scrim {
+  opacity: 1;
+}
+
+/* 48px 的位移刻意對齊全站 AOS 進場（見 src/styles/tailwind.css 的 AOS 覆寫），讓彈窗的
+   出場語彙和頁面區塊同一套；但這裡是即時互動而非滾動進場，所以時間壓到 0.44s、
+   換成 ease-out 曲線，並延遲 0.06s 讓遮罩先壓下去，面板才浮上來。 */
+.booking-modal__panel {
+  opacity: 0;
+  transform: translate3d(0, 48px, 0) scale(0.98);
+  transition:
+    opacity 0.44s cubic-bezier(0.22, 0.61, 0.36, 1) 0.06s,
+    transform 0.44s cubic-bezier(0.22, 0.61, 0.36, 1) 0.06s;
+}
+
+.booking-modal.is-open .booking-modal__panel {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* 關閉走較短的反向動畫：按下 Esc 或點遮罩之後不該還要等將近半秒。 */
+.booking-modal:not(.is-open) .booking-modal__panel {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* 開著的時候不讓捲動穿透到底下的頁面（body 的 overflow-hidden 由 JS 加）。 */
+.booking-modal__scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- 步驟切換 ---------- */
+
+/* 兩個 step 疊在同一個 grid 格子裡，容器高度由 JS 量測後寫進 style.height 再過渡。
+   不用 grid-template-rows: 0fr→1fr 的手風琴寫法，是因為這裡要的是「換頁」而不是「展開」，
+   兩個 step 必須在交叉淡入淡出的那段時間同時存在。 */
+.booking-modal__steps {
+  display: grid;
+  /* align-items 一定要是 start：grid item 預設 stretch，容器被 JS 釘上固定高度之後，
+     量到的 step 高度就會變成容器高度而不是內容高度，高度過渡會量錯。 */
+  align-items: start;
+  transition: height 0.36s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.booking-modal__steps > [data-booking-step] {
+  grid-area: 1 / 1;
+}
+
+/* 離場：往前走時舊的往左退，返回時往右退。 */
+.booking-modal__steps > .is-leaving {
+  opacity: 1;
+  animation: booking-step-out 0.2s ease forwards;
+  pointer-events: none;
+}
+
+.booking-modal__steps[data-booking-dir="back"] > .is-leaving {
+  animation-name: booking-step-out-back;
+}
+
+/* 進場：稍微延後，等舊的淡掉再進來，避免兩層文字重疊在一起。 */
+.booking-modal__steps > .is-entering {
+  animation: booking-step-in 0.32s cubic-bezier(0.22, 0.61, 0.36, 1) 0.12s backwards;
+}
+
+.booking-modal__steps[data-booking-dir="back"] > .is-entering {
+  animation-name: booking-step-in-back;
+}
+
+@keyframes booking-step-out {
+  to {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+}
+
+@keyframes booking-step-out-back {
+  to {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+}
+
+@keyframes booking-step-in {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+}
+
+@keyframes booking-step-in-back {
+  from {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+}
+
+/* ---------- 原生日期欄位 ---------- */
+
+/* 瀏覽器自帶的日曆圖示位置與樣式各家不同，這裡把它透明化並疊到欄位右側（也就是 HTML 裡
+   那顆設計稿日曆圖示的位置），點圖示就能叫出原生 picker。
+   刻意只蓋右側 3rem（欄位的 pr-11 是 2.75rem）而不是整個欄位，左半邊要留給鍵盤輸入時
+   點選年／月／日各段。定位基準是外層那個 .relative 包裝。 */
+.booking-modal__date::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+/* Safari 會把 date 欄位的值靠左但保留內建 padding，統一清掉避免和 px-4 疊加。 */
+.booking-modal__date::-webkit-date-and-time-value {
+  text-align: left;
+  margin: 0;
+}
+
+/* ---------- 減少動態效果 ---------- */
+
+/* 與 src/js/global/aos.js 的判斷一致：使用者在系統層關掉動畫就整組停用，
+   開關與換頁都改成瞬間完成。 */
+@media (prefers-reduced-motion: reduce) {
+  .booking-modal,
+  .booking-modal__scrim,
+  .booking-modal__panel,
+  .booking-modal__steps {
+    transition: none;
+  }
+
+  .booking-modal__steps > .is-leaving,
+  .booking-modal__steps > .is-entering {
+    animation: none;
+  }
+}

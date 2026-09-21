@@ -207,13 +207,23 @@
       </section>
 
       <section class="flex h-[200px] items-center justify-center bg-brown-dark px-8 text-white">
-        <div class="flex items-center gap-14">
-          <h2 class="type-heading-xl tracking-[2px]">我要預約</h2>
+        <!-- 開啟預約彈跳視窗（組件在 header 裡，見 src/components/booking-modal/）。 -->
+        <button
+          class="flex cursor-pointer items-center gap-14 transition-opacity duration-200 hover:opacity-80"
+          type="button"
+          data-booking-open
+        >
+          <span class="type-heading-xl tracking-[2px]" data-i18n="home.appointment.title">
+            我要預約
+          </span>
           <span class="h-6 w-px bg-white"></span>
-          <p class="text-right type-label-eyebrow-lg tracking-[1.5px] uppercase">
+          <span
+            class="text-right type-label-eyebrow-lg tracking-[1.5px] uppercase"
+            data-i18n="home.appointment.subtitle"
+          >
             Schedule an Appointment
-          </p>
-        </div>
+          </span>
+        </button>
       </section>
     </main>
 

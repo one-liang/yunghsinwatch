@@ -119,9 +119,11 @@
       <section
         class="flex items-center justify-center bg-brown-dark px-5 py-10 text-white lg:h-[175px] lg:py-0 xl:h-[200px]"
       >
-        <a
-          class="flex flex-col items-center gap-4 text-center transition-opacity duration-200 hover:opacity-80 lg:flex-row lg:gap-14"
-          href="#"
+        <!-- 開啟預約彈跳視窗（組件在 header 裡，見 src/components/booking-modal/）。 -->
+        <button
+          class="flex cursor-pointer flex-col items-center gap-4 text-center transition-opacity duration-200 hover:opacity-80 lg:flex-row lg:gap-14"
+          type="button"
+          data-booking-open
         >
           <span
             class="type-heading-md tracking-[2px] whitespace-nowrap lg:type-heading-lg xl:type-heading-xl"
@@ -136,7 +138,7 @@
           >
             Schedule an Appointment
           </span>
-        </a>
+        </button>
       </section>
     </main>
 
