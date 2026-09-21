@@ -307,48 +307,54 @@
           </div>
 
           <div class="flex flex-col gap-1">
-            <div class="flex items-center gap-2">
-              <label class="flex h-7 shrink-0 cursor-pointer items-center justify-center">
-                <input
-                  class="peer sr-only"
-                  name="consent"
-                  type="checkbox"
-                  checked
-                  required
-                  data-contact-field
+            <!-- 整列（含說明文字）都包在 label 裡，點文字也能打勾／取消。
+                 裡面的「隱私政策」是 <a>，HTML 規範規定 label 不會轉發 interactive content
+                 上的點擊，所以點連結只會導航、不會順手切掉勾選。
+                 兩個方框圖示必須是 input 的直接兄弟，peer-checked: 的兄弟選擇器才會成立，
+                 垂直對齊改由 mt-0.5 處理（圖示 24px、文字行高 28px）。
+                 與預約彈跳視窗（src/components/booking-modal/）同一份結構。 -->
+            <label class="flex cursor-pointer items-start gap-2">
+              <input
+                class="peer sr-only"
+                name="consent"
+                type="checkbox"
+                checked
+                required
+                data-contact-field
+              />
+              <!-- 未勾選狀態設計稿沒有定義，沿用勾選狀態的圓角方形外框描邊，顏色與輸入框框線一致。 -->
+              <svg
+                class="mt-0.5 size-6 shrink-0 text-brown-dark/32 peer-checked:hidden"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3.52639 3.6867C4.53388 2.60582 5.9691 2.0002 7.6654 2.0002H16.3344C18.0347 2.0002 19.4705 2.6055 20.4775 3.68698C21.4789 4.76242 22.0004 6.2478 22.0004 7.9162V16.0842C22.0004 17.7526 21.4789 19.238 20.4774 20.3135C19.4702 21.3949 18.0341 22.0002 16.3334 22.0002H7.6654C5.96509 22.0002 4.52946 21.3949 3.52268 20.3133C2.52155 19.2379 2.0004 17.7525 2.0004 16.0842V7.9162C2.0004 6.24697 2.52436 4.76172 3.52639 3.6867Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
                 />
-                <!-- 未勾選狀態設計稿沒有定義，沿用勾選狀態的圓角方形外框描邊，顏色與輸入框框線一致。 -->
-                <svg
-                  class="size-6 text-brown-dark/32 peer-checked:hidden"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M3.52639 3.6867C4.53388 2.60582 5.9691 2.0002 7.6654 2.0002H16.3344C18.0347 2.0002 19.4705 2.6055 20.4775 3.68698C21.4789 4.76242 22.0004 6.2478 22.0004 7.9162V16.0842C22.0004 17.7526 21.4789 19.238 20.4774 20.3135C19.4702 21.3949 18.0341 22.0002 16.3334 22.0002H7.6654C5.96509 22.0002 4.52946 21.3949 3.52268 20.3133C2.52155 19.2379 2.0004 17.7525 2.0004 16.0842V7.9162C2.0004 6.24697 2.52436 4.76172 3.52639 3.6867Z"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  />
-                </svg>
-                <svg
-                  class="hidden size-6 peer-checked:block"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M3.52639 3.6867C4.53388 2.60582 5.9691 2.0002 7.6654 2.0002H16.3344C18.0347 2.0002 19.4705 2.6055 20.4775 3.68698C21.4789 4.76242 22.0004 6.2478 22.0004 7.9162V16.0842C22.0004 17.7526 21.4789 19.238 20.4774 20.3135C19.4702 21.3949 18.0341 22.0002 16.3334 22.0002H7.6654C5.96509 22.0002 4.52946 21.3949 3.52268 20.3133C2.52155 19.2379 2.0004 17.7525 2.0004 16.0842V7.9162C2.0004 6.24697 2.52436 4.76172 3.52639 3.6867Z"
-                    fill="#463527"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M17.0303 8.46967C17.3232 8.76256 17.3232 9.23744 17.0303 9.53033L11.1978 15.3628C10.905 15.6557 10.4302 15.6557 10.1373 15.363L7.21978 12.4467C6.92683 12.1539 6.92673 11.679 7.21956 11.386C7.51239 11.0931 7.98726 11.093 8.28022 11.3858L10.6674 13.772L15.9697 8.46967C16.2626 8.17678 16.7374 8.17678 17.0303 8.46967Z"
-                    fill="white"
-                  />
-                </svg>
-              </label>
-              <p class="min-w-0 flex-1 type-body-base tracking-[1px] text-brown-warm en:font-label">
+              </svg>
+              <svg
+                class="mt-0.5 hidden size-6 shrink-0 peer-checked:block"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M3.52639 3.6867C4.53388 2.60582 5.9691 2.0002 7.6654 2.0002H16.3344C18.0347 2.0002 19.4705 2.6055 20.4775 3.68698C21.4789 4.76242 22.0004 6.2478 22.0004 7.9162V16.0842C22.0004 17.7526 21.4789 19.238 20.4774 20.3135C19.4702 21.3949 18.0341 22.0002 16.3334 22.0002H7.6654C5.96509 22.0002 4.52946 21.3949 3.52268 20.3133C2.52155 19.2379 2.0004 17.7525 2.0004 16.0842V7.9162C2.0004 6.24697 2.52436 4.76172 3.52639 3.6867Z"
+                  fill="#463527"
+                />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M17.0303 8.46967C17.3232 8.76256 17.3232 9.23744 17.0303 9.53033L11.1978 15.3628C10.905 15.6557 10.4302 15.6557 10.1373 15.363L7.21978 12.4467C6.92683 12.1539 6.92673 11.679 7.21956 11.386C7.51239 11.0931 7.98726 11.093 8.28022 11.3858L10.6674 13.772L15.9697 8.46967C16.2626 8.17678 16.7374 8.17678 17.0303 8.46967Z"
+                  fill="white"
+                />
+              </svg>
+              <span
+                class="min-w-0 flex-1 type-body-base tracking-[1px] text-brown-warm en:font-label"
+              >
                 <span data-i18n="contact.consent.before">我同意依據</span>
                 <a
                   class="text-brown-dark underline transition-opacity duration-200 hover:opacity-70"
@@ -359,8 +365,8 @@
                 <span data-i18n="contact.consent.after"
                   >收集與處理我的個人資料，以便回覆此詢問。</span
                 >
-              </p>
-            </div>
+              </span>
+            </label>
             <p
               class="flex items-center gap-1.5 type-body-sm text-error-warm en:font-label"
               hidden

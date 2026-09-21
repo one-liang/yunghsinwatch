@@ -10,24 +10,23 @@
 // injectPageAssets 把 bundle 插在 </body> 前、也就是頁面自己那支 aos.js 之後。
 //
 // 注意 AOS 的 duration/delay 都是靠 CSS 屬性選擇器實作，只吃 50 的倍數。
-(function () {
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
   "use strict";
 
-  function init() {
-    if (!window.AOS) return;
-
-    window.AOS.init({
+  const init = () => {
+    window.AOS?.init({
       duration: 2000,
       easing: "ease",
       once: true,
       offset: 120,
       // 使用者在系統層開了「減少動態效果」就整個停用；AOS 會把 data-aos* 屬性移除，
       // 內容直接呈現最終狀態，不會停在透明。
-      disable: function () {
-        return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      },
+      disable: () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     });
-  }
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

@@ -18,6 +18,65 @@ window.SITE_I18N.en = {
   "lang.zh": "ZH",
   "lang.en": "EN",
 
+  // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
+  "home.appointment.title": "Make an Appointment",
+  "home.appointment.subtitle": "Schedule an Appointment",
+
+  // 預約彈跳視窗（src/components/booking-modal/），全站每頁都有。
+  // 服務項目沿用 service.card.*、門市沿用 store.*.name，不在這裡重複一份。
+  "booking.eyebrow": "Booking",
+  "booking.title": "Booking Details",
+  "booking.subtitle": "Schedule an Appointment",
+
+  "booking.field.selectPlaceholder": "Please select.",
+  "booking.field.service.label": "Service",
+  "booking.field.service.viewing": "Watch Viewing",
+  "booking.field.service.error": "Please select a service.",
+  "booking.field.store.label": "Boutique",
+  "booking.field.store.error": "Please select a boutique.",
+
+  // 服務人員設計稿未定義真實姓名，先用編號代稱；要換成團隊頁的實際人員時改這裡即可。
+  "booking.field.staff.label": "Sales Associate",
+  "booking.field.staff.staff1": "Sales Associate 1",
+  "booking.field.staff.staff2": "Sales Associate 2",
+  "booking.field.staff.staff3": "Sales Associate 3",
+  "booking.field.staff.error": "Please select a sales associate.",
+
+  "booking.field.date.label": "Date",
+  "booking.field.date.error": "Please select a date.",
+  "booking.field.time.label": "Time",
+  "booking.field.time.error": "Please select a time.",
+
+  "booking.consent.before":
+    "I agree to the collection and processing of my personal data in accordance with the",
+  "booking.consent.link": "Privacy Policy",
+  "booking.consent.after": "for the purpose of responding to my inquiry.",
+  "booking.consent.error": "Please agree to the Privacy Policy.",
+  "booking.next": "Next",
+
+  "booking.field.salutation.label": "Title",
+  "booking.field.salutation.mr": "Mr.",
+  "booking.field.salutation.ms": "Ms.",
+  "booking.field.salutation.error": "Please select a title.",
+  "booking.field.lastName.label": "Last Name",
+  "booking.field.lastName.placeholder": "Last Name",
+  "booking.field.lastName.error": "Please enter your last name.",
+  "booking.field.firstName.label": "First Name",
+  "booking.field.firstName.placeholder": "First Name",
+  "booking.field.firstName.error": "Please enter your first name.",
+  "booking.field.email.label": "Email",
+  "booking.field.email.placeholder": "Please enter your email address.",
+  "booking.field.email.error": "Please enter your email address.",
+  "booking.field.phone.label": "Phone Number",
+  "booking.field.phone.countryLabel": "Country code",
+  "booking.field.phone.placeholder": "Please enter your phone number.",
+  "booking.field.phone.error": "Please enter your phone number.",
+  "booking.field.message.label": "Message",
+  "booking.field.message.placeholder": "Please enter your message.",
+  "booking.field.message.error": "Please enter your message.",
+  "booking.back": "Back",
+  "booking.submit": "Submit",
+
   "collection.meta.title": "Patek Philippe Collection | Yung Hsin Watch",
   "collection.meta.description":
     "Explore the Patek Philippe collection and its enduring standards of watchmaking, quality, and innovation.",

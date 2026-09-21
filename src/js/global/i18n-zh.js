@@ -19,6 +19,64 @@ window.SITE_I18N.zh = {
   "lang.zh": "ZH",
   "lang.en": "EN",
 
+  // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
+  "home.appointment.title": "我要預約",
+  "home.appointment.subtitle": "Schedule an Appointment",
+
+  // 預約彈跳視窗（src/components/booking-modal/），全站每頁都有。
+  // 服務項目沿用 service.card.*、門市沿用 store.*.name，不在這裡重複一份。
+  "booking.eyebrow": "Booking",
+  "booking.title": "填寫預約資料",
+  "booking.subtitle": "Schedule an Appointment",
+
+  "booking.field.selectPlaceholder": "請選擇",
+  "booking.field.service.label": "服務項目",
+  "booking.field.service.viewing": "賞錶預約",
+  "booking.field.service.error": "請選擇服務項目",
+  "booking.field.store.label": "門市分店",
+  "booking.field.store.error": "請選擇門市分店",
+
+  // 服務人員設計稿未定義真實姓名，先用編號代稱；要換成團隊頁的實際人員時改這裡即可。
+  "booking.field.staff.label": "服務人員",
+  "booking.field.staff.staff1": "服務人員1",
+  "booking.field.staff.staff2": "服務人員2",
+  "booking.field.staff.staff3": "服務人員3",
+  "booking.field.staff.error": "請選擇服務人員",
+
+  "booking.field.date.label": "預約日期",
+  "booking.field.date.error": "請選擇預約日期",
+  "booking.field.time.label": "預約時間",
+  "booking.field.time.error": "請選擇預約時間",
+
+  "booking.consent.before": "我同意依據",
+  "booking.consent.link": "隱私政策",
+  "booking.consent.after": "收集與處理我的個人資料，以便回覆此詢問。",
+  "booking.consent.error": "請先同意隱私政策",
+  "booking.next": "下一步",
+
+  "booking.field.salutation.label": "稱謂",
+  "booking.field.salutation.mr": "先生",
+  "booking.field.salutation.ms": "女士",
+  "booking.field.salutation.error": "請選擇稱謂",
+  "booking.field.lastName.label": "姓氏",
+  "booking.field.lastName.placeholder": "請輸入姓氏",
+  "booking.field.lastName.error": "請輸入姓氏",
+  "booking.field.firstName.label": "名字",
+  "booking.field.firstName.placeholder": "請輸入名字",
+  "booking.field.firstName.error": "請輸入名字",
+  "booking.field.email.label": "電子郵件",
+  "booking.field.email.placeholder": "請輸入電子郵件",
+  "booking.field.email.error": "請輸入電子郵件",
+  "booking.field.phone.label": "聯絡電話",
+  "booking.field.phone.countryLabel": "國碼",
+  "booking.field.phone.placeholder": "請輸入聯絡電話",
+  "booking.field.phone.error": "請輸入聯絡電話",
+  "booking.field.message.label": "留言內容",
+  "booking.field.message.placeholder": "請輸入留言內容",
+  "booking.field.message.error": "請輸入留言內容",
+  "booking.back": "返回",
+  "booking.submit": "確認送出",
+
   "collection.meta.title": "時計系列｜永新鐘錶百達翡麗專賣店",
   "collection.meta.description": "探索百達翡麗時計系列，領略品牌對製錶工藝、品質與創新的堅持。",
   "collection.heading": "百達翡麗時計系列",

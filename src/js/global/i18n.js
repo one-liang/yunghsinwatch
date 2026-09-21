@@ -8,92 +8,86 @@
 // 已知取捨：builder 只在 </body> 前注入一支 script，所以上次選英文的訪客
 // 重新整理時會有一瞬間看到 HTML 原始的中文。要消除就得讓 builder 支援 <head> 內的
 // inline script，目前不值得為此改架構。
-(function () {
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
   "use strict";
 
-  var STORAGE_KEY = "site-lang";
-  var DEFAULT_LANG = "zh";
-  var HTML_LANG = { zh: "zh-Hant", en: "en" };
+  const STORAGE_KEY = "site-lang";
+  const DEFAULT_LANG = "zh";
+  const HTML_LANG = { zh: "zh-Hant", en: "en" };
 
-  function dictionaryFor(lang) {
-    var all = window.SITE_I18N || {};
-    return all[lang] || null;
-  }
+  const dictionaryFor = (lang) => window.SITE_I18N?.[lang] ?? null;
 
-  function resolve(lang) {
-    return dictionaryFor(lang) ? lang : DEFAULT_LANG;
-  }
+  const resolve = (lang) => (dictionaryFor(lang) ? lang : DEFAULT_LANG);
 
-  function readStored() {
+  const readStored = () => {
     try {
       return window.localStorage.getItem(STORAGE_KEY);
-    } catch (error) {
+    } catch {
       return null;
     }
-  }
+  };
 
-  function writeStored(lang) {
+  const writeStored = (lang) => {
     try {
       window.localStorage.setItem(STORAGE_KEY, lang);
-    } catch (error) {
+    } catch {
       /* 隱私模式或停用儲存時略過，不影響切換本身。 */
     }
-  }
+  };
 
-  function has(dict, key) {
-    return key && Object.prototype.hasOwnProperty.call(dict, key);
-  }
+  const has = (dict, key) => Boolean(key) && Object.hasOwn(dict, key);
 
-  function apply(lang) {
-    var dict = dictionaryFor(lang) || {};
+  const apply = (lang) => {
+    const dict = dictionaryFor(lang) ?? {};
 
-    document.documentElement.lang = HTML_LANG[lang] || HTML_LANG[DEFAULT_LANG];
+    document.documentElement.lang = HTML_LANG[lang] ?? HTML_LANG[DEFAULT_LANG];
 
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      var key = el.getAttribute("data-i18n");
+    for (const el of document.querySelectorAll("[data-i18n]")) {
+      const key = el.dataset.i18n;
       if (has(dict, key)) el.textContent = dict[key];
-    });
+    }
 
-    document.querySelectorAll("[data-i18n-attr]").forEach(function (el) {
-      el.getAttribute("data-i18n-attr")
-        .split(",")
-        .forEach(function (pair) {
-          var separator = pair.indexOf(":");
-          if (separator < 0) return;
+    for (const el of document.querySelectorAll("[data-i18n-attr]")) {
+      for (const pair of el.dataset.i18nAttr.split(",")) {
+        const separator = pair.indexOf(":");
+        if (separator < 0) continue;
 
-          var attr = pair.slice(0, separator).trim();
-          var key = pair.slice(separator + 1).trim();
-          if (attr && has(dict, key)) el.setAttribute(attr, dict[key]);
-        });
-    });
+        const attr = pair.slice(0, separator).trim();
+        const key = pair.slice(separator + 1).trim();
+        if (attr && has(dict, key)) el.setAttribute(attr, dict[key]);
+      }
+    }
 
-    document.querySelectorAll("[data-lang-switch]").forEach(function (el) {
-      var active = el.getAttribute("data-lang-switch") === lang;
+    for (const el of document.querySelectorAll("[data-lang-switch]")) {
+      const active = el.dataset.langSwitch === lang;
       el.setAttribute("data-active", active ? "true" : "false");
       el.setAttribute("aria-pressed", active ? "true" : "false");
-    });
-  }
+    }
+  };
 
-  function setLang(lang) {
-    var next = resolve(lang);
+  const setLang = (lang) => {
+    const next = resolve(lang);
     writeStored(next);
     apply(next);
-  }
+  };
 
-  function init() {
-    apply(resolve(readStored() || DEFAULT_LANG));
+  const init = () => {
+    apply(resolve(readStored() ?? DEFAULT_LANG));
 
-    document.addEventListener("click", function (event) {
-      var target = event.target;
+    document.addEventListener("click", (event) => {
+      const { target } = event;
       if (!(target instanceof Element)) return;
 
-      var trigger = target.closest("[data-lang-switch]");
+      const trigger = target.closest("[data-lang-switch]");
       if (!trigger) return;
 
       event.preventDefault();
-      setLang(trigger.getAttribute("data-lang-switch"));
+      setLang(trigger.dataset.langSwitch);
     });
-  }
+  };
 
   window.setSiteLang = setLang;
 
