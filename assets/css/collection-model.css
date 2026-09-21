@@ -13,6 +13,7 @@
     --spacing: 0.25rem;
     --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
+    --font-weight-normal: 400;
     --font-weight-medium: 500;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -27,6 +28,8 @@
     --color-brown-warm: #8c7a66;
     --color-brown-dark: #463527;
     --color-background: #f4f2f0;
+    --color-error-warm: #ff0000;
+    --color-error-light: #fef0f0;
   }
 }
 @layer base {
@@ -238,6 +241,20 @@
   }
 }
 @layer utilities {
+  .pointer-events-none {
+    pointer-events: none;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border-width: 0;
+  }
   .absolute {
     position: absolute;
   }
@@ -256,8 +273,14 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
+  .top-1\/2 {
+    top: calc(1 / 2 * 100%);
+  }
   .top-full {
     top: 100%;
+  }
+  .right-4 {
+    right: calc(var(--spacing) * 4);
   }
   .left-1\/2 {
     left: calc(1 / 2 * 100%);
@@ -274,11 +297,17 @@
   .mx-auto {
     margin-inline: auto;
   }
+  .mt-0\.5 {
+    margin-top: calc(var(--spacing) * 0.5);
+  }
   .block {
     display: block;
   }
   .flex {
     display: flex;
+  }
+  .grid {
+    display: grid;
   }
   .hidden {
     display: none;
@@ -298,6 +327,10 @@
     width: calc(var(--spacing) * 4);
     height: calc(var(--spacing) * 4);
   }
+  .size-5 {
+    width: calc(var(--spacing) * 5);
+    height: calc(var(--spacing) * 5);
+  }
   .size-6 {
     width: calc(var(--spacing) * 6);
     height: calc(var(--spacing) * 6);
@@ -312,6 +345,9 @@
   .h-11 {
     height: calc(var(--spacing) * 11);
   }
+  .h-32 {
+    height: calc(var(--spacing) * 32);
+  }
   .h-\[68px\] {
     height: 68px;
   }
@@ -321,8 +357,17 @@
   .h-\[76px\] {
     height: 76px;
   }
+  .min-h-full {
+    min-height: 100%;
+  }
   .min-h-screen {
     min-height: 100vh;
+  }
+  .w-24 {
+    width: calc(var(--spacing) * 24);
+  }
+  .w-36 {
+    width: calc(var(--spacing) * 36);
   }
   .w-40 {
     width: calc(var(--spacing) * 40);
@@ -348,11 +393,17 @@
   .max-w-\[86rem\] {
     max-width: 86rem;
   }
+  .max-w-\[1024px\] {
+    max-width: 1024px;
+  }
   .max-w-\[1280px\] {
     max-width: 1280px;
   }
   .max-w-full {
     max-width: 100%;
+  }
+  .min-w-0 {
+    min-width: calc(var(--spacing) * 0);
   }
   .min-w-full {
     min-width: 100%;
@@ -366,8 +417,22 @@
   .grow {
     flex-grow: 1;
   }
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .transform {
+    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,)
+      var(--tw-skew-y,);
+  }
   .cursor-pointer {
     cursor: pointer;
+  }
+  .resize-none {
+    resize: none;
+  }
+  .appearance-none {
+    appearance: none;
   }
   .flex-col {
     flex-direction: column;
@@ -378,6 +443,9 @@
   .items-end {
     align-items: flex-end;
   }
+  .items-start {
+    align-items: flex-start;
+  }
   .justify-between {
     justify-content: space-between;
   }
@@ -386,6 +454,9 @@
   }
   .justify-end {
     justify-content: flex-end;
+  }
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
   }
   .gap-1\.5 {
     gap: calc(var(--spacing) * 1.5);
@@ -414,6 +485,12 @@
   .overflow-x-clip {
     overflow-x: clip;
   }
+  .overflow-y-auto {
+    overflow-y: auto;
+  }
+  .overscroll-contain {
+    overscroll-behavior: contain;
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -427,6 +504,21 @@
   }
   .border-brand-gold {
     border-color: var(--color-brand-gold);
+  }
+  .border-brown-dark {
+    border-color: var(--color-brown-dark);
+  }
+  .border-brown-dark\/16 {
+    border-color: color-mix(in srgb, #463527 16%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-brown-dark) 16%, transparent);
+    }
+  }
+  .border-brown-dark\/32 {
+    border-color: color-mix(in srgb, #463527 32%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      border-color: color-mix(in oklab, var(--color-brown-dark) 32%, transparent);
+    }
   }
   .bg-\[\#2a221b\] {
     background-color: #2a221b;
@@ -446,14 +538,26 @@
   .bg-black {
     background-color: var(--color-black);
   }
+  .bg-black\/40 {
+    background-color: color-mix(in srgb, #000000 40%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-black) 40%, transparent);
+    }
+  }
   .bg-brand-gold {
     background-color: var(--color-brand-gold);
+  }
+  .bg-brown-dark {
+    background-color: var(--color-brown-dark);
   }
   .bg-white {
     background-color: var(--color-white);
   }
   .p-2\.5 {
     padding: calc(var(--spacing) * 2.5);
+  }
+  .p-6 {
+    padding: calc(var(--spacing) * 6);
   }
   .px-2 {
     padding-inline: calc(var(--spacing) * 2);
@@ -470,6 +574,9 @@
   .px-10 {
     padding-inline: calc(var(--spacing) * 10);
   }
+  .py-2 {
+    padding-block: calc(var(--spacing) * 2);
+  }
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
   }
@@ -482,14 +589,29 @@
   .py-8 {
     padding-block: calc(var(--spacing) * 8);
   }
+  .py-10 {
+    padding-block: calc(var(--spacing) * 10);
+  }
   .pt-8 {
     padding-top: calc(var(--spacing) * 8);
   }
   .pr-5 {
     padding-right: calc(var(--spacing) * 5);
   }
+  .pr-9 {
+    padding-right: calc(var(--spacing) * 9);
+  }
+  .pr-10 {
+    padding-right: calc(var(--spacing) * 10);
+  }
+  .pr-11 {
+    padding-right: calc(var(--spacing) * 11);
+  }
   .pb-6 {
     padding-bottom: calc(var(--spacing) * 6);
+  }
+  .pl-4 {
+    padding-left: calc(var(--spacing) * 4);
   }
   .pl-8 {
     padding-left: calc(var(--spacing) * 8);
@@ -504,6 +626,12 @@
     font-family: var(--font-body);
     font-size: 1rem;
     font-weight: 400;
+    line-height: 1.75rem;
+  }
+  .type-body-base-medium {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
     line-height: 1.75rem;
   }
   .type-body-lg {
@@ -536,6 +664,18 @@
     font-weight: 500;
     line-height: 1.5rem;
   }
+  .type-heading-md {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 500;
+    line-height: 2.5rem;
+  }
+  .type-label-eyebrow-lg {
+    font-family: var(--font-label);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+  }
   .type-label-lang-md {
     font-family: var(--font-label);
     font-size: 1rem;
@@ -564,17 +704,32 @@
   .text-\[22px\] {
     font-size: 22px;
   }
+  .text-\[28px\] {
+    font-size: 28px;
+  }
   .leading-6 {
     --tw-leading: calc(var(--spacing) * 6);
     line-height: calc(var(--spacing) * 6);
+  }
+  .leading-7 {
+    --tw-leading: calc(var(--spacing) * 7);
+    line-height: calc(var(--spacing) * 7);
   }
   .leading-9 {
     --tw-leading: calc(var(--spacing) * 9);
     line-height: calc(var(--spacing) * 9);
   }
+  .leading-10 {
+    --tw-leading: calc(var(--spacing) * 10);
+    line-height: calc(var(--spacing) * 10);
+  }
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
+  }
+  .font-normal {
+    --tw-font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-normal);
   }
   .tracking-\[1\.5px\] {
     --tw-tracking: 1.5px;
@@ -583,6 +738,10 @@
   .tracking-\[1px\] {
     --tw-tracking: 1px;
     letter-spacing: 1px;
+  }
+  .tracking-\[2px\] {
+    --tw-tracking: 2px;
+    letter-spacing: 2px;
   }
   .whitespace-nowrap {
     white-space: nowrap;
@@ -596,11 +755,20 @@
   .text-brown-dark {
     color: var(--color-brown-dark);
   }
+  .text-brown-dark\/32 {
+    color: color-mix(in srgb, #463527 32%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-brown-dark) 32%, transparent);
+    }
+  }
   .text-brown-light {
     color: var(--color-brown-light);
   }
   .text-brown-warm {
     color: var(--color-brown-warm);
+  }
+  .text-error-warm {
+    color: var(--color-error-warm);
   }
   .text-white {
     color: var(--color-white);
@@ -611,6 +779,37 @@
   .not-italic {
     font-style: normal;
   }
+  .underline {
+    text-decoration-line: underline;
+  }
+  .transition {
+    transition-property:
+      color,
+      background-color,
+      border-color,
+      outline-color,
+      text-decoration-color,
+      fill,
+      stroke,
+      --tw-gradient-from,
+      --tw-gradient-via,
+      --tw-gradient-to,
+      opacity,
+      box-shadow,
+      transform,
+      translate,
+      scale,
+      rotate,
+      filter,
+      -webkit-backdrop-filter,
+      backdrop-filter,
+      display,
+      content-visibility,
+      overlay,
+      pointer-events;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
   .transition-colors {
     transition-property:
       color, background-color, border-color, outline-color, text-decoration-color, fill, stroke,
@@ -618,9 +817,29 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .transition-opacity {
+    transition-property: opacity;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
   .duration-200 {
     --tw-duration: 200ms;
     transition-duration: 200ms;
+  }
+  .peer-checked\:block {
+    &:is(:where(.peer):checked ~ *) {
+      display: block;
+    }
+  }
+  .peer-checked\:hidden {
+    &:is(:where(.peer):checked ~ *) {
+      display: none;
+    }
+  }
+  .placeholder\:text-\[\#ababab\] {
+    &::placeholder {
+      color: #ababab;
+    }
   }
   .empty\:hidden {
     &:empty {
@@ -634,6 +853,20 @@
       }
     }
   }
+  .hover\:opacity-70 {
+    &:hover {
+      @media (hover: hover) {
+        opacity: 70%;
+      }
+    }
+  }
+  .hover\:opacity-90 {
+    &:hover {
+      @media (hover: hover) {
+        opacity: 90%;
+      }
+    }
+  }
   .focus-visible\:text-brand-gold {
     &:focus-visible {
       color: var(--color-brand-gold);
@@ -643,6 +876,16 @@
     &:focus-visible {
       --tw-outline-style: none;
       outline-style: none;
+    }
+  }
+  .data-invalid\:border-error-warm {
+    &[data-invalid] {
+      border-color: var(--color-error-warm);
+    }
+  }
+  .data-invalid\:bg-error-light {
+    &[data-invalid] {
+      background-color: var(--color-error-light);
     }
   }
   .sm\:max-w-none {
@@ -663,6 +906,11 @@
   .lg\:flex {
     @media (width >= 64rem) {
       display: flex;
+    }
+  }
+  .lg\:grid {
+    @media (width >= 64rem) {
+      display: grid;
     }
   }
   .lg\:hidden {
@@ -706,6 +954,16 @@
       width: 140px;
     }
   }
+  .lg\:w-\[200px\] {
+    @media (width >= 64rem) {
+      width: 200px;
+    }
+  }
+  .lg\:w-\[768px\] {
+    @media (width >= 64rem) {
+      width: 768px;
+    }
+  }
   .lg\:min-w-0 {
     @media (width >= 64rem) {
       min-width: calc(var(--spacing) * 0);
@@ -714,6 +972,11 @@
   .lg\:flex-1 {
     @media (width >= 64rem) {
       flex: 1;
+    }
+  }
+  .lg\:grid-cols-3 {
+    @media (width >= 64rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
   .lg\:flex-row {
@@ -746,9 +1009,24 @@
       gap: calc(var(--spacing) * 6);
     }
   }
+  .lg\:gap-8 {
+    @media (width >= 64rem) {
+      gap: calc(var(--spacing) * 8);
+    }
+  }
   .lg\:gap-10 {
     @media (width >= 64rem) {
       gap: calc(var(--spacing) * 10);
+    }
+  }
+  .lg\:p-10 {
+    @media (width >= 64rem) {
+      padding: calc(var(--spacing) * 10);
+    }
+  }
+  .lg\:px-8 {
+    @media (width >= 64rem) {
+      padding-inline: calc(var(--spacing) * 8);
     }
   }
   .lg\:px-12 {
@@ -769,15 +1047,34 @@
       line-height: 2.5rem;
     }
   }
+  .lg\:type-heading-xl {
+    @media (width >= 64rem) {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 500;
+      line-height: 3.125rem;
+    }
+  }
   .lg\:text-\[28px\] {
     @media (width >= 64rem) {
       font-size: 28px;
+    }
+  }
+  .lg\:text-\[40px\] {
+    @media (width >= 64rem) {
+      font-size: 40px;
     }
   }
   .lg\:leading-10 {
     @media (width >= 64rem) {
       --tw-leading: calc(var(--spacing) * 10);
       line-height: calc(var(--spacing) * 10);
+    }
+  }
+  .lg\:leading-12 {
+    @media (width >= 64rem) {
+      --tw-leading: calc(var(--spacing) * 12);
+      line-height: calc(var(--spacing) * 12);
     }
   }
   .xl\:gap-14 {
@@ -960,6 +1257,41 @@ html [data-aos="fade-left"] {
   font-display: swap;
   src: url("../fonts/noto-sans-tc-chinese-traditional-700-normal.woff2") format("woff2");
 }
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-rotate-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-y {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-rotate-z {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-x {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-skew-y {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-border-style {
   syntax: "*";
   inherits: false;
@@ -988,12 +1320,187 @@ html [data-aos="fade-left"] {
     ::before,
     ::after,
     ::backdrop {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
+      --tw-rotate-x: initial;
+      --tw-rotate-y: initial;
+      --tw-rotate-z: initial;
+      --tw-skew-x: initial;
+      --tw-skew-y: initial;
       --tw-border-style: solid;
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
       --tw-duration: initial;
     }
+  }
+}
+
+/* 組件: src/components/booking-modal/booking-modal.css */
+
+/* 預約彈跳視窗的動態效果。
+   開關的寫法沿用 header 行動版抽屜（src/components/header/header.css）的那一套：
+   用 .is-open 切換，並讓 visibility 的 transition 延遲到位移／淡出跑完才生效，
+   這樣關閉時面板才不會瞬間消失。
+
+   刻意不在這支檔案裡用 var(--color-*)：Tailwind 是每頁單獨編譯、只輸出該頁用得到的 theme
+   變數，sidecar CSS 引用沒被任何 utility 用過的 token 會解析失敗（見 store-locator.css 的註解）。
+   顏色一律寫在 HTML 的 utility 上。 */
+
+/* ---------- 遮罩與面板的進場／退場 ---------- */
+
+.booking-modal {
+  visibility: hidden;
+  transition: visibility 0s linear 0.3s;
+}
+
+.booking-modal.is-open {
+  visibility: visible;
+  transition: visibility 0s;
+}
+
+.booking-modal__scrim {
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+
+.booking-modal.is-open .booking-modal__scrim {
+  opacity: 1;
+}
+
+/* 48px 的位移刻意對齊全站 AOS 進場（見 src/styles/tailwind.css 的 AOS 覆寫），讓彈窗的
+   出場語彙和頁面區塊同一套；但這裡是即時互動而非滾動進場，所以時間壓到 0.44s、
+   換成 ease-out 曲線，並延遲 0.06s 讓遮罩先壓下去，面板才浮上來。 */
+.booking-modal__panel {
+  opacity: 0;
+  transform: translate3d(0, 48px, 0) scale(0.98);
+  transition:
+    opacity 0.44s cubic-bezier(0.22, 0.61, 0.36, 1) 0.06s,
+    transform 0.44s cubic-bezier(0.22, 0.61, 0.36, 1) 0.06s;
+}
+
+.booking-modal.is-open .booking-modal__panel {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* 關閉走較短的反向動畫：按下 Esc 或點遮罩之後不該還要等將近半秒。 */
+.booking-modal:not(.is-open) .booking-modal__panel {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+/* 開著的時候不讓捲動穿透到底下的頁面（body 的 overflow-hidden 由 JS 加）。 */
+.booking-modal__scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ---------- 步驟切換 ---------- */
+
+/* 兩個 step 疊在同一個 grid 格子裡，容器高度由 JS 量測後寫進 style.height 再過渡。
+   不用 grid-template-rows: 0fr→1fr 的手風琴寫法，是因為這裡要的是「換頁」而不是「展開」，
+   兩個 step 必須在交叉淡入淡出的那段時間同時存在。 */
+.booking-modal__steps {
+  display: grid;
+  /* align-items 一定要是 start：grid item 預設 stretch，容器被 JS 釘上固定高度之後，
+     量到的 step 高度就會變成容器高度而不是內容高度，高度過渡會量錯。 */
+  align-items: start;
+  transition: height 0.36s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.booking-modal__steps > [data-booking-step] {
+  grid-area: 1 / 1;
+}
+
+/* 離場：往前走時舊的往左退，返回時往右退。 */
+.booking-modal__steps > .is-leaving {
+  opacity: 1;
+  animation: booking-step-out 0.2s ease forwards;
+  pointer-events: none;
+}
+
+.booking-modal__steps[data-booking-dir="back"] > .is-leaving {
+  animation-name: booking-step-out-back;
+}
+
+/* 進場：稍微延後，等舊的淡掉再進來，避免兩層文字重疊在一起。 */
+.booking-modal__steps > .is-entering {
+  animation: booking-step-in 0.32s cubic-bezier(0.22, 0.61, 0.36, 1) 0.12s backwards;
+}
+
+.booking-modal__steps[data-booking-dir="back"] > .is-entering {
+  animation-name: booking-step-in-back;
+}
+
+@keyframes booking-step-out {
+  to {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+}
+
+@keyframes booking-step-out-back {
+  to {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+}
+
+@keyframes booking-step-in {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+}
+
+@keyframes booking-step-in-back {
+  from {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+}
+
+/* ---------- 原生日期欄位 ---------- */
+
+/* 瀏覽器自帶的日曆圖示位置與樣式各家不同，這裡把它透明化並疊到欄位右側（也就是 HTML 裡
+   那顆設計稿日曆圖示的位置），點圖示就能叫出原生 picker。
+   刻意只蓋右側 3rem（欄位的 pr-11 是 2.75rem）而不是整個欄位，左半邊要留給鍵盤輸入時
+   點選年／月／日各段。定位基準是外層那個 .relative 包裝。 */
+.booking-modal__date::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3rem;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+/* Safari 會把 date 欄位的值靠左但保留內建 padding，統一清掉避免和 px-4 疊加。 */
+.booking-modal__date::-webkit-date-and-time-value {
+  text-align: left;
+  margin: 0;
+}
+
+/* ---------- 減少動態效果 ---------- */
+
+/* 與 src/js/global/aos.js 的判斷一致：使用者在系統層關掉動畫就整組停用，
+   開關與換頁都改成瞬間完成。 */
+@media (prefers-reduced-motion: reduce) {
+  .booking-modal,
+  .booking-modal__scrim,
+  .booking-modal__panel,
+  .booking-modal__steps {
+    transition: none;
+  }
+
+  .booking-modal__steps > .is-leaving,
+  .booking-modal__steps > .is-entering {
+    animation: none;
   }
 }
 
@@ -1010,22 +1517,41 @@ html [data-aos="fade-left"] {
 }
 
 @media (min-width: 64rem) {
+  /* 收縮動畫的時間來源。header.js 的 nav FLIP 會讀這個變數，兩邊才不會不同步。 */
   .site-header {
+    --header-shrink-duration: 0.25s;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     height: 172px;
-    transition: height 0.2s ease;
+    transition: height var(--header-shrink-duration) ease;
   }
 
   .site-header__bar {
-    transition: height 0.2s ease;
+    transition: height var(--header-shrink-duration) ease;
   }
 
   .site-header__logo {
     transition:
-      width 0.2s ease,
-      height 0.2s ease;
+      width var(--header-shrink-duration) ease,
+      height var(--header-shrink-duration) ease;
+  }
+
+  /* 品牌文字用 max-width 收合而非 display: none，才能平滑收起來。
+     負的 margin 是用來抵銷 .site-header__brand 的 lg:gap-10：元素還在 flex 流裡，
+     gap 不會像 display: none 那樣消失，不補回來收縮後會多出 40px。
+     max-width 只要大於實際文字寬度即可（中文約 20rem、英文約 21rem），32rem 是餘裕；
+     文字若加長到超過這個值會被裁掉，屆時要一併調大。
+     收合後元素的「高度」仍在（max-width 不管高度），brand 會比 logo 高幾 px，但 brand
+     本身沒有可見樣式且是 items-center，logo 位置不受影響。 */
+  .site-header__brand-text {
+    overflow: hidden;
+    max-width: 32rem;
+    transition:
+      max-width var(--header-shrink-duration) ease,
+      margin-inline-start var(--header-shrink-duration) ease,
+      opacity var(--header-shrink-duration) ease;
   }
 
   .site-header__nav {
@@ -1051,12 +1577,25 @@ html [data-aos="fade-left"] {
   }
 
   .site-header.is-scrolled .site-header__brand-text {
-    display: none;
+    max-width: 0;
+    margin-inline-start: -2.5rem;
+    opacity: 0;
   }
 
+  /* absolute → static（從 header 底部整行變成 bar 的中間欄）是唯一無法用 CSS
+     過渡的一段，改由 header.js 的 FLIP 用 transform 補間。 */
   .site-header.is-scrolled .site-header__nav {
     position: static;
     inset: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header,
+    .site-header__bar,
+    .site-header__logo,
+    .site-header__brand-text {
+      transition: none;
+    }
   }
 }
 

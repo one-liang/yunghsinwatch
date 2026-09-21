@@ -12,24 +12,23 @@
 // injectPageAssets 把 bundle 插在 </body> 前、也就是頁面自己那支 aos.js 之後。
 //
 // 注意 AOS 的 duration/delay 都是靠 CSS 屬性選擇器實作，只吃 50 的倍數。
-(function () {
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
   "use strict";
 
-  function init() {
-    if (!window.AOS) return;
-
-    window.AOS.init({
+  const init = () => {
+    window.AOS?.init({
       duration: 2000,
       easing: "ease",
       once: true,
       offset: 120,
       // 使用者在系統層開了「減少動態效果」就整個停用；AOS 會把 data-aos* 屬性移除，
       // 內容直接呈現最終狀態，不會停在透明。
-      disable: function () {
-        return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      },
+      disable: () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     });
-  }
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
@@ -59,6 +58,65 @@ window.SITE_I18N.en = {
 
   "lang.zh": "ZH",
   "lang.en": "EN",
+
+  // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
+  "home.appointment.title": "Make an Appointment",
+  "home.appointment.subtitle": "Schedule an Appointment",
+
+  // 預約彈跳視窗（src/components/booking-modal/），全站每頁都有。
+  // 服務項目沿用 service.card.*、門市沿用 store.*.name，不在這裡重複一份。
+  "booking.eyebrow": "Booking",
+  "booking.title": "Booking Details",
+  "booking.subtitle": "Schedule an Appointment",
+
+  "booking.field.selectPlaceholder": "Please select.",
+  "booking.field.service.label": "Service",
+  "booking.field.service.viewing": "Watch Viewing",
+  "booking.field.service.error": "Please select a service.",
+  "booking.field.store.label": "Boutique",
+  "booking.field.store.error": "Please select a boutique.",
+
+  // 服務人員設計稿未定義真實姓名，先用編號代稱；要換成團隊頁的實際人員時改這裡即可。
+  "booking.field.staff.label": "Sales Associate",
+  "booking.field.staff.staff1": "Sales Associate 1",
+  "booking.field.staff.staff2": "Sales Associate 2",
+  "booking.field.staff.staff3": "Sales Associate 3",
+  "booking.field.staff.error": "Please select a sales associate.",
+
+  "booking.field.date.label": "Date",
+  "booking.field.date.error": "Please select a date.",
+  "booking.field.time.label": "Time",
+  "booking.field.time.error": "Please select a time.",
+
+  "booking.consent.before":
+    "I agree to the collection and processing of my personal data in accordance with the",
+  "booking.consent.link": "Privacy Policy",
+  "booking.consent.after": "for the purpose of responding to my inquiry.",
+  "booking.consent.error": "Please agree to the Privacy Policy.",
+  "booking.next": "Next",
+
+  "booking.field.salutation.label": "Title",
+  "booking.field.salutation.mr": "Mr.",
+  "booking.field.salutation.ms": "Ms.",
+  "booking.field.salutation.error": "Please select a title.",
+  "booking.field.lastName.label": "Last Name",
+  "booking.field.lastName.placeholder": "Last Name",
+  "booking.field.lastName.error": "Please enter your last name.",
+  "booking.field.firstName.label": "First Name",
+  "booking.field.firstName.placeholder": "First Name",
+  "booking.field.firstName.error": "Please enter your first name.",
+  "booking.field.email.label": "Email",
+  "booking.field.email.placeholder": "Please enter your email address.",
+  "booking.field.email.error": "Please enter your email address.",
+  "booking.field.phone.label": "Phone Number",
+  "booking.field.phone.countryLabel": "Country code",
+  "booking.field.phone.placeholder": "Please enter your phone number.",
+  "booking.field.phone.error": "Please enter your phone number.",
+  "booking.field.message.label": "Message",
+  "booking.field.message.placeholder": "Please enter your message.",
+  "booking.field.message.error": "Please enter your message.",
+  "booking.back": "Back",
+  "booking.submit": "Submit",
 
   "collection.meta.title": "Patek Philippe Collection | Yung Hsin Watch",
   "collection.meta.description":
@@ -484,6 +542,64 @@ window.SITE_I18N.zh = {
   "lang.zh": "ZH",
   "lang.en": "EN",
 
+  // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
+  "home.appointment.title": "我要預約",
+  "home.appointment.subtitle": "Schedule an Appointment",
+
+  // 預約彈跳視窗（src/components/booking-modal/），全站每頁都有。
+  // 服務項目沿用 service.card.*、門市沿用 store.*.name，不在這裡重複一份。
+  "booking.eyebrow": "Booking",
+  "booking.title": "填寫預約資料",
+  "booking.subtitle": "Schedule an Appointment",
+
+  "booking.field.selectPlaceholder": "請選擇",
+  "booking.field.service.label": "服務項目",
+  "booking.field.service.viewing": "賞錶預約",
+  "booking.field.service.error": "請選擇服務項目",
+  "booking.field.store.label": "門市分店",
+  "booking.field.store.error": "請選擇門市分店",
+
+  // 服務人員設計稿未定義真實姓名，先用編號代稱；要換成團隊頁的實際人員時改這裡即可。
+  "booking.field.staff.label": "服務人員",
+  "booking.field.staff.staff1": "服務人員1",
+  "booking.field.staff.staff2": "服務人員2",
+  "booking.field.staff.staff3": "服務人員3",
+  "booking.field.staff.error": "請選擇服務人員",
+
+  "booking.field.date.label": "預約日期",
+  "booking.field.date.error": "請選擇預約日期",
+  "booking.field.time.label": "預約時間",
+  "booking.field.time.error": "請選擇預約時間",
+
+  "booking.consent.before": "我同意依據",
+  "booking.consent.link": "隱私政策",
+  "booking.consent.after": "收集與處理我的個人資料，以便回覆此詢問。",
+  "booking.consent.error": "請先同意隱私政策",
+  "booking.next": "下一步",
+
+  "booking.field.salutation.label": "稱謂",
+  "booking.field.salutation.mr": "先生",
+  "booking.field.salutation.ms": "女士",
+  "booking.field.salutation.error": "請選擇稱謂",
+  "booking.field.lastName.label": "姓氏",
+  "booking.field.lastName.placeholder": "請輸入姓氏",
+  "booking.field.lastName.error": "請輸入姓氏",
+  "booking.field.firstName.label": "名字",
+  "booking.field.firstName.placeholder": "請輸入名字",
+  "booking.field.firstName.error": "請輸入名字",
+  "booking.field.email.label": "電子郵件",
+  "booking.field.email.placeholder": "請輸入電子郵件",
+  "booking.field.email.error": "請輸入電子郵件",
+  "booking.field.phone.label": "聯絡電話",
+  "booking.field.phone.countryLabel": "國碼",
+  "booking.field.phone.placeholder": "請輸入聯絡電話",
+  "booking.field.phone.error": "請輸入聯絡電話",
+  "booking.field.message.label": "留言內容",
+  "booking.field.message.placeholder": "請輸入留言內容",
+  "booking.field.message.error": "請輸入留言內容",
+  "booking.back": "返回",
+  "booking.submit": "確認送出",
+
   "collection.meta.title": "時計系列｜永新鐘錶百達翡麗專賣店",
   "collection.meta.description": "探索百達翡麗時計系列，領略品牌對製錶工藝、品質與創新的堅持。",
   "collection.heading": "百達翡麗時計系列",
@@ -894,94 +1010,382 @@ window.SITE_I18N.zh = {
 // 已知取捨：builder 只在 </body> 前注入一支 script，所以上次選英文的訪客
 // 重新整理時會有一瞬間看到 HTML 原始的中文。要消除就得讓 builder 支援 <head> 內的
 // inline script，目前不值得為此改架構。
-(function () {
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
   "use strict";
 
-  var STORAGE_KEY = "site-lang";
-  var DEFAULT_LANG = "zh";
-  var HTML_LANG = { zh: "zh-Hant", en: "en" };
+  const STORAGE_KEY = "site-lang";
+  const DEFAULT_LANG = "zh";
+  const HTML_LANG = { zh: "zh-Hant", en: "en" };
 
-  function dictionaryFor(lang) {
-    var all = window.SITE_I18N || {};
-    return all[lang] || null;
-  }
+  const dictionaryFor = (lang) => window.SITE_I18N?.[lang] ?? null;
 
-  function resolve(lang) {
-    return dictionaryFor(lang) ? lang : DEFAULT_LANG;
-  }
+  const resolve = (lang) => (dictionaryFor(lang) ? lang : DEFAULT_LANG);
 
-  function readStored() {
+  const readStored = () => {
     try {
       return window.localStorage.getItem(STORAGE_KEY);
-    } catch (error) {
+    } catch {
       return null;
     }
-  }
+  };
 
-  function writeStored(lang) {
+  const writeStored = (lang) => {
     try {
       window.localStorage.setItem(STORAGE_KEY, lang);
-    } catch (error) {
+    } catch {
       /* 隱私模式或停用儲存時略過，不影響切換本身。 */
     }
-  }
+  };
 
-  function has(dict, key) {
-    return key && Object.prototype.hasOwnProperty.call(dict, key);
-  }
+  const has = (dict, key) => Boolean(key) && Object.hasOwn(dict, key);
 
-  function apply(lang) {
-    var dict = dictionaryFor(lang) || {};
+  const apply = (lang) => {
+    const dict = dictionaryFor(lang) ?? {};
 
-    document.documentElement.lang = HTML_LANG[lang] || HTML_LANG[DEFAULT_LANG];
+    document.documentElement.lang = HTML_LANG[lang] ?? HTML_LANG[DEFAULT_LANG];
 
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      var key = el.getAttribute("data-i18n");
+    for (const el of document.querySelectorAll("[data-i18n]")) {
+      const key = el.dataset.i18n;
       if (has(dict, key)) el.textContent = dict[key];
-    });
+    }
 
-    document.querySelectorAll("[data-i18n-attr]").forEach(function (el) {
-      el.getAttribute("data-i18n-attr")
-        .split(",")
-        .forEach(function (pair) {
-          var separator = pair.indexOf(":");
-          if (separator < 0) return;
+    for (const el of document.querySelectorAll("[data-i18n-attr]")) {
+      for (const pair of el.dataset.i18nAttr.split(",")) {
+        const separator = pair.indexOf(":");
+        if (separator < 0) continue;
 
-          var attr = pair.slice(0, separator).trim();
-          var key = pair.slice(separator + 1).trim();
-          if (attr && has(dict, key)) el.setAttribute(attr, dict[key]);
-        });
-    });
+        const attr = pair.slice(0, separator).trim();
+        const key = pair.slice(separator + 1).trim();
+        if (attr && has(dict, key)) el.setAttribute(attr, dict[key]);
+      }
+    }
 
-    document.querySelectorAll("[data-lang-switch]").forEach(function (el) {
-      var active = el.getAttribute("data-lang-switch") === lang;
+    for (const el of document.querySelectorAll("[data-lang-switch]")) {
+      const active = el.dataset.langSwitch === lang;
       el.setAttribute("data-active", active ? "true" : "false");
       el.setAttribute("aria-pressed", active ? "true" : "false");
-    });
-  }
+    }
+  };
 
-  function setLang(lang) {
-    var next = resolve(lang);
+  const setLang = (lang) => {
+    const next = resolve(lang);
     writeStored(next);
     apply(next);
-  }
+  };
 
-  function init() {
-    apply(resolve(readStored() || DEFAULT_LANG));
+  const init = () => {
+    apply(resolve(readStored() ?? DEFAULT_LANG));
 
-    document.addEventListener("click", function (event) {
-      var target = event.target;
+    document.addEventListener("click", (event) => {
+      const { target } = event;
       if (!(target instanceof Element)) return;
 
-      var trigger = target.closest("[data-lang-switch]");
+      const trigger = target.closest("[data-lang-switch]");
       if (!trigger) return;
 
       event.preventDefault();
-      setLang(trigger.getAttribute("data-lang-switch"));
+      setLang(trigger.dataset.langSwitch);
     });
-  }
+  };
 
   window.setSiteLang = setLang;
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+/* 組件: src/js/component/booking-modal.js */
+
+// 預約服務彈跳視窗：開關、兩個步驟之間的切換，以及兩張表單的前端驗證。
+//
+// 驗證的規則與 src/js/contact.js 相同（data-invalid 屬性驅動錯誤樣式、
+// [data-booking-error] 的 hidden 切換、已標錯的欄位在使用者修正時即時解除），
+// 只是那支是 ES5 寫法、這支改用 ES6+。後端尚未串接：step2 通過驗證後就直接關閉彈窗。
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以仍然包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
+  "use strict";
+
+  const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const STEP_ANIMATION_MS = 440;
+
+  const prefersReducedMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ---------- 驗證 ----------
+
+  // 欄位被包在 <div class="relative"> 或 <label> 裡的情況不一，
+  // 所以從欄位往上找第一個「有錯誤訊息當兄弟節點」的層級，不依賴 class 名稱。
+  const errorNodeFor = (field) => {
+    let node = field;
+    while (node?.parentElement) {
+      const error = node.parentElement.querySelector(":scope > [data-booking-error]");
+      if (error) return error;
+      node = node.parentElement;
+    }
+    return null;
+  };
+
+  const isFilled = ({ type, checked, value }) => {
+    if (type === "checkbox") return checked;
+    if (type === "email") return EMAIL_PATTERN.test(value.trim());
+    return value.trim() !== "";
+  };
+
+  const setValidity = (field, valid) => {
+    if (field.type === "checkbox") {
+      // 同意項的方框樣式是圖示自己切換的，只需要顯示／隱藏錯誤訊息。
+      field.setAttribute("aria-invalid", valid ? "false" : "true");
+    } else {
+      field.toggleAttribute("data-invalid", !valid);
+      field.setAttribute("aria-invalid", valid ? "false" : "true");
+    }
+
+    const error = errorNodeFor(field);
+    if (error) error.hidden = valid;
+  };
+
+  const clearValidity = (field) => {
+    field.removeAttribute("data-invalid");
+    field.removeAttribute("aria-invalid");
+
+    const error = errorNodeFor(field);
+    if (error) error.hidden = true;
+  };
+
+  const fieldsOf = (form) => [...form.querySelectorAll("[data-booking-field]")];
+
+  // 全部驗證一輪，回傳第一個沒過的欄位（都通過就回 null）。
+  const validate = (form) =>
+    fieldsOf(form).reduce((firstInvalid, field) => {
+      const valid = isFilled(field);
+      setValidity(field, valid);
+      return firstInvalid ?? (valid ? null : field);
+    }, null);
+
+  // ---------- 摘要 ----------
+
+  // <input type="date"> 的值固定是 YYYY-MM-DD，摘要要顯示成設計稿的 2026/7/27。
+  const formatDate = (value) => {
+    const parts = value.split("-");
+    if (parts.length !== 3) return value;
+
+    const [year, month, day] = parts;
+    return `${year}/${Number(month)}/${Number(day)}`;
+  };
+
+  // step2 的摘要列直接取 step1 控制項「顯示出來的文字」，這樣切語系後帶過去的值也是對的。
+  const fillSummary = (modal, form) => {
+    for (const node of modal.querySelectorAll("[data-booking-summary]")) {
+      const field = form.elements[node.dataset.bookingSummary];
+      if (!field) continue;
+
+      if (field.tagName === "SELECT") {
+        node.textContent = field.options[field.selectedIndex].textContent.trim();
+      } else if (field.type === "date") {
+        node.textContent = formatDate(field.value);
+      } else {
+        node.textContent = field.value;
+      }
+    }
+  };
+
+  // ---------- 步驟切換 ----------
+
+  const setupSteps = (modal) => {
+    const steps = modal.querySelector("[data-booking-steps]");
+    const panels = Object.fromEntries(
+      [...modal.querySelectorAll("[data-booking-step]")].map((panel) => [
+        panel.dataset.bookingStep,
+        panel,
+      ])
+    );
+
+    let current = "1";
+    // 動畫還在跑的時候又被切換（例如連點「返回」），要先把上一輪收尾做完，
+    // 否則上一輪的 timeout 會把新顯示的那一頁藏起來。
+    let finishPending = null;
+
+    const settle = () => finishPending?.();
+
+    const reset = () => {
+      settle();
+      if (current === "1") return;
+
+      panels[current].hidden = true;
+      panels["1"].hidden = false;
+      current = "1";
+    };
+
+    const goTo = (next, direction) => {
+      if (next === current || !panels[next]) return;
+      settle();
+
+      const from = panels[current];
+      const to = panels[next];
+      current = next;
+
+      if (prefersReducedMotion()) {
+        from.hidden = true;
+        to.hidden = false;
+        return;
+      }
+
+      // 高度過渡：先把容器釘在舊高度，換完內容量出新高度再放手，
+      // transition 結束後清掉行內 height，讓容器回到內容自適應（欄位出現錯誤訊息時才會跟著長高）。
+      const startHeight = steps.offsetHeight;
+
+      steps.dataset.bookingDir = direction;
+      from.classList.add("is-leaving");
+      to.hidden = false;
+      to.classList.add("is-entering");
+
+      steps.style.height = `${startHeight}px`;
+      const endHeight = to.offsetHeight;
+      // 讀取 offsetHeight 已經強制 reflow，下一行的新值才會被當成過渡的終點。
+      steps.style.height = `${endHeight}px`;
+
+      const finish = () => {
+        window.clearTimeout(timer);
+        finishPending = null;
+        from.hidden = true;
+        from.classList.remove("is-leaving");
+        to.classList.remove("is-entering");
+        steps.style.height = "";
+        delete steps.dataset.bookingDir;
+      };
+
+      const timer = window.setTimeout(finish, STEP_ANIMATION_MS);
+      finishPending = finish;
+    };
+
+    return { goTo, reset };
+  };
+
+  // ---------- 開關 ----------
+
+  // 行動版抽屜開著的時候按 CTA，要先把抽屜收掉。這一步刻意由這裡做而不是交給 header.js：
+  // 抽屜自己的關閉流程會把 body 的 overflow-hidden 拔掉，順序一交錯就會把彈窗的捲動鎖一起清掉。
+  const closeHeaderDrawer = () => {
+    const drawer = document.querySelector("[data-header-drawer]");
+    if (!drawer?.classList.contains("is-open")) return;
+
+    drawer.classList.remove("is-open");
+    drawer.setAttribute("aria-hidden", "true");
+    document.querySelector("[data-drawer-open]")?.setAttribute("aria-expanded", "false");
+  };
+
+  const init = () => {
+    const modal = document.querySelector("[data-booking-modal]");
+    if (!modal) return;
+
+    const scroll = modal.querySelector(".booking-modal__scroll");
+    const stepOne = modal.querySelector('[data-booking-form="1"]');
+    const stepTwo = modal.querySelector('[data-booking-form="2"]');
+    if (!stepOne || !stepTwo) return;
+
+    const steps = setupSteps(modal);
+    const forms = [stepOne, stepTwo];
+    let lastTrigger = null;
+
+    const isOpen = () => modal.classList.contains("is-open");
+
+    const open = (trigger) => {
+      lastTrigger = trigger ?? null;
+      closeHeaderDrawer();
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("overflow-hidden");
+      if (scroll) scroll.scrollTop = 0;
+    };
+
+    const close = () => {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("overflow-hidden");
+      lastTrigger?.focus({ preventScroll: true });
+      lastTrigger = null;
+    };
+
+    // 送出後把兩張表單清乾淨，下一次開啟才不會殘留上一筆的值與錯誤狀態。
+    const resetForms = () => {
+      for (const form of forms) {
+        form.reset();
+        fieldsOf(form).forEach(clearValidity);
+      }
+      steps.reset();
+    };
+
+    document.addEventListener("click", (event) => {
+      const { target } = event;
+      if (!(target instanceof Element)) return;
+
+      const trigger = target.closest("[data-booking-open]");
+      if (trigger) {
+        event.preventDefault();
+        open(trigger);
+        return;
+      }
+
+      // 點在面板以外的地方（遮罩或捲動層的留白）就關閉。
+      if (!isOpen()) return;
+      if (!modal.contains(target) || target.closest(".booking-modal__panel")) return;
+      close();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && isOpen()) close();
+    });
+
+    for (const form of forms) {
+      for (const field of fieldsOf(form)) {
+        // 已經標成錯誤的欄位，使用者一邊修正就一邊解除，不必等到再次送出。
+        const revalidate = () => {
+          if (field.getAttribute("aria-invalid") === "true") setValidity(field, isFilled(field));
+        };
+
+        field.addEventListener("input", revalidate);
+        field.addEventListener("change", revalidate);
+      }
+    }
+
+    stepOne.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const firstInvalid = validate(stepOne);
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      fillSummary(modal, stepOne);
+      steps.goTo("2", "forward");
+    });
+
+    modal.querySelector("[data-booking-back]")?.addEventListener("click", () => {
+      steps.goTo("1", "back");
+    });
+
+    stepTwo.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const firstInvalid = validate(stepTwo);
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      // 後端還沒串接：通過驗證就當作送出成功，直接關閉彈窗。
+      close();
+      resetForms();
+    });
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
@@ -993,144 +1397,201 @@ window.SITE_I18N.zh = {
 /* 組件: src/js/component/header.js */
 
 // Header 互動：捲動縮合、行動版抽屜、子選單展開。
-// builder 是純 concat 注入（非 module），因此包成 IIFE 避免污染全域。
-(function () {
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
   "use strict";
 
-  var DESKTOP_QUERY = "(min-width: 64rem)";
+  const DESKTOP_QUERY = "(min-width: 64rem)";
 
-  function setupScrollState(header) {
-    var ticking = false;
+  // 收縮會讓 header 佔位從 172px 變 88px，後面的內容整體上移 84px。門檻若設在 0，
+  // 使用者只捲 1px 畫面卻位移 84px，體感就是頓一下；所以門檻要大於收縮量，
+  // 並用上下兩個值做遲滯，避免在門檻邊界反覆切換。
+  const SHRINK_AT = 160;
+  const EXPAND_AT = 80;
 
-    function sync() {
-      header.classList.toggle("is-scrolled", window.scrollY > 0);
+  // header.css 的 --header-shrink-duration 是動畫時間的單一事實來源，這裡讀回來，
+  // nav 的補間才會跟 CSS 的 height/max-width 過渡同步。
+  const readShrinkDuration = (header) => {
+    const raw = getComputedStyle(header).getPropertyValue("--header-shrink-duration").trim();
+    if (!raw) return 0;
+
+    const value = Number.parseFloat(raw);
+    if (!Number.isFinite(value)) return 0;
+
+    return raw.endsWith("ms") ? value : value * 1000;
+  };
+
+  const setupScrollState = (header) => {
+    const nav = header.querySelector(".site-header__nav");
+    const desktop = window.matchMedia(DESKTOP_QUERY);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    let scrolled = null; // null 代表尚未初始化
+    let ticking = false;
+    let navAnimation = null;
+
+    // nav 在收縮前後是 absolute ↔ static：從 header 底部的整行，變成 bar 裡 brand 與
+    // actions 之間的一欄，位移約 (85, 94)px。position 無法過渡，所以用 FLIP 補間——
+    // 先記舊位置，套上 class 讓版面到位，再用 transform 把 nav 拉回舊位置滑過去。
+    // transform 走合成器，不會增加重排成本；nav 內沒有 fixed 子元素，submenu 是以
+    // .site-header__dropdown 為定位基準，不受這個 transform 影響。
+    const applyWithNavFlip = (next) => {
+      const duration = readShrinkDuration(header);
+      const animatable = nav && desktop.matches && !reducedMotion.matches && duration > 0;
+
+      if (!animatable) {
+        header.classList.toggle("is-scrolled", next);
+        return;
+      }
+
+      navAnimation?.cancel();
+
+      const first = nav.getBoundingClientRect();
+      header.classList.toggle("is-scrolled", next);
+      const last = nav.getBoundingClientRect();
+
+      // 用中心點而非左上角：nav 兩個狀態的寬度差很多（整行 vs 內容寬），
+      // 但 ul 都是置中的，所以對齊中心才不會有橫向抽動。
+      const dx = first.left + first.width / 2 - (last.left + last.width / 2);
+      const dy = first.top + first.height / 2 - (last.top + last.height / 2);
+      if (!dx && !dy) return;
+
+      navAnimation = nav.animate(
+        [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "translate(0, 0)" }],
+        { duration, easing: "ease" }
+      );
+    };
+
+    const sync = () => {
       ticking = false;
-    }
 
-    function onScroll() {
+      const y = window.scrollY;
+      // 80~160 之間維持現狀
+      const next = scrolled === true ? y >= EXPAND_AT : y > SHRINK_AT;
+      if (next === scrolled) return;
+
+      // 首次初始化時直接定裝，不播動畫（例如重新整理時就停在頁面中段）。
+      const animate = scrolled !== null;
+      scrolled = next;
+
+      if (animate) applyWithNavFlip(next);
+      else header.classList.toggle("is-scrolled", next);
+    };
+
+    const onScroll = () => {
       if (ticking) return;
       ticking = true;
       window.requestAnimationFrame(sync);
-    }
+    };
 
     sync();
     window.addEventListener("scroll", onScroll, { passive: true });
-  }
+  };
 
-  function setupDrawer(header) {
-    var drawer = header.querySelector("[data-header-drawer]");
-    var openButton = header.querySelector("[data-drawer-open]");
+  const setupDrawer = (header) => {
+    const drawer = header.querySelector("[data-header-drawer]");
+    const openButton = header.querySelector("[data-drawer-open]");
     if (!drawer || !openButton) return;
 
-    function setOpen(open) {
+    const setOpen = (open) => {
       drawer.classList.toggle("is-open", open);
       drawer.setAttribute("aria-hidden", open ? "false" : "true");
       openButton.setAttribute("aria-expanded", open ? "true" : "false");
       document.body.classList.toggle("overflow-hidden", open);
       if (!open) openButton.focus({ preventScroll: true });
+    };
+
+    openButton.addEventListener("click", () => setOpen(true));
+
+    for (const button of drawer.querySelectorAll("[data-drawer-close]")) {
+      button.addEventListener("click", () => setOpen(false));
     }
 
-    openButton.addEventListener("click", function () {
-      setOpen(true);
-    });
-
-    drawer.querySelectorAll("[data-drawer-close]").forEach(function (button) {
-      button.addEventListener("click", function () {
-        setOpen(false);
-      });
-    });
-
     // 點抽屜內的連結後直接關閉，避免回到頁面時遮罩還蓋著。
-    drawer.querySelectorAll("a[href]").forEach(function (link) {
-      link.addEventListener("click", function () {
-        setOpen(false);
-      });
-    });
+    // 預約 CTA 不在此列：它是 <button data-booking-open>，抽屜的收合由 booking-modal.js
+    // 自己處理，交給這裡會把彈窗剛上好的 body 捲動鎖一起拔掉。
+    for (const link of drawer.querySelectorAll("a[href]")) {
+      link.addEventListener("click", () => setOpen(false));
+    }
 
-    document.addEventListener("keydown", function (event) {
+    document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && drawer.classList.contains("is-open")) setOpen(false);
     });
 
     // 視窗放大到桌機斷點時抽屜已經被隱藏，狀態也要一起還原。
-    var desktop = window.matchMedia(DESKTOP_QUERY);
-    var onChange = function (event) {
-      if (event.matches) {
-        drawer.classList.remove("is-open");
-        drawer.setAttribute("aria-hidden", "true");
-        openButton.setAttribute("aria-expanded", "false");
-        document.body.classList.remove("overflow-hidden");
-      }
-    };
+    const desktop = window.matchMedia(DESKTOP_QUERY);
+    desktop.addEventListener("change", ({ matches }) => {
+      if (!matches) return;
 
-    if (typeof desktop.addEventListener === "function") {
-      desktop.addEventListener("change", onChange);
-    } else {
-      desktop.addListener(onChange);
-    }
-  }
+      drawer.classList.remove("is-open");
+      drawer.setAttribute("aria-hidden", "true");
+      openButton.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("overflow-hidden");
+    });
+  };
 
-  function setupAccordion(header) {
-    header.querySelectorAll("[data-accordion]").forEach(function (accordion) {
-      var toggle = accordion.querySelector("[data-accordion-toggle]");
-      if (!toggle) return;
+  const setupAccordion = (header) => {
+    for (const accordion of header.querySelectorAll("[data-accordion]")) {
+      const toggle = accordion.querySelector("[data-accordion-toggle]");
+      if (!toggle) continue;
 
-      toggle.addEventListener("click", function () {
-        var open = accordion.classList.toggle("is-open");
+      toggle.addEventListener("click", () => {
+        const open = accordion.classList.toggle("is-open");
         toggle.setAttribute("aria-expanded", open ? "true" : "false");
       });
-    });
-  }
+    }
+  };
 
   // 桌機下拉：hover 由 CSS 的 :hover / :focus-within 處理，
   // 這裡只補上滑鼠點擊與觸控裝置需要的顯性開關。
-  function setupDropdown(header) {
-    var dropdowns = [];
+  const setupDropdown = (header) => {
+    const dropdowns = [];
 
-    header.querySelectorAll("[data-dropdown-toggle]").forEach(function (toggle) {
-      var dropdown = toggle.closest(".site-header__dropdown");
-      if (!dropdown) return;
+    const closeAll = () => {
+      for (const dropdown of dropdowns) {
+        dropdown.classList.remove("is-open");
+        dropdown.querySelector("[data-dropdown-toggle]")?.setAttribute("aria-expanded", "false");
+      }
+    };
+
+    for (const toggle of header.querySelectorAll("[data-dropdown-toggle]")) {
+      const dropdown = toggle.closest(".site-header__dropdown");
+      if (!dropdown) continue;
 
       dropdowns.push(dropdown);
 
-      toggle.addEventListener("click", function (event) {
+      toggle.addEventListener("click", (event) => {
         event.preventDefault();
-        var open = !dropdown.classList.contains("is-open");
+        const open = !dropdown.classList.contains("is-open");
         closeAll();
         dropdown.classList.toggle("is-open", open);
         toggle.setAttribute("aria-expanded", open ? "true" : "false");
-      });
-    });
-
-    function closeAll() {
-      dropdowns.forEach(function (dropdown) {
-        dropdown.classList.remove("is-open");
-        var toggle = dropdown.querySelector("[data-dropdown-toggle]");
-        if (toggle) toggle.setAttribute("aria-expanded", "false");
       });
     }
 
     if (!dropdowns.length) return;
 
-    document.addEventListener("click", function (event) {
-      var target = event.target;
+    document.addEventListener("click", ({ target }) => {
       if (target instanceof Element && target.closest(".site-header__dropdown")) return;
       closeAll();
     });
 
-    document.addEventListener("keydown", function (event) {
+    document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") closeAll();
     });
-  }
+  };
 
-  function init() {
-    var header = document.querySelector("[data-site-header]");
+  const init = () => {
+    const header = document.querySelector("[data-site-header]");
     if (!header) return;
 
     setupScrollState(header);
     setupDrawer(header);
     setupAccordion(header);
     setupDropdown(header);
-  }
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
@@ -1150,75 +1611,64 @@ window.SITE_I18N.zh = {
 //
 // 用 Maps embed（?output=embed）而非 Maps JavaScript API，因此不需要 API key，
 // 代價是圖釘樣式固定、換店會整個 iframe 重載。
-(function () {
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
   "use strict";
 
-  var MOBILE_QUERY = "(max-width: 63.9375rem)";
+  const MOBILE_QUERY = "(max-width: 63.9375rem)";
 
-  function embedUrl(query, lang) {
-    return (
-      "https://www.google.com/maps?q=" +
-      encodeURIComponent(query) +
-      "&hl=" +
-      (lang === "en" ? "en" : "zh-TW") +
-      "&z=17&output=embed"
-    );
-  }
+  const embedUrl = (query, lang) =>
+    `https://www.google.com/maps?q=${encodeURIComponent(query)}&hl=${
+      lang === "en" ? "en" : "zh-TW"
+    }&z=17&output=embed`;
 
-  function currentLang() {
-    return String(document.documentElement.lang || "")
+  const currentLang = () =>
+    String(document.documentElement.lang ?? "")
       .toLowerCase()
-      .indexOf("en") === 0
+      .startsWith("en")
       ? "en"
       : "zh";
-  }
 
-  function setup(root) {
-    var frame = root.querySelector("[data-store-map]");
-    var items = Array.prototype.slice.call(root.querySelectorAll("[data-store-item]"));
-    var switcher = root.querySelector("[data-store-switch]");
+  const setup = (root) => {
+    const frame = root.querySelector("[data-store-map]");
+    const items = [...root.querySelectorAll("[data-store-item]")];
+    const switcher = root.querySelector("[data-store-switch]");
 
     if (!frame || !items.length) return;
 
-    function active() {
-      var found = items.filter(function (item) {
-        return item.getAttribute("aria-current") === "true";
-      });
-      return found[0] || items[0];
-    }
+    const active = () =>
+      items.find((item) => item.getAttribute("aria-current") === "true") ?? items[0];
 
-    function render() {
-      var item = active();
-      var lang = currentLang();
-      var query =
-        item.getAttribute("data-store-query-" + lang) || item.getAttribute("data-store-query-zh");
+    const render = () => {
+      const item = active();
+      const lang = currentLang();
+      const query =
+        item.dataset[`storeQuery${lang === "en" ? "En" : "Zh"}`] ?? item.dataset.storeQueryZh;
       if (!query) return;
 
-      var next = embedUrl(query, lang);
+      const next = embedUrl(query, lang);
       if (frame.getAttribute("src") !== next) frame.setAttribute("src", next);
-    }
+    };
 
-    function select(item) {
-      items.forEach(function (other) {
+    const select = (item) => {
+      for (const other of items) {
         other.setAttribute("aria-current", other === item ? "true" : "false");
-      });
+      }
       render();
 
       // 手機看的是單一視圖，選完門市就切回地圖，否則看不到剛選的位置。
-      if (window.matchMedia(MOBILE_QUERY).matches) root.setAttribute("data-view", "map");
+      if (window.matchMedia(MOBILE_QUERY).matches) root.dataset.view = "map";
+    };
+
+    for (const item of items) {
+      item.addEventListener("click", () => select(item));
     }
 
-    items.forEach(function (item) {
-      item.addEventListener("click", function () {
-        select(item);
-      });
+    switcher?.addEventListener("click", () => {
+      root.dataset.view = root.dataset.view === "list" ? "map" : "list";
     });
-
-    if (switcher) {
-      switcher.addEventListener("click", function () {
-        root.setAttribute("data-view", root.getAttribute("data-view") === "list" ? "map" : "list");
-      });
-    }
 
     new MutationObserver(render).observe(document.documentElement, {
       attributes: true,
@@ -1226,11 +1676,11 @@ window.SITE_I18N.zh = {
     });
 
     render();
-  }
+  };
 
-  function init() {
-    document.querySelectorAll("[data-store-locator]").forEach(setup);
-  }
+  const init = () => {
+    for (const root of document.querySelectorAll("[data-store-locator]")) setup(root);
+  };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
@@ -1247,10 +1697,13 @@ window.SITE_I18N.zh = {
 // slide 寬度寫在 boutique.css 的 --slide-w（各斷點不同），所以這裡用
 // slidesPerView: "auto" 讓 Swiper 讀實際寬度，只在 JS 控制 slide 之間的間距。
 // 刻意不開 loop：設計上到頭／尾時箭頭要停用，與 Patek 官網的行為一致。
-(function () {
+//
+// builder 是純 concat 注入（非 module，不能用 import/export），
+// 所以包成 IIFE，避免頂層的 const 與同一包裡其他腳本撞名。
+(() => {
   "use strict";
 
-  var carousel = document.querySelector(".boutique-carousel__viewport");
+  const carousel = document.querySelector(".boutique-carousel__viewport");
   if (!carousel || typeof window.Swiper !== "function") return;
 
   new window.Swiper(carousel, {
