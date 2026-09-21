@@ -130,6 +130,73 @@ window.SITE_I18N.en = {
   "about.legacy.body":
     "The enduring spirit of Patek Philippe is perhaps best captured in its iconic saying: “You never actually own a Patek Philippe. You merely look after it for the next generation.” In much the same spirit, Yung Hsin Watch seeks to bring the values of Patek Philippe—family heritage, the spirit of craftsmanship, and a language of innovation—to life through professional expertise, thoughtful companionship, and meaningful dialogue. By making these values tangible in every interaction and every generation, they become a shared core philosophy of both Patek Philippe and Yung Hsin Watch.",
 
+  "service.meta.title": "Service | Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "service.meta.description":
+    "Yung Hsin Watch offers watch care, maintenance and warranty support, and expert consultation, alongside guidance on servicing, magnetism, water resistance, and strap care.",
+  "service.hero.eyebrow": "After-Sales Service",
+  "service.hero.title": "Service",
+  "service.card.care": "Watch Care",
+  "service.card.warranty": "Maintenance & Warranty",
+  "service.card.consultation": "Expert Consultation",
+  "service.faq.eyebrow": "FAQ",
+  "service.faq.title": "Watch Care And Maintenance",
+
+  "service.faq.q1": "Mechanical Watch Servicing & Lubrication",
+  "service.faq.a1.p1":
+    "How often should a mechanical watch be serviced? This is a question that concerns many watch owners. Even when a watch is currently keeping accurate time, the precision escapement components and jewel bearings inside the movement require proper lubrication. In general, most mechanical watches should be serviced approximately every 3–5 years, although the actual interval should be determined based on wearing frequency, timekeeping performance, and test results.",
+  "service.faq.a1.p2":
+    "The recommended service interval may vary depending on how often the watch is worn, the environment in which it is used, and the condition of the movement. If the watch is worn every day or exposed to relatively demanding conditions, servicing may be required sooner. If it is worn less frequently and remains in good working condition, the interval may be extended.",
+
+  "service.faq.q2": "Magnetism & Mechanical Watches",
+  "service.faq.a2.p1":
+    "There are many potential sources of magnetic fields in everyday life. A watch that remains close to a strong magnetic field for an extended period may be affected. Magnetization can cause a watch to gain time suddenly or experience abnormal timekeeping.",
+  "service.faq.a2.p2":
+    "If a watch suddenly begins gaining significantly or shows other unusual timekeeping behavior, magnetization should be considered in addition to a possible movement malfunction. The watch should be inspected by a professional watchmaker. After demagnetization, timekeeping accuracy can be significantly improved.",
+
+  "service.faq.q3": "Basic Water Resistance",
+  "service.faq.a3.p1":
+    "A watch's water resistance mainly relies on the gaskets located around components such as the crown and case back. Basic everyday water resistance of 30 meters can generally withstand minor splashes or rain. However, actual performance can also be affected by factors such as water pressure, hand movement, temperature, and the aging of the water-resistance gaskets.",
+  "service.faq.a3.p2":
+    "Because water-resistance gaskets inevitably wear over time, prolonged use or leaving a watch unused for an extended period may cause the gaskets to lose elasticity and sealing performance. Therefore, even if a watch was originally water-resistant, it should not be considered permanently water-resistant.",
+  "service.faq.a3.p3":
+    "If you are unsure about the current water-resistance condition of your watch, avoid wearing it while showering or swimming. In particular, warm water produces small water-vapor molecules that can more easily penetrate the watch and cause internal damage.",
+
+  "service.faq.q4": "Wearing Guide for Hand-Wound Watches",
+  "service.faq.a4.p1":
+    "Because hand-wound watches contain precision mechanical components, if you notice significant resistance or a rough, uneven sensation while winding the watch, or if the automatic winding system or movement produces unusual sounds, this may indicate a problem with the mainspring system, gears, bearings, crown tube, or related lubrication points.",
+  "service.faq.a4.p2":
+    "These signs can be regarded as an initial indication that the watch should be inspected. You can monitor the condition of your watch by paying attention to the winding sensation, sounds from the automatic winding system, and the operating sounds of the movement.",
+
+  "service.faq.q5": "Basic Daily Watch Care",
+  "service.faq.a5.p1":
+    "During everyday wear, it is recommended to regularly use a soft, dry cloth to remove dust, perspiration, moisture, and foreign particles from the watch. Avoid impacts and collisions whenever possible. These are among the simplest and lowest-risk ways to care for your watch on a daily basis.",
+
+  "service.faq.q6": "Watch Strap Care Tips",
+  "service.faq.a6.leather.label": "Leather Straps:",
+  // 英文版內文在設計稿是兩個自然段，靠 \n 換行（HTML 用 whitespace-pre-line 呈現）。
+  "service.faq.a6.leather.body":
+    "Because perspiration contains salts and other chemical substances, prolonged contact with leather may cause deterioration. A simple way to care for a leather strap is to apply leather conditioning oil with a clean, soft cloth and gently wipe the strap.\nThe metal buckle on a leather strap can be gently cleaned with a toothbrush and soapy water. Be careful not to get the leather wet. After cleaning, dry the buckle promptly with a dry cloth. If you tend to perspire heavily, try to avoid wearing a leather strap during activities that cause excessive sweating, and regularly wipe the inside of the strap.",
+  "service.faq.a6.metal.label": "Metal Bracelets:",
+  "service.faq.a6.metal.body":
+    "Metal bracelets can be cleaned with water. When dirt is more stubborn, soak the bracelet in soapy water or a mild neutral detergent diluted with water, then gently brush it with a soft toothbrush.\nTake care to avoid getting the watch case wet, as this could affect its performance. After cleaning, carefully dry the bracelet with a dry cloth to prevent moisture from remaining in the gaps between the links.",
+  "service.faq.a6.fabric.label": "Fabric Straps:",
+  "service.faq.a6.fabric.body":
+    "Fabric straps can likewise be cleaned with soapy water and a toothbrush. After cleaning, a hair dryer may be used to dry the strap.",
+  "service.faq.a6.gold.label": "18K Gold Bracelets:",
+  "service.faq.a6.gold.body":
+    "Because gold is relatively soft, an 18K gold polishing cloth can generally be used for cleaning. It can remove dirt as well as oxidation marks from the surface. If the bracelet is heavily soiled, it can also be soaked in soapy water for cleaning.",
+  "service.faq.a6.special":
+    "For straps or bracelets made from special materials, consult a professional watch retailer or watchmaker for appropriate care and maintenance.",
+
+  "service.faq.q7": "Watch Servicing & Inspection",
+  "service.faq.a7.p1":
+    "The servicing and repair process will be arranged according to the specific requirements of each watch. Service procedures may include external inspection, review of service records, movement disassembly, component inspection, cleaning and lubrication, reassembly, installation of the dial and hands, case polishing and cleaning, water-resistance testing, casing-up, and final testing of timekeeping accuracy and water resistance.",
+  "service.faq.a7.p2":
+    "From the initial diagnosis through the final timekeeping and water-resistance tests, watch servicing requires professional expertise and specialized equipment and should be performed by appropriately trained watchmakers.",
+
+  "service.appointment.title": "CONTACT US",
+  "service.appointment.subtitle": "Schedule an Appointment",
+
   "store.view.list": "LIST VIEW",
   "store.view.map": "MAP VIEW",
   "store.map.title": "Map of our points of sale",

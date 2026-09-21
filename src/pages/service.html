@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="永新鐘錶提供鐘錶養護、保養保固與專業諮詢服務，並整理腕錶洗油、防磁、防水與錶帶保養的使用須知。"
+      data-i18n-attr="content:service.meta.description"
+    />
+    <link rel="icon" href="../assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../assets/vendor/aos/aos.css" />
+    <!-- aos.css 會把 [data-aos] 設成 opacity:0，JS 停用時要把它還原，否則整頁空白。 -->
+    <noscript>
+      <style>
+        [data-aos] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+    <title data-i18n="service.meta.title">維修保養｜永新鐘錶百達翡麗專賣店</title>
+  </head>
+  <body class="service-page min-h-screen bg-white type-body-base text-black">
+    <c-header />
+
+    <main class="bg-background">
+      <section class="relative h-[250px] overflow-hidden text-white xl:h-[375px]">
+        <img
+          class="absolute inset-0 size-full object-cover"
+          src="../assets/images/service/hero.jpg"
+          alt=""
+        />
+        <div class="absolute inset-0 bg-black/48"></div>
+        <div
+          class="absolute right-5 bottom-6 left-5 flex flex-col items-center gap-2 text-center xl:right-16 xl:bottom-12 xl:left-16 xl:gap-4"
+        >
+          <p
+            class="font-label text-sm leading-[22px] font-medium tracking-[1.5px] text-background uppercase lg:text-base lg:leading-6"
+            data-i18n="service.hero.eyebrow"
+          >
+            After-Sales Service
+          </p>
+          <!-- 英文版主標改用 Playfair；MD/SM 的英文級數設計稿沒定義，只換字體、沿用中文的 28/40。 -->
+          <h1
+            class="type-heading-md tracking-[2px] lg:type-heading-lg xl:type-heading-xl en:font-display xl:en:type-display-xl"
+            data-i18n="service.hero.title"
+          >
+            維修保養
+          </h1>
+        </div>
+      </section>
+
+      <!-- 服務項目：SM 單欄堆疊、LG 以上三欄。圖片比例 SM 為 353:275，LG 以上改為正方形。 -->
+      <section
+        class="mx-auto w-full max-w-[1536px] px-5 pt-12 pb-8 lg:px-12 lg:pt-16 lg:pb-12 xl:pt-28 xl:pb-20 2xl:px-32"
+      >
+        <ul class="flex flex-col gap-8 lg:grid lg:grid-cols-3 lg:gap-12 xl:gap-16">
+          <li class="flex flex-col gap-2 lg:gap-4">
+            <img
+              class="aspect-[353/275] w-full object-cover lg:aspect-square"
+              src="../assets/images/service/watch-care.jpg"
+              alt=""
+              loading="lazy"
+              data-aos="fade-up"
+              data-aos-delay="250"
+            />
+            <p
+              class="px-4 text-center type-body-xl tracking-[1px] xl:text-2xl xl:leading-9 en:font-label"
+              data-i18n="service.card.care"
+            >
+              鐘錶養護
+            </p>
+          </li>
+          <li class="flex flex-col gap-2 lg:gap-4">
+            <img
+              class="aspect-[353/275] w-full object-cover lg:aspect-square"
+              src="../assets/images/service/maintenance-warranty.jpg"
+              alt=""
+              loading="lazy"
+              data-aos="fade-up"
+              data-aos-delay="250"
+            />
+            <p
+              class="px-4 text-center type-body-xl tracking-[1px] xl:text-2xl xl:leading-9 en:font-label"
+              data-i18n="service.card.warranty"
+            >
+              保養保固
+            </p>
+          </li>
+          <li class="flex flex-col gap-2 lg:gap-4">
+            <img
+              class="aspect-[353/275] w-full object-cover lg:aspect-square"
+              src="../assets/images/service/expert-consultation.jpg"
+              alt=""
+              loading="lazy"
+              data-aos="fade-up"
+              data-aos-delay="250"
+            />
+            <p
+              class="px-4 text-center type-body-xl tracking-[1px] xl:text-2xl xl:leading-9 en:font-label"
+              data-i18n="service.card.consultation"
+            >
+              專業諮詢
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- FAQ 手風琴。
+           設計稿各斷點展開的項目並不一致（2XL 全開、XL/LG/SM 只開第二項），判定為示意用的
+           展開狀態，實作採「預設全部收合」，圖示收合時是 ＋（Icon / Add）、展開時是 ✕（Icon / Close）。
+
+           展開動畫：面板是 grid 容器，用 grid-template-rows 0fr → 1fr 帶出高度，
+           內距與底色放在最內層，所以收合時外層高度為 0、完全看不到。動畫狀態由
+           service.js 在面板上切換 data-open，使用者若開啟「減少動態效果」則由
+           motion-reduce:transition-none 直接跳到結果。
+
+           答案的段落數中英文不同（例如洗油保養中文一段、英文兩段），多出來的段落在該語系
+           字典給空字串，靠 empty:hidden 收掉，避免 flex gap 留下空白。 -->
+      <section class="bg-white py-8 lg:py-12 xl:py-16">
+        <div class="mx-auto flex w-full max-w-[768px] flex-col gap-4 px-5 lg:px-0 xl:gap-8">
+          <div class="flex flex-col items-center gap-2 text-center">
+            <p
+              class="type-label-eyebrow-lg tracking-[1.5px] text-brown-light uppercase"
+              data-i18n="service.faq.eyebrow"
+            >
+              FAQ
+            </p>
+            <h2
+              class="type-heading-sm tracking-[1px] lg:type-heading-md xl:type-heading-lg en:font-display"
+              data-i18n="service.faq.title"
+            >
+              腕錶使用與保養須知
+            </h2>
+          </div>
+
+          <div class="flex flex-col" data-accordion>
+            <div class="flex flex-col border-b border-background">
+              <button
+                class="group flex w-full cursor-pointer items-center gap-2.5 py-4 text-left"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-1"
+                data-accordion-trigger
+              >
+                <span
+                  class="min-w-0 flex-1 type-body-base-medium tracking-[1px] en:font-label"
+                  data-i18n="service.faq.q1"
+                >
+                  機械錶洗油保養
+                </span>
+                <span class="flex shrink-0 items-center rounded-[50px] bg-white/80 p-2.5">
+                  <svg
+                    class="size-6 group-aria-expanded:hidden"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18.2222 11.2222C18.6518 11.2222 19 11.5704 19 12C19 12.4296 18.6518 12.7778 18.2222 12.7778H5.77778C5.34822 12.7778 5 12.4296 5 12C5 11.5704 5.34822 11.2222 5.77778 11.2222H18.2222Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M11.2222 18.2222V5.77778C11.2222 5.34822 11.5704 5 12 5C12.4296 5 12.7778 5.34822 12.7778 5.77778V18.2222C12.7778 18.6518 12.4296 19 12 19C11.5704 19 11.2222 18.6518 11.2222 18.2222Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <svg
+                    class="hidden size-6 group-aria-expanded:block"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M17.2049 5.30799C17.6155 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6155 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6155 19.1027 17.2049 18.692Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="invisible grid grid-rows-[0fr] transition-[grid-template-rows,visibility] duration-300 ease-out data-open:visible data-open:grid-rows-[1fr] motion-reduce:transition-none"
+                id="faq-panel-1"
+                data-accordion-panel
+              >
+                <div class="overflow-hidden">
+                  <div
+                    class="flex flex-col gap-4 bg-background px-6 py-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  >
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a1.p1">
+                      多久要洗油保養？是錶主非常關心的問題，即使目前走時正常，機芯內精密的擒縱結構與寶石軸承需要適當潤滑。一般而言，多數機械錶的洗油保養週期約為
+                      3～5年，但仍要配合佩戴頻率、走時狀況與測試數據判斷。實際週期會受到佩戴頻率、使用環境與機芯狀況影響。如果每天佩戴、使用環境較複雜，可能需要提早保養；若佩戴頻率低、運作狀況良好，週期則可以延長。
+                    </p>
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a1.p2"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col border-b border-background">
+              <button
+                class="group flex w-full cursor-pointer items-center gap-2.5 py-4 text-left"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-2"
+                data-accordion-trigger
+              >
+                <span
+                  class="min-w-0 flex-1 type-body-base-medium tracking-[1px] en:font-label"
+                  data-i18n="service.faq.q2"
+                >
+                  機械錶防磁知識
+                </span>
+                <span class="flex shrink-0 items-center rounded-[50px] bg-white/80 p-2.5">
+                  <svg
+                    class="size-6 group-aria-expanded:hidden"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18.2222 11.2222C18.6518 11.2222 19 11.5704 19 12C19 12.4296 18.6518 12.7778 18.2222 12.7778H5.77778C5.34822 12.7778 5 12.4296 5 12C5 11.5704 5.34822 11.2222 5.77778 11.2222H18.2222Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M11.2222 18.2222V5.77778C11.2222 5.34822 11.5704 5 12 5C12.4296 5 12.7778 5.34822 12.7778 5.77778V18.2222C12.7778 18.6518 12.4296 19 12 19C11.5704 19 11.2222 18.6518 11.2222 18.2222Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <svg
+                    class="hidden size-6 group-aria-expanded:block"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M17.2049 5.30799C17.6155 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6155 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6155 19.1027 17.2049 18.692Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="invisible grid grid-rows-[0fr] transition-[grid-template-rows,visibility] duration-300 ease-out data-open:visible data-open:grid-rows-[1fr] motion-reduce:transition-none"
+                id="faq-panel-2"
+                data-accordion-panel
+              >
+                <div class="overflow-hidden">
+                  <div
+                    class="flex flex-col gap-4 bg-background px-6 py-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  >
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a2.p1">
+                      生活中存在不少磁場來源，腕錶若長時間接近強磁場，都可能受到影響。腕錶受磁可能造成腕錶突然走快、走時異常。若腕錶突然出現不尋常的明顯快走或走時異常，除了考慮機芯故障，可以考慮是否曾接觸強磁場，並交由專業鐘錶維修師檢測。腕錶經過消磁處理後，可大幅減少走時誤差。
+                    </p>
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a2.p2"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col border-b border-background">
+              <button
+                class="group flex w-full cursor-pointer items-center gap-2.5 py-4 text-left"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-3"
+                data-accordion-trigger
+              >
+                <span
+                  class="min-w-0 flex-1 type-body-base-medium tracking-[1px] en:font-label"
+                  data-i18n="service.faq.q3"
+                >
+                  腕錶基礎防水
+                </span>
+                <span class="flex shrink-0 items-center rounded-[50px] bg-white/80 p-2.5">
+                  <svg
+                    class="size-6 group-aria-expanded:hidden"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18.2222 11.2222C18.6518 11.2222 19 11.5704 19 12C19 12.4296 18.6518 12.7778 18.2222 12.7778H5.77778C5.34822 12.7778 5 12.4296 5 12C5 11.5704 5.34822 11.2222 5.77778 11.2222H18.2222Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M11.2222 18.2222V5.77778C11.2222 5.34822 11.5704 5 12 5C12.4296 5 12.7778 5.34822 12.7778 5.77778V18.2222C12.7778 18.6518 12.4296 19 12 19C11.5704 19 11.2222 18.6518 11.2222 18.2222Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <svg
+                    class="hidden size-6 group-aria-expanded:block"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M17.2049 5.30799C17.6155 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6155 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6155 19.1027 17.2049 18.692Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="invisible grid grid-rows-[0fr] transition-[grid-template-rows,visibility] duration-300 ease-out data-open:visible data-open:grid-rows-[1fr] motion-reduce:transition-none"
+                id="faq-panel-3"
+                data-accordion-panel
+              >
+                <div class="overflow-hidden">
+                  <div
+                    class="flex flex-col gap-4 bg-background px-6 py-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  >
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a3.p1">
+                      腕錶的防水主要依靠錶冠、底蓋等位置的防水膠圈。一般30米的日常基礎防水，遇到少量潑水或下雨狀況，可保有防水功能，實際使用還會受到水流、手部動作、溫度與防水膠圈老化等因素影響。由於手錶的防水圈在長期使用後難免有損耗，膠圈長時間使用或放置過久，都可能出現彈性疲乏、密合度下降的情況，因此即使腕錶原本具有防水性能，也不能認為它永久防水。在不清楚錶款本身的防水狀態之前，需避免戴手錶洗澡或游泳。尤其是溫熱水的水蒸氣分子小，容易滲入造成內部損壞。
+                    </p>
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a3.p2"></p>
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a3.p3"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col border-b border-background">
+              <button
+                class="group flex w-full cursor-pointer items-center gap-2.5 py-4 text-left"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-4"
+                data-accordion-trigger
+              >
+                <span
+                  class="min-w-0 flex-1 type-body-base-medium tracking-[1px] en:font-label"
+                  data-i18n="service.faq.q4"
+                >
+                  手上鍊腕錶佩戴須知
+                </span>
+                <span class="flex shrink-0 items-center rounded-[50px] bg-white/80 p-2.5">
+                  <svg
+                    class="size-6 group-aria-expanded:hidden"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18.2222 11.2222C18.6518 11.2222 19 11.5704 19 12C19 12.4296 18.6518 12.7778 18.2222 12.7778H5.77778C5.34822 12.7778 5 12.4296 5 12C5 11.5704 5.34822 11.2222 5.77778 11.2222H18.2222Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M11.2222 18.2222V5.77778C11.2222 5.34822 11.5704 5 12 5C12.4296 5 12.7778 5.34822 12.7778 5.77778V18.2222C12.7778 18.6518 12.4296 19 12 19C11.5704 19 11.2222 18.6518 11.2222 18.2222Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <svg
+                    class="hidden size-6 group-aria-expanded:block"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M17.2049 5.30799C17.6155 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6155 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6155 19.1027 17.2049 18.692Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="invisible grid grid-rows-[0fr] transition-[grid-template-rows,visibility] duration-300 ease-out data-open:visible data-open:grid-rows-[1fr] motion-reduce:transition-none"
+                id="faq-panel-4"
+                data-accordion-panel
+              >
+                <div class="overflow-hidden">
+                  <div
+                    class="flex flex-col gap-4 bg-background px-6 py-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  >
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a4.p1">
+                      手上鍊腕錶由於內部機械精密，若配戴時發現觸感明顯不順、卡澀，或自動盤與機芯聲音出現異常，這可能代表發條系統、齒輪、軸承、錶冠管或相關潤滑部位出現問題，可視為送檢的初步警訊。建議可從手上鍊觸感、自動盤聲音與機芯運作聲音觀察手錶狀況。
+                    </p>
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a4.p2"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col border-b border-background">
+              <button
+                class="group flex w-full cursor-pointer items-center gap-2.5 py-4 text-left"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-5"
+                data-accordion-trigger
+              >
+                <span
+                  class="min-w-0 flex-1 type-body-base-medium tracking-[1px] en:font-label"
+                  data-i18n="service.faq.q5"
+                >
+                  腕錶基礎日常保養
+                </span>
+                <span class="flex shrink-0 items-center rounded-[50px] bg-white/80 p-2.5">
+                  <svg
+                    class="size-6 group-aria-expanded:hidden"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18.2222 11.2222C18.6518 11.2222 19 11.5704 19 12C19 12.4296 18.6518 12.7778 18.2222 12.7778H5.77778C5.34822 12.7778 5 12.4296 5 12C5 11.5704 5.34822 11.2222 5.77778 11.2222H18.2222Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M11.2222 18.2222V5.77778C11.2222 5.34822 11.5704 5 12 5C12.4296 5 12.7778 5.34822 12.7778 5.77778V18.2222C12.7778 18.6518 12.4296 19 12 19C11.5704 19 11.2222 18.6518 11.2222 18.2222Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <svg
+                    class="hidden size-6 group-aria-expanded:block"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M17.2049 5.30799C17.6155 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6155 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6155 19.1027 17.2049 18.692Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="invisible grid grid-rows-[0fr] transition-[grid-template-rows,visibility] duration-300 ease-out data-open:visible data-open:grid-rows-[1fr] motion-reduce:transition-none"
+                id="faq-panel-5"
+                data-accordion-panel
+              >
+                <div class="overflow-hidden">
+                  <div
+                    class="flex flex-col gap-4 bg-background px-6 py-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  >
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a5.p1">
+                      腕錶在日常配戴時，建議定期使用柔軟乾布擦去灰塵、汗水、水分與異物，並避免碰撞；這是最基本且風險較低的日常保養方式。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col border-b border-background">
+              <button
+                class="group flex w-full cursor-pointer items-center gap-2.5 py-4 text-left"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-6"
+                data-accordion-trigger
+              >
+                <span
+                  class="min-w-0 flex-1 type-body-base-medium tracking-[1px] en:font-label"
+                  data-i18n="service.faq.q6"
+                >
+                  錶帶保養小常識
+                </span>
+                <span class="flex shrink-0 items-center rounded-[50px] bg-white/80 p-2.5">
+                  <svg
+                    class="size-6 group-aria-expanded:hidden"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18.2222 11.2222C18.6518 11.2222 19 11.5704 19 12C19 12.4296 18.6518 12.7778 18.2222 12.7778H5.77778C5.34822 12.7778 5 12.4296 5 12C5 11.5704 5.34822 11.2222 5.77778 11.2222H18.2222Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M11.2222 18.2222V5.77778C11.2222 5.34822 11.5704 5 12 5C12.4296 5 12.7778 5.34822 12.7778 5.77778V18.2222C12.7778 18.6518 12.4296 19 12 19C11.5704 19 11.2222 18.6518 11.2222 18.2222Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <svg
+                    class="hidden size-6 group-aria-expanded:block"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M17.2049 5.30799C17.6155 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6155 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6155 19.1027 17.2049 18.692Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="invisible grid grid-rows-[0fr] transition-[grid-template-rows,visibility] duration-300 ease-out data-open:visible data-open:grid-rows-[1fr] motion-reduce:transition-none"
+                id="faq-panel-6"
+                data-accordion-panel
+              >
+                <div class="overflow-hidden">
+                  <div
+                    class="flex flex-col gap-4 bg-background px-6 py-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  >
+                    <p>
+                      <span
+                        class="font-medium en:font-semibold"
+                        data-i18n="service.faq.a6.leather.label"
+                        >皮質錶帶：</span
+                      ><br />
+                      <span class="whitespace-pre-line" data-i18n="service.faq.a6.leather.body"
+                        >因為汗水中含有鹽分等化學物質，長期附著在皮革上可能造成侵蝕。簡單的方法，就是用皮革保養油，用乾淨軟布沾取，再擦拭乾淨。皮錶帶上的金屬扣環可用牙刷沾肥皂水輕輕刷洗，小心別碰到皮革部分，結束後再盡快用乾布擦乾。如果容易流汗，可以盡量避免在大量出汗時佩戴皮錶帶，平時也要擦拭錶帶內側。</span
+                      >
+                    </p>
+                    <p>
+                      <span
+                        class="font-medium en:font-semibold"
+                        data-i18n="service.faq.a6.metal.label"
+                        >金屬錶帶：</span
+                      ><br />
+                      <span class="whitespace-pre-line" data-i18n="service.faq.a6.metal.body"
+                        >可用清水清洗。而當污垢嚴重時，泡肥皂水或與水調和的溫和中性清潔劑，再使用軟性牙刷輕輕刷洗即可，過程要小心避免沾濕錶殼，以免影響性能。清洗完後用乾布仔細擦乾，避免水分殘留錶帶縫隙。</span
+                      >
+                    </p>
+                    <p>
+                      <span
+                        class="font-medium en:font-semibold"
+                        data-i18n="service.faq.a6.fabric.label"
+                        >布質錶帶：</span
+                      ><br />
+                      <span class="whitespace-pre-line" data-i18n="service.faq.a6.fabric.body"
+                        >同樣和金屬錶帶可用肥皂水與牙刷清潔，清潔後可用吹風機將它吹乾。</span
+                      >
+                    </p>
+                    <p>
+                      <span
+                        class="font-medium en:font-semibold"
+                        data-i18n="service.faq.a6.gold.label"
+                        >K金錶帶：</span
+                      ><br />
+                      <span class="whitespace-pre-line" data-i18n="service.faq.a6.gold.body"
+                        >它的質地比較軟，通常可用K金擦拭布來清理，能擦去污垢，還能清除上頭的氧化斑。若有污垢也是需要泡肥皂水來清洗。</span
+                      >
+                    </p>
+                    <p class="whitespace-pre-line" data-i18n="service.faq.a6.special">
+                      如果是特殊材質的錶帶保養，需請教專業鐘錶錶店師傅處理。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col border-b border-background">
+              <button
+                class="group flex w-full cursor-pointer items-center gap-2.5 py-4 text-left"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-7"
+                data-accordion-trigger
+              >
+                <span
+                  class="min-w-0 flex-1 type-body-base-medium tracking-[1px] en:font-label"
+                  data-i18n="service.faq.q7"
+                >
+                  腕錶保養檢修項目
+                </span>
+                <span class="flex shrink-0 items-center rounded-[50px] bg-white/80 p-2.5">
+                  <svg
+                    class="size-6 group-aria-expanded:hidden"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M18.2222 11.2222C18.6518 11.2222 19 11.5704 19 12C19 12.4296 18.6518 12.7778 18.2222 12.7778H5.77778C5.34822 12.7778 5 12.4296 5 12C5 11.5704 5.34822 11.2222 5.77778 11.2222H18.2222Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M11.2222 18.2222V5.77778C11.2222 5.34822 11.5704 5 12 5C12.4296 5 12.7778 5.34822 12.7778 5.77778V18.2222C12.7778 18.6518 12.4296 19 12 19C11.5704 19 11.2222 18.6518 11.2222 18.2222Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  <svg
+                    class="hidden size-6 group-aria-expanded:block"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M17.2049 5.30799C17.6155 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6155 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6155 19.1027 17.2049 18.692Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+              </button>
+              <div
+                class="invisible grid grid-rows-[0fr] transition-[grid-template-rows,visibility] duration-300 ease-out data-open:visible data-open:grid-rows-[1fr] motion-reduce:transition-none"
+                id="faq-panel-7"
+                data-accordion-panel
+              >
+                <div class="overflow-hidden">
+                  <div
+                    class="flex flex-col gap-4 bg-background px-6 py-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  >
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a7.p1">
+                      腕錶保養或維修的服務流程，將視不同的腕錶需求進行安排，處理項目如：外觀檢查、維修紀錄確認、機芯拆解、零件檢查、清洗與上油、重新組裝、面盤與指針安裝、錶殼拋光與清潔、防水測試、入殼，以及最後的走時精準度與防水品質檢測。鐘錶從初步診斷到最後的走時精度與防水測試，都需要專業技術與儀器，並由受過相應訓練的專業技師處理。
+                    </p>
+                    <p class="whitespace-pre-line empty:hidden" data-i18n="service.faq.a7.p2"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="flex items-center justify-center bg-brown-dark px-5 py-10 text-white lg:h-[175px] lg:py-0 xl:h-[200px]"
+      >
+        <a
+          class="flex flex-col items-center gap-4 text-center transition-opacity duration-200 hover:opacity-80 lg:flex-row lg:gap-14"
+          href="./contact.html"
+        >
+          <span
+            class="type-heading-md tracking-[2px] whitespace-nowrap lg:type-heading-lg xl:type-heading-xl en:font-display xl:en:type-display-xl"
+            data-i18n="service.appointment.title"
+          >
+            聯絡我們
+          </span>
+          <span class="h-6 w-px shrink-0 bg-white/80"></span>
+          <span
+            class="type-label-eyebrow-lg tracking-[1.5px] uppercase"
+            data-i18n="service.appointment.subtitle"
+          >
+            Schedule an Appointment
+          </span>
+        </a>
+      </section>
+    </main>
+
+    <c-footer />
+
+    <script src="../assets/vendor/aos/aos.js"></script>
+  </body>
+</html>
