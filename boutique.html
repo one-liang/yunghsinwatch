@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="走進永新鐘錶百達翡麗專賣店，感受稀缺工藝與精準美學交織的空間，並查詢台北地區的官方銷售點。"
+      data-i18n-attr="content:boutique.meta.description"
+    />
+    <link rel="icon" href="./assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/vendor/swiper/swiper-bundle.min.css" />
+    <title data-i18n="boutique.meta.title">品牌專賣店｜永新鐘錶百達翡麗專賣店</title>
+    <link rel="stylesheet" href="./assets/css/boutique.css" />
+  </head>
+  <body class="boutique-page min-h-screen bg-white type-body-base text-black">
+    <header class="site-header sticky top-0 z-40 bg-black text-white" data-site-header>
+      <div
+        class="site-header__bar mx-auto flex h-[68px] w-full max-w-[86rem] items-center justify-between px-5 lg:h-[112px] lg:px-12"
+      >
+        <a class="site-header__brand flex shrink-0 items-center gap-4 lg:gap-10" href="#">
+          <img
+            class="site-header__logo h-11 w-[83px] lg:h-[74px] lg:w-[140px]"
+            src="./assets/images/logo-patek-philippe-light.svg"
+            alt="Patek Philippe"
+          />
+          <span
+            class="site-header__brand-text flex flex-col justify-center text-center type-heading-2xs tracking-[1px] whitespace-nowrap lg:type-heading-md en:type-display-xs lg:en:type-display-sm"
+          >
+            <span class="site-header__brand-line" data-i18n="brand.line1"
+              >永新鐘錶百達翡麗專賣店</span
+            >
+            <span class="site-header__brand-line" data-i18n="brand.line2"></span>
+          </span>
+        </a>
+
+        <nav class="site-header__nav">
+          <ul class="flex items-center justify-center">
+            <li>
+              <a
+                class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                href="./collection.html"
+              >
+                <span data-i18n="nav.collection">時計系列</span>
+              </a>
+            </li>
+            <li class="site-header__dropdown relative">
+              <button
+                class="site-header__menu-link flex cursor-pointer items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                type="button"
+                data-dropdown-toggle
+              >
+                <span data-i18n="nav.boutique">品牌專賣店</span>
+                <svg class="site-header__caret size-4 shrink-0" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+              <ul
+                class="site-header__submenu absolute top-full left-1/2 z-10 min-w-full bg-[#303030]"
+                id="site-header-submenu"
+              >
+                <li>
+                  <a
+                    class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                    href="./boutique.html"
+                    data-i18n="nav.boutique.store"
+                  >
+                    精品店
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                    href="./team.html"
+                    data-i18n="nav.boutique.team"
+                  >
+                    我們的團隊
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                    href="./about.html"
+                    data-i18n="nav.boutique.about"
+                  >
+                    關於永新
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                href="./service.html"
+              >
+                <span data-i18n="nav.service">維修保養</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                href="./contact.html"
+              >
+                <span data-i18n="nav.contact">聯絡我們</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="site-header__actions hidden shrink-0 items-center gap-10 lg:flex">
+          <div class="flex items-center">
+            <button
+              class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+              type="button"
+              data-lang-switch="zh"
+            >
+              <span data-i18n="lang.zh">ZH</span>
+            </button>
+            <span class="h-5 w-px shrink-0 bg-[#d4d4d4]"></span>
+            <button
+              class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+              type="button"
+              data-lang-switch="en"
+            >
+              <span data-i18n="lang.en">EN</span>
+            </button>
+          </div>
+          <a
+            class="site-header__cta flex items-center justify-center border border-brand-gold bg-brand-gold px-4 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+            href="#"
+            data-i18n="cta.booking"
+          >
+            預約服務
+          </a>
+        </div>
+
+        <button
+          class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold lg:hidden"
+          type="button"
+          data-drawer-open
+        >
+          <svg class="size-6" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M21.3334 5C21.7629 5 22.1111 5.34822 22.1111 5.77778C22.1111 6.20733 21.7629 6.55556 21.3334 6.55556H2.66669C2.23714 6.55556 1.88892 6.20733 1.88892 5.77778C1.88892 5.34822 2.23714 5 2.66669 5H21.3334Z"
+              fill="currentColor"
+            />
+            <path
+              d="M21.3334 11.2222C21.7629 11.2222 22.1111 11.5704 22.1111 12C22.1111 12.4296 21.7629 12.7778 21.3334 12.7778H2.66669C2.23714 12.7778 1.88892 12.4296 1.88892 12C1.88892 11.5704 2.23714 11.2222 2.66669 11.2222H21.3334Z"
+              fill="currentColor"
+            />
+            <path
+              d="M21.3334 17.4444C21.7629 17.4444 22.1111 17.7927 22.1111 18.2222C22.1111 18.6518 21.7629 19 21.3334 19H2.66669C2.23714 19 1.88892 18.6518 1.88892 18.2222C1.88892 17.7927 2.23714 17.4444 2.66669 17.4444H21.3334Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        class="site-header__drawer fixed inset-0 z-50 flex flex-col bg-black text-white"
+        id="site-header-drawer"
+        data-header-drawer
+      >
+        <div class="flex h-[68px] shrink-0 items-center justify-end px-5">
+          <button
+            class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold"
+            type="button"
+            data-drawer-close
+          >
+            <svg class="size-6" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M17.2049 5.30799C17.6156 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+                fill="currentColor"
+              />
+              <path
+                d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6156 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6156 19.1027 17.2049 18.692Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <nav class="shrink-0">
+          <ul>
+            <li>
+              <a
+                class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                href="./collection.html"
+              >
+                <span data-i18n="nav.collection">時計系列</span>
+              </a>
+            </li>
+            <li class="site-header__accordion" data-accordion>
+              <div
+                class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] en:type-label-nav-lg"
+              >
+                <a class="flex-1 transition-colors duration-200 hover:text-brand-gold" href="#">
+                  <span data-i18n="nav.boutique">品牌專賣店</span>
+                </a>
+                <button
+                  class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold"
+                  type="button"
+                  data-accordion-toggle
+                >
+                  <svg class="site-header__caret size-6 shrink-0" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="site-header__accordion-panel" id="site-header-drawer-submenu">
+                <ul class="bg-[#333333]">
+                  <li>
+                    <a
+                      class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                      href="./boutique.html"
+                    >
+                      <span data-i18n="nav.boutique.store">精品店</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                      href="./team.html"
+                    >
+                      <span data-i18n="nav.boutique.team">我們的團隊</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                      href="./about.html"
+                    >
+                      <span data-i18n="nav.boutique.about">關於永新</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a
+                class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                href="./service.html"
+              >
+                <span data-i18n="nav.service">維修保養</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                href="./contact.html"
+              >
+                <span data-i18n="nav.contact">聯絡我們</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="flex flex-1 items-end justify-between px-5 py-8">
+          <div class="flex items-center gap-2">
+            <button
+              class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+              type="button"
+              data-lang-switch="zh"
+            >
+              <span data-i18n="lang.zh">ZH</span>
+            </button>
+            <span class="h-5 w-px shrink-0 bg-[#d4d4d4]"></span>
+            <button
+              class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+              type="button"
+              data-lang-switch="en"
+            >
+              <span data-i18n="lang.en">EN</span>
+            </button>
+          </div>
+          <a
+            class="site-header__cta flex w-40 items-center justify-center border border-brand-gold bg-brand-gold px-2 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+            href="#"
+            data-i18n="cta.booking"
+          >
+            預約服務
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="relative h-[250px] overflow-hidden text-white xl:h-[375px]">
+        <img
+          class="absolute inset-0 size-full object-cover"
+          src="./assets/images/boutique/hero.jpg"
+          alt=""
+        />
+        <div class="absolute inset-0 bg-black/48"></div>
+        <div
+          class="absolute right-5 bottom-6 left-5 flex flex-col items-center gap-2 text-center xl:right-16 xl:bottom-12 xl:left-16 xl:gap-4"
+        >
+          <p
+            class="font-label text-sm leading-[22px] font-medium tracking-[1.5px] text-background uppercase lg:text-base lg:leading-6"
+            data-i18n="boutique.hero.eyebrow"
+          >
+            Boutique
+          </p>
+          <h1
+            class="type-heading-md tracking-[2px] xl:type-heading-xl"
+            data-i18n="boutique.hero.title"
+          >
+            永新鐘錶百達翡麗專賣店
+          </h1>
+        </div>
+      </section>
+
+      <section
+        class="mx-auto flex max-w-[768px] flex-col items-center gap-4 px-5 py-12 text-center xl:px-0 xl:py-20"
+      >
+        <h2
+          class="pt-2 font-heading text-[22px] leading-9 font-medium tracking-[1px] text-brown-dark lg:type-heading-sm xl:type-heading-lg"
+          data-i18n="boutique.intro.title"
+        >
+          聚光燈下的鐘錶城堡
+        </h2>
+        <p
+          class="pt-2 font-heading text-[18px] leading-8 font-medium tracking-[1px] text-brown-dark xl:text-xl"
+          data-i18n="boutique.intro.body"
+        >
+          以「稀缺工藝」與「精準美學」，永新百達翡麗專館透過傳承與創新，訴說時間的璀璨永恆。
+        </p>
+      </section>
+
+      <!-- 圖片輪播：slide 比容器窄且置中，容器不裁切，左右自然露出相鄰的圖。
+           非 loop，到頭／尾時對應的箭頭停用；LG 以下不顯示箭頭，改用滑動。 -->
+      <section class="boutique-carousel relative h-[250px] lg:h-[432px] xl:h-[534px] 2xl:h-[675px]">
+        <div class="boutique-carousel__viewport swiper h-full">
+          <div class="swiper-wrapper">
+            <article class="swiper-slide">
+              <img src="./assets/images/boutique/slide-1.jpg" alt="" />
+            </article>
+            <article class="swiper-slide">
+              <img src="./assets/images/boutique/slide-2.jpg" alt="" />
+            </article>
+          </div>
+        </div>
+
+        <button
+          class="boutique-carousel__nav boutique-carousel__nav--prev hidden cursor-pointer rounded-full bg-white/80 p-[10px] transition-opacity duration-200 lg:block"
+          type="button"
+          data-carousel-prev
+          data-i18n-attr="aria-label:boutique.carousel.prev"
+          aria-label="上一張"
+        >
+          <img class="size-6 rotate-180" src="./assets/icons/arrow-right.svg" alt="" />
+        </button>
+        <button
+          class="boutique-carousel__nav boutique-carousel__nav--next hidden cursor-pointer rounded-full bg-white/80 p-[10px] transition-opacity duration-200 lg:block"
+          type="button"
+          data-carousel-next
+          data-i18n-attr="aria-label:boutique.carousel.next"
+          aria-label="下一張"
+        >
+          <img class="size-6" src="./assets/icons/arrow-right.svg" alt="" />
+        </button>
+      </section>
+
+      <section
+        class="mx-auto flex max-w-[768px] flex-col items-center gap-4 px-5 py-12 text-center xl:px-0 xl:py-20"
+      >
+        <img class="size-8" src="./assets/images/home/patek-philippe-mark.svg" alt="" />
+        <!-- 設計稿在 LG 以上是四句各一行，MD 以下把後兩句合成一段讓它自然折行。
+             i18n runtime 只改 textContent（<br> 會被吃掉），所以改用兩份文案切換。 -->
+        <p
+          class="pt-2 font-heading text-[18px] leading-8 font-medium tracking-[1px] whitespace-pre-line text-brown-dark lg:hidden"
+          data-i18n="boutique.story.bodySm"
+        >
+          在時間的長河中，鐘錶不僅是計時工具， 更是藝術、工藝與情感的載體。
+          永新鐘錶以深厚的技藝底蘊與誠信的經營哲學，成為無數愛錶人士心中的殿堂。
+        </p>
+        <p
+          class="hidden pt-2 font-heading text-[18px] leading-8 font-medium tracking-[1px] whitespace-pre-line text-brown-dark lg:block xl:text-xl"
+          data-i18n="boutique.story.body"
+        >
+          在時間的長河中，鐘錶不僅是計時工具， 更是藝術、工藝與情感的載體。
+          永新鐘錶以深厚的技藝底蘊與誠信的經營哲學， 成為無數愛錶人士心中的殿堂。
+        </p>
+      </section>
+
+      <!-- 門市地圖區塊：LG 以上為左地圖、右列表；LG 以下改成「地圖／門市列表」切換。
+     店家資料直接寫在 HTML，JS 只負責切換視圖與更換 iframe 的 src。
+     data-store-query-zh / -en 是餵給 Google Maps embed 的查詢字串，依 <html lang>
+     取用，讓地圖上的標籤語系跟著網站語系走。 -->
+      <section class="store-locator bg-background" data-store-locator data-view="map">
+        <div
+          class="store-locator__frame flex w-full flex-col lg:h-[384px] lg:flex-row-reverse xl:h-[480px] 2xl:h-[576px]"
+        >
+          <div
+            class="store-locator__aside relative flex flex-col lg:w-[420px] lg:shrink-0 xl:w-[491px]"
+          >
+            <div class="store-locator__switch flex justify-center py-9 lg:hidden">
+              <button
+                class="store-locator__switch-button flex cursor-pointer items-center gap-2 rounded-full border-[0.8px] border-brown-warm px-6 py-3 type-label-nav-sm tracking-[1.5px] text-brown-warm uppercase transition-colors duration-200 hover:bg-brown-warm hover:text-white"
+                type="button"
+                data-store-switch
+              >
+                <svg class="size-5 shrink-0" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M3.5 6.25h17M3.5 12h17M3.5 17.75h17"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span class="store-locator__switch-label" data-store-switch-list>
+                  <span data-i18n="store.view.list">門市列表</span>
+                  <span class="store-locator__switch-count">4</span>
+                </span>
+                <span
+                  class="store-locator__switch-label"
+                  data-store-switch-map
+                  data-i18n="store.view.map"
+                >
+                  地圖檢視
+                </span>
+              </button>
+            </div>
+
+            <div class="store-locator__panel lg:h-full" data-store-panel>
+              <ul class="store-locator__list px-8 pb-12 lg:px-12 lg:py-8">
+                <li class="store-locator__item">
+                  <button
+                    class="store-locator__trigger border-b-[0.8px] border-brown-light/55"
+                    type="button"
+                    data-store-item
+                    data-store-query-zh="永新鐘錶 台北市士林區忠誠路一段82號"
+                    data-store-query-en="Yung Hsin Watch, No. 82, Sec. 1, Jhongcheng Rd., 11148 Taipei, Taiwan"
+                    aria-current="true"
+                  >
+                    <span class="store-locator__item-head">
+                      <span class="store-locator__item-title">
+                        <img
+                          class="store-locator__mark"
+                          src="./assets/images/home/patek-philippe-mark.svg"
+                          alt=""
+                        />
+                        <span class="store-locator__name" data-i18n="store.yungHsin.name">
+                          永新鐘錶百達翡麗專賣店
+                        </span>
+                      </span>
+                      <svg
+                        class="store-locator__chevron"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M9 5.5 15.5 12 9 18.5"
+                          stroke="currentColor"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span class="store-locator__address" data-i18n="store.yungHsin.address">
+                      台北市士林區忠誠路一段 82 號
+                    </span>
+                  </button>
+                </li>
+
+                <li class="store-locator__item">
+                  <button
+                    class="store-locator__trigger border-b-[0.8px] border-brown-light/55"
+                    type="button"
+                    data-store-item
+                    data-store-query-zh="高登鐘錶百達翡麗專賣店 台北市信義區市府路45號 台北101購物中心2樓"
+                    data-store-query-en="Patek Philippe Boutique Taipei by Cortina Watch, Taipei 101 Mall 2F, No. 45, Shihfu Rd., 11049 Taipei, Taiwan"
+                  >
+                    <span class="store-locator__item-head">
+                      <span class="store-locator__item-title">
+                        <img
+                          class="store-locator__mark"
+                          src="./assets/images/home/patek-philippe-mark.svg"
+                          alt=""
+                        />
+                        <span class="store-locator__name" data-i18n="store.cortina.name">
+                          高登鐘錶百達翡麗專賣店
+                        </span>
+                      </span>
+                      <svg
+                        class="store-locator__chevron"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M9 5.5 15.5 12 9 18.5"
+                          stroke="currentColor"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span class="store-locator__address" data-i18n="store.cortina.address">
+                      台北市信義區市府路 45 號 台北 101 購物中心 2 樓
+                    </span>
+                  </button>
+                </li>
+
+                <li class="store-locator__item">
+                  <button
+                    class="store-locator__trigger border-b-[0.8px] border-brown-light/55"
+                    type="button"
+                    data-store-item
+                    data-store-query-zh="金生儀鐘錶百達翡麗專賣店 台北市大安區忠孝東路四段231-1號"
+                    data-store-query-en="Patek Philippe Boutique Taipei by King Sign Watch, No. 231-1, Sec. 4, Zhongxiao E. Rd., 10692 Taipei, Taiwan"
+                  >
+                    <span class="store-locator__item-head">
+                      <span class="store-locator__item-title">
+                        <img
+                          class="store-locator__mark"
+                          src="./assets/images/home/patek-philippe-mark.svg"
+                          alt=""
+                        />
+                        <span class="store-locator__name" data-i18n="store.kingSign.name">
+                          金生儀鐘錶百達翡麗專賣店
+                        </span>
+                      </span>
+                      <svg
+                        class="store-locator__chevron"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M9 5.5 15.5 12 9 18.5"
+                          stroke="currentColor"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span class="store-locator__address" data-i18n="store.kingSign.address">
+                      台北市大安區忠孝東路四段 231-1 號
+                    </span>
+                  </button>
+                </li>
+
+                <li class="store-locator__item">
+                  <button
+                    class="store-locator__trigger border-b-[0.8px] border-brown-light/55"
+                    type="button"
+                    data-store-item
+                    data-store-query-zh="九二鐘錶百達翡麗專賣店 台北市大同區延平北路一段109號"
+                    data-store-query-en="Patek Philippe Boutique Taipei by Nine-Two Watch, No. 109, Sec. 1, Yanping N. Rd., 10350 Taipei, Taiwan"
+                  >
+                    <span class="store-locator__item-head">
+                      <span class="store-locator__item-title">
+                        <img
+                          class="store-locator__mark"
+                          src="./assets/images/home/patek-philippe-mark.svg"
+                          alt=""
+                        />
+                        <span class="store-locator__name" data-i18n="store.nineTwo.name">
+                          九二鐘錶百達翡麗專賣店
+                        </span>
+                      </span>
+                      <svg
+                        class="store-locator__chevron"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M9 5.5 15.5 12 9 18.5"
+                          stroke="currentColor"
+                          stroke-width="1.4"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span class="store-locator__address" data-i18n="store.nineTwo.address">
+                      台北市大同區延平北路一段 109 號
+                    </span>
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="store-locator__map relative h-[300px] lg:h-full lg:min-w-0 lg:flex-1">
+            <iframe
+              class="size-full border-0"
+              title="門市位置地圖"
+              data-i18n-attr="title:store.map.title"
+              data-store-map
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="flex items-center justify-center bg-brown-dark px-5 py-10 text-white lg:h-[175px] lg:py-0 xl:h-[200px]"
+      >
+        <a
+          class="flex flex-col items-center gap-4 text-center transition-opacity duration-200 hover:opacity-80 lg:flex-row lg:gap-14"
+          href="#"
+        >
+          <span
+            class="type-heading-md tracking-[2px] whitespace-nowrap lg:type-heading-lg xl:type-heading-xl"
+            data-i18n="boutique.appointment.title"
+          >
+            我要預約
+          </span>
+          <span class="h-6 w-px shrink-0 bg-white/60"></span>
+          <span
+            class="type-label-eyebrow-lg tracking-[1.5px] uppercase"
+            data-i18n="boutique.appointment.subtitle"
+          >
+            Schedule an Appointment
+          </span>
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer bg-[#2a221b] text-white">
+      <div
+        class="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-8 px-5 pt-8 pb-6 sm:px-12 lg:flex-row lg:gap-10 xl:px-12 2xl:px-0"
+      >
+        <div
+          class="flex w-full flex-col items-center gap-10 lg:min-w-0 lg:flex-1 lg:flex-row lg:gap-5 xl:gap-14"
+        >
+          <div class="flex w-[398.24px] max-w-full shrink-0 items-center justify-center gap-4">
+            <img
+              class="h-[74px] w-[120px] lg:h-[87px] lg:w-[140px]"
+              src="./assets/images/logo-patek-philippe-light.svg"
+              alt="Patek Philippe"
+            />
+            <img class="size-3 shrink-0" src="./assets/icons/footer-x.svg" alt="" />
+            <img
+              class="h-[76px] w-40 lg:h-[84px] lg:w-44"
+              src="./assets/images/logo-yh-light.svg"
+              alt="永新鐘錶"
+            />
+          </div>
+
+          <address class="flex flex-col items-center gap-2 not-italic lg:items-start">
+            <a
+              class="group flex items-center justify-center gap-3 text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="https://www.google.com/maps/search/?api=1&query=%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A3%AB%E6%9E%97%E5%8D%80%E5%BF%A0%E8%AA%A0%E8%B7%AF%E4%B8%80%E6%AE%B582%E8%99%9F"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="site-footer__icon site-footer__icon--location size-4"></span>
+              <span
+                class="max-w-[18.5rem] text-center type-body-sm sm:max-w-none sm:whitespace-nowrap lg:text-left en:type-label-nav-sm lg:en:max-w-[21rem] lg:en:whitespace-normal xl:en:max-w-none xl:en:whitespace-nowrap"
+                data-i18n="footer.address"
+              >
+                台北市士林區忠誠路一段 82 號 (第一銀行旁)
+              </span>
+            </a>
+            <a
+              class="flex items-center justify-center gap-3 type-label-nav-sm tracking-[1px] text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="tel:+886228331859"
+            >
+              <span class="site-footer__icon site-footer__icon--call size-4"></span>
+              <span>02-2833-1859</span>
+            </a>
+            <a
+              class="flex items-center justify-center gap-3 type-label-nav-sm tracking-[1px] text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="mailto:yung.hsin@xuite.net"
+            >
+              <span class="site-footer__icon site-footer__icon--mail size-4"></span>
+              <span>yung.hsin@xuite.net</span>
+            </a>
+          </address>
+        </div>
+
+        <div class="flex shrink-0 flex-col items-center gap-6 lg:items-end lg:gap-4">
+          <div class="flex items-center gap-10 lg:gap-6">
+            <a
+              class="text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="#"
+            >
+              <span class="site-footer__icon site-footer__icon--instagram size-8 lg:size-6"></span>
+            </a>
+            <a
+              class="text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="#"
+            >
+              <span class="site-footer__icon site-footer__icon--facebook size-8 lg:size-6"></span>
+            </a>
+          </div>
+
+          <nav>
+            <ul class="flex items-center gap-3 type-body-sm tracking-[1px]">
+              <li>
+                <a
+                  class="transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+                  href="./terms.html"
+                  data-i18n="footer.terms"
+                >
+                  服務條款
+                </a>
+              </li>
+              <li>
+                <img class="size-1" src="./assets/icons/footer-dot.svg" alt="" />
+              </li>
+              <li>
+                <a
+                  class="transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+                  href="./privacy.html"
+                  data-i18n="footer.privacy"
+                >
+                  隱私權政策
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div
+        class="mx-auto flex w-full max-w-[1280px] items-center justify-center border-t border-[rgb(140_122_102_/_16%)] px-5 py-6 sm:px-12"
+      >
+        <p
+          class="text-center type-body-xs text-brown-warm en:font-label"
+          data-i18n="footer.copyright"
+        >
+          © 2026 Yung Hsin Watch. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="./assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="./assets/js/boutique.js"></script>
+  </body>
+</html>

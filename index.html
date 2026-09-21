@@ -3,65 +3,605 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tailwind HTML Template</title>
+    <meta
+      name="description"
+      content="永新鐘錶百達翡麗專賣店，探索百達翡麗時計、最新消息與預約服務。"
+    />
+    <link rel="icon" href="./assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/vendor/swiper/swiper-bundle.min.css" />
+    <title>永新鐘錶｜百達翡麗專賣店</title>
     <link rel="stylesheet" href="./assets/css/index.css" />
   </head>
-  <body class="flex min-h-screen flex-col bg-zinc-950 text-white">
-    <header
-      class="site-header sticky top-0 z-10 flex items-center justify-between border-b border-white/10 bg-zinc-950/90 px-6 py-4 backdrop-blur"
-    >
-      <a
-        class="site-header__brand flex items-center gap-3 text-sm font-semibold text-white"
-        href="./index.html"
+  <body class="min-h-screen bg-white type-body-base text-black">
+    <header class="site-header sticky top-0 z-40 bg-black text-white" data-site-header>
+      <div
+        class="site-header__bar mx-auto flex h-[68px] w-full max-w-[86rem] items-center justify-between px-5 lg:h-[112px] lg:px-12"
       >
-        <img class="site-header__logo size-8" src="./assets/images/logo.svg" alt="Template logo" />
-        <span>Tailwind HTML</span>
-      </a>
-      <nav class="site-header__nav flex gap-4 text-sm text-zinc-300">
-        <a class="hover:text-white data-[active=true]:text-white" href="./index.html">Home</a>
-        <a class="hover:text-white data-[active=true]:text-white" href="./about.html">About</a>
-      </nav>
-    </header>
-
-    <main class="flex-1 px-6 py-16">
-      <section class="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1fr_420px] md:items-center">
-        <div>
-          <p class="mb-4 text-sm font-semibold tracking-wide text-cyan-300 uppercase">
-            Static HTML Builder
-          </p>
-          <h1 class="max-w-3xl text-5xl leading-tight font-semibold md:text-7xl">
-            Tailwind pages with Vue-like HTML components.
-          </h1>
-          <p class="mt-6 max-w-2xl text-lg leading-8 text-zinc-300">
-            Build readable HTML, CSS, and JS files that can be opened directly from the dist folder.
-          </p>
-          <a
-            class="mt-8 inline-flex rounded-md bg-cyan-300 px-5 py-3 text-sm font-semibold text-zinc-950"
-            href="./about.html"
+        <a class="site-header__brand flex shrink-0 items-center gap-4 lg:gap-10" href="#">
+          <img
+            class="site-header__logo h-11 w-[83px] lg:h-[74px] lg:w-[140px]"
+            src="./assets/images/logo-patek-philippe-light.svg"
+            alt="Patek Philippe"
+          />
+          <span
+            class="site-header__brand-text flex flex-col justify-center text-center type-heading-2xs tracking-[1px] whitespace-nowrap lg:type-heading-md en:type-display-xs lg:en:type-display-sm"
           >
-            View about page
+            <span class="site-header__brand-line" data-i18n="brand.line1"
+              >永新鐘錶百達翡麗專賣店</span
+            >
+            <span class="site-header__brand-line" data-i18n="brand.line2"></span>
+          </span>
+        </a>
+
+        <nav class="site-header__nav">
+          <ul class="flex items-center justify-center">
+            <li>
+              <a
+                class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                href="./collection.html"
+              >
+                <span data-i18n="nav.collection">時計系列</span>
+              </a>
+            </li>
+            <li class="site-header__dropdown relative">
+              <button
+                class="site-header__menu-link flex cursor-pointer items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                type="button"
+                data-dropdown-toggle
+              >
+                <span data-i18n="nav.boutique">品牌專賣店</span>
+                <svg class="site-header__caret size-4 shrink-0" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+              <ul
+                class="site-header__submenu absolute top-full left-1/2 z-10 min-w-full bg-[#303030]"
+                id="site-header-submenu"
+              >
+                <li>
+                  <a
+                    class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                    href="./boutique.html"
+                    data-i18n="nav.boutique.store"
+                  >
+                    精品店
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                    href="./team.html"
+                    data-i18n="nav.boutique.team"
+                  >
+                    我們的團隊
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                    href="./about.html"
+                    data-i18n="nav.boutique.about"
+                  >
+                    關於永新
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a
+                class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                href="./service.html"
+              >
+                <span data-i18n="nav.service">維修保養</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors duration-200 hover:text-brand-gold en:type-label-nav-md"
+                href="./contact.html"
+              >
+                <span data-i18n="nav.contact">聯絡我們</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="site-header__actions hidden shrink-0 items-center gap-10 lg:flex">
+          <div class="flex items-center">
+            <button
+              class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+              type="button"
+              data-lang-switch="zh"
+            >
+              <span data-i18n="lang.zh">ZH</span>
+            </button>
+            <span class="h-5 w-px shrink-0 bg-[#d4d4d4]"></span>
+            <button
+              class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+              type="button"
+              data-lang-switch="en"
+            >
+              <span data-i18n="lang.en">EN</span>
+            </button>
+          </div>
+          <a
+            class="site-header__cta flex items-center justify-center border border-brand-gold bg-brand-gold px-4 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+            href="#"
+            data-i18n="cta.booking"
+          >
+            預約服務
           </a>
         </div>
+
+        <button
+          class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold lg:hidden"
+          type="button"
+          data-drawer-open
+        >
+          <svg class="size-6" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M21.3334 5C21.7629 5 22.1111 5.34822 22.1111 5.77778C22.1111 6.20733 21.7629 6.55556 21.3334 6.55556H2.66669C2.23714 6.55556 1.88892 6.20733 1.88892 5.77778C1.88892 5.34822 2.23714 5 2.66669 5H21.3334Z"
+              fill="currentColor"
+            />
+            <path
+              d="M21.3334 11.2222C21.7629 11.2222 22.1111 11.5704 22.1111 12C22.1111 12.4296 21.7629 12.7778 21.3334 12.7778H2.66669C2.23714 12.7778 1.88892 12.4296 1.88892 12C1.88892 11.5704 2.23714 11.2222 2.66669 11.2222H21.3334Z"
+              fill="currentColor"
+            />
+            <path
+              d="M21.3334 17.4444C21.7629 17.4444 22.1111 17.7927 22.1111 18.2222C22.1111 18.6518 21.7629 19 21.3334 19H2.66669C2.23714 19 1.88892 18.6518 1.88892 18.2222C1.88892 17.7927 2.23714 17.4444 2.66669 17.4444H21.3334Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        class="site-header__drawer fixed inset-0 z-50 flex flex-col bg-black text-white"
+        id="site-header-drawer"
+        data-header-drawer
+      >
+        <div class="flex h-[68px] shrink-0 items-center justify-end px-5">
+          <button
+            class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold"
+            type="button"
+            data-drawer-close
+          >
+            <svg class="size-6" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M17.2049 5.30799C17.6156 4.89734 18.2814 4.89734 18.692 5.30799C19.1027 5.71865 19.1027 6.38445 18.692 6.79511L6.7951 18.692C6.38445 19.1027 5.71865 19.1027 5.30799 18.692C4.89734 18.2814 4.89734 17.6156 5.30799 17.2049L17.2049 5.30799Z"
+                fill="currentColor"
+              />
+              <path
+                d="M17.2049 18.692L5.30799 6.7951C4.89734 6.38445 4.89734 5.71865 5.30799 5.30799C5.71865 4.89734 6.38445 4.89734 6.7951 5.30799L18.692 17.2049C19.1027 17.6156 19.1027 18.2814 18.692 18.692C18.2814 19.1027 17.6156 19.1027 17.2049 18.692Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <nav class="shrink-0">
+          <ul>
+            <li>
+              <a
+                class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                href="./collection.html"
+              >
+                <span data-i18n="nav.collection">時計系列</span>
+              </a>
+            </li>
+            <li class="site-header__accordion" data-accordion>
+              <div
+                class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] en:type-label-nav-lg"
+              >
+                <a class="flex-1 transition-colors duration-200 hover:text-brand-gold" href="#">
+                  <span data-i18n="nav.boutique">品牌專賣店</span>
+                </a>
+                <button
+                  class="flex cursor-pointer items-center p-2.5 transition-colors duration-200 hover:text-brand-gold"
+                  type="button"
+                  data-accordion-toggle
+                >
+                  <svg class="site-header__caret size-6 shrink-0" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="site-header__accordion-panel" id="site-header-drawer-submenu">
+                <ul class="bg-[#333333]">
+                  <li>
+                    <a
+                      class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                      href="./boutique.html"
+                    >
+                      <span data-i18n="nav.boutique.store">精品店</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                      href="./team.html"
+                    >
+                      <span data-i18n="nav.boutique.team">我們的團隊</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                      href="./about.html"
+                    >
+                      <span data-i18n="nav.boutique.about">關於永新</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a
+                class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                href="./service.html"
+              >
+                <span data-i18n="nav.service">維修保養</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold en:type-label-nav-lg"
+                href="./contact.html"
+              >
+                <span data-i18n="nav.contact">聯絡我們</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="flex flex-1 items-end justify-between px-5 py-8">
+          <div class="flex items-center gap-2">
+            <button
+              class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+              type="button"
+              data-lang-switch="zh"
+            >
+              <span data-i18n="lang.zh">ZH</span>
+            </button>
+            <span class="h-5 w-px shrink-0 bg-[#d4d4d4]"></span>
+            <button
+              class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors duration-200 hover:text-brand-gold"
+              type="button"
+              data-lang-switch="en"
+            >
+              <span data-i18n="lang.en">EN</span>
+            </button>
+          </div>
+          <a
+            class="site-header__cta flex w-40 items-center justify-center border border-brand-gold bg-brand-gold px-2 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+            href="#"
+            data-i18n="cta.booking"
+          >
+            預約服務
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- TODO(home-responsive): 待其他 Figma 尺寸完成後，補齊 XL／LG／MD／SM 版型。 -->
+    <main>
+      <section class="home-hero-swiper swiper h-[725px] w-full rounded-[4px] bg-black text-white">
+        <div class="swiper-wrapper">
+          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+            <img
+              class="absolute inset-0 size-full object-cover"
+              src="./assets/images/home/hero-nautilus.png"
+              alt=""
+            />
+
+            <div class="relative z-10 mx-auto h-full w-full max-w-[1344px] px-8">
+              <div class="absolute bottom-[164px] left-8 w-[min(600px,calc(100%_-_64px))]">
+                <p class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px]">
+                  百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年<br />四大限量紀念款
+                </p>
+              </div>
+
+              <button
+                class="absolute bottom-[85px] left-8 cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors duration-200 hover:bg-white hover:text-black"
+                type="button"
+              >
+                探索更多
+              </button>
+            </div>
+          </article>
+
+          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+            <img
+              class="absolute inset-0 size-full object-cover"
+              src="./assets/images/home/hero-nautilus.png"
+              alt=""
+            />
+
+            <div class="relative z-10 mx-auto h-full w-full max-w-[1344px] px-8">
+              <div class="absolute bottom-[164px] left-8 w-[min(600px,calc(100%_-_64px))]">
+                <p class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px]">
+                  百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年<br />四大限量紀念款
+                </p>
+              </div>
+
+              <button
+                class="absolute bottom-[85px] left-8 cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors duration-200 hover:bg-white hover:text-black"
+                type="button"
+              >
+                探索更多
+              </button>
+            </div>
+          </article>
+
+          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+            <img
+              class="absolute inset-0 size-full object-cover"
+              src="./assets/images/home/hero-nautilus.png"
+              alt=""
+            />
+
+            <div class="relative z-10 mx-auto h-full w-full max-w-[1344px] px-8">
+              <div class="absolute bottom-[164px] left-8 w-[min(600px,calc(100%_-_64px))]">
+                <p class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px]">
+                  百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年<br />四大限量紀念款
+                </p>
+              </div>
+
+              <button
+                class="absolute bottom-[85px] left-8 cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors duration-200 hover:bg-white hover:text-black"
+                type="button"
+              >
+                探索更多
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <div class="home-hero-pagination swiper-pagination"></div>
+      </section>
+
+      <section class="flex w-full flex-col items-center gap-14 py-[72px]">
+        <!-- TODO(home-video): 待影片檔或播放網址提供後，替換此 16:9 預留區。 -->
+        <div class="aspect-video w-[calc(100%_-_64px)] max-w-[1200px] bg-black"></div>
         <img
-          class="w-full max-w-[420px] justify-self-center rounded-lg border border-white/20 bg-zinc-900 md:justify-self-end"
-          src="./assets/images/hero.svg"
-          alt="Abstract interface preview"
+          class="size-14"
+          src="./assets/images/home/patek-philippe-mark.svg"
+          alt="Patek Philippe"
         />
+      </section>
+
+      <section class="relative bg-background py-28">
+        <span class="absolute top-[-40px] left-1/2 h-20 w-px -translate-x-1/2 bg-brand-gold"></span>
+
+        <div class="mx-auto flex w-[calc(100%_-_64px)] max-w-[1280px] flex-col gap-28">
+          <article
+            class="grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
+          >
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-4">
+                <p class="type-label-eyebrow-lg font-semibold text-brown-light uppercase">
+                  Aquanaut
+                </p>
+                <h2 class="type-heading-md tracking-[1px] text-brown-dark">
+                  首度加入日出日落<br />Grand Complications 6105G-001
+                </h2>
+              </div>
+              <p class="type-body-base tracking-[1px]">
+                當時間不再只是指針的流動，而化為一場關於宇宙運行的精密演繹，PATEK PHILIPPE Ref.
+                6105G-001 以嶄新高度重新定義天文複雜功能腕錶。此款 2026
+                年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
+              </p>
+            </div>
+            <img
+              class="h-[450px] w-full object-cover"
+              src="./assets/images/home/article-6105g.png"
+              alt="百達翡麗 Grand Complications 6105G-001 腕錶"
+              loading="lazy"
+            />
+          </article>
+
+          <article
+            class="grid min-h-[450px] grid-cols-[minmax(0,800px)_minmax(0,408px)] items-center gap-[72px]"
+          >
+            <img
+              class="h-[450px] w-full object-cover"
+              src="./assets/images/home/article-5396r.png"
+              alt="百達翡麗 5396R 年曆腕錶"
+              loading="lazy"
+            />
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-4">
+                <p class="type-label-eyebrow-lg font-semibold text-brown-light uppercase">
+                  Aquanaut
+                </p>
+                <h2 class="type-heading-md tracking-[1px] text-brown-dark">
+                  百達翡麗 5396R 年曆腕錶三十週年致敬之作
+                </h2>
+              </div>
+              <p class="type-body-base tracking-[1px]">
+                回顧現代高級製錶發展，一項真正具有影響力的複雜功能，往往不只是增加腕錶的技術含量，也可能重新改變市場對實用性的理解。1996
+                年，Patek Philippe 百達翡麗推出 Ref.
+                5035，首度將獲得專利的年曆複雜功能帶到世人面前。它既不是萬年曆的簡化版本，也不只是全日曆的小幅改良，而是一套能夠自動辨識
+                30 天與 31
+                天月份的機制。換句話說，佩戴者一年只需要在二月底手動調校一次。這項設計正好填補全日曆與萬年曆之間的空白，也憑藉更貼近日常使用的特性，逐漸成為百達翡麗最具代表性的複雜功能之一。
+              </p>
+            </div>
+          </article>
+
+          <article
+            class="grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
+          >
+            <div class="flex flex-col gap-8">
+              <div class="flex flex-col gap-4">
+                <p class="type-label-eyebrow-lg font-semibold text-brown-light uppercase">
+                  Aquanaut
+                </p>
+                <h2 class="type-heading-md tracking-[1px] text-brown-dark">
+                  首度加入日出日落<br />Grand Complications 6105G-001
+                </h2>
+              </div>
+              <p class="type-body-base tracking-[1px]">
+                當時間不再只是指針的流動，而化為一場關於宇宙運行的精密演繹，PATEK PHILIPPE Ref.
+                6105G-001 以嶄新高度重新定義天文複雜功能腕錶。此款 2026
+                年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
+              </p>
+            </div>
+            <img
+              class="h-[450px] w-full object-cover"
+              src="./assets/images/home/article-6105g.png"
+              alt="百達翡麗 Grand Complications 6105G-001 腕錶"
+              loading="lazy"
+            />
+          </article>
+        </div>
+      </section>
+
+      <section
+        class="relative flex h-[300px] items-center justify-center overflow-hidden text-white"
+      >
+        <img
+          class="absolute inset-0 size-full object-cover"
+          src="./assets/images/home/contact-background.png"
+          alt="百達翡麗時計工藝細節"
+        />
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div
+          class="relative flex w-[min(640px,calc(100%_-_64px))] flex-col items-center gap-6 text-center"
+        >
+          <h2 class="type-display-xl tracking-[2px]">CONTACT US</h2>
+          <p class="pt-2 type-heading-xs tracking-[1px]">
+            跟隨鏡頭走進高級製錶世界，從難得一見的視角，窺見汝拉山谷核心地帶中，工匠、設計師、工程師精雕細琢的匠心工藝。
+          </p>
+        </div>
+      </section>
+
+      <section class="flex h-[200px] items-center justify-center bg-brown-dark px-8 text-white">
+        <div class="flex items-center gap-14">
+          <h2 class="type-heading-xl tracking-[2px]">我要預約</h2>
+          <span class="h-6 w-px bg-white"></span>
+          <p class="text-right type-label-eyebrow-lg tracking-[1.5px] uppercase">
+            Schedule an Appointment
+          </p>
+        </div>
       </section>
     </main>
 
-    <footer class="border-t border-white/10 bg-zinc-950 px-6 py-8 text-sm text-zinc-300">
+    <footer class="site-footer bg-[#2a221b] text-white">
       <div
-        class="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between"
+        class="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-8 px-5 pt-8 pb-6 sm:px-12 lg:flex-row lg:gap-10 xl:px-12 2xl:px-0"
       >
-        <p class="font-semibold text-white">Tailwind HTML Template</p>
-        <nav class="flex gap-4">
-          <a class="hover:text-white" href="./index.html">Home</a>
-          <a class="hover:text-white" href="./about.html">About</a>
-        </nav>
+        <div
+          class="flex w-full flex-col items-center gap-10 lg:min-w-0 lg:flex-1 lg:flex-row lg:gap-5 xl:gap-14"
+        >
+          <div class="flex w-[398.24px] max-w-full shrink-0 items-center justify-center gap-4">
+            <img
+              class="h-[74px] w-[120px] lg:h-[87px] lg:w-[140px]"
+              src="./assets/images/logo-patek-philippe-light.svg"
+              alt="Patek Philippe"
+            />
+            <img class="size-3 shrink-0" src="./assets/icons/footer-x.svg" alt="" />
+            <img
+              class="h-[76px] w-40 lg:h-[84px] lg:w-44"
+              src="./assets/images/logo-yh-light.svg"
+              alt="永新鐘錶"
+            />
+          </div>
+
+          <address class="flex flex-col items-center gap-2 not-italic lg:items-start">
+            <a
+              class="group flex items-center justify-center gap-3 text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="https://www.google.com/maps/search/?api=1&query=%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A3%AB%E6%9E%97%E5%8D%80%E5%BF%A0%E8%AA%A0%E8%B7%AF%E4%B8%80%E6%AE%B582%E8%99%9F"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span class="site-footer__icon site-footer__icon--location size-4"></span>
+              <span
+                class="max-w-[18.5rem] text-center type-body-sm sm:max-w-none sm:whitespace-nowrap lg:text-left en:type-label-nav-sm lg:en:max-w-[21rem] lg:en:whitespace-normal xl:en:max-w-none xl:en:whitespace-nowrap"
+                data-i18n="footer.address"
+              >
+                台北市士林區忠誠路一段 82 號 (第一銀行旁)
+              </span>
+            </a>
+            <a
+              class="flex items-center justify-center gap-3 type-label-nav-sm tracking-[1px] text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="tel:+886228331859"
+            >
+              <span class="site-footer__icon site-footer__icon--call size-4"></span>
+              <span>02-2833-1859</span>
+            </a>
+            <a
+              class="flex items-center justify-center gap-3 type-label-nav-sm tracking-[1px] text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="mailto:yung.hsin@xuite.net"
+            >
+              <span class="site-footer__icon site-footer__icon--mail size-4"></span>
+              <span>yung.hsin@xuite.net</span>
+            </a>
+          </address>
+        </div>
+
+        <div class="flex shrink-0 flex-col items-center gap-6 lg:items-end lg:gap-4">
+          <div class="flex items-center gap-10 lg:gap-6">
+            <a
+              class="text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="#"
+            >
+              <span class="site-footer__icon site-footer__icon--instagram size-8 lg:size-6"></span>
+            </a>
+            <a
+              class="text-white transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+              href="#"
+            >
+              <span class="site-footer__icon site-footer__icon--facebook size-8 lg:size-6"></span>
+            </a>
+          </div>
+
+          <nav>
+            <ul class="flex items-center gap-3 type-body-sm tracking-[1px]">
+              <li>
+                <a
+                  class="transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+                  href="./terms.html"
+                  data-i18n="footer.terms"
+                >
+                  服務條款
+                </a>
+              </li>
+              <li>
+                <img class="size-1" src="./assets/icons/footer-dot.svg" alt="" />
+              </li>
+              <li>
+                <a
+                  class="transition-colors duration-200 hover:text-brand-gold focus-visible:text-brand-gold focus-visible:outline-none"
+                  href="./privacy.html"
+                  data-i18n="footer.privacy"
+                >
+                  隱私權政策
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div
+        class="mx-auto flex w-full max-w-[1280px] items-center justify-center border-t border-[rgb(140_122_102_/_16%)] px-5 py-6 sm:px-12"
+      >
+        <p
+          class="text-center type-body-xs text-brown-warm en:font-label"
+          data-i18n="footer.copyright"
+        >
+          © 2026 Yung Hsin Watch. All rights reserved.
+        </p>
       </div>
     </footer>
 
+    <script src="./assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="./assets/js/index.js"></script>
   </body>
 </html>
