@@ -9,22 +9,41 @@
 }
 
 @media (min-width: 64rem) {
+  /* 收縮動畫的時間來源。header.js 的 nav FLIP 會讀這個變數，兩邊才不會不同步。 */
   .site-header {
+    --header-shrink-duration: 0.25s;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     height: 172px;
-    transition: height 0.2s ease;
+    transition: height var(--header-shrink-duration) ease;
   }
 
   .site-header__bar {
-    transition: height 0.2s ease;
+    transition: height var(--header-shrink-duration) ease;
   }
 
   .site-header__logo {
     transition:
-      width 0.2s ease,
-      height 0.2s ease;
+      width var(--header-shrink-duration) ease,
+      height var(--header-shrink-duration) ease;
+  }
+
+  /* 品牌文字用 max-width 收合而非 display: none，才能平滑收起來。
+     負的 margin 是用來抵銷 .site-header__brand 的 lg:gap-10：元素還在 flex 流裡，
+     gap 不會像 display: none 那樣消失，不補回來收縮後會多出 40px。
+     max-width 只要大於實際文字寬度即可（中文約 20rem、英文約 21rem），32rem 是餘裕；
+     文字若加長到超過這個值會被裁掉，屆時要一併調大。
+     收合後元素的「高度」仍在（max-width 不管高度），brand 會比 logo 高幾 px，但 brand
+     本身沒有可見樣式且是 items-center，logo 位置不受影響。 */
+  .site-header__brand-text {
+    overflow: hidden;
+    max-width: 32rem;
+    transition:
+      max-width var(--header-shrink-duration) ease,
+      margin-inline-start var(--header-shrink-duration) ease,
+      opacity var(--header-shrink-duration) ease;
   }
 
   .site-header__nav {
@@ -50,12 +69,25 @@
   }
 
   .site-header.is-scrolled .site-header__brand-text {
-    display: none;
+    max-width: 0;
+    margin-inline-start: -2.5rem;
+    opacity: 0;
   }
 
+  /* absolute → static（從 header 底部整行變成 bar 的中間欄）是唯一無法用 CSS
+     過渡的一段，改由 header.js 的 FLIP 用 transform 補間。 */
   .site-header.is-scrolled .site-header__nav {
     position: static;
     inset: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .site-header,
+    .site-header__bar,
+    .site-header__logo,
+    .site-header__brand-text {
+      transition: none;
+    }
   }
 }
 
