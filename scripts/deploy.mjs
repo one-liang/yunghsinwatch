@@ -38,11 +38,19 @@ async function cleanupWorktree() {
   await rm(worktreeDir, { recursive: true, force: true });
 }
 
-function branchExists() {
-  // 本地或遠端有 demo 分支都算存在
-  if (gitQuiet(["show-ref", "--verify", "--quiet", `refs/heads/${branch}`])) return true;
+// 回傳可用來建立 worktree 的 base：
+//   "local"  → 本地已有 demo 分支
+//   "remote" → 只有 <remote>/demo，需由它建立本地分支
+//   null     → 都沒有，之後建 orphan 分支
+// 不能倚賴 `git worktree add <dir> demo` 的自動推導：當多個 remote 都有同名分支
+// （例如 origin 與 mirror 的 yunghsin）時 git 無法判斷來源，會 fatal: invalid reference。
+function resolveBranchBase() {
+  if (gitQuiet(["show-ref", "--verify", "--quiet", `refs/heads/${branch}`])) return "local";
   gitQuiet(["fetch", remote, branch]);
-  return gitQuiet(["show-ref", "--verify", "--quiet", `refs/remotes/${remote}/${branch}`]);
+  if (gitQuiet(["show-ref", "--verify", "--quiet", `refs/remotes/${remote}/${branch}`])) {
+    return "remote";
+  }
+  return null;
 }
 
 // 從 git 遠端網址推導 GitHub Pages base URL，解析失敗時退回相對連結
@@ -83,8 +91,12 @@ const outDir = config.outDir;
 await cleanupWorktree();
 
 // 3. 建立指向 demo 分支的 worktree
-if (branchExists()) {
+const branchBase = resolveBranchBase();
+if (branchBase === "local") {
   git(["worktree", "add", worktreeDir, branch]);
+} else if (branchBase === "remote") {
+  // 本地沒有 demo，但遠端有：明確指定來源建立本地分支
+  git(["worktree", "add", "-b", branch, worktreeDir, `${remote}/${branch}`]);
 } else {
   console.log(`creating orphan branch "${branch}"...`);
   // git < 2.42 沒有 `worktree add --orphan`，改用 detached worktree + checkout --orphan
