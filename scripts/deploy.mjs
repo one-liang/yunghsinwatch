@@ -3,6 +3,7 @@ import { cp, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 import { buildSite, loadConfig } from "./builder-core.mjs";
+import { renderReadme } from "./demo-readme.mjs";
 
 const rootDir = process.cwd();
 const branch = process.env.DEPLOY_BRANCH ?? "demo";
@@ -60,17 +61,6 @@ function pagesBaseUrl() {
     return `https://${owner}.github.io/`;
   }
   return `https://${owner}.github.io/${repo}/`;
-}
-
-// 產生 demo 分支的 README（決定性內容，維持無變更則跳過的 idempotency）
-function renderReadme(builtPages, baseUrl) {
-  const lines = ["# 頁面 demo 連結", ""];
-  for (const page of builtPages) {
-    const route = page.pageRelative.split(path.sep).join("/");
-    const href = baseUrl ? `${baseUrl}${route}` : `./${route}`;
-    lines.push(`- [${route}](${href})`);
-  }
-  return `${lines.join("\n")}\n`;
 }
 
 // 1. 重新建置 dist/
