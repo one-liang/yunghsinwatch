@@ -358,6 +358,47 @@ window.SITE_I18N.en = {
   "terms.governingLaw.p1":
     "The interpretation and application of these Terms, as well as the rights and obligations arising between you and the Company due to your use of the services of this website, shall be interpreted and applied in accordance with the laws of the Republic of China. If there is any litigation or dispute, both parties agree that the Taipei District Court shall be the court of first instance jurisdiction.",
 
+  "privacy.meta.title": "Privacy Policy | Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "privacy.meta.description":
+    "Copyright notice, privacy statement, and disclaimer for Patek Philippe Boutique Taipei by Yung Hsin Watch, explaining how personal data is collected, used, and corrected.",
+  "privacy.hero.eyebrow": "Terms",
+  "privacy.hero.title": "Privacy Policy",
+
+  "privacy.copyright.title": "Copyright Notice",
+  "privacy.copyright.item1":
+    'The content of the "Yung Hsin Watch Co., Ltd." (hereinafter referred to as "the Company") website includes self-produced content, comprehensive foreign news translations, brand public relations materials, or other content authorized for use by the Company. If you find that the content of this website may infringe, please immediately use the "Contact Us" function of this website to contact us for appropriate handling.',
+  "privacy.copyright.item2":
+    "All content published on the Company's website, including but not limited to text, photos, images, illustrations, website screen arrangements, web design, and other materials, are protected by the Copyright Law of the Republic of China, international copyright laws, and intellectual property rights-related laws. These related intellectual property rights include but are not limited to trademark rights, patent rights, copyrights, trade secrets, and proprietary technologies.",
+  "privacy.copyright.item3":
+    "The content published on the Company's website may provide or establish related links to third-party web pages. The web pages or data pointed to by such links are provided by the linked websites, and the relevant rights are owned by such websites or legitimate rights holders. This website does not guarantee their accuracy, timeliness, or completeness.",
+  "privacy.copyright.item4":
+    "The content or services of the Company's website are limited to personal, non-commercial use. No one may transmit, distribute, or provide to the public in any form without the Company's consent.",
+  "privacy.copyright.item5":
+    "Users must comply with all relevant provisions of the Copyright Law when using it, and may not alter, publish, broadcast, resell, reproduce, adapt, distribute, perform, display, or use part or all of the content and services on the Company's website for profit.",
+  "privacy.copyright.item6":
+    "The interpretation and application of this statement, as well as related disputes, shall be governed by the laws of the Republic of China (excluding provisions that should apply foreign laws based on the Act Governing the Application of Laws to Civil Matters Involving Foreign Elements).",
+
+  "privacy.statement.title": "Privacy Statement",
+  "privacy.statement.before":
+    "The Company's website is operated by Yung Hsin Watch Co., Ltd. In order to support the protection of personal data and maintain online privacy, this website hereby makes the following statement to explain to the public the methods, scope, utilization methods, and inquiry or correction methods for collecting users' personal data online on this website and its related websites. If users have any questions about the Company's website privacy statement or related matters concerning personal data, they can contact the website administrator via email ",
+  "privacy.statement.after": ", and the Company will reply and explain as soon as possible.",
+  "privacy.statement.item1":
+    "In principle, when users enter the Company's website, they do not need to enter any personal data such as name or email address. Unless explicitly informed, this website will not obtain such personal data of users without their knowledge; this website will record users' access addresses and browsing activities on this website, but these data are only used for traffic analysis and network behavior surveys to improve the service quality of this website. These data are also only analyzed in aggregate and are not linked to specific individuals. In some cases, for example, when users actively contact this website or request to participate in other activities, this website or its partners may ask users to register personal data to facilitate contact with users and provide services; in such cases, this website or its partners will clearly inform users of these facts. If users choose not to receive any advertisements or contact information, this website will fully respect that choice.",
+  "privacy.statement.item2":
+    "The personal data obtained by the Company's website will only be used internally by the website within the originally described purpose and scope of use. Unless otherwise stated in advance or in accordance with relevant legal provisions, this website will not provide users' personal data to third parties or use it for other purposes.",
+  "privacy.statement.item3":
+    "The Company's website will endeavor to protect the security of all personal data with reasonable technology and procedures. When users' personal data changes or is found to be incorrect, they can request correction on this website at any time, including requesting to stop sending relevant messages.",
+  "privacy.statement.item4":
+    "The Company's website or web pages may contain links to other websites or web pages. This website has no relation to such linked websites or web pages, whether concerning their content or privacy policy.",
+  "privacy.statement.item5":
+    "To facilitate users, the Company may use cookie technology to provide services that are more suitable for users' individual needs; a cookie is a technology used by website servers to communicate with users' browsers. It may store some information on users' computers, but users can cancel or restrict this function through browser settings. If users want to know how to cancel or restrict this function, they can contact the website administrator via email.",
+  "privacy.statement.item6":
+    "The interpretation and application of this statement, as well as related disputes, shall be governed by the laws of the Republic of China (excluding provisions that should apply foreign laws based on the Act Governing the Application of Laws to Civil Matters Involving Foreign Elements).",
+
+  "privacy.disclaimer.title": "Disclaimer",
+  "privacy.disclaimer.p1":
+    "The Company's website aims to provide timely and rich information on exquisite watches. The relevant content provided on this website is for reference only. For netizens with relevant needs, it is recommended to contact sales and service personnel.",
+
   "store.view.list": "LIST VIEW",
   "store.view.map": "MAP VIEW",
   "store.map.title": "Map of our points of sale",
