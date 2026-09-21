@@ -130,6 +130,275 @@ window.SITE_I18N.en = {
   "about.legacy.body":
     "The enduring spirit of Patek Philippe is perhaps best captured in its iconic saying: “You never actually own a Patek Philippe. You merely look after it for the next generation.” In much the same spirit, Yung Hsin Watch seeks to bring the values of Patek Philippe—family heritage, the spirit of craftsmanship, and a language of innovation—to life through professional expertise, thoughtful companionship, and meaningful dialogue. By making these values tangible in every interaction and every generation, they become a shared core philosophy of both Patek Philippe and Yung Hsin Watch.",
 
+  "service.meta.title": "Service | Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "service.meta.description":
+    "Yung Hsin Watch offers watch care, maintenance and warranty support, and expert consultation, alongside guidance on servicing, magnetism, water resistance, and strap care.",
+  "service.hero.eyebrow": "After-Sales Service",
+  "service.hero.title": "Service",
+  "service.card.care": "Watch Care",
+  "service.card.warranty": "Maintenance & Warranty",
+  "service.card.consultation": "Expert Consultation",
+  "service.faq.eyebrow": "FAQ",
+  "service.faq.title": "Watch Care And Maintenance",
+
+  "service.faq.q1": "Mechanical Watch Servicing & Lubrication",
+  "service.faq.a1.p1":
+    "How often should a mechanical watch be serviced? This is a question that concerns many watch owners. Even when a watch is currently keeping accurate time, the precision escapement components and jewel bearings inside the movement require proper lubrication. In general, most mechanical watches should be serviced approximately every 3–5 years, although the actual interval should be determined based on wearing frequency, timekeeping performance, and test results.",
+  "service.faq.a1.p2":
+    "The recommended service interval may vary depending on how often the watch is worn, the environment in which it is used, and the condition of the movement. If the watch is worn every day or exposed to relatively demanding conditions, servicing may be required sooner. If it is worn less frequently and remains in good working condition, the interval may be extended.",
+
+  "service.faq.q2": "Magnetism & Mechanical Watches",
+  "service.faq.a2.p1":
+    "There are many potential sources of magnetic fields in everyday life. A watch that remains close to a strong magnetic field for an extended period may be affected. Magnetization can cause a watch to gain time suddenly or experience abnormal timekeeping.",
+  "service.faq.a2.p2":
+    "If a watch suddenly begins gaining significantly or shows other unusual timekeeping behavior, magnetization should be considered in addition to a possible movement malfunction. The watch should be inspected by a professional watchmaker. After demagnetization, timekeeping accuracy can be significantly improved.",
+
+  "service.faq.q3": "Basic Water Resistance",
+  "service.faq.a3.p1":
+    "A watch's water resistance mainly relies on the gaskets located around components such as the crown and case back. Basic everyday water resistance of 30 meters can generally withstand minor splashes or rain. However, actual performance can also be affected by factors such as water pressure, hand movement, temperature, and the aging of the water-resistance gaskets.",
+  "service.faq.a3.p2":
+    "Because water-resistance gaskets inevitably wear over time, prolonged use or leaving a watch unused for an extended period may cause the gaskets to lose elasticity and sealing performance. Therefore, even if a watch was originally water-resistant, it should not be considered permanently water-resistant.",
+  "service.faq.a3.p3":
+    "If you are unsure about the current water-resistance condition of your watch, avoid wearing it while showering or swimming. In particular, warm water produces small water-vapor molecules that can more easily penetrate the watch and cause internal damage.",
+
+  "service.faq.q4": "Wearing Guide for Hand-Wound Watches",
+  "service.faq.a4.p1":
+    "Because hand-wound watches contain precision mechanical components, if you notice significant resistance or a rough, uneven sensation while winding the watch, or if the automatic winding system or movement produces unusual sounds, this may indicate a problem with the mainspring system, gears, bearings, crown tube, or related lubrication points.",
+  "service.faq.a4.p2":
+    "These signs can be regarded as an initial indication that the watch should be inspected. You can monitor the condition of your watch by paying attention to the winding sensation, sounds from the automatic winding system, and the operating sounds of the movement.",
+
+  "service.faq.q5": "Basic Daily Watch Care",
+  "service.faq.a5.p1":
+    "During everyday wear, it is recommended to regularly use a soft, dry cloth to remove dust, perspiration, moisture, and foreign particles from the watch. Avoid impacts and collisions whenever possible. These are among the simplest and lowest-risk ways to care for your watch on a daily basis.",
+
+  "service.faq.q6": "Watch Strap Care Tips",
+  "service.faq.a6.leather.label": "Leather Straps:",
+  // 英文版內文在設計稿是兩個自然段，靠 \n 換行（HTML 用 whitespace-pre-line 呈現）。
+  "service.faq.a6.leather.body":
+    "Because perspiration contains salts and other chemical substances, prolonged contact with leather may cause deterioration. A simple way to care for a leather strap is to apply leather conditioning oil with a clean, soft cloth and gently wipe the strap.\nThe metal buckle on a leather strap can be gently cleaned with a toothbrush and soapy water. Be careful not to get the leather wet. After cleaning, dry the buckle promptly with a dry cloth. If you tend to perspire heavily, try to avoid wearing a leather strap during activities that cause excessive sweating, and regularly wipe the inside of the strap.",
+  "service.faq.a6.metal.label": "Metal Bracelets:",
+  "service.faq.a6.metal.body":
+    "Metal bracelets can be cleaned with water. When dirt is more stubborn, soak the bracelet in soapy water or a mild neutral detergent diluted with water, then gently brush it with a soft toothbrush.\nTake care to avoid getting the watch case wet, as this could affect its performance. After cleaning, carefully dry the bracelet with a dry cloth to prevent moisture from remaining in the gaps between the links.",
+  "service.faq.a6.fabric.label": "Fabric Straps:",
+  "service.faq.a6.fabric.body":
+    "Fabric straps can likewise be cleaned with soapy water and a toothbrush. After cleaning, a hair dryer may be used to dry the strap.",
+  "service.faq.a6.gold.label": "18K Gold Bracelets:",
+  "service.faq.a6.gold.body":
+    "Because gold is relatively soft, an 18K gold polishing cloth can generally be used for cleaning. It can remove dirt as well as oxidation marks from the surface. If the bracelet is heavily soiled, it can also be soaked in soapy water for cleaning.",
+  "service.faq.a6.special":
+    "For straps or bracelets made from special materials, consult a professional watch retailer or watchmaker for appropriate care and maintenance.",
+
+  "service.faq.q7": "Watch Servicing & Inspection",
+  "service.faq.a7.p1":
+    "The servicing and repair process will be arranged according to the specific requirements of each watch. Service procedures may include external inspection, review of service records, movement disassembly, component inspection, cleaning and lubrication, reassembly, installation of the dial and hands, case polishing and cleaning, water-resistance testing, casing-up, and final testing of timekeeping accuracy and water resistance.",
+  "service.faq.a7.p2":
+    "From the initial diagnosis through the final timekeeping and water-resistance tests, watch servicing requires professional expertise and specialized equipment and should be performed by appropriately trained watchmakers.",
+
+  "service.appointment.title": "CONTACT US",
+  "service.appointment.subtitle": "Schedule an Appointment",
+
+  "contact.meta.title": "Contact Us | Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "contact.meta.description":
+    "Get in touch with Patek Philippe Boutique Taipei by Yung Hsin Watch. Send us your enquiry about timepieces, servicing, or an appointment and we will reply within 2 business days.",
+  "contact.hero.eyebrow": "Get in Touch",
+  "contact.hero.title": "Contact Us",
+
+  "contact.field.selectPlaceholder": "Please select.",
+  "contact.field.salutation.label": "Title",
+  "contact.field.salutation.mr": "Mr.",
+  "contact.field.salutation.ms": "Ms.",
+  "contact.field.salutation.error": "Please select a title.",
+  "contact.field.lastName.label": "Last Name",
+  "contact.field.lastName.placeholder": "Last Name",
+  "contact.field.lastName.error": "Please enter your last name.",
+  "contact.field.firstName.label": "First Name",
+  "contact.field.firstName.placeholder": "First Name",
+  "contact.field.firstName.error": "Please enter your first name.",
+  "contact.field.email.label": "Email",
+  "contact.field.email.placeholder": "Please enter your email address.",
+  "contact.field.email.error": "Please enter your email address.",
+  "contact.field.phone.label": "Phone Number",
+  "contact.field.phone.countryLabel": "Country code",
+  "contact.field.phone.placeholder": "Please enter your phone number.",
+  "contact.field.phone.error": "Please enter your phone number.",
+  "contact.field.topic.label": "Inquiry Type",
+  "contact.field.topic.collection": "Collection",
+  "contact.field.topic.service": "Service",
+  "contact.field.topic.appointment": "Appointment",
+  "contact.field.topic.other": "Other",
+  "contact.field.topic.error": "Please select an inquiry type.",
+  "contact.field.message.label": "Message",
+  "contact.field.message.placeholder": "Please enter your message.",
+  "contact.field.message.error": "Please enter your message.",
+
+  "contact.consent.before":
+    "I agree to the collection and processing of my personal data in accordance with the",
+  "contact.consent.link": "Privacy Policy",
+  "contact.consent.after": "for the purpose of responding to my inquiry.",
+  "contact.consent.error": "Please agree to the Privacy Policy.",
+  "contact.submit": "Submit",
+  "contact.complete.title": "Message Sent",
+  "contact.complete.body":
+    "Thanks for contacting us. We will get back to you within 2 business days.",
+
+  "terms.meta.title": "Terms of Service | Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "terms.meta.description":
+    "Terms of Service for the Patek Philippe Boutique Taipei by Yung Hsin Watch website, covering conditions of use, membership, personal data, prohibited acts, and disclaimers.",
+  "terms.hero.eyebrow": "Terms",
+  "terms.hero.title": "Terms and Conditions of This Website",
+  "terms.intro":
+    'These Terms of Service (hereinafter referred to as "these Terms") are matters you must understand and agree to before accessing or using the services of this website. To protect your rights and legitimate use of the services of this website, please read these Terms in detail.',
+
+  "terms.operator.title": "Website Operator Information",
+  "terms.operator.p1":
+    'This website is owned and operated by [Yung Hsin Watch Co., Ltd.] (hereinafter referred to as "the Company").',
+  "terms.operator.p2": "The Company's relevant information is as follows:",
+  "terms.operator.p3": "Phone: 02-8866 1975",
+  "terms.operator.p4": "Customer Service Email：yung.hsin@xuite.net",
+  "terms.operator.p5": "Address：No. 28, Section 1, Zhongcheng Road, Shilin District, Taipei City",
+
+  "terms.conditions.title": "Conditions of Use",
+  "terms.conditions.p1":
+    "These Terms apply to users of this website. By browsing or using this website, you agree to and accept the version of these Terms effective at the time of browsing or use, and the content of these Terms constitutes a contract between you and the Company. If you do not agree to the content of these Terms, please stop browsing or using this website immediately.",
+  "terms.conditions.p2":
+    "The Company reserves the right to modify the content of these Terms at any time without prior notice. Once the content of these Terms is modified and announced on this website, if you continue to use this website, the modified content will become effective for you.",
+
+  "terms.registration.title": "Member Registration and Compliance with Regulations",
+  "terms.registration.p1":
+    "You may register as a member on this website. However, if you are under twenty years old, you must first obtain the consent of your legal representative before applying to become a member. Upon completion of the application process, it will be deemed that you have obtained the consent and understanding of your legal representative.",
+
+  "terms.memberData.title": "Member Data",
+  "terms.memberData.p1":
+    "Based on the use of various services provided by this website, you agree to provide accurate and detailed personal information when registering as a member. If there are any changes to your registered information afterwards, you should update it online at any time. If the personal information you provide is untrue, or if the originally registered information is outdated and not updated in a timely manner, the Company reserves the right to terminate your membership and eligibility to use various services at any time. If there is any false registration or impersonation of another person, you shall bear legal responsibility. If there is any suspicion of illegality, the Company may report it to judicial authorities.",
+
+  "terms.password.title": "Password and Account",
+  "terms.password.p1":
+    "If, for any reason, the account password is illegally used by others, the resulting related fees, costs, and losses shall be borne by the member. If the rights and interests of the Company or a third party are damaged, the member shall bear relevant legal and compensation responsibilities.",
+  "terms.password.p2":
+    "After you register as a member, you will obtain an account and password as credentials for accessing the member system of this website in the future. To maintain the personal rights and interests of members, when using the services of this website, members should use their own account and password to log in to the system and shall not provide, transfer, or authorize others to use their account or password. All actions performed using the same account and password to use the services of this website shall be deemed as actions of the member who owns the account and password, and the member shall bear full responsibility.",
+
+  "terms.personalData.title": "Use of Personal Data and Notification Matters",
+  "terms.personalData.p1":
+    'For the purpose of providing and optimizing website service-related functions, handling accounts, and marketing, the Company will collect, process, and utilize the personal data you provide, including but not limited to basic information such as name, gender, phone number, email, address, photos, as well as personal preferences, search records, purchase records, network location, browser type, payment information, and other directly or indirectly identifiable personal information generated from using this website\'s services (hereinafter collectively referred to as "Personal Data").',
+  "terms.personalData.p2":
+    "Your Personal Data will only be used within the necessary and reasonable scope of the aforementioned specific purposes, within and outside the Republic of China, until the aforementioned specific purposes cease to exist.",
+  "terms.personalData.p3":
+    "In accordance with Article 3 of the Personal Data Protection Act, you may request the Company to inquire about or review, make copies, supplement or correct, stop collecting/processing/utilizing, or delete your Personal Data. You may contact the Company via email to exercise the aforementioned rights, but the Company may charge necessary fees.",
+  "terms.personalData.p4":
+    "If you do not provide or fail to provide accurate Personal Data, or request to stop collecting/processing/utilizing/deleting Personal Data, the Company may not be able to provide services to you, or it may result in your inability to normally use all or part of the functions of this website.",
+
+  "terms.prohibited.title": "Prohibited Acts",
+  "terms.prohibited.intro":
+    "When using the services of this website, you shall not commit any of the following acts:",
+  "terms.prohibited.item1":
+    "Do not post or send various advertisements or graphics, text, or other representations suspected of being advertisements.",
+  "terms.prohibited.item2":
+    "Do not impersonate another person's personal data, password, or account to use the services of this website.",
+  "terms.prohibited.item3":
+    "Improper collection, disclosure, or provision of other people's personal data, registration data, usage record data, etc.",
+  "terms.prohibited.item4":
+    "Acts that interfere with the server or network system of this website's services, using cheating tools, other technical means to improperly operate this website's services, intentionally exploiting vulnerabilities in this website's services, or other acts that hinder the Company from providing this website's services or other users from using this website's services and create interference.",
+  "terms.prohibited.item5":
+    "Without the Company's consent, do not engage in or induce third parties to engage in buying, selling, leasing, gifting, or other commercial activities.",
+  "terms.prohibited.item6":
+    "Do not engage in acts that infringe or are suspected of infringing upon the reputation, privacy, intellectual property rights, or other rights of the Company or third parties.",
+  "terms.prohibited.item7":
+    "Do not engage in other acts that violate laws and regulations or are deemed inappropriate by the Company.",
+  "terms.prohibited.outro":
+    "The Company may periodically review the usage of members. If any violation of the preceding paragraph is found, the Company may directly prohibit members from using the services of this website, or suspend or terminate their membership. If there is any suspicion of illegality, the Company may proactively report it to judicial authorities.",
+
+  "terms.suspension.title": "Service Suspension and Modification",
+  "terms.suspension.intro":
+    "You understand that the services or functions provided by this website may be temporarily suspended or interrupted due to routine maintenance, replacement, or changes. The Company will notify you by announcement or other appropriate means before the suspension or interruption. However, in the following circumstances, all or part of the member services will be directly suspended or interrupted, and the Company shall not be liable for any inconvenience or damage caused thereby:",
+  "terms.suspension.item1": "You violate any government laws and regulations or these Terms.",
+  "terms.suspension.item2":
+    "Due to reasons beyond the Company's control, the member service information is displayed incorrectly, or is forged, altered, deleted, or captured, or the system is interrupted or cannot operate normally; or",
+  "terms.suspension.item3":
+    "When it is necessary to urgently relocate, replace, upgrade, maintain, or repair related hardware and software equipment.",
+
+  "terms.ip.title": "Statement of Intellectual Property Rights",
+  "terms.ip.p1":
+    "The Company owns intellectual property rights and other rights or has obtained authorization for all graphics, text, trademarks, files, information, web design, or other content and representations published on this website, except as otherwise provided by law. No one may reproduce, adapt, distribute, or otherwise engage in acts that hinder the rights and interests of the Company or third parties without the prior written consent of the Company.",
+
+  "terms.risk.title": "Assumption of Risk",
+  "terms.risk.p1":
+    "You understand that the use of various services provided on this website is based on your personal willingness, and you agree to bear any risks, including system damage to your terminal equipment or any data loss resulting from downloading data or images from this website, or obtaining data from the services of this website.",
+
+  "terms.disclaimer.title": "Disclaimer",
+  "terms.disclaimer.p1":
+    "The Company does not expressly or implicitly guarantee that the services of this website (including content) are free from factual or legal defects (including but not limited to stability, reliability, correctness, completeness, validity, suitability for specific purposes, security-related defects, errors, malfunctions, or infringement of others' rights). The Company is not responsible for providing services on this website without the aforementioned defects.",
+  "terms.disclaimer.p2":
+    "Except as otherwise provided by law, the Company shall not be liable for any direct or indirect damages and losses suffered by users due to the services of this website.",
+  "terms.disclaimer.p3":
+    "Other issues or disputes arising between users and other users or third parties on this website shall be resolved by the users and the other parties through negotiation, and the Company shall not intervene or bear any responsibility.",
+
+  "terms.liability.title": "Limitation of Liability",
+  "terms.liability.p1":
+    "The Company shall not be liable for any direct, special, incidental, indirect, or consequential damages arising from the use or inability to use this website, the purchase of goods from this website, the actions of other users of this website (whether online or offline), participation in Company activities, or any user-generated content, including any loss of profits or data loss. You assume full responsibility for your use of this website.",
+
+  "terms.thirdParty.title": "Third-Party Links",
+  "terms.thirdParty.p1":
+    "All links provided on the service-related web pages of this website may link to web pages of other individuals, companies, or organizations. The purpose of providing such links is solely to facilitate your own collection or acquisition of information. This website does not guarantee the authenticity, completeness, timeliness, or credibility of the products, services, or information provided on the linked web pages of such individuals, companies, or organizations, nor does it imply that such individuals, companies, or organizations have any employment, commission, agency, partnership, or other similar relationship with the Company.",
+
+  "terms.indemnity.title": "Indemnification",
+  "terms.indemnity.p1":
+    "If you violate relevant laws and regulations or these Terms, causing the Company or its affiliates, directors, managers, employees, trustees, agents, and other related assisting parties to suffer damages or incur expenses (including but not limited to attorney fees incurred in civil, criminal, and administrative proceedings), you shall bear the responsibility for damages or compensate for such expenses.",
+
+  "terms.general.title": "General Provisions",
+  "terms.general.p1":
+    "If any provision of these Terms is deemed invalid by a competent court, it shall not affect the validity and enforceability of other provisions in these Terms. Failure to enforce any provision in these Terms shall not be deemed a further or continuing waiver of the enforcement of that provision or other provisions. If the Company does not assert its rights or relevant provisions under these Terms, it shall not be deemed that the Company has waived its right to exercise such rights or enforce such provisions.",
+
+  "terms.notice.title": "Notices",
+  "terms.notice.before":
+    "If you need to notify the Company in accordance with these Terms, please send an email to the Company (email: ",
+  "terms.notice.after":
+    ") or mail a registered letter to the following address: No. 28, Section 1, Zhongcheng Road, Shilin District, Taipei City. The notice shall not be effective until the Company receives it.",
+
+  "terms.governingLaw.title": "Governing Law and Jurisdiction",
+  "terms.governingLaw.p1":
+    "The interpretation and application of these Terms, as well as the rights and obligations arising between you and the Company due to your use of the services of this website, shall be interpreted and applied in accordance with the laws of the Republic of China. If there is any litigation or dispute, both parties agree that the Taipei District Court shall be the court of first instance jurisdiction.",
+
+  "privacy.meta.title": "Privacy Policy | Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "privacy.meta.description":
+    "Copyright notice, privacy statement, and disclaimer for Patek Philippe Boutique Taipei by Yung Hsin Watch, explaining how personal data is collected, used, and corrected.",
+  "privacy.hero.eyebrow": "Terms",
+  "privacy.hero.title": "Privacy Policy",
+
+  "privacy.copyright.title": "Copyright Notice",
+  "privacy.copyright.item1":
+    'The content of the "Yung Hsin Watch Co., Ltd." (hereinafter referred to as "the Company") website includes self-produced content, comprehensive foreign news translations, brand public relations materials, or other content authorized for use by the Company. If you find that the content of this website may infringe, please immediately use the "Contact Us" function of this website to contact us for appropriate handling.',
+  "privacy.copyright.item2":
+    "All content published on the Company's website, including but not limited to text, photos, images, illustrations, website screen arrangements, web design, and other materials, are protected by the Copyright Law of the Republic of China, international copyright laws, and intellectual property rights-related laws. These related intellectual property rights include but are not limited to trademark rights, patent rights, copyrights, trade secrets, and proprietary technologies.",
+  "privacy.copyright.item3":
+    "The content published on the Company's website may provide or establish related links to third-party web pages. The web pages or data pointed to by such links are provided by the linked websites, and the relevant rights are owned by such websites or legitimate rights holders. This website does not guarantee their accuracy, timeliness, or completeness.",
+  "privacy.copyright.item4":
+    "The content or services of the Company's website are limited to personal, non-commercial use. No one may transmit, distribute, or provide to the public in any form without the Company's consent.",
+  "privacy.copyright.item5":
+    "Users must comply with all relevant provisions of the Copyright Law when using it, and may not alter, publish, broadcast, resell, reproduce, adapt, distribute, perform, display, or use part or all of the content and services on the Company's website for profit.",
+  "privacy.copyright.item6":
+    "The interpretation and application of this statement, as well as related disputes, shall be governed by the laws of the Republic of China (excluding provisions that should apply foreign laws based on the Act Governing the Application of Laws to Civil Matters Involving Foreign Elements).",
+
+  "privacy.statement.title": "Privacy Statement",
+  "privacy.statement.before":
+    "The Company's website is operated by Yung Hsin Watch Co., Ltd. In order to support the protection of personal data and maintain online privacy, this website hereby makes the following statement to explain to the public the methods, scope, utilization methods, and inquiry or correction methods for collecting users' personal data online on this website and its related websites. If users have any questions about the Company's website privacy statement or related matters concerning personal data, they can contact the website administrator via email ",
+  "privacy.statement.after": ", and the Company will reply and explain as soon as possible.",
+  "privacy.statement.item1":
+    "In principle, when users enter the Company's website, they do not need to enter any personal data such as name or email address. Unless explicitly informed, this website will not obtain such personal data of users without their knowledge; this website will record users' access addresses and browsing activities on this website, but these data are only used for traffic analysis and network behavior surveys to improve the service quality of this website. These data are also only analyzed in aggregate and are not linked to specific individuals. In some cases, for example, when users actively contact this website or request to participate in other activities, this website or its partners may ask users to register personal data to facilitate contact with users and provide services; in such cases, this website or its partners will clearly inform users of these facts. If users choose not to receive any advertisements or contact information, this website will fully respect that choice.",
+  "privacy.statement.item2":
+    "The personal data obtained by the Company's website will only be used internally by the website within the originally described purpose and scope of use. Unless otherwise stated in advance or in accordance with relevant legal provisions, this website will not provide users' personal data to third parties or use it for other purposes.",
+  "privacy.statement.item3":
+    "The Company's website will endeavor to protect the security of all personal data with reasonable technology and procedures. When users' personal data changes or is found to be incorrect, they can request correction on this website at any time, including requesting to stop sending relevant messages.",
+  "privacy.statement.item4":
+    "The Company's website or web pages may contain links to other websites or web pages. This website has no relation to such linked websites or web pages, whether concerning their content or privacy policy.",
+  "privacy.statement.item5":
+    "To facilitate users, the Company may use cookie technology to provide services that are more suitable for users' individual needs; a cookie is a technology used by website servers to communicate with users' browsers. It may store some information on users' computers, but users can cancel or restrict this function through browser settings. If users want to know how to cancel or restrict this function, they can contact the website administrator via email.",
+  "privacy.statement.item6":
+    "The interpretation and application of this statement, as well as related disputes, shall be governed by the laws of the Republic of China (excluding provisions that should apply foreign laws based on the Act Governing the Application of Laws to Civil Matters Involving Foreign Elements).",
+
+  "privacy.disclaimer.title": "Disclaimer",
+  "privacy.disclaimer.p1":
+    "The Company's website aims to provide timely and rich information on exquisite watches. The relevant content provided on this website is for reference only. For netizens with relevant needs, it is recommended to contact sales and service personnel.",
+
   "store.view.list": "LIST VIEW",
   "store.view.map": "MAP VIEW",
   "store.map.title": "Map of our points of sale",

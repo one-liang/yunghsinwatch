@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="與永新鐘錶百達翡麗專賣店聯繫，填寫表單詢問腕錶選購、維修保養或預約服務，我們將於 2 個工作日內回覆。"
+      data-i18n-attr="content:contact.meta.description"
+    />
+    <link rel="icon" href="../assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
+    <title data-i18n="contact.meta.title">聯絡我們｜永新鐘錶百達翡麗專賣店</title>
+  </head>
+  <body class="contact-page min-h-screen bg-white type-body-base text-black">
+    <c-header />
+
+    <main class="bg-background">
+      <section class="relative h-[250px] overflow-hidden text-white xl:h-[375px]">
+        <img
+          class="absolute inset-0 size-full object-cover"
+          src="../assets/images/contact/hero.jpg"
+          alt=""
+        />
+        <div class="absolute inset-0 bg-black/48"></div>
+        <div
+          class="absolute right-5 bottom-6 left-5 flex flex-col items-center gap-2 text-center xl:right-16 xl:bottom-12 xl:left-16 xl:gap-4"
+        >
+          <p
+            class="font-label text-sm leading-[22px] font-medium tracking-[1.5px] text-background uppercase lg:text-base lg:leading-6"
+            data-i18n="contact.hero.eyebrow"
+          >
+            Get in Touch
+          </p>
+          <!-- 英文版主標改用 Playfair；MD/SM 的英文級數設計稿沒定義，只換字體、沿用中文的 28/40。 -->
+          <h1
+            class="type-heading-md tracking-[2px] lg:type-heading-lg xl:type-heading-xl en:font-display xl:en:type-display-xl"
+            data-i18n="contact.hero.title"
+          >
+            聯絡我們
+          </h1>
+        </div>
+      </section>
+
+      <!-- 聯絡表單。設計稿只有 SM(393) / LG(1024) / 2XL(1536) 三個斷點，表單本體固定 768px 寬，
+           差異只在與 banner 的間距（32 / 64 / 112）；XL 沿用 2XL 的值，與維修保養頁 XL＝2XL 一致。
+
+           錯誤樣式（設計稿「輸入錯誤」）靠欄位上的 data-invalid 屬性切換，由 contact.js 設定。
+           目前沒有串接後端：送出只做前端驗證，通過後切換成設計稿的「已發送」狀態。 -->
+      <section class="mx-auto w-full max-w-[768px] px-5 py-8 lg:px-0 lg:py-16 xl:py-28">
+        <form class="flex flex-col gap-8" novalidate data-contact-form>
+          <div class="flex flex-col gap-8 lg:grid lg:grid-cols-3">
+            <div class="flex flex-col gap-1">
+              <label
+                class="type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                for="contact-salutation"
+                data-i18n="contact.field.salutation.label"
+              >
+                稱謂
+              </label>
+              <div class="relative">
+                <!-- 稱謂與詢問類別的選項設計稿未定義，先依既有服務範圍暫訂，可直接從字典調整。 -->
+                <select
+                  class="w-full appearance-none border border-brown-dark/32 bg-background py-3 pr-9 pl-4 type-body-base tracking-[1px] text-black data-invalid:border-error-warm data-invalid:bg-error-light en:font-label"
+                  id="contact-salutation"
+                  name="salutation"
+                  required
+                  data-contact-field
+                >
+                  <option value="" data-i18n="contact.field.selectPlaceholder">請選擇</option>
+                  <option value="mr" data-i18n="contact.field.salutation.mr">先生</option>
+                  <option value="ms" data-i18n="contact.field.salutation.ms">女士</option>
+                </select>
+                <svg
+                  class="pointer-events-none absolute top-1/2 right-4 size-5 -translate-y-1/2"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5.34171 9.16667H14.6584C14.8232 9.16736 14.9841 9.2169 15.1207 9.30904C15.2574 9.40117 15.3637 9.53176 15.4261 9.68429C15.4885 9.83682 15.5043 10.0044 15.4715 10.1659C15.4387 10.3275 15.3587 10.4756 15.2417 10.5917L10.5917 15.2417C10.5142 15.3198 10.4221 15.3818 10.3205 15.4241C10.219 15.4664 10.1101 15.4882 10 15.4882C9.89003 15.4882 9.78111 15.4664 9.67956 15.4241C9.57801 15.3818 9.48585 15.3198 9.40838 15.2417L4.75838 10.5917C4.64136 10.4756 4.56138 10.3275 4.52856 10.1659C4.49574 10.0044 4.51155 9.83682 4.57399 9.68429C4.63643 9.53176 4.74269 9.40117 4.87934 9.30904C5.016 9.2169 5.1769 9.16736 5.34171 9.16667V9.16667Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <p
+                class="flex items-center gap-1.5 type-body-sm text-error-warm en:font-label"
+                hidden
+                data-contact-error
+              >
+                <img class="size-5 shrink-0" src="../assets/images/icon-danger.svg" alt="" />
+                <span data-i18n="contact.field.salutation.error">請選擇稱謂</span>
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label
+                class="type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                for="contact-last-name"
+                data-i18n="contact.field.lastName.label"
+              >
+                姓氏
+              </label>
+              <input
+                class="w-full border border-brown-dark/32 bg-background px-4 py-3 type-body-base tracking-[1px] text-black placeholder:text-[#ababab] data-invalid:border-error-warm data-invalid:bg-error-light en:font-label"
+                id="contact-last-name"
+                name="lastName"
+                type="text"
+                placeholder="請輸入姓氏"
+                data-i18n-attr="placeholder:contact.field.lastName.placeholder"
+                required
+                data-contact-field
+              />
+              <p
+                class="flex items-center gap-1.5 type-body-sm text-error-warm en:font-label"
+                hidden
+                data-contact-error
+              >
+                <img class="size-5 shrink-0" src="../assets/images/icon-danger.svg" alt="" />
+                <span data-i18n="contact.field.lastName.error">請輸入姓氏</span>
+              </p>
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <label
+                class="type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                for="contact-first-name"
+                data-i18n="contact.field.firstName.label"
+              >
+                名字
+              </label>
+              <input
+                class="w-full border border-brown-dark/32 bg-background px-4 py-3 type-body-base tracking-[1px] text-black placeholder:text-[#ababab] data-invalid:border-error-warm data-invalid:bg-error-light en:font-label"
+                id="contact-first-name"
+                name="firstName"
+                type="text"
+                placeholder="請輸入名字"
+                data-i18n-attr="placeholder:contact.field.firstName.placeholder"
+                required
+                data-contact-field
+              />
+              <p
+                class="flex items-center gap-1.5 type-body-sm text-error-warm en:font-label"
+                hidden
+                data-contact-error
+              >
+                <img class="size-5 shrink-0" src="../assets/images/icon-danger.svg" alt="" />
+                <span data-i18n="contact.field.firstName.error">請輸入名字</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label
+              class="type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+              for="contact-email"
+              data-i18n="contact.field.email.label"
+            >
+              電子郵件
+            </label>
+            <input
+              class="w-full border border-brown-dark/32 bg-background px-4 py-3 type-body-base tracking-[1px] text-black placeholder:text-[#ababab] data-invalid:border-error-warm data-invalid:bg-error-light en:font-label"
+              id="contact-email"
+              name="email"
+              type="email"
+              placeholder="請輸入電子郵件"
+              data-i18n-attr="placeholder:contact.field.email.placeholder"
+              required
+              data-contact-field
+            />
+            <p
+              class="flex items-center gap-1.5 type-body-sm text-error-warm en:font-label"
+              hidden
+              data-contact-error
+            >
+              <img class="size-5 shrink-0" src="../assets/images/icon-danger.svg" alt="" />
+              <span data-i18n="contact.field.email.error">請輸入電子郵件</span>
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label
+              class="type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+              for="contact-phone"
+              data-i18n="contact.field.phone.label"
+            >
+              聯絡電話
+            </label>
+            <div class="flex items-start gap-8">
+              <div class="relative w-36 shrink-0">
+                <!-- 國碼選單設計稿只畫出 TW +886，先維持單一選項。 -->
+                <select
+                  class="w-full appearance-none border border-brown-dark/32 bg-background py-3 pr-10 pl-4 font-label text-base leading-7 tracking-[2px] text-black"
+                  name="countryCode"
+                  aria-label="國碼"
+                  data-i18n-attr="aria-label:contact.field.phone.countryLabel"
+                >
+                  <option value="+886">TW +886</option>
+                </select>
+                <svg
+                  class="pointer-events-none absolute top-1/2 right-4 size-6 -translate-y-1/2"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6.41005 11H17.5901C17.7878 11.0008 17.9809 11.0603 18.1449 11.1708C18.3089 11.2814 18.4364 11.4381 18.5113 11.6211C18.5862 11.8042 18.6052 12.0053 18.5658 12.1991C18.5264 12.3929 18.4305 12.5707 18.2901 12.71L12.7101 18.29C12.6171 18.3837 12.5065 18.4581 12.3846 18.5089C12.2628 18.5596 12.1321 18.5858 12.0001 18.5858C11.868 18.5858 11.7373 18.5596 11.6155 18.5089C11.4936 18.4581 11.383 18.3837 11.2901 18.29L5.71005 12.71C5.56963 12.5707 5.47366 12.3929 5.43428 12.1991C5.39489 12.0053 5.41386 11.8042 5.48879 11.6211C5.56371 11.4381 5.69123 11.2814 5.85521 11.1708C6.01919 11.0603 6.21228 11.0008 6.41005 11V11Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </div>
+              <div class="flex min-w-0 flex-1 flex-col gap-1">
+                <input
+                  class="w-full border border-brown-dark/32 bg-background px-4 py-3 type-body-base tracking-[1px] text-black placeholder:text-[#ababab] data-invalid:border-error-warm data-invalid:bg-error-light en:font-label"
+                  id="contact-phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="請輸入聯絡電話"
+                  data-i18n-attr="placeholder:contact.field.phone.placeholder"
+                  required
+                  data-contact-field
+                />
+                <p
+                  class="flex items-center gap-1.5 type-body-sm text-error-warm en:font-label"
+                  hidden
+                  data-contact-error
+                >
+                  <img class="size-5 shrink-0" src="../assets/images/icon-danger.svg" alt="" />
+                  <span data-i18n="contact.field.phone.error">請輸入聯絡電話</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label
+              class="type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+              for="contact-topic"
+              data-i18n="contact.field.topic.label"
+            >
+              詢問類別
+            </label>
+            <div class="relative">
+              <select
+                class="w-full appearance-none border border-brown-dark/32 bg-background py-3 pr-9 pl-4 type-body-base tracking-[1px] text-black data-invalid:border-error-warm data-invalid:bg-error-light en:font-label"
+                id="contact-topic"
+                name="topic"
+                required
+                data-contact-field
+              >
+                <option value="" data-i18n="contact.field.selectPlaceholder">請選擇</option>
+                <option value="collection" data-i18n="contact.field.topic.collection">
+                  時計系列
+                </option>
+                <option value="service" data-i18n="contact.field.topic.service">維修保養</option>
+                <option value="appointment" data-i18n="contact.field.topic.appointment">
+                  預約服務
+                </option>
+                <option value="other" data-i18n="contact.field.topic.other">其他</option>
+              </select>
+              <svg
+                class="pointer-events-none absolute top-1/2 right-4 size-5 -translate-y-1/2"
+                viewBox="0 0 20 20"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5.34171 9.16667H14.6584C14.8232 9.16736 14.9841 9.2169 15.1207 9.30904C15.2574 9.40117 15.3637 9.53176 15.4261 9.68429C15.4885 9.83682 15.5043 10.0044 15.4715 10.1659C15.4387 10.3275 15.3587 10.4756 15.2417 10.5917L10.5917 15.2417C10.5142 15.3198 10.4221 15.3818 10.3205 15.4241C10.219 15.4664 10.1101 15.4882 10 15.4882C9.89003 15.4882 9.78111 15.4664 9.67956 15.4241C9.57801 15.3818 9.48585 15.3198 9.40838 15.2417L4.75838 10.5917C4.64136 10.4756 4.56138 10.3275 4.52856 10.1659C4.49574 10.0044 4.51155 9.83682 4.57399 9.68429C4.63643 9.53176 4.74269 9.40117 4.87934 9.30904C5.016 9.2169 5.1769 9.16736 5.34171 9.16667V9.16667Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+            <p
+              class="flex items-center gap-1.5 type-body-sm text-error-warm en:font-label"
+              hidden
+              data-contact-error
+            >
+              <img class="size-5 shrink-0" src="../assets/images/icon-danger.svg" alt="" />
+              <span data-i18n="contact.field.topic.error">請選擇詢問類別</span>
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label
+              class="type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+              for="contact-message"
+              data-i18n="contact.field.message.label"
+            >
+              留言內容
+            </label>
+            <textarea
+              class="h-32 w-full resize-none border border-brown-dark/32 bg-background px-4 py-3 type-body-base tracking-[1px] text-black placeholder:text-[#ababab] data-invalid:border-error-warm data-invalid:bg-error-light en:font-label"
+              id="contact-message"
+              name="message"
+              placeholder="請輸入留言內容"
+              data-i18n-attr="placeholder:contact.field.message.placeholder"
+              required
+              data-contact-field
+            ></textarea>
+            <p
+              class="flex items-center gap-1.5 type-body-sm text-error-warm en:font-label"
+              hidden
+              data-contact-error
+            >
+              <img class="size-5 shrink-0" src="../assets/images/icon-danger.svg" alt="" />
+              <span data-i18n="contact.field.message.error">請輸入留言內容</span>
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <div class="flex items-center gap-2">
+              <label class="flex h-7 shrink-0 cursor-pointer items-center justify-center">
+                <input
+                  class="peer sr-only"
+                  name="consent"
+                  type="checkbox"
+                  checked
+                  required
+                  data-contact-field
+                />
+                <!-- 未勾選狀態設計稿沒有定義，沿用勾選狀態的圓角方形外框描邊，顏色與輸入框框線一致。 -->
+                <svg
+                  class="size-6 text-brown-dark/32 peer-checked:hidden"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.52639 3.6867C4.53388 2.60582 5.9691 2.0002 7.6654 2.0002H16.3344C18.0347 2.0002 19.4705 2.6055 20.4775 3.68698C21.4789 4.76242 22.0004 6.2478 22.0004 7.9162V16.0842C22.0004 17.7526 21.4789 19.238 20.4774 20.3135C19.4702 21.3949 18.0341 22.0002 16.3334 22.0002H7.6654C5.96509 22.0002 4.52946 21.3949 3.52268 20.3133C2.52155 19.2379 2.0004 17.7525 2.0004 16.0842V7.9162C2.0004 6.24697 2.52436 4.76172 3.52639 3.6867Z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                </svg>
+                <svg
+                  class="hidden size-6 peer-checked:block"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3.52639 3.6867C4.53388 2.60582 5.9691 2.0002 7.6654 2.0002H16.3344C18.0347 2.0002 19.4705 2.6055 20.4775 3.68698C21.4789 4.76242 22.0004 6.2478 22.0004 7.9162V16.0842C22.0004 17.7526 21.4789 19.238 20.4774 20.3135C19.4702 21.3949 18.0341 22.0002 16.3334 22.0002H7.6654C5.96509 22.0002 4.52946 21.3949 3.52268 20.3133C2.52155 19.2379 2.0004 17.7525 2.0004 16.0842V7.9162C2.0004 6.24697 2.52436 4.76172 3.52639 3.6867Z"
+                    fill="#463527"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M17.0303 8.46967C17.3232 8.76256 17.3232 9.23744 17.0303 9.53033L11.1978 15.3628C10.905 15.6557 10.4302 15.6557 10.1373 15.363L7.21978 12.4467C6.92683 12.1539 6.92673 11.679 7.21956 11.386C7.51239 11.0931 7.98726 11.093 8.28022 11.3858L10.6674 13.772L15.9697 8.46967C16.2626 8.17678 16.7374 8.17678 17.0303 8.46967Z"
+                    fill="white"
+                  />
+                </svg>
+              </label>
+              <p class="min-w-0 flex-1 type-body-base tracking-[1px] text-brown-warm en:font-label">
+                <span data-i18n="contact.consent.before">我同意依據</span>
+                <a
+                  class="text-brown-dark underline transition-opacity duration-200 hover:opacity-70"
+                  href="./privacy.html"
+                  data-i18n="contact.consent.link"
+                  >隱私政策</a
+                >
+                <span data-i18n="contact.consent.after"
+                  >收集與處理我的個人資料，以便回覆此詢問。</span
+                >
+              </p>
+            </div>
+            <p
+              class="flex items-center gap-1.5 type-body-sm text-error-warm en:font-label"
+              hidden
+              data-contact-error
+            >
+              <img class="size-5 shrink-0" src="../assets/images/icon-danger.svg" alt="" />
+              <span data-i18n="contact.consent.error">請先同意隱私政策</span>
+            </p>
+          </div>
+
+          <button
+            class="w-full cursor-pointer border border-brown-dark bg-brown-dark px-4 py-3 text-center type-body-sm text-white transition-opacity duration-200 hover:opacity-90 en:font-label"
+            type="submit"
+            data-i18n="contact.submit"
+          >
+            確認送出
+          </button>
+        </form>
+
+        <!-- 送出成功狀態（設計稿「已發送」），通過前端驗證後由 contact.js 切換顯示。 -->
+        <div class="flex flex-col items-center gap-8" hidden data-contact-complete>
+          <span class="flex size-18 items-center justify-center rounded-full bg-brand-gold p-4">
+            <svg class="size-10" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <path
+                d="M33.8216 8.82162C34.4726 8.17105 35.5277 8.1709 36.1784 8.82162C36.829 9.47257 36.8291 10.5277 36.1784 11.1784L16.167 31.1784C15.8543 31.4909 15.4291 31.6669 14.987 31.6667C14.5451 31.6663 14.1209 31.491 13.8086 31.1784L3.81999 21.1784C3.16962 20.5271 3.1704 19.4704 3.82161 18.82C4.47288 18.1696 5.52956 18.1704 6.18001 18.8216L14.9886 27.6416L33.8216 8.82162Z"
+                fill="white"
+              />
+            </svg>
+          </span>
+          <div class="flex flex-col items-center gap-4 text-center">
+            <p
+              class="font-body text-[40px] leading-[48px] font-medium tracking-[0.8px] text-brown-dark en:font-label"
+              data-i18n="contact.complete.title"
+            >
+              訊息已送出
+            </p>
+            <p
+              class="type-body-base text-[#878787] en:font-label"
+              data-i18n="contact.complete.body"
+            >
+              感謝您的詢問，我們將於 2 個工作日內回覆。
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <c-footer />
+  </body>
+</html>
