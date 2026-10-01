@@ -35,7 +35,7 @@
         </button>
       </div>
 
-      <div class="store-locator__panel lg:h-full" data-store-panel>
+      <div class="store-locator__panel lg:h-full" data-store-panel data-lenis-prevent>
         <ul class="store-locator__list px-8 pb-12 lg:px-12 lg:py-8">
           <li class="store-locator__item">
             <button
@@ -201,7 +201,10 @@
       </div>
     </div>
 
-    <div class="store-locator__map relative h-[300px] lg:h-full lg:min-w-0 lg:flex-1">
+    <div
+      class="store-locator__map relative h-[300px] lg:h-full lg:min-w-0 lg:flex-1"
+      data-lenis-prevent
+    >
       <iframe
         class="size-full border-0"
         title="門市位置地圖"

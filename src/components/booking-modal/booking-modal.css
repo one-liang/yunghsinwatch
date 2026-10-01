@@ -28,7 +28,7 @@
   opacity: 1;
 }
 
-/* 48px 的位移刻意對齊全站 AOS 進場（見 src/styles/tailwind.css 的 AOS 覆寫），讓彈窗的
+/* 48px 的位移刻意對齊全站 GSAP 進場（見 src/js/global/motion.js），讓彈窗的
    出場語彙和頁面區塊同一套；但這裡是即時互動而非滾動進場，所以時間壓到 0.44s、
    換成 ease-out 曲線，並延遲 0.06s 讓遮罩先壓下去，面板才浮上來。 */
 .booking-modal__panel {
@@ -147,7 +147,7 @@
 
 /* ---------- 減少動態效果 ---------- */
 
-/* 與 src/js/global/aos.js 的判斷一致：使用者在系統層關掉動畫就整組停用，
+/* 與 src/js/global/motion.js 的判斷一致：使用者在系統層關掉動畫就整組停用，
    開關與換頁都改成瞬間完成。 */
 @media (prefers-reduced-motion: reduce) {
   .booking-modal,

@@ -1,0 +1,225 @@
+import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
+import test from "node:test";
+import vm from "node:vm";
+
+const source = await readFile(new URL("../src/js/global/motion.js", import.meta.url), "utf8");
+
+function eventTarget(extra = {}) {
+  const listeners = new Map();
+  return {
+    ...extra,
+    addEventListener(name, handler) {
+      const handlers = listeners.get(name) ?? [];
+      handlers.push(handler);
+      listeners.set(name, handlers);
+    },
+    emit(name, event = {}) {
+      for (const handler of listeners.get(name) ?? []) handler(event);
+    },
+  };
+}
+
+function setup({ reduced = false, wide = true, missing = false, missingLenis = false } = {}) {
+  const callbacks = new Set();
+  const instances = [];
+  const tweens = [];
+  const observers = [];
+  const frames = new Map();
+  const mediaQuery = eventTarget({ matches: reduced });
+  const element = {
+    dataset: { reveal: "left", revealDelay: "250" },
+    getBoundingClientRect: () => ({ top: 400, height: 200 }),
+    scrollIntoView(options) {
+      this.nativeScroll = options;
+    },
+  };
+  const body = { locked: false, classList: { contains: () => body.locked } };
+  let runMedia;
+  let refreshes = 0;
+  const document = eventTarget({
+    readyState: "complete",
+    body,
+    documentElement: {},
+    querySelectorAll: () => [element],
+  });
+  const window = eventTarget({
+    innerHeight: 800,
+    scrollY: 100,
+    matchMedia: () => mediaQuery,
+    requestAnimationFrame: (callback) => {
+      const id = frames.size + 1;
+      frames.set(id, callback);
+      return id;
+    },
+    cancelAnimationFrame: (id) => frames.delete(id),
+    CustomEase: { create: () => "css-ease" },
+    ScrollTrigger: { update() {}, refresh: () => refreshes++ },
+    gsap: {
+      registerPlugin() {},
+      ticker: {
+        lagSmoothing() {},
+        add: (callback) => callbacks.add(callback),
+        remove: (callback) => callbacks.delete(callback),
+      },
+      matchMedia: () => ({
+        add(conditions, callback) {
+          assert.equal(conditions.all, "all", "ordinary mobile must also initialize reveals");
+          runMedia = () => callback({ conditions: { wide, reduced: mediaQuery.matches } });
+          runMedia();
+        },
+      }),
+      fromTo: (target, from, to) => tweens.push({ target, from, to }),
+    },
+  });
+  class Lenis {
+    constructor(options) {
+      this.options = options;
+      this.isStopped = false;
+      this.resizes = 0;
+      instances.push(this);
+    }
+    on(name, callback) {
+      this.scrollHandler = callback;
+    }
+    raf(time) {
+      this.time = time;
+    }
+    resize() {
+      this.resizes++;
+    }
+    stop() {
+      this.isStopped = true;
+    }
+    start() {
+      this.isStopped = false;
+    }
+    destroy() {
+      this.destroyed = true;
+    }
+    scrollTo(value) {
+      this.destination = value;
+    }
+  }
+  window.Lenis = missingLenis ? undefined : Lenis;
+  if (missing) window.gsap = undefined;
+  class MutationObserver {
+    constructor(callback) {
+      this.callback = callback;
+    }
+    observe(target) {
+      observers.push({ target, callback: this.callback });
+    }
+  }
+  vm.runInNewContext(source, { window, document, MutationObserver });
+  return {
+    window,
+    document,
+    mediaQuery,
+    element,
+    instances,
+    callbacks,
+    tweens,
+    setLock(value) {
+      body.locked = value;
+      observers.find(({ target }) => target === body).callback();
+    },
+    setReduced(value) {
+      mediaQuery.matches = value;
+      mediaQuery.emit("change");
+      runMedia?.();
+    },
+    rerunMedia: () => runMedia(),
+    flushFrames() {
+      for (const callback of frames.values()) callback();
+      frames.clear();
+      return refreshes;
+    },
+  };
+}
+
+test("one GSAP ticker drives Lenis, locking stops inertia and unlocking resynchronizes", () => {
+  const env = setup();
+  const lenis = env.instances[0];
+  assert.equal(lenis.options.autoRaf, false);
+  assert.equal(lenis.options.syncTouch, false);
+  assert.equal(lenis.options.lerp, 0.1);
+  assert.equal(env.callbacks.size, 1);
+  [...env.callbacks][0](2);
+  assert.equal(lenis.time, 2000);
+  env.setLock(true);
+  assert.equal(lenis.isStopped, true);
+  env.setLock(false);
+  assert.equal(lenis.isStopped, false);
+  assert.ok(lenis.resizes > 0);
+  env.window.emit("pagehide");
+  assert.equal(env.callbacks.size, 0);
+  env.window.emit("pageshow");
+  env.window.emit("pageshow");
+  assert.equal(env.callbacks.size, 1);
+  assert.equal(env.window.scrollY, 100, "restored scroll position is preserved");
+});
+
+test("reduced motion destroys Lenis and restores native immediate positioning", () => {
+  const env = setup();
+  const previous = env.instances[0];
+  env.setReduced(true);
+  assert.equal(previous.destroyed, true);
+  assert.equal(env.callbacks.size, 0);
+  env.window.SITE_SCROLL.scrollTo(env.element, { block: "center" });
+  assert.equal(env.element.nativeScroll.behavior, "instant");
+  assert.equal(env.element.nativeScroll.block, "center");
+  env.setReduced(false);
+  assert.equal(env.instances.length, 2);
+  assert.equal(env.callbacks.size, 1);
+  assert.equal(env.tweens.length, 1, "visible content is not hidden again after reduced motion");
+});
+
+test("missing libraries leave content visible and keep the scroll interface usable", () => {
+  for (const options of [{ missing: true }, { reduced: true }, { missingLenis: true }]) {
+    const env = setup(options);
+    assert.equal(env.instances.length, 0);
+    env.window.SITE_SCROLL.scrollTo(env.element);
+    assert.equal(env.element.nativeScroll.behavior, options.reduced ? "instant" : "smooth");
+    if (!options.missingLenis) assert.equal(env.tweens.length, 0);
+  }
+});
+
+test("center positioning uses actual page coordinates and nested locks use native positioning", () => {
+  const env = setup();
+  env.window.SITE_SCROLL.scrollTo(env.element, { block: "center" });
+  assert.equal(env.instances[0].destination, 200);
+  env.setLock(true);
+  env.window.SITE_SCROLL.scrollTo(env.element);
+  assert.equal(env.element.nativeScroll.behavior, "instant");
+});
+
+test("reveal preserves delays and directions, and completed elements never replay", () => {
+  const desktop = setup();
+  const { from, to } = desktop.tweens[0];
+  assert.equal(from.x, 48);
+  assert.equal(from.y, 0);
+  assert.equal(to.duration, 2);
+  assert.equal(to.delay, 0.25);
+  assert.equal(to.scrollTrigger.start, "top bottom-=120");
+  assert.equal(to.scrollTrigger.once, true);
+  to.onComplete();
+  desktop.rerunMedia();
+  assert.equal(desktop.tweens.length, 1);
+  const mobile = setup({ wide: false });
+  assert.equal(mobile.tweens[0].from.x, 0);
+  assert.equal(mobile.tweens[0].from.y, 48);
+});
+
+test("layout refresh is coalesced and native keyboard scrolling cancels inertia", () => {
+  const env = setup();
+  env.window.emit("load");
+  env.document.emit("load");
+  assert.equal(env.flushFrames(), 1);
+  const lenis = env.instances[0];
+  let stops = 0;
+  lenis.stop = () => stops++;
+  env.document.emit("keydown", { key: "PageDown", target: { closest: () => null } });
+  env.document.emit("keydown", { key: "ArrowDown", target: { closest: () => ({}) } });
+  assert.equal(stops, 1, "editing a field must not cancel or hijack its arrow keys");
+});

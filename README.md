@@ -2,7 +2,27 @@
 
 這是一個以 Vite + Tailwind CSS v4 製作的靜態 HTML 範本。它支援類 Vue 的自閉合組件標籤，例如 `<c-header />`，並在開發與建置時自動組合頁面 HTML、Tailwind CSS、組件 CSS、頁面 CSS、組件 JS 與頁面 JS。
 
-## 環境需求
+## 靜態網站交付與驗證
+
+建置完成後，交付整個 `dist/` 資料夾或其 ZIP。解壓縮後直接以 Chrome 或 Edge 開啟
+`index.html`，也可以直接開啟其他頁面的 `.html`；不需要 `npm install` 或啟動伺服器。
+請保留 `assets/` 與所有頁面檔案的相對位置，不要只複製單一 HTML。
+
+Lenis、GSAP、ScrollTrigger、CustomEase、Swiper、字型與圖片都使用本機資源，
+捲動與動畫可離線驗證。Google Maps 及外部連結仍需網路。
+
+動畫套件直接下載到 `src/assets/vendor/`，不透過 npm 安裝；版本、來源、授權與更新方式見
+[動畫套件說明](src/assets/vendor/motion-README.md)。
+每頁引用本機 Lenis CSS，並於 body 結尾使用 `<c-motion-scripts />` 載入套件；
+全站初始化在 `src/js/global/motion.js`，新增頁面時請沿用這兩處引用。
+
+進場動畫使用 `data-reveal="up|left|right"`，延遲以 `data-reveal-delay="250"` 指定毫秒。
+預設位移 48px、播放 2 秒、只播放一次；80rem 以下統一使用向上進場。
+新增獨立捲動區域時使用 `data-lenis-prevent`，簡單 hover 與過渡仍使用 CSS。
+
+## 開發環境需求
+
+以下環境需求只適用於開發與重新建置。交付的靜態網站不需要 Node.js 或 npm。
 
 - Node.js 18 以上
 - npm

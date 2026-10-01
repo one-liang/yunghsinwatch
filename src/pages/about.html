@@ -9,17 +9,8 @@
       data-i18n-attr="content:about.meta.description"
     />
     <link rel="icon" href="../assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../assets/vendor/aos/aos.css" />
-    <!-- aos.css 會把 [data-aos] 設成 opacity:0，JS 停用時要把它還原，否則整頁空白。 -->
-    <noscript>
-      <style>
-        [data-aos] {
-          opacity: 1 !important;
-          transform: none !important;
-        }
-      </style>
-    </noscript>
     <title data-i18n="about.meta.title">關於永新｜永新鐘錶百達翡麗專賣店</title>
+    <link rel="stylesheet" href="../assets/vendor/lenis/lenis.css" />
   </head>
   <body class="about-page min-h-screen bg-white type-body-base text-black">
     <c-header />
@@ -76,8 +67,8 @@
           src="../assets/images/about/salon.jpg"
           alt=""
           loading="lazy"
-          data-aos="fade-up"
-          data-aos-delay="250"
+          data-reveal="up"
+          data-reveal-delay="250"
         />
       </div>
 
@@ -107,8 +98,8 @@
             src="../assets/images/about/interior.jpg"
             alt=""
             loading="lazy"
-            data-aos="fade-left"
-            data-aos-delay="250"
+            data-reveal="left"
+            data-reveal-delay="250"
           />
           <div class="py-12 text-center xl:order-1 xl:min-w-0 xl:flex-1 xl:px-20 xl:py-0">
             <p
@@ -126,8 +117,8 @@
             src="../assets/images/about/vip-room.jpg"
             alt=""
             loading="lazy"
-            data-aos="fade-right"
-            data-aos-delay="250"
+            data-reveal="right"
+            data-reveal-delay="250"
           />
           <div class="pt-12 text-center xl:min-w-0 xl:flex-1 xl:px-20 xl:pt-0">
             <p
@@ -158,14 +149,14 @@
           src="../assets/images/about/showcase.jpg"
           alt=""
           loading="lazy"
-          data-aos="fade-up"
-          data-aos-delay="250"
+          data-reveal="up"
+          data-reveal-delay="250"
         />
       </div>
     </main>
 
     <c-footer />
 
-    <script src="../assets/vendor/aos/aos.js"></script>
+    <c-motion-scripts />
   </body>
 </html>
