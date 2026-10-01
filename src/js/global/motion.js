@@ -132,9 +132,6 @@
       attributes: true,
       attributeFilter: ["lang"],
     });
-    document.addEventListener("transitionend", ({ target, propertyName }) => {
-      if (propertyName === "height" && target.closest("[data-site-header]")) refresh();
-    });
 
     // 鍵盤或聚焦的原生定位要先取消尚未完成的滾輪慣性。
     const cancelInertia = () => {

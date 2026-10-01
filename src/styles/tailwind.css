@@ -6,6 +6,8 @@
 
 /* Native smooth scrolling is disabled while Lenis controls the viewport. */
 html {
+  background-color: #000;
+  overscroll-behavior-y: none;
   scroll-behavior: smooth;
 }
 
