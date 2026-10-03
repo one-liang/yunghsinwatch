@@ -78,7 +78,7 @@
 
       form.hidden = true;
       complete.hidden = false;
-      complete.scrollIntoView({ behavior: "smooth", block: "center" });
+      window.SITE_SCROLL.scrollTo(complete, { block: "center" });
     });
   };
 

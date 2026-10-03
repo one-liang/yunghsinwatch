@@ -8,7 +8,7 @@
     "build": "node scripts/build.mjs",
     "preview": "node scripts/preview.mjs",
     "deploy": "node scripts/deploy.mjs",
-    "check": "node --test tests/*.test.mjs && node scripts/build.mjs && node scripts/check.mjs",
+    "check": "node --test tests/*.test.mjs && node scripts/build.mjs && node scripts/check.mjs && node scripts/check-static.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "git config core.hooksPath .githooks"
@@ -21,7 +21,6 @@
     "vite": "latest"
   },
   "dependencies": {
-    "aos": "^2.3.4",
     "swiper": "^14.2.0"
   }
 }

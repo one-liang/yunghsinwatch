@@ -12,7 +12,10 @@
 
   <!-- 捲動層與置中層分開：min-h-full + items-center 讓面板在螢幕夠高時垂直置中，
        內容比螢幕高時則自然往下長，不會被 flex 置中切掉上緣。 -->
-  <div class="booking-modal__scroll absolute inset-0 overflow-y-auto overscroll-contain">
+  <div
+    class="booking-modal__scroll absolute inset-0 overflow-y-auto overscroll-contain"
+    data-lenis-prevent
+  >
     <div class="flex min-h-full items-center justify-center px-5 py-10 lg:px-8">
       <div
         class="booking-modal__panel flex w-full max-w-[1024px] flex-col items-center gap-6 bg-white p-6 text-black lg:gap-8 lg:p-10"

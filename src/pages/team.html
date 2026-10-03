@@ -9,17 +9,8 @@
       data-i18n-attr="content:team.meta.description"
     />
     <link rel="icon" href="../assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../assets/vendor/aos/aos.css" />
-    <!-- aos.css 會把 [data-aos] 設成 opacity:0，JS 停用時要把它還原，否則整頁空白。 -->
-    <noscript>
-      <style>
-        [data-aos] {
-          opacity: 1 !important;
-          transform: none !important;
-        }
-      </style>
-    </noscript>
     <title data-i18n="team.meta.title">我們的團隊｜永新鐘錶百達翡麗專賣店</title>
+    <link rel="stylesheet" href="../assets/vendor/lenis/lenis.css" />
   </head>
   <body class="team-page min-h-screen bg-white type-body-base text-black">
     <c-header />
@@ -54,7 +45,7 @@
       <!-- 成員卡：LG 以上左右交錯（偶數張反轉排列），LG 以下一律改成圖在上的直式堆疊。
            動態效果對齊 patekboutiquemiami.com/our-team：整張卡（照片＋文字）一起
            向上淡入，不做圖文分段的 stagger —— 參考站是把 fadeInUp 掛在整列容器上，
-           delay 200ms（AOS，初始化在 src/js/global/aos.js）。
+           delay 200ms（GSAP，初始化在 src/js/global/motion.js）。
 
            簡介刻意用單一 <p> + whitespace-pre-line，段落之間靠 \n 斷行：i18n runtime
            只換 textContent，而同一位成員的中文是兩段、英文可能是三段，拆成多個 <p>
@@ -64,8 +55,8 @@
       >
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-reveal="up"
+          data-reveal-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
@@ -109,8 +100,8 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-reveal="up"
+          data-reveal-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
@@ -152,8 +143,8 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-reveal="up"
+          data-reveal-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
@@ -194,8 +185,8 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-reveal="up"
+          data-reveal-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
@@ -236,8 +227,8 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-reveal="up"
+          data-reveal-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
@@ -278,8 +269,8 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-reveal="up"
+          data-reveal-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
@@ -320,8 +311,8 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-reveal="up"
+          data-reveal-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
@@ -362,8 +353,8 @@
 
         <article
           class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"
-          data-aos="fade-up"
-          data-aos-delay="200"
+          data-reveal="up"
+          data-reveal-delay="200"
         >
           <img
             class="aspect-[11/10] w-full max-w-[400px] rounded-[4px] object-cover lg:w-[400px] lg:max-w-none lg:shrink-0 xl:w-[550px]"
@@ -406,6 +397,6 @@
 
     <c-footer />
 
-    <script src="../assets/vendor/aos/aos.js"></script>
+    <c-motion-scripts />
   </body>
 </html>

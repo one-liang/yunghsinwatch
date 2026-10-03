@@ -1,15 +1,19 @@
-<header class="site-header sticky top-0 z-40 bg-black text-white" data-site-header>
+<header class="site-header sticky top-0 z-40 text-white" data-site-header>
+  <div class="site-header__background absolute inset-0 bg-black" aria-hidden="true"></div>
   <div
     class="site-header__bar mx-auto flex h-[68px] w-full max-w-[86rem] items-center justify-between px-5 lg:h-[112px] lg:px-12"
   >
-    <a class="site-header__brand flex shrink-0 items-center gap-4 lg:gap-10" href="./index.html">
+    <a
+      class="site-header__brand flex min-w-0 items-center gap-4 lg:shrink-0 lg:gap-10"
+      href="./index.html"
+    >
       <img
-        class="site-header__logo h-11 w-[83px] lg:h-[74px] lg:w-[140px]"
+        class="site-header__logo h-11 w-[83px] shrink-0 lg:h-[74px] lg:w-[140px]"
         src="@assets/images/logo-patek-philippe-light.svg"
         alt="Patek Philippe"
       />
       <span
-        class="site-header__brand-text flex flex-col justify-center text-center type-heading-2xs tracking-[1px] whitespace-nowrap lg:type-heading-md en:type-display-xs lg:en:type-display-sm"
+        class="site-header__brand-text flex min-w-0 flex-col justify-center text-center type-heading-2xs tracking-[1px] lg:type-heading-md lg:whitespace-nowrap en:type-display-xs lg:en:type-display-sm"
       >
         <span class="site-header__brand-line" data-i18n="brand.line1">永新鐘錶百達翡麗專賣店</span>
         <span class="site-header__brand-line" data-i18n="brand.line2"></span>
@@ -146,6 +150,7 @@
     class="site-header__drawer fixed inset-0 z-50 flex flex-col bg-black text-white"
     id="site-header-drawer"
     data-header-drawer
+    data-lenis-prevent
   >
     <div class="flex h-[68px] shrink-0 items-center justify-end px-5">
       <button
