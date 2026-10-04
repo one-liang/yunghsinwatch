@@ -123,6 +123,11 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
 
   --color-error-warm: #ff0000;
   --color-error-light: #fef0f0;
+
+  /* 全站按鈕／連結 hover 的過場（Figma Mockup comment #8：0.3s ease-out）。
+     HTML 只寫 transition-colors／transition-opacity，不另加 duration、ease，統一吃這組預設。 */
+  --default-transition-duration: 300ms;
+  --default-transition-timing-function: ease-out;
 }
 
 @utility type-display-xl {

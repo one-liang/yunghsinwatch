@@ -10,7 +10,7 @@
 
 ## 進度總覽
 
-- [ ] #8 【全站】按鈕 Hover 效果
+- [x] #8 【全站】按鈕 Hover 效果
 - [ ] #14 【Header】切換 Header 時由上往下展開
 - [ ] #7 【首頁】Banner 高度與影片
 - [ ] #6 【首頁】Scroll 動畫
@@ -38,7 +38,12 @@
 > 按鈕 Hover 效果
 > `transition: transform 0.3s ease-out;`
 
-- [ ] 全站按鈕加上 Hover 效果，`transition: transform 0.3s ease-out`
+- [x] 全站按鈕加上 Hover 效果，`transition: transform 0.3s ease-out`
+
+實作說明：Style Guide 的按鈕元件沒有 Hover variant，因此將此 comment 視為過場時間規格，
+在 `@theme` 設定 `--default-transition-duration: 300ms`、`--default-transition-timing-function: ease-out`
+統一全站 hover；另補上子選單 hover 的 40% 黑底，並修正預約按鈕暗化無法補間的問題。
+未加入位移／縮放效果，若需要請設計補數值。
 
 ## 2. Inder_Scroll（`1036:8990`）
 
