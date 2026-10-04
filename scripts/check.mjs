@@ -2,15 +2,15 @@ import assert from "node:assert/strict";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 
-import { discoverPages, getPageOutputInfo, loadConfig } from "./builder-core.mjs";
+import { discoverPageVariants, getPageOutputInfo, loadConfig } from "./builder-core.mjs";
 
 const config = await loadConfig(process.cwd());
-const pages = await discoverPages(config);
+const pages = await discoverPageVariants(config);
 
 assert.ok(pages.length > 0, "expected at least one source page");
 
-for (const pagePath of pages) {
-  const outputInfo = getPageOutputInfo(pagePath, config);
+for (const { pagePath, locale } of pages) {
+  const outputInfo = getPageOutputInfo(pagePath, config, locale);
   const html = await readFile(outputInfo.htmlOutputPath, "utf8");
   const css = await readFile(outputInfo.cssOutputPath, "utf8");
 

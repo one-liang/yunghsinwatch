@@ -47,8 +47,8 @@
            向上淡入，不做圖文分段的 stagger —— 參考站是把 fadeInUp 掛在整列容器上，
            delay 200ms（GSAP，初始化在 src/js/global/motion.js）。
 
-           簡介刻意用單一 <p> + whitespace-pre-line，段落之間靠 \n 斷行：i18n runtime
-           只換 textContent，而同一位成員的中文是兩段、英文可能是三段，拆成多個 <p>
+           簡介刻意用單一 <p> + whitespace-pre-line，段落之間靠 \n 斷行：build 時的翻譯
+           只換純文字，而同一位成員的中文是兩段、英文可能是三段，拆成多個 <p>
            就沒辦法逐段對應。設計稿的段落之間也沒有額外間距，視覺結果一致。 -->
       <section
         class="mx-auto flex w-full max-w-[1536px] flex-col gap-8 px-5 py-8 lg:gap-12 lg:px-12 lg:py-12 xl:gap-28 xl:py-28 2xl:px-32"

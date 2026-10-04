@@ -2,8 +2,7 @@
 //
 // - 點列表中的門市 → 換掉 Google Maps embed 的 src，把地圖帶到該店。
 // - LG 以下多一顆切換鈕，在「地圖」與「門市列表」之間切換（用容器的 data-view）。
-// - 地圖語系跟著 <html lang> 走；i18n runtime 只改屬性、沒有發事件，
-//   所以這裡用 MutationObserver 盯住 lang，切語系時重載地圖。
+// - 地圖語系跟著 <html lang> 走（zh／en 版頁面由 build 分別產生，lang 是靜態值）。
 //
 // 用 Maps embed（?output=embed）而非 Maps JavaScript API，因此不需要 API key，
 // 代價是圖釘樣式固定、換店會整個 iframe 重載。
@@ -64,11 +63,6 @@
 
     switcher?.addEventListener("click", () => {
       root.dataset.view = root.dataset.view === "list" ? "map" : "list";
-    });
-
-    new MutationObserver(render).observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["lang"],
     });
 
     render();

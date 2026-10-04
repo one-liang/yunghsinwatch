@@ -41,7 +41,9 @@ node --test --test-name-pattern "<substring>" tests/builder.test.mjs
 - 缺少組件 HTML 會丟出錯誤；缺少 CSS/JS 則直接略過。
 - 每個組件的 CSS/JS 每頁最多只收集一次（透過 `seenCssFiles`/`seenJsFiles` 去重）。
 
-**全站 JS（`src/js/global/`）：** 這個目錄底下的 `.js` 會*每頁都載入*，依檔名排序後排在組件 JS 與頁面 JS **之前**（`discoverGlobalJsFiles` → `buildPageJsText`），也會一併餵給每頁的 Tailwind 掃描來源。用途是 i18n 字典這種「不屬於任何單一組件、但每頁都需要」的程式碼；目錄可用 `builder.config.mjs` 的 `globalJsDir` 覆寫。
+**全站 JS（`src/js/global/`）：** 這個目錄底下的 `.js` 會*每頁都載入*，依檔名排序後排在組件 JS 與頁面 JS **之前**（`discoverGlobalJsFiles` → `buildPageJsText`），也會一併餵給每頁的 Tailwind 掃描來源。用途是動畫初始化這種「不屬於任何單一組件、但每頁都需要」的程式碼；目錄可用 `builder.config.mjs` 的 `globalJsDir` 覆寫。
+
+**多語系（build 時產生）：** `builder.config.mjs` 的 `i18n` 設定語系，每個語系用 `dir` 指定輸出資料夾（`zh` 預設、`dir: ""` 在根目錄；`en` 為 `dir: "en"`）。每個來源頁 × 每個語系各輸出一頁（`discoverPageVariants`）：`dist/index.html`（zh）與 `dist/en/index.html`（en），網址為 `/en/index.html`；`pageName` 沿用路徑壓平規則，英文版 css/js 為 `assets/css/en-index.css`、`assets/js/en-index.js`。字典在 `src/i18n/<locale>.mjs`（`export default { key: text }`），只在 build/dev 渲染時由 `localizeHtml` 讀取，不會進 dist。來源 HTML 的 `data-i18n="key"`（替換元素內容，等同 textContent）、`data-i18n-attr="attr:key,attr:key"`（設定屬性）、`data-lang-switch="zh|en"`（設成同頁另一語系版本的相對連結，如 `./en/index.html` ↔ `../index.html`，目前語系加 `aria-current="true"`）都是 **build-only 標記**，輸出時一律移除；`<html lang>` 依語系設定。因為各語系頁面放在各自資料夾，作者手寫的相對站內連結（`./about.html`）自然指向同語系版本，不需改寫。字典缺 key、或來源頁放在語系保留資料夾（如 `src/pages/en/`）會丟錯。沒有 `i18n` 設定時退化為單一語系。
 
 **每頁的 asset 打包：** 每個頁面會依序串接所有被引用的組件 CSS、接著該頁的 sidecar CSS，合併成單一檔案 `assets/css/<pageName>.css`；JS 同理，先組件 JS、後頁面 JS，合併成 `assets/js/<pageName>.js`。頁面 JS 位於 `src/js/<page-path>.js`（對應 `src/pages`）；組件 JS 位於 `src/js/component/<slug>.js`。**只有在串接後的內容 trim 後非空時，JS 才會被輸出並注入 `<script>`** —— 因此空的或未使用的 JS 檔不會留下 script tag。
 
@@ -70,5 +72,6 @@ node --test --test-name-pattern "<substring>" tests/builder.test.mjs
 - 設定在 `.prettierrc.json`（printWidth 100、2 空格、雙引號、有分號、`endOfLine: lf`），並啟用 `prettier-plugin-tailwindcss` 自動排序 class（透過 `tailwindStylesheet` 指向 `src/styles/tailwind.css` 以對應 v4 theme）。
 - **來源 HTML 也會格式化**：因為 component 標籤改用 `c-` 前綴 custom element（`<c-header />`），Prettier 會原樣保留(連字號標籤不會被小寫化)，所以 `src/**/*.html` 可安全納入格式化。`.css/.js/.mjs/.json` 同樣會格式化。
 - **dist/ 輸出會在 build 時格式化**：`buildSite` 在寫檔前以 Prettier 格式化 HTML/CSS/JS（`builder-core.mjs` 的 `formatOutput`，動態 import、僅 build 路徑使用，dev server 不受影響；格式化失敗會警告並退回原內容，不中斷 build）。dist HTML 已展開 component tag，故可安全格式化。
+- **dist/ 不留自寫註解**：build 時在格式化前移除 HTML 註解（`stripHtmlComments`，保留 IE 條件註解）與 JS/CSS 一般註解（`stripCodeComments`，用 esbuild，只保留 `/*! */`、`@license` 等套件 license 註解），builder 插入的段落註解也一併移除；dev server 不受影響。`src/assets` 的 `*.md` 不複製進 dist，vendor `*.min.*` 原樣複製。
 - **存檔自動格式化**：`.vscode/settings.json` 開啟 format on save（需 Prettier 擴充套件，已列在 `.vscode/extensions.json`）；`.claude/settings.json` 另有 PostToolUse hook，Claude 編輯檔案後自動跑 Prettier。
 - **commit 前自動格式化**：原生 git hook `.githooks/pre-commit` 會格式化 staged 檔並重新 stage。`npm install` 的 `prepare` script 會設定 `git config core.hooksPath .githooks` 自動啟用。

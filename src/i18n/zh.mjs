@@ -1,8 +1,5 @@
-// 繁體中文文字檔（預設語系，也是 HTML 原始碼裡直接寫死的那一份）。
-// 只負責把字典掛到 window.SITE_I18N，套用邏輯在 i18n.js。
-window.SITE_I18N = window.SITE_I18N || {};
-
-window.SITE_I18N.zh = {
+// 繁體中文文字檔（預設語系）。build 時由 builder 套用到 data-i18n 標記，不會打包進 dist。
+export default {
   "brand.line1": "永新鐘錶百達翡麗專賣店",
   "brand.line2": "",
 
@@ -136,7 +133,7 @@ window.SITE_I18N.zh = {
   "boutique.intro.title": "聚光燈下的鐘錶城堡",
   "boutique.intro.body":
     "以「稀缺工藝」與「精準美學」，永新百達翡麗專館透過傳承與創新，訴說時間的璀璨永恆。",
-  // 換行靠 CSS 的 whitespace-pre-line 呈現；i18n runtime 只改 textContent，
+  // 換行靠 CSS 的 whitespace-pre-line 呈現；build 時的翻譯只換純文字，
   // 寫 <br> 會在切語系時被吃掉。
   "boutique.story.body":
     "在時間的長河中，鐘錶不僅是計時工具，\n更是藝術、工藝與情感的載體。\n永新鐘錶以深厚的技藝底蘊與誠信的經營哲學，\n成為無數愛錶人士心中的殿堂。",
