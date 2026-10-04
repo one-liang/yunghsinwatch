@@ -1,7 +1,5 @@
-// 英文文字檔。key 必須與 i18n-zh.js 完全一致。
-window.SITE_I18N = window.SITE_I18N || {};
-
-window.SITE_I18N.en = {
+// 英文文字檔。key 必須與 zh.mjs 完全一致；build 時產生 en/*.html，不會打包進 dist。
+export default {
   "brand.line1": "Patek Philippe Boutique Taipei",
   "brand.line2": "by Yung Hsin Watch",
 

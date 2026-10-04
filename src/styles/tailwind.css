@@ -1,6 +1,6 @@
 @import "tailwindcss" source(none);
 
-/* 英文語系變體：i18n runtime 會把 <html lang> 設成 en，
+/* 英文語系變體：build 產生的英文版頁面 <html lang> 為 en，
    讓 HTML 能用 `en:type-label-nav-md` 這種寫法直接指定英文版排版。 */
 @custom-variant en (&:where(html[lang="en"] *));
 

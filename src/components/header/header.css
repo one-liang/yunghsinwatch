@@ -153,11 +153,11 @@
   content: "";
 }
 
-.site-header__lang-link[data-active="true"] {
+.site-header__lang-link[aria-current="true"] {
   color: var(--color-brand-gold);
 }
 
-.site-header__lang-link[data-active="true"]::after {
+.site-header__lang-link[aria-current="true"]::after {
   opacity: 1;
 }
 

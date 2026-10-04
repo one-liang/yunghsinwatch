@@ -7,4 +7,13 @@ export default {
   assetsDir: "src/assets",
   outDir: "dist",
   componentTagPattern: "CPrefixSelfClosing",
+  // 每個來源頁依語系各輸出一頁：zh → index.html、en → en/index.html。
+  i18n: {
+    dir: "src/i18n",
+    defaultLocale: "zh",
+    locales: {
+      zh: { htmlLang: "zh-Hant", dir: "" },
+      en: { htmlLang: "en", dir: "en" },
+    },
+  },
 };

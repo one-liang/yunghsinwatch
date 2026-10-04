@@ -3,6 +3,7 @@ import { constants, cp, mkdir, readFile, readdir, rm, stat, writeFile } from "no
 import { accessSync, createReadStream, existsSync } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { parse } from "parse5";
 
 // 組件標籤採 `c-` 前綴的 kebab-case custom element（如 <c-header />、<c-site-banner />）。
 // 連字號讓 Prettier 的 HTML parser 原樣保留標籤（不會像 PascalCase 那樣被小寫化），
@@ -38,6 +39,32 @@ export async function loadConfig(rootDir = process.cwd()) {
     outDir: path.resolve(rootDir, rawConfig.outDir ?? "dist"),
     componentTagPattern: rawConfig.componentTagPattern ?? "CPrefixSelfClosing",
     tailwindEntry: path.resolve(rootDir, rawConfig.tailwindEntry ?? "src/styles/tailwind.css"),
+    i18n: normalizeI18nConfig(rootDir, rawConfig.i18n),
+  };
+}
+
+// 沒有 i18n 設定時回傳 null，整個 builder 退化為單一語系（不做任何翻譯處理）。
+function normalizeI18nConfig(rootDir, rawI18n) {
+  if (!rawI18n) return null;
+
+  const locales = rawI18n.locales ?? {};
+  const localeNames = Object.keys(locales);
+  if (!localeNames.length) throw new Error("i18n.locales must define at least one locale");
+
+  const defaultLocale = rawI18n.defaultLocale ?? localeNames[0];
+  if (!locales[defaultLocale]) {
+    throw new Error(`i18n.defaultLocale "${defaultLocale}" is not defined in i18n.locales`);
+  }
+
+  return {
+    dir: path.resolve(rootDir, rawI18n.dir ?? "src/i18n"),
+    defaultLocale,
+    locales: Object.fromEntries(
+      localeNames.map((name) => [
+        name,
+        { htmlLang: locales[name].htmlLang ?? name, dir: locales[name].dir ?? "" },
+      ])
+    ),
   };
 }
 
@@ -46,8 +73,32 @@ export async function discoverPages(config) {
   return pages.sort((a, b) => normalizePath(a).localeCompare(normalizePath(b)));
 }
 
+// 每個來源頁 × 每個語系各輸出一頁（如 index.html 與 en/index.html）。
+// 沒有 i18n 設定時 locale 為 null，每頁只輸出一次。
+export async function discoverPageVariants(config) {
+  const pages = await discoverPages(config);
+  const locales = config.i18n ? Object.keys(config.i18n.locales) : [null];
+  const localeDirs = locales.map((locale) => localeDir(config, locale)).filter(Boolean);
+
+  // 語系資料夾由 builder 產生，來源頁不可放在同名資料夾裡，否則輸出會互相覆蓋。
+  for (const pagePath of pages) {
+    const topDir = path.relative(config.pagesDir, pagePath).split(path.sep)[0];
+    if (localeDirs.includes(topDir)) {
+      throw new Error(
+        `Source page ${pagePath} is inside the reserved locale folder "${topDir}" and would collide with a generated page`
+      );
+    }
+  }
+
+  return pages.flatMap((pagePath) => locales.map((locale) => ({ pagePath, locale })));
+}
+
+function localeDir(config, locale) {
+  return locale && config.i18n ? config.i18n.locales[locale].dir : "";
+}
+
 // 全站 JS：src/js/global/ 底下的檔案每頁都會載入，依檔名排序後排在組件 JS 之前。
-// 用途是 i18n 字典這類「不屬於任何單一組件、但每頁都需要」的程式碼。
+// 用途是動畫初始化這類「不屬於任何單一組件、但每頁都需要」的程式碼。
 export async function discoverGlobalJsFiles(config) {
   if (!config.globalJsDir) return [];
 
@@ -55,14 +106,16 @@ export async function discoverGlobalJsFiles(config) {
   return files.sort((a, b) => normalizePath(a).localeCompare(normalizePath(b)));
 }
 
-export function getPageOutputInfo(pagePath, config) {
-  const pageRelative = path.relative(config.pagesDir, pagePath);
+export function getPageOutputInfo(pagePath, config, locale = null) {
+  const sourceRelative = path.relative(config.pagesDir, pagePath);
+  const pageRelative = path.join(localeDir(config, locale), sourceRelative);
   const htmlOutputPath = path.join(config.outDir, pageRelative);
   const pageName = pageRelative.replace(path.extname(pageRelative), "").split(path.sep).join("-");
   const cssOutputPath = path.join(config.outDir, "assets", "css", `${pageName}.css`);
   const jsOutputPath = path.join(config.outDir, "assets", "js", `${pageName}.js`);
 
   return {
+    locale,
     pageRelative,
     pageName,
     htmlOutputPath,
@@ -85,7 +138,14 @@ export async function renderPage(pagePath, config, options = {}) {
     componentStack: [],
   };
   const rewrittenHtml = rewriteHtmlAssetUrlsForOptions(html, pagePath, config, options);
-  const renderedHtml = await renderHtml(rewrittenHtml, context, pagePath);
+  const componentHtml = await renderHtml(rewrittenHtml, context, pagePath);
+  const renderedHtml = config.i18n
+    ? await localizeHtml(componentHtml, {
+        config,
+        pagePath,
+        locale: options.locale ?? config.i18n.defaultLocale,
+      })
+    : componentHtml;
   const pageCssFile = await sidecarFile(pagePath, ".css");
   const pageJsFile = await pageJsFileForPage(pagePath, config);
   const globalJsFiles = await discoverGlobalJsFiles(config);
@@ -118,18 +178,19 @@ async function formatOutput(content, parser, rootDir) {
 
 export async function buildSite(rootDir = process.cwd()) {
   const config = await loadConfig(rootDir);
-  const pages = await discoverPages(config);
+  const variants = await discoverPageVariants(config);
   const builtPages = [];
 
   await rm(config.outDir, { recursive: true, force: true });
   await mkdir(config.outDir, { recursive: true });
   await copyAssets(config);
 
-  for (const pagePath of pages) {
-    const outputInfo = getPageOutputInfo(pagePath, config);
+  for (const { pagePath, locale } of variants) {
+    const outputInfo = getPageOutputInfo(pagePath, config, locale);
     const rendered = await renderPage(pagePath, config, {
       htmlAssetMode: "build",
       targetHtmlPath: outputInfo.htmlOutputPath,
+      locale,
     });
     const css = await buildPageCssText(rendered, config, outputInfo);
     const js = await buildPageJsText(rendered, config);
@@ -142,21 +203,22 @@ export async function buildSite(rootDir = process.cwd()) {
     await mkdir(path.dirname(outputInfo.cssOutputPath), { recursive: true });
     await mkdir(path.dirname(outputInfo.jsOutputPath), { recursive: true });
 
+    // dist 只留套件的 license 註解（/*! ... */、@license），自寫註解在格式化前全部移除。
     await writeFile(
       outputInfo.htmlOutputPath,
-      await formatOutput(html, "html", config.rootDir),
+      await formatOutput(stripHtmlComments(html), "html", config.rootDir),
       "utf8"
     );
     await writeFile(
       outputInfo.cssOutputPath,
-      await formatOutput(css, "css", config.rootDir),
+      await formatOutput(await stripCodeComments(css, "css"), "css", config.rootDir),
       "utf8"
     );
 
     if (js.trim()) {
       await writeFile(
         outputInfo.jsOutputPath,
-        await formatOutput(js, "babel", config.rootDir),
+        await formatOutput(await stripCodeComments(js, "js"), "babel", config.rootDir),
         "utf8"
       );
     }
@@ -168,11 +230,12 @@ export async function buildSite(rootDir = process.cwd()) {
 }
 
 export async function renderDevHtml(urlPathname, config, server) {
-  const pagePath = await findPageByUrl(urlPathname, config);
-  if (!pagePath) return null;
+  const variant = await findPageByUrl(urlPathname, config);
+  if (!variant) return null;
 
-  const outputInfo = getPageOutputInfo(pagePath, config);
-  const rendered = await renderPage(pagePath, config, { htmlAssetMode: "dev" });
+  const { pagePath, locale } = variant;
+  const outputInfo = getPageOutputInfo(pagePath, config, locale);
+  const rendered = await renderPage(pagePath, config, { htmlAssetMode: "dev", locale });
   const js = await buildPageJsText(rendered, config);
   const html = injectPageAssets(rendered.html, {
     cssHref: `/@builder/assets/css/${outputInfo.pageName}.css`,
@@ -187,20 +250,22 @@ export async function renderDevHtml(urlPathname, config, server) {
 }
 
 export async function renderDevCss(pageName, config) {
-  const pagePath = await findPageByName(pageName, config);
-  if (!pagePath) return null;
+  const variant = await findPageByName(pageName, config);
+  if (!variant) return null;
 
-  const outputInfo = getPageOutputInfo(pagePath, config);
-  const rendered = await renderPage(pagePath, config, { htmlAssetMode: "dev" });
+  const { pagePath, locale } = variant;
+  const outputInfo = getPageOutputInfo(pagePath, config, locale);
+  const rendered = await renderPage(pagePath, config, { htmlAssetMode: "dev", locale });
 
   return buildPageCssText(rendered, config, outputInfo, { cssAssetMode: "dev" });
 }
 
 export async function renderDevJs(pageName, config) {
-  const pagePath = await findPageByName(pageName, config);
-  if (!pagePath) return null;
+  const variant = await findPageByName(pageName, config);
+  if (!variant) return null;
 
-  const rendered = await renderPage(pagePath, config, { htmlAssetMode: "dev" });
+  const { pagePath, locale } = variant;
+  const rendered = await renderPage(pagePath, config, { htmlAssetMode: "dev", locale });
   return buildPageJsText(rendered, config);
 }
 
@@ -355,27 +420,33 @@ export function injectPageAssets(html, { cssHref, jsSrc }) {
   return output.endsWith("\n") ? output : `${output}\n`;
 }
 
+// 依 URL 找出對應的頁面變體 { pagePath, locale }；/index-en.html 會對應到 index.html 的 en 版本。
 export async function findPageByUrl(urlPathname, config) {
   const cleanPath = decodeURIComponent(urlPathname.split("?")[0]).replace(/^\/+/, "");
   const relativePath = cleanPath === "" ? "index.html" : cleanPath;
   const candidates = [
-    path.join(config.pagesDir, relativePath),
-    path.join(config.pagesDir, relativePath, "index.html"),
-  ];
+    path.join(config.outDir, relativePath),
+    path.join(config.outDir, relativePath, "index.html"),
+  ].map((candidate) => path.resolve(candidate));
+  const variants = await discoverPageVariants(config);
 
   for (const candidate of candidates) {
-    if ((await fileExists(candidate)) && candidate.endsWith(".html")) {
-      return candidate;
-    }
+    const variant = variants.find(
+      ({ pagePath, locale }) =>
+        path.resolve(getPageOutputInfo(pagePath, config, locale).htmlOutputPath) === candidate
+    );
+    if (variant) return variant;
   }
 
   return null;
 }
 
 export async function findPageByName(pageName, config) {
-  const pages = await discoverPages(config);
+  const variants = await discoverPageVariants(config);
   return (
-    pages.find((pagePath) => getPageOutputInfo(pagePath, config).pageName === pageName) ?? null
+    variants.find(
+      ({ pagePath, locale }) => getPageOutputInfo(pagePath, config, locale).pageName === pageName
+    ) ?? null
   );
 }
 
@@ -540,6 +611,196 @@ function rewriteHtmlAssetUrlsForOptions(html, sourceHtmlPath, config, options) {
   });
 }
 
+// 依語系字典把 build-only 的翻譯標記套進 HTML，輸出後不留下任何標記：
+// - data-i18n="key"：元素內容換成字典文字（等同 textContent，會 escape）。
+// - data-i18n-attr="attr:key,attr:key"：設定對應屬性。
+// - data-lang-switch="locale"：設成指向同頁該語系版本的連結，目前語系加 aria-current。
+// - <html lang> 設為該語系。各語系頁面放在各自的資料夾（如 en/），
+//   作者手寫的相對站內連結自然指向同語系版本，不需改寫。
+// 用 parse5 取得原始碼位置後以字串拼接修改，不重新序列化，保留原本排版。
+export async function localizeHtml(html, { config, pagePath, locale }) {
+  const dictionary = await loadDictionary(config, locale);
+  const localeConfig = config.i18n.locales[locale];
+  const edits = [];
+
+  const translate = (key) => {
+    if (!Object.hasOwn(dictionary, key)) {
+      throw new Error(`Missing i18n key "${key}" for locale "${locale}" in ${pagePath}`);
+    }
+    return dictionary[key];
+  };
+
+  const visit = (node) => {
+    const location = node.sourceCodeLocation;
+
+    if (node.attrs && location?.startTag) {
+      const attrs = new Map(node.attrs.map(({ name, value }) => [name, value]));
+      const changes = new Map();
+      const removals = new Set();
+
+      if (node.tagName === "html") changes.set("lang", localeConfig.htmlLang);
+
+      if (attrs.has("data-i18n-attr")) {
+        removals.add("data-i18n-attr");
+        for (const pair of attrs.get("data-i18n-attr").split(",")) {
+          const separator = pair.indexOf(":");
+          const attr = pair.slice(0, separator).trim();
+          const key = pair.slice(separator + 1).trim();
+          if (separator < 0 || !attr || !key) {
+            throw new Error(`Invalid data-i18n-attr "${pair}" in ${pagePath}`);
+          }
+          changes.set(attr, translate(key));
+        }
+      }
+
+      if (attrs.has("data-lang-switch")) {
+        const target = attrs.get("data-lang-switch");
+        if (!config.i18n.locales[target]) {
+          throw new Error(`Unknown data-lang-switch locale "${target}" in ${pagePath}`);
+        }
+        removals.add("data-lang-switch");
+        changes.set("href", localizedPageHref(pagePath, config, locale, target));
+        if (target === locale) changes.set("aria-current", "true");
+      }
+
+      if (attrs.has("data-i18n")) {
+        removals.add("data-i18n");
+        if (!location.endTag) {
+          throw new Error(
+            `data-i18n requires an element with an end tag (<${node.tagName}>) in ${pagePath}`
+          );
+        }
+        edits.push({
+          start: location.startTag.endOffset,
+          end: location.endTag.startOffset,
+          text: escapeHtmlText(translate(attrs.get("data-i18n"))),
+        });
+      }
+
+      if (changes.size || removals.size) {
+        edits.push(rebuildStartTag(html, node, changes, removals));
+      }
+
+      // 內容已整段替換，子孫節點不再處理（避免重疊的修改）。
+      if (attrs.has("data-i18n")) return;
+    }
+
+    for (const child of node.content?.childNodes ?? node.childNodes ?? []) visit(child);
+  };
+
+  visit(parse(html, { sourceCodeLocationInfo: true }));
+
+  return applyEdits(html, edits);
+}
+
+async function loadDictionary(config, locale) {
+  const dictionaryPath = path.join(config.i18n.dir, `${locale}.mjs`);
+  if (!(await fileExists(dictionaryPath))) {
+    throw new Error(`i18n dictionary for "${locale}" not found at ${dictionaryPath}`);
+  }
+
+  // 以修改時間當 cache key：字典沒變就沿用已載入的模組，改了 dev 也能即時生效。
+  const { mtimeMs } = await stat(dictionaryPath);
+  const loaded = await import(`${pathToFileURL(dictionaryPath).href}?t=${mtimeMs}`);
+  return loaded.default ?? {};
+}
+
+function localizedPageHref(pagePath, config, fromLocale, toLocale) {
+  const from = getPageOutputInfo(pagePath, config, fromLocale).htmlOutputPath;
+  const to = getPageOutputInfo(pagePath, config, toLocale).htmlOutputPath;
+  return toHtmlRelativeUrl(path.dirname(from), to);
+}
+
+// 依原始屬性文字重組開始標籤：未變動的屬性原樣保留，變動的覆寫、新的附加在最後。
+function rebuildStartTag(html, node, changes, removals) {
+  const { startTag } = node.sourceCodeLocation;
+  const parts = [];
+  const pending = new Map(changes);
+
+  for (const { name } of node.attrs) {
+    if (removals.has(name)) continue;
+    if (pending.has(name)) {
+      parts.push(`${name}="${escapeHtmlAttr(pending.get(name))}"`);
+      pending.delete(name);
+      continue;
+    }
+    const { startOffset, endOffset } = startTag.attrs[name];
+    parts.push(html.slice(startOffset, endOffset));
+  }
+
+  for (const [name, value] of pending) parts.push(`${name}="${escapeHtmlAttr(value)}"`);
+
+  const selfClosing = /\/\s*>$/.test(html.slice(startTag.startOffset, startTag.endOffset));
+  const tagName = html.slice(startTag.startOffset + 1).match(/^[^\s/>]+/)[0];
+  const attrsText = parts.length ? ` ${parts.join(" ")}` : "";
+
+  return {
+    start: startTag.startOffset,
+    end: startTag.endOffset,
+    text: `<${tagName}${attrsText}${selfClosing ? " />" : ">"}`,
+  };
+}
+
+function applyEdits(text, edits) {
+  let output = text;
+  for (const { start, end, text: replacement } of [...edits].sort((a, b) => b.start - a.start)) {
+    output = output.slice(0, start) + replacement + output.slice(end);
+  }
+  return output;
+}
+
+function escapeHtmlText(value) {
+  return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+function escapeHtmlAttr(value) {
+  return String(value).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+}
+
+// 移除 HTML 註解（保留 IE 條件註解），連同註解獨占的那一行一起清掉。
+export function stripHtmlComments(html) {
+  const edits = [];
+
+  const visit = (node) => {
+    if (node.nodeName === "#comment" && node.sourceCodeLocation) {
+      if (/^\s*\[if\b|^\s*<!\[endif\]/.test(node.data)) return;
+
+      let { startOffset: start, endOffset: end } = node.sourceCodeLocation;
+      const lineStart = html.lastIndexOf("\n", start - 1) + 1;
+      const lineEnd = html.indexOf("\n", end);
+      const before = html.slice(lineStart, start);
+      const after = html.slice(end, lineEnd === -1 ? html.length : lineEnd);
+      if (!before.trim() && !after.trim()) {
+        start = lineStart;
+        end = lineEnd === -1 ? html.length : lineEnd + 1;
+      }
+      edits.push({ start, end, text: "" });
+      return;
+    }
+
+    for (const child of node.content?.childNodes ?? node.childNodes ?? []) visit(child);
+  };
+
+  visit(parse(html, { sourceCodeLocationInfo: true }));
+  return applyEdits(html, edits);
+}
+
+// 移除 JS/CSS 的一般註解，只保留套件 license 註解（/*! ... */、@license、@preserve）。
+// esbuild 不 minify 時只會丟掉註解、不改寫語法；之後再交給 Prettier 統一排版。
+export async function stripCodeComments(code, loader) {
+  if (!code.trim()) return code;
+
+  const { transform } = await import("esbuild");
+  const result = await transform(code, {
+    loader,
+    charset: "utf8",
+    target: "esnext",
+    legalComments: "inline",
+  });
+  // esbuild 會自動加上 tree-shaking 用的 /* @__PURE__ */ 等標註，dist 不需要。
+  return result.code.replace(/\/\* @__(?:PURE|KEY|NO_SIDE_EFFECTS)__ \*\/ ?/g, "");
+}
+
 async function compileTailwindCss(renderedPage, config, pageName) {
   const cacheDir = path.join(config.rootDir, ".cache", "tailwind", pageName);
   const inputCssPath = path.join(cacheDir, "input.css");
@@ -631,9 +892,11 @@ function findTailwindCli(rootDir) {
 async function copyAssets(config) {
   if (!(await fileExists(config.assetsDir))) return;
 
+  // *.md 是給開發者看的說明文件，不屬於網站內容，不複製進 dist。
   await cp(config.assetsDir, path.join(config.outDir, "assets"), {
     recursive: true,
     force: true,
+    filter: (source) => path.extname(source).toLowerCase() !== ".md",
   });
 }
 
