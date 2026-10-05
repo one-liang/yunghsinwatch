@@ -14,7 +14,7 @@
 - [ ] #14 【Header】切換 Header 時由上往下展開
 - [x] #7 【首頁】Banner 高度與影片
 - [x] #6 【首頁】Scroll 動畫
-- [ ] #9 【首頁、時計系列】卡片圖片 Hover 放大
+- [x] #9 【首頁、時計系列】卡片圖片 Hover 放大
 - [ ] #15 【Header】MD / LG 尺寸使用 scroll 版 Header
 - [ ] #10 【單系列列表、單錶介紹頁】手錶名稱 Hover 效果
 - [x] #12 【單系列列表、單錶介紹頁】Scroll 動畫
@@ -113,8 +113,11 @@ transition:
 > `:hover img { transform: scale(1.1); }`
 > `transition: transform 0.3s ease-out;`
 
-- [ ] 文章卡片圖片 Hover 放大
-- [ ] 系列卡片圖片 Hover 放大
+- [x] 文章卡片圖片 Hover 放大
+- [x] 系列卡片圖片 Hover 放大
+
+實作說明：卡片加 `group`，圖片 `group-hover:scale-110` 搭配全站預設 0.3s ease-out 過場，外層 `overflow-hidden` 裁切。
+首頁文章卡片的圖片另包一層 div，進場動畫 `data-reveal-media` 移到外層，避免與 hover 縮放互相干擾。
 
 ## 4. Index / XL（`1088:9597`）
 

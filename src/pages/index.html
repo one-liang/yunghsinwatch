@@ -128,14 +128,16 @@
         />
       </section>
 
-      <!-- 捲動進場（Figma Mockup comment #6，參考 furlanmarri.com）：文字區塊用 data-reveal-group，
+      <!-- 文章卡片 hover 時圖片放大 1.1 倍（Figma Mockup comment #9），過場沿用全站 0.3s ease-out；
+           外層 div 負責裁切與進場動畫，transform 不會和 hover 的 scale 互相干擾。
+           捲動進場（Figma Mockup comment #6，參考 furlanmarri.com）：文字區塊用 data-reveal-group，
            內部 data-reveal-item 依序往上；影片與照片用 data-reveal-media 往上淡入。見 src/js/global/motion.js。 -->
       <section class="relative bg-background py-28">
         <span class="absolute top-[-40px] left-1/2 h-20 w-px -translate-x-1/2 bg-brand-gold"></span>
 
         <div class="mx-auto flex w-[calc(100%_-_64px)] max-w-[1280px] flex-col gap-28">
           <article
-            class="grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
+            class="group grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
           >
             <div class="flex flex-col gap-8" data-reveal-group>
               <div class="flex flex-col gap-4">
@@ -155,25 +157,27 @@
                 年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
               </p>
             </div>
-            <img
-              class="h-[450px] w-full object-cover"
-              src="../assets/images/home/article-6105g.png"
-              alt="百達翡麗 Grand Complications 6105G-001 腕錶"
-              loading="lazy"
-              data-reveal-media
-            />
+            <div class="h-[450px] w-full overflow-hidden" data-reveal-media>
+              <img
+                class="size-full object-cover transition-transform group-hover:scale-110"
+                src="../assets/images/home/article-6105g.png"
+                alt="百達翡麗 Grand Complications 6105G-001 腕錶"
+                loading="lazy"
+              />
+            </div>
           </article>
 
           <article
-            class="grid min-h-[450px] grid-cols-[minmax(0,800px)_minmax(0,408px)] items-center gap-[72px]"
+            class="group grid min-h-[450px] grid-cols-[minmax(0,800px)_minmax(0,408px)] items-center gap-[72px]"
           >
-            <img
-              class="h-[450px] w-full object-cover"
-              src="../assets/images/home/article-5396r.png"
-              alt="百達翡麗 5396R 年曆腕錶"
-              loading="lazy"
-              data-reveal-media
-            />
+            <div class="h-[450px] w-full overflow-hidden" data-reveal-media>
+              <img
+                class="size-full object-cover transition-transform group-hover:scale-110"
+                src="../assets/images/home/article-5396r.png"
+                alt="百達翡麗 5396R 年曆腕錶"
+                loading="lazy"
+              />
+            </div>
             <div class="flex flex-col gap-8" data-reveal-group>
               <div class="flex flex-col gap-4">
                 <p
@@ -197,7 +201,7 @@
           </article>
 
           <article
-            class="grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
+            class="group grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
           >
             <div class="flex flex-col gap-8" data-reveal-group>
               <div class="flex flex-col gap-4">
@@ -217,13 +221,14 @@
                 年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
               </p>
             </div>
-            <img
-              class="h-[450px] w-full object-cover"
-              src="../assets/images/home/article-6105g.png"
-              alt="百達翡麗 Grand Complications 6105G-001 腕錶"
-              loading="lazy"
-              data-reveal-media
-            />
+            <div class="h-[450px] w-full overflow-hidden" data-reveal-media>
+              <img
+                class="size-full object-cover transition-transform group-hover:scale-110"
+                src="../assets/images/home/article-6105g.png"
+                alt="百達翡麗 Grand Complications 6105G-001 腕錶"
+                loading="lazy"
+              />
+            </div>
           </article>
         </div>
       </section>
