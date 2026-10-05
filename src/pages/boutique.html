@@ -66,7 +66,8 @@
       </section>
 
       <!-- 圖片輪播：slide 比容器窄且置中，容器不裁切，左右自然露出相鄰的圖。
-           非 loop，到頭／尾時對應的箭頭停用；LG 以下不顯示箭頭，改用滑動。 -->
+           非 loop，到頭／尾時對應的箭頭淡出；LG 以下不顯示箭頭，改用滑動。
+           切換效果參考 patek.com 博物館頁的 media-carousel（Figma Mockup comment #5），見 boutique.css。 -->
       <section
         class="boutique-carousel relative h-[250px] lg:h-[432px] xl:h-[534px] 2xl:h-[675px]"
         data-reveal-media
@@ -83,7 +84,7 @@
         </div>
 
         <button
-          class="boutique-carousel__nav boutique-carousel__nav--prev hidden cursor-pointer rounded-full bg-white/80 p-[10px] transition-opacity lg:block"
+          class="boutique-carousel__nav boutique-carousel__nav--prev hidden cursor-pointer rounded-full bg-white/80 p-[10px] lg:block"
           type="button"
           data-carousel-prev
           data-i18n-attr="aria-label:boutique.carousel.prev"
@@ -92,7 +93,7 @@
           <img class="size-6 rotate-180" src="@assets/icons/arrow-right.svg" alt="" />
         </button>
         <button
-          class="boutique-carousel__nav boutique-carousel__nav--next hidden cursor-pointer rounded-full bg-white/80 p-[10px] transition-opacity lg:block"
+          class="boutique-carousel__nav boutique-carousel__nav--next hidden cursor-pointer rounded-full bg-white/80 p-[10px] lg:block"
           type="button"
           data-carousel-next
           data-i18n-attr="aria-label:boutique.carousel.next"

@@ -19,13 +19,33 @@
 .boutique-carousel .swiper-slide {
   width: var(--slide-w);
   height: 100%;
+  overflow: hidden;
 }
 
+/* 切換效果對齊 patek.com 博物館頁 media-carousel（Figma Mockup comment #5）：
+   非目前的圖淡到 70% 並放大 1.15 倍（slide 裁切），成為目前那張時回到原尺寸；
+   LG 以上 1s、以下 0.5s，曲線同參考站 cubic-bezier(.4,.05,.32,1)。 */
 .boutique-carousel .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  opacity: 0.7;
+  transform: scale(1.15);
+  transition:
+    opacity 0.5s cubic-bezier(0.4, 0.05, 0.32, 1),
+    transform 0.5s cubic-bezier(0.4, 0.05, 0.32, 1);
+}
+
+.boutique-carousel .swiper-slide-active img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 軌道移動時間由 boutique.js 的 speed（1s）控制，這裡只換曲線：
+   參考站實測前段快、後段長尾減速，近似 cubic-bezier(.19,1,.22,1)。 */
+.boutique-carousel .swiper-wrapper {
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 /* 箭頭：44×44（24px 圖示 + 10px 內距），垂直置中，騎在主圖的左右邊緣上
@@ -37,6 +57,15 @@
   top: 50%;
   z-index: 2;
   translate: 0 -50%;
+  transition:
+    opacity 0.3s ease-out,
+    scale 0.3s ease-out;
+}
+
+@media (hover: hover) {
+  .boutique-carousel__nav:hover {
+    scale: 1.05;
+  }
 }
 
 .boutique-carousel__nav--prev {
@@ -47,15 +76,19 @@
   right: calc((100% - var(--slide-w)) / 2 - 24px);
 }
 
-/* 非 loop，所以到頭／尾時 Swiper 會掛上 swiper-button-disabled。 */
+/* 非 loop，所以到頭／尾時 Swiper 會掛上 swiper-button-disabled；參考站在此時直接淡出按鈕。 */
 .boutique-carousel__nav.swiper-button-disabled {
-  opacity: 0.35;
+  opacity: 0;
   pointer-events: none;
 }
 
 @media (width >= 64rem) {
   .boutique-carousel {
     --slide-w: 75%;
+  }
+
+  .boutique-carousel .swiper-slide img {
+    transition-duration: 1s;
   }
 }
 
@@ -68,5 +101,12 @@
 @media (width >= 96rem) {
   .boutique-carousel {
     --slide-w: 78.125%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boutique-carousel .swiper-slide img,
+  .boutique-carousel__nav {
+    transition: none;
   }
 }
