@@ -26,16 +26,19 @@
         <div class="absolute inset-0 bg-black/48"></div>
         <div
           class="absolute right-5 bottom-6 left-5 flex flex-col items-center gap-2 text-center xl:right-16 xl:bottom-12 xl:left-16 xl:gap-4"
+          data-reveal-group
         >
           <p
             class="font-label text-sm leading-[22px] font-medium tracking-[1.5px] text-background uppercase lg:text-base lg:leading-6"
             data-i18n="boutique.hero.eyebrow"
+            data-reveal-item
           >
             Boutique
           </p>
           <h1
             class="type-heading-md tracking-[2px] xl:type-heading-xl"
             data-i18n="boutique.hero.title"
+            data-reveal-item
           >
             永新鐘錶百達翡麗專賣店
           </h1>
@@ -44,24 +47,31 @@
 
       <section
         class="mx-auto flex max-w-[768px] flex-col items-center gap-4 px-5 py-12 text-center xl:px-0 xl:py-20"
+        data-reveal-group
       >
         <h2
           class="pt-2 font-heading text-[22px] leading-9 font-medium tracking-[1px] text-brown-dark lg:type-heading-sm xl:type-heading-lg"
           data-i18n="boutique.intro.title"
+          data-reveal-item
         >
           聚光燈下的鐘錶城堡
         </h2>
         <p
           class="pt-2 font-heading text-[18px] leading-8 font-medium tracking-[1px] text-brown-dark xl:text-xl"
           data-i18n="boutique.intro.body"
+          data-reveal-item
         >
           以「稀缺工藝」與「精準美學」，永新百達翡麗專館透過傳承與創新，訴說時間的璀璨永恆。
         </p>
       </section>
 
       <!-- 圖片輪播：slide 比容器窄且置中，容器不裁切，左右自然露出相鄰的圖。
-           非 loop，到頭／尾時對應的箭頭停用；LG 以下不顯示箭頭，改用滑動。 -->
-      <section class="boutique-carousel relative h-[250px] lg:h-[432px] xl:h-[534px] 2xl:h-[675px]">
+           非 loop，到頭／尾時對應的箭頭淡出；LG 以下不顯示箭頭，改用滑動。
+           切換效果參考 patek.com 博物館頁的 media-carousel（Figma Mockup comment #5），見 boutique.css。 -->
+      <section
+        class="boutique-carousel relative h-[250px] lg:h-[432px] xl:h-[534px] 2xl:h-[675px]"
+        data-reveal-media
+      >
         <div class="boutique-carousel__viewport swiper h-full">
           <div class="swiper-wrapper">
             <article class="swiper-slide">
@@ -74,7 +84,7 @@
         </div>
 
         <button
-          class="boutique-carousel__nav boutique-carousel__nav--prev hidden cursor-pointer rounded-full bg-white/80 p-[10px] transition-opacity duration-200 lg:block"
+          class="boutique-carousel__nav boutique-carousel__nav--prev hidden cursor-pointer rounded-full bg-white/80 p-[10px] lg:block"
           type="button"
           data-carousel-prev
           data-i18n-attr="aria-label:boutique.carousel.prev"
@@ -83,7 +93,7 @@
           <img class="size-6 rotate-180" src="@assets/icons/arrow-right.svg" alt="" />
         </button>
         <button
-          class="boutique-carousel__nav boutique-carousel__nav--next hidden cursor-pointer rounded-full bg-white/80 p-[10px] transition-opacity duration-200 lg:block"
+          class="boutique-carousel__nav boutique-carousel__nav--next hidden cursor-pointer rounded-full bg-white/80 p-[10px] lg:block"
           type="button"
           data-carousel-next
           data-i18n-attr="aria-label:boutique.carousel.next"
@@ -95,13 +105,20 @@
 
       <section
         class="mx-auto flex max-w-[768px] flex-col items-center gap-4 px-5 py-12 text-center xl:px-0 xl:py-20"
+        data-reveal-group
       >
-        <img class="size-8" src="@assets/images/home/patek-philippe-mark.svg" alt="" />
+        <img
+          class="size-8"
+          src="@assets/images/home/patek-philippe-mark.svg"
+          alt=""
+          data-reveal-item
+        />
         <!-- 設計稿在 LG 以上是四句各一行，MD 以下把後兩句合成一段讓它自然折行。
              翻譯只替換純文字（<br> 會被吃掉），所以改用兩份文案切換。 -->
         <p
           class="pt-2 font-heading text-[18px] leading-8 font-medium tracking-[1px] whitespace-pre-line text-brown-dark lg:hidden"
           data-i18n="boutique.story.bodySm"
+          data-reveal-item
         >
           在時間的長河中，鐘錶不僅是計時工具， 更是藝術、工藝與情感的載體。
           永新鐘錶以深厚的技藝底蘊與誠信的經營哲學，成為無數愛錶人士心中的殿堂。
@@ -109,6 +126,7 @@
         <p
           class="hidden pt-2 font-heading text-[18px] leading-8 font-medium tracking-[1px] whitespace-pre-line text-brown-dark lg:block xl:text-xl"
           data-i18n="boutique.story.body"
+          data-reveal-item
         >
           在時間的長河中，鐘錶不僅是計時工具， 更是藝術、工藝與情感的載體。
           永新鐘錶以深厚的技藝底蘊與誠信的經營哲學， 成為無數愛錶人士心中的殿堂。
@@ -119,12 +137,14 @@
 
       <section
         class="flex items-center justify-center bg-brown-dark px-5 py-10 text-white lg:h-[175px] lg:py-0 xl:h-[200px]"
+        data-reveal-group
       >
         <!-- 開啟預約彈跳視窗（組件在 header 裡，見 src/components/booking-modal/）。 -->
         <button
-          class="flex cursor-pointer flex-col items-center gap-4 text-center transition-opacity duration-200 hover:opacity-80 lg:flex-row lg:gap-14"
+          class="flex cursor-pointer flex-col items-center gap-4 text-center transition-opacity hover:opacity-80 lg:flex-row lg:gap-14"
           type="button"
           data-booking-open
+          data-reveal-item
         >
           <span
             class="type-heading-md tracking-[2px] whitespace-nowrap lg:type-heading-lg xl:type-heading-xl"

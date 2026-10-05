@@ -16,8 +16,8 @@ Lenis、GSAP、ScrollTrigger、CustomEase、Swiper、字型與圖片都使用本
 每頁引用本機 Lenis CSS，並於 body 結尾使用 `<c-motion-scripts />` 載入套件；
 全站初始化在 `src/js/global/motion.js`，新增頁面時請沿用這兩處引用。
 
-進場動畫使用 `data-reveal="up|left|right"`，延遲以 `data-reveal-delay="250"` 指定毫秒。
-預設位移 48px、播放 2 秒、只播放一次；80rem 以下統一使用向上進場。
+進場動畫參考 furlanmarri.com，元素進入視窗即播放一次：文字區塊加 `data-reveal-group`，
+其中標記 `data-reveal-item` 的元素依序往上淡入；圖片、影片或卡片加 `data-reveal-media` 往上淡入。
 新增獨立捲動區域時使用 `data-lenis-prevent`，簡單 hover 與過渡仍使用 CSS。
 
 ## 開發環境需求

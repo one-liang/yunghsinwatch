@@ -9,6 +9,7 @@
     let lenis = null;
     let paused = false;
     let refreshFrame = null;
+    let refreshPending = false;
 
     const isLocked = () => document.body.classList.contains("overflow-hidden");
 
@@ -33,9 +34,14 @@
 
     if (!gsap || !ScrollTrigger || !CustomEase) return;
     gsap.registerPlugin(ScrollTrigger, CustomEase);
-    const revealEase = CustomEase.create("site-reveal", "0.25,0.1,0.25,1");
+    // load／resize 的重新量測改由下方 refresh() 統一排程，避免在 Lenis 捲動途中執行。
+    ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,DOMContentLoaded" });
 
-    const tick = (time) => lenis?.raf(time * 1000);
+    const tick = (time) => {
+      lenis?.raf(time * 1000);
+      // 捲動途中延後的重新量測，等 Lenis 停下來再補做。
+      if (refreshPending && !lenis?.isScrolling) refresh();
+    };
     gsap.ticker.lagSmoothing(0);
 
     const syncLock = () => {
@@ -78,56 +84,92 @@
       attributeFilter: ["class"],
     });
 
-    const elements = [...document.querySelectorAll("[data-reveal]")];
     const completed = new WeakSet();
+
+    // 全站捲動進場，參考 furlanmarri.com（Figma Mockup comment #3、#4、#6、#11、#12、#13），
+    // 元素一進入視窗就播放一次：
+    // - [data-reveal-group]：群組內的 [data-reveal-item] 依序往上 2.5rem、帶 2° 旋轉淡入，0.5s
+    // - [data-reveal-media]：往上 1.25rem 淡入，0.8s、延遲 0.3s
+    const entranceEase = CustomEase.create("site-entrance", "0.25,0.46,0.45,0.94");
+    const GROUP_DELAYS = [0.1, 0.3, 0.5, 0.8];
+    const groups = [...document.querySelectorAll("[data-reveal-group]")].map((group) => ({
+      trigger: group,
+      items: [...group.querySelectorAll("[data-reveal-item]")],
+    }));
+    const mediaItems = [...document.querySelectorAll("[data-reveal-media]")];
+    // 超出參考站四段延遲的項目，沿用最後的 0.3s 間隔往後排。
+    const groupDelay = (index) =>
+      GROUP_DELAYS[index] ?? GROUP_DELAYS.at(-1) + (index - GROUP_DELAYS.length + 1) * 0.3;
+
     const media = gsap.matchMedia();
-    media.add(
-      { all: "all", wide: "(min-width: 80rem)", reduced: "(prefers-reduced-motion: reduce)" },
-      ({ conditions }) => {
-        for (const element of elements) {
-          if (conditions.reduced) completed.add(element);
-          if (completed.has(element)) continue;
+    media.add({ all: "all", reduced: "(prefers-reduced-motion: reduce)" }, ({ conditions }) => {
+      const entrance = (target, trigger, from, to) => {
+        if (conditions.reduced) completed.add(target);
+        if (completed.has(target)) return;
 
-          const direction = conditions.wide ? element.dataset.reveal : "up";
-          const delay = Number(element.dataset.revealDelay ?? 0);
-          gsap.fromTo(
-            element,
-            {
-              opacity: 0,
-              x: direction === "left" ? 48 : direction === "right" ? -48 : 0,
-              y: direction === "up" ? 48 : 0,
-            },
-            {
-              opacity: 1,
-              x: 0,
-              y: 0,
-              duration: 2,
-              delay: Number.isFinite(delay) ? Math.max(0, delay) / 1000 : 0,
-              ease: revealEase,
-              onComplete: () => completed.add(element),
-              scrollTrigger: {
-                trigger: element,
-                start: "top bottom-=120",
-                once: true,
-              },
-            }
-          );
-        }
+        gsap.fromTo(target, from, {
+          ...to,
+          ease: entranceEase,
+          // 播完移除行內 opacity／transform，讓元素本身的 hover 樣式（例如預約按鈕）繼續生效。
+          clearProps: "opacity,transform",
+          onComplete: () => completed.add(target),
+          scrollTrigger: { trigger, start: "top bottom", once: true },
+        });
+      };
+
+      for (const { trigger, items } of groups) {
+        items.forEach((item, index) =>
+          entrance(
+            item,
+            trigger,
+            { opacity: 0, y: 40, rotation: 2 },
+            { opacity: 1, y: 0, rotation: 0, duration: 0.5, delay: groupDelay(index) }
+          )
+        );
       }
-    );
 
+      for (const element of mediaItems) {
+        entrance(
+          element,
+          element,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.8, delay: 0.3 }
+        );
+      }
+    });
+
+    // ScrollTrigger.refresh() 量測時會把視窗捲到頂端再捲回原位。若發生在 Lenis 平滑捲動途中，
+    // Lenis 的目標位置會與實際位置脫節，下一次滾輪就先往回彈一段（剛載入時 lazy 圖片陸續
+    // 觸發重新量測，第一次往下捲最明顯）。所以捲動中只記下待辦，停下來才由 tick 補做。
     const refresh = () => {
-      if (refreshFrame !== null || paused) return;
+      if (paused) return;
+      if (lenis?.isScrolling) {
+        refreshPending = true;
+        return;
+      }
+      refreshPending = false;
+      if (refreshFrame !== null) return;
       refreshFrame = window.requestAnimationFrame(() => {
         refreshFrame = null;
+        if (lenis?.isScrolling) {
+          refreshPending = true;
+          return;
+        }
         lenis?.resize();
         ScrollTrigger.refresh();
       });
     };
 
+    let resizeTimer = null;
     window.addEventListener("load", refresh);
+    window.addEventListener("resize", () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(refresh, 150);
+    });
     document.fonts?.ready.then(refresh);
-    document.addEventListener("load", refresh, true);
+    // 只在版面高度真的改變時重新量測（字型換上、手風琴展開等）；
+    // 有固定比例的圖片載入不會改變版面，不需要逐張重新量測。
+    if (typeof ResizeObserver === "function") new ResizeObserver(refresh).observe(document.body);
     new MutationObserver(refresh).observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["lang"],

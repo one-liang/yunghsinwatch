@@ -13,7 +13,11 @@
   const carousel = document.querySelector(".boutique-carousel__viewport");
   if (!carousel || typeof window.Swiper !== "function") return;
 
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   new window.Swiper(carousel, {
+    // 軌道移動 1s，對齊參考站 media-carousel 的節奏（Figma Mockup comment #5）；曲線寫在 boutique.css。
+    speed: reducedMotion ? 0 : 1000,
     slidesPerView: "auto",
     centeredSlides: true,
     spaceBetween: 20,

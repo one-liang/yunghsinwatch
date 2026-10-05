@@ -25,10 +25,12 @@
         <div class="absolute inset-0 bg-black/48"></div>
         <div
           class="absolute right-5 bottom-6 left-5 flex flex-col items-center gap-2 text-center xl:right-16 xl:bottom-12 xl:left-16 xl:gap-4"
+          data-reveal-group
         >
           <p
             class="font-label text-sm leading-[22px] font-medium tracking-[1.5px] text-background uppercase lg:text-base lg:leading-6"
             data-i18n="about.hero.eyebrow"
+            data-reveal-item
           >
             Boutique
           </p>
@@ -36,6 +38,7 @@
           <h1
             class="type-heading-md tracking-[2px] lg:type-heading-lg xl:type-heading-xl en:font-display xl:en:type-display-xl"
             data-i18n="about.hero.title"
+            data-reveal-item
           >
             關於永新
           </h1>
@@ -44,17 +47,25 @@
 
       <section
         class="mx-auto flex max-w-[768px] flex-col items-center gap-4 px-5 py-12 text-center lg:px-0 xl:py-20"
+        data-reveal-group
       >
         <h2
           class="pt-2 font-heading text-[22px] leading-9 font-medium tracking-[1px] text-brown-dark lg:type-heading-sm xl:type-heading-lg"
           data-i18n="about.intro.title"
+          data-reveal-item
         >
           以信立人 以誠傳家
         </h2>
-        <img class="size-8" src="@assets/images/home/patek-philippe-mark.svg" alt="" />
+        <img
+          class="size-8"
+          src="@assets/images/home/patek-philippe-mark.svg"
+          alt=""
+          data-reveal-item
+        />
         <p
           class="pt-2 font-heading text-[18px] leading-8 font-medium tracking-[1px] text-brown-dark xl:text-xl"
           data-i18n="about.intro.body"
+          data-reveal-item
         >
           永新鐘錶1986
           年起深耕台北天母多年，最早以榮安鐘錶為名，之後更名為永新鐘錶，並於此人文薈萃之地，開啟了與百達翡麗合作的序章。2013年永新鐘錶擴大經營版圖，全台首間百達翡麗專館落成，以嶄新專館形象傳遞百達翡麗卓越工藝與世代相傳的品牌精神，並承載著家族傳承，意義非凡。
@@ -67,17 +78,18 @@
           src="../assets/images/about/salon.jpg"
           alt=""
           loading="lazy"
-          data-reveal="up"
-          data-reveal-delay="250"
+          data-reveal-media
         />
       </div>
 
       <section
         class="mx-auto flex max-w-[768px] flex-col items-center px-5 py-12 text-center lg:px-0 xl:py-28"
+        data-reveal-group
       >
         <p
           class="pt-2 font-heading text-[18px] leading-8 font-medium tracking-[1px] text-brown-dark xl:text-xl"
           data-i18n="about.founders.body"
+          data-reveal-item
         >
           創辦人賴建發先生與莊美玲小姐夫婦，攜手第二代亦是現任總經理Henry，延續永新鐘錶以「誠信與服務」為本的經營特色，建構起頂級腕錶藏家無可取代的信任，也是永新鐘錶一路走來最珍貴、無可取代的基石。
         </p>
@@ -85,12 +97,8 @@
 
       <!-- 圖文卡：XL 以上左右分欄（第一張文左圖右、第二張圖左文右），XL 以下一律圖在上的直式堆疊。
 
-           動態效果對齊 patekboutiquemiami.com/patek-philippe：整頁只有照片會動，文字不做進場。
-           照片依它在版面的位置決定方向（圖在右 → fade-left，圖在左 → fade-right），delay 250ms；
-           XL 以下由 tailwind.css 的 media query 統一退回 fade-up（參考站行動版也是這樣切）。
-
-           article 的 overflow-hidden 是必要的：XL 以上照片貼齊版面邊緣，
-           48px 的水平位移會撐出橫向捲軸，裁掉之後視覺上正好是從畫面邊緣滑進來。 -->
+           捲動進場（Figma Mockup comment #4，參考 furlanmarri.com）：照片 data-reveal-media 往上淡入，
+           文字 data-reveal-group 依序往上，見 src/js/global/motion.js。 -->
       <section class="mx-auto flex w-full max-w-[1536px] flex-col px-5 lg:px-32 xl:gap-28 xl:px-0">
         <article class="flex flex-col overflow-hidden xl:flex-row xl:items-center">
           <img
@@ -98,13 +106,16 @@
             src="../assets/images/about/interior.jpg"
             alt=""
             loading="lazy"
-            data-reveal="left"
-            data-reveal-delay="250"
+            data-reveal-media
           />
-          <div class="py-12 text-center xl:order-1 xl:min-w-0 xl:flex-1 xl:px-20 xl:py-0">
+          <div
+            class="py-12 text-center xl:order-1 xl:min-w-0 xl:flex-1 xl:px-20 xl:py-0"
+            data-reveal-group
+          >
             <p
               class="font-heading text-[18px] leading-8 font-medium tracking-[1px] text-brown-dark xl:text-xl"
               data-i18n="about.renewal.body"
+              data-reveal-item
             >
               2025年永新鐘錶百達翡麗專館換上新裝，亦是永新鐘錶與百達翡麗合作歷程中的重要篇章。整體設計完整承襲品牌嶄新全球形象設計概念，將傳承精神與現代體驗完美結合。全新內裝主要由鳥眼楓木與印度玫瑰木，搭配咖啡色大理石和黃銅金屬等材質為主，共同組成深棕色經典色系，營造出沉穩而典雅溫馨的氛圍。獨棟建築的空間結構引進大量自然光，室內展示櫃擴大的間距，更提升顧客鑑賞腕錶時的舒適度。位於二樓的VIP室以歐陸溫暖格調營造頂級質感，提供顧客靜謐雅致的賞錶空間。
             </p>
@@ -117,13 +128,13 @@
             src="../assets/images/about/vip-room.jpg"
             alt=""
             loading="lazy"
-            data-reveal="right"
-            data-reveal-delay="250"
+            data-reveal-media
           />
-          <div class="pt-12 text-center xl:min-w-0 xl:flex-1 xl:px-20 xl:pt-0">
+          <div class="pt-12 text-center xl:min-w-0 xl:flex-1 xl:px-20 xl:pt-0" data-reveal-group>
             <p
               class="font-heading text-[18px] leading-8 font-medium tracking-[1px] text-brown-dark xl:text-xl"
               data-i18n="about.service.body"
+              data-reveal-item
             >
               永新鐘錶珍惜每一次與顧客的相遇，以專業與親切服務，致力提供獨特且尊榮的體驗，建立長期的信賴感，呼應百達翡麗品牌價值的具體展現。
             </p>
@@ -133,11 +144,13 @@
 
       <section
         class="mx-auto flex max-w-[768px] flex-col items-center gap-4 px-5 py-12 text-center lg:px-0 xl:py-20"
+        data-reveal-group
       >
         <span class="h-14 w-px bg-brown-light"></span>
         <p
           class="pt-2 font-heading text-[18px] leading-8 font-medium tracking-[1px] text-brown-dark xl:text-xl"
           data-i18n="about.legacy.body"
+          data-reveal-item
         >
           百達翡麗最經典的品牌精神，凝聚在這句名言中：「你從來不曾真正擁有一支百達翡麗，你只是為下一代保管它。」永新鐘錶同樣希望將百達翡麗「家族傳承、工藝精神、創新語言」的價值，透過專業而體貼的陪伴與交流，將代代相傳落實在服務中，成為百達翡麗與永新鐘錶，品牌共同的核心精神。
         </p>
@@ -149,8 +162,7 @@
           src="../assets/images/about/showcase.jpg"
           alt=""
           loading="lazy"
-          data-reveal="up"
-          data-reveal-delay="250"
+          data-reveal-media
         />
       </div>
     </main>

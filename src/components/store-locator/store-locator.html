@@ -2,14 +2,14 @@
      店家資料直接寫在 HTML，JS 只負責切換視圖與更換 iframe 的 src。
      data-store-query-zh / -en 是餵給 Google Maps embed 的查詢字串，依 <html lang>
      取用，讓地圖上的標籤語系跟著網站語系走。 -->
-<section class="store-locator bg-background" data-store-locator data-view="map">
+<section class="store-locator bg-background" data-store-locator data-view="map" data-reveal-media>
   <div
     class="store-locator__frame flex w-full flex-col lg:h-[384px] lg:flex-row-reverse xl:h-[480px] 2xl:h-[576px]"
   >
     <div class="store-locator__aside relative flex flex-col lg:w-[420px] lg:shrink-0 xl:w-[491px]">
       <div class="store-locator__switch flex justify-center py-9 lg:hidden">
         <button
-          class="store-locator__switch-button flex cursor-pointer items-center gap-2 rounded-full border-[0.8px] border-brown-warm px-6 py-3 type-label-nav-sm tracking-[1.5px] text-brown-warm uppercase transition-colors duration-200 hover:bg-brown-warm hover:text-white"
+          class="store-locator__switch-button flex cursor-pointer items-center gap-2 rounded-full border-[0.8px] border-brown-warm px-6 py-3 type-label-nav-sm tracking-[1.5px] text-brown-warm uppercase transition-colors hover:bg-brown-warm hover:text-white"
           type="button"
           data-store-switch
         >
