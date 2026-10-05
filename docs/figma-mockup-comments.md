@@ -13,7 +13,7 @@
 - [x] #8 【全站】按鈕 Hover 效果
 - [ ] #14 【Header】切換 Header 時由上往下展開
 - [x] #7 【首頁】Banner 高度與影片
-- [ ] #6 【首頁】Scroll 動畫
+- [x] #6 【首頁】Scroll 動畫
 - [ ] #9 【首頁、時計系列】卡片圖片 Hover 放大
 - [ ] #15 【Header】MD / LG 尺寸使用 scroll 版 Header
 - [ ] #10 【單系列列表、單錶介紹頁】手錶名稱 Hover 效果
@@ -96,7 +96,12 @@ transition:
 > scroll 時下方內容的 Animation
 > 📌 參考網站：https://www.furlanmarri.com/
 
-- [ ] 首頁 scroll 時下方內容的進場動畫
+- [x] 首頁 scroll 時下方內容的進場動畫
+
+實作說明：依參考網站的 CSS 實作於 `src/js/global/motion.js`。文字區塊 `data-reveal-group` 內的
+`data-reveal-item` 依序往上（2.5rem、旋轉 2°、0.5s，延遲 0.1／0.3／0.5／0.8s）；圖片與影片
+`data-reveal-media` 往上 1.25rem 淡入（0.8s、延遲 0.3s）；曲線皆為 cubic-bezier(.25,.46,.45,.94)，
+進入視窗即播放一次。
 
 ### #9 【首頁、時計系列】卡片圖片 Hover 放大
 

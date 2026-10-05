@@ -118,14 +118,18 @@
           "
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
+          data-reveal-media
         ></iframe>
         <img
           class="size-14"
           src="../assets/images/home/patek-philippe-mark.svg"
           alt="Patek Philippe"
+          data-reveal-media
         />
       </section>
 
+      <!-- 捲動進場（Figma Mockup comment #6，參考 furlanmarri.com）：文字區塊用 data-reveal-group，
+           內部 data-reveal-item 依序往上；影片與照片用 data-reveal-media 往上淡入。見 src/js/global/motion.js。 -->
       <section class="relative bg-background py-28">
         <span class="absolute top-[-40px] left-1/2 h-20 w-px -translate-x-1/2 bg-brand-gold"></span>
 
@@ -133,16 +137,19 @@
           <article
             class="grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
           >
-            <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-8" data-reveal-group>
               <div class="flex flex-col gap-4">
-                <p class="type-label-eyebrow-lg font-semibold text-brown-light uppercase">
+                <p
+                  class="type-label-eyebrow-lg font-semibold text-brown-light uppercase"
+                  data-reveal-item
+                >
                   Aquanaut
                 </p>
-                <h2 class="type-heading-md tracking-[1px] text-brown-dark">
+                <h2 class="type-heading-md tracking-[1px] text-brown-dark" data-reveal-item>
                   首度加入日出日落<br />Grand Complications 6105G-001
                 </h2>
               </div>
-              <p class="type-body-base tracking-[1px]">
+              <p class="type-body-base tracking-[1px]" data-reveal-item>
                 當時間不再只是指針的流動，而化為一場關於宇宙運行的精密演繹，PATEK PHILIPPE Ref.
                 6105G-001 以嶄新高度重新定義天文複雜功能腕錶。此款 2026
                 年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
@@ -153,6 +160,7 @@
               src="../assets/images/home/article-6105g.png"
               alt="百達翡麗 Grand Complications 6105G-001 腕錶"
               loading="lazy"
+              data-reveal-media
             />
           </article>
 
@@ -164,17 +172,21 @@
               src="../assets/images/home/article-5396r.png"
               alt="百達翡麗 5396R 年曆腕錶"
               loading="lazy"
+              data-reveal-media
             />
-            <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-8" data-reveal-group>
               <div class="flex flex-col gap-4">
-                <p class="type-label-eyebrow-lg font-semibold text-brown-light uppercase">
+                <p
+                  class="type-label-eyebrow-lg font-semibold text-brown-light uppercase"
+                  data-reveal-item
+                >
                   Aquanaut
                 </p>
-                <h2 class="type-heading-md tracking-[1px] text-brown-dark">
+                <h2 class="type-heading-md tracking-[1px] text-brown-dark" data-reveal-item>
                   百達翡麗 5396R 年曆腕錶三十週年致敬之作
                 </h2>
               </div>
-              <p class="type-body-base tracking-[1px]">
+              <p class="type-body-base tracking-[1px]" data-reveal-item>
                 回顧現代高級製錶發展，一項真正具有影響力的複雜功能，往往不只是增加腕錶的技術含量，也可能重新改變市場對實用性的理解。1996
                 年，Patek Philippe 百達翡麗推出 Ref.
                 5035，首度將獲得專利的年曆複雜功能帶到世人面前。它既不是萬年曆的簡化版本，也不只是全日曆的小幅改良，而是一套能夠自動辨識
@@ -187,16 +199,19 @@
           <article
             class="grid min-h-[450px] grid-cols-[minmax(0,408px)_minmax(0,800px)] items-center gap-[72px]"
           >
-            <div class="flex flex-col gap-8">
+            <div class="flex flex-col gap-8" data-reveal-group>
               <div class="flex flex-col gap-4">
-                <p class="type-label-eyebrow-lg font-semibold text-brown-light uppercase">
+                <p
+                  class="type-label-eyebrow-lg font-semibold text-brown-light uppercase"
+                  data-reveal-item
+                >
                   Aquanaut
                 </p>
-                <h2 class="type-heading-md tracking-[1px] text-brown-dark">
+                <h2 class="type-heading-md tracking-[1px] text-brown-dark" data-reveal-item>
                   首度加入日出日落<br />Grand Complications 6105G-001
                 </h2>
               </div>
-              <p class="type-body-base tracking-[1px]">
+              <p class="type-body-base tracking-[1px]" data-reveal-item>
                 當時間不再只是指針的流動，而化為一場關於宇宙運行的精密演繹，PATEK PHILIPPE Ref.
                 6105G-001 以嶄新高度重新定義天文複雜功能腕錶。此款 2026
                 年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
@@ -207,6 +222,7 @@
               src="../assets/images/home/article-6105g.png"
               alt="百達翡麗 Grand Complications 6105G-001 腕錶"
               loading="lazy"
+              data-reveal-media
             />
           </article>
         </div>
@@ -223,20 +239,25 @@
         <div class="absolute inset-0 bg-black/50"></div>
         <div
           class="relative flex w-[min(640px,calc(100%_-_64px))] flex-col items-center gap-6 text-center"
+          data-reveal-group
         >
-          <h2 class="type-display-xl tracking-[2px]">CONTACT US</h2>
-          <p class="pt-2 type-heading-xs tracking-[1px]">
+          <h2 class="type-display-xl tracking-[2px]" data-reveal-item>CONTACT US</h2>
+          <p class="pt-2 type-heading-xs tracking-[1px]" data-reveal-item>
             跟隨鏡頭走進高級製錶世界，從難得一見的視角，窺見汝拉山谷核心地帶中，工匠、設計師、工程師精雕細琢的匠心工藝。
           </p>
         </div>
       </section>
 
-      <section class="flex h-[200px] items-center justify-center bg-brown-dark px-8 text-white">
+      <section
+        class="flex h-[200px] items-center justify-center bg-brown-dark px-8 text-white"
+        data-reveal-group
+      >
         <!-- 開啟預約彈跳視窗（組件在 header 裡，見 src/components/booking-modal/）。 -->
         <button
           class="flex cursor-pointer items-center gap-14 transition-opacity hover:opacity-80"
           type="button"
           data-booking-open
+          data-reveal-item
         >
           <span class="type-heading-xl tracking-[2px]" data-i18n="home.appointment.title">
             我要預約

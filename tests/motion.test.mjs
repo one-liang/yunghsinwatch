@@ -20,7 +20,13 @@ function eventTarget(extra = {}) {
   };
 }
 
-function setup({ reduced = false, wide = true, missing = false, missingLenis = false } = {}) {
+function setup({
+  reduced = false,
+  wide = true,
+  missing = false,
+  missingLenis = false,
+  entrances = false,
+} = {}) {
   const callbacks = new Set();
   const instances = [];
   const tweens = [];
@@ -34,6 +40,13 @@ function setup({ reduced = false, wide = true, missing = false, missingLenis = f
       this.nativeScroll = options;
     },
   };
+  // 首頁進場：一個文字群組（三個項目）與一個媒體。
+  const items = [{ name: "over-title" }, { name: "title" }, { name: "body" }];
+  const group = { querySelectorAll: () => items };
+  const mediaElement = { name: "media" };
+  const selectors = entrances
+    ? { "[data-reveal-group]": [group], "[data-reveal-media]": [mediaElement] }
+    : {};
   const body = { locked: false, classList: { contains: () => body.locked } };
   let runMedia;
   let refreshes = 0;
@@ -41,7 +54,8 @@ function setup({ reduced = false, wide = true, missing = false, missingLenis = f
     readyState: "complete",
     body,
     documentElement: {},
-    querySelectorAll: () => [element],
+    querySelectorAll: (selector) =>
+      selector === "[data-reveal]" ? [element] : (selectors[selector] ?? []),
   });
   const window = eventTarget({
     innerHeight: 800,
@@ -117,6 +131,9 @@ function setup({ reduced = false, wide = true, missing = false, missingLenis = f
     document,
     mediaQuery,
     element,
+    group,
+    items,
+    mediaElement,
     instances,
     callbacks,
     tweens,
@@ -222,4 +239,35 @@ test("layout refresh is coalesced and native keyboard scrolling cancels inertia"
   env.document.emit("keydown", { key: "PageDown", target: { closest: () => null } });
   env.document.emit("keydown", { key: "ArrowDown", target: { closest: () => ({}) } });
   assert.equal(stops, 1, "editing a field must not cancel or hijack its arrow keys");
+});
+
+test("entrances follow the reference timing: staggered text and delayed media", () => {
+  const env = setup({ entrances: true });
+  const byTarget = (target) => env.tweens.find((tween) => tween.target === target);
+  const delays = env.items.map((item) => byTarget(item).to.delay);
+  assert.deepEqual(delays, [0.1, 0.3, 0.5]);
+  for (const item of env.items) {
+    const { from, to } = byTarget(item);
+    assert.equal(from.y, 40);
+    assert.equal(from.rotation, 2);
+    assert.equal(to.duration, 0.5);
+    assert.equal(to.scrollTrigger.trigger, env.group, "items start together with their group");
+  }
+  const media = byTarget(env.mediaElement);
+  assert.equal(media.from.y, 20);
+  assert.equal(media.to.duration, 0.8);
+  assert.equal(media.to.delay, 0.3);
+  assert.equal(media.to.scrollTrigger.start, "top bottom");
+  assert.equal(media.to.scrollTrigger.once, true);
+  assert.equal(media.to.clearProps, "opacity,transform", "hover styles work after playing");
+});
+
+test("completed or reduced-motion entrances are never hidden again", () => {
+  const env = setup({ entrances: true });
+  const count = env.tweens.length;
+  for (const tween of env.tweens) tween.to.onComplete();
+  env.rerunMedia();
+  assert.equal(env.tweens.length, count);
+  const reduced = setup({ entrances: true, reduced: true });
+  assert.equal(reduced.tweens.length, 0);
 });

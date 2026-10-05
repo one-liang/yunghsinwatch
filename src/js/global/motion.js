@@ -80,10 +80,59 @@
 
     const elements = [...document.querySelectorAll("[data-reveal]")];
     const completed = new WeakSet();
+
+    // 進場動畫參考 furlanmarri.com（Figma Mockup comment #6），元素一進入視窗就播放一次：
+    // - [data-reveal-group]：群組內的 [data-reveal-item] 依序往上 2.5rem、帶 2° 旋轉淡入，0.5s
+    // - [data-reveal-media]：往上 1.25rem 淡入，0.8s、延遲 0.3s
+    const entranceEase = CustomEase.create("site-entrance", "0.25,0.46,0.45,0.94");
+    const GROUP_DELAYS = [0.1, 0.3, 0.5, 0.8];
+    const groups = [...document.querySelectorAll("[data-reveal-group]")].map((group) => ({
+      trigger: group,
+      items: [...group.querySelectorAll("[data-reveal-item]")],
+    }));
+    const mediaItems = [...document.querySelectorAll("[data-reveal-media]")];
+    // 超出參考站四段延遲的項目，沿用最後的 0.3s 間隔往後排。
+    const groupDelay = (index) =>
+      GROUP_DELAYS[index] ?? GROUP_DELAYS.at(-1) + (index - GROUP_DELAYS.length + 1) * 0.3;
+
     const media = gsap.matchMedia();
     media.add(
       { all: "all", wide: "(min-width: 80rem)", reduced: "(prefers-reduced-motion: reduce)" },
       ({ conditions }) => {
+        const entrance = (target, trigger, from, to) => {
+          if (conditions.reduced) completed.add(target);
+          if (completed.has(target)) return;
+
+          gsap.fromTo(target, from, {
+            ...to,
+            ease: entranceEase,
+            // 播完移除行內 opacity／transform，讓元素本身的 hover 樣式（例如預約按鈕）繼續生效。
+            clearProps: "opacity,transform",
+            onComplete: () => completed.add(target),
+            scrollTrigger: { trigger, start: "top bottom", once: true },
+          });
+        };
+
+        for (const { trigger, items } of groups) {
+          items.forEach((item, index) =>
+            entrance(
+              item,
+              trigger,
+              { opacity: 0, y: 40, rotation: 2 },
+              { opacity: 1, y: 0, rotation: 0, duration: 0.5, delay: groupDelay(index) }
+            )
+          );
+        }
+
+        for (const element of mediaItems) {
+          entrance(
+            element,
+            element,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.8, delay: 0.3 }
+          );
+        }
+
         for (const element of elements) {
           if (conditions.reduced) completed.add(element);
           if (completed.has(element)) continue;
