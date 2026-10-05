@@ -17,13 +17,13 @@
 - [ ] #9 【首頁、時計系列】卡片圖片 Hover 放大
 - [ ] #15 【Header】MD / LG 尺寸使用 scroll 版 Header
 - [ ] #10 【單系列列表、單錶介紹頁】手錶名稱 Hover 效果
-- [ ] #12 【單系列列表、單錶介紹頁】Scroll 動畫
-- [ ] #11 【精品店】進站 Scroll 動畫
+- [x] #12 【單系列列表、單錶介紹頁】Scroll 動畫
+- [x] #11 【精品店】進站 Scroll 動畫
 - [ ] #5 【精品店】圖片輪播
 - [ ] #2 【精品店】Google 地圖嵌入
-- [ ] #3 【我們的團隊】進站 Scroll 動畫
-- [ ] #4 【關於永新】進站 Scroll 動畫
-- [ ] #13 【維修保養】進站 Scroll 動畫
+- [x] #3 【我們的團隊】進站 Scroll 動畫
+- [x] #4 【關於永新】進站 Scroll 動畫
+- [x] #13 【維修保養】進站 Scroll 動畫
 
 ---
 
@@ -149,8 +149,8 @@ transition:
 > scroll 時下方內容的 Animation
 > 📌 參考網站：https://www.furlanmarri.com/
 
-- [ ] 單系列列表頁 scroll 進場動畫
-- [ ] 單錶介紹頁 scroll 進場動畫
+- [x] 單系列列表頁 scroll 進場動畫
+- [x] 單錶介紹頁 scroll 進場動畫
 
 ## 6. About The Boutique / 2XL（`308:151`）
 
@@ -163,7 +163,7 @@ transition:
 > 一進站 scroll 時下方內容的 Animation
 > 📌 參考網站：https://www.furlanmarri.com/
 
-- [ ] 精品店頁 scroll 進場動畫
+- [x] 精品店頁 scroll 進場動畫
 
 ### #5 【精品店】圖片輪播
 
@@ -203,7 +203,7 @@ transition:
 > 一進站 scroll 時下方內容的 Animation
 > 📌 參考網站：https://www.furlanmarri.com/
 
-- [ ] 我們的團隊頁 scroll 進場動畫
+- [x] 我們的團隊頁 scroll 進場動畫
 
 ## 8. About Yung-Hsin / 2XL（`460:1547`）
 
@@ -216,7 +216,7 @@ transition:
 > 一進站 scroll 時下方內容的 Animation
 > 📌 參考網站：https://www.furlanmarri.com/
 
-- [ ] 關於永新頁 scroll 進場動畫
+- [x] 關於永新頁 scroll 進場動畫
 
 ## 9. Service / 2XL（`462:1686`）
 
@@ -229,4 +229,7 @@ transition:
 > 一進站 scroll 時下方內容的 Animation
 > 📌 參考網站：https://www.furlanmarri.com/
 
-- [ ] 維修保養頁 scroll 進場動畫
+- [x] 維修保養頁 scroll 進場動畫
+
+實作說明：#3、#4、#11、#12、#13 與 #6 共用同一套 `data-reveal-group`／`data-reveal-media` 進場動畫；
+舊的 `data-reveal`（側邊滑入、2 秒）已全站移除。

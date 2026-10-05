@@ -33,7 +33,6 @@
 
     if (!gsap || !ScrollTrigger || !CustomEase) return;
     gsap.registerPlugin(ScrollTrigger, CustomEase);
-    const revealEase = CustomEase.create("site-reveal", "0.25,0.1,0.25,1");
 
     const tick = (time) => lenis?.raf(time * 1000);
     gsap.ticker.lagSmoothing(0);
@@ -78,10 +77,10 @@
       attributeFilter: ["class"],
     });
 
-    const elements = [...document.querySelectorAll("[data-reveal]")];
     const completed = new WeakSet();
 
-    // 進場動畫參考 furlanmarri.com（Figma Mockup comment #6），元素一進入視窗就播放一次：
+    // 全站捲動進場，參考 furlanmarri.com（Figma Mockup comment #3、#4、#6、#11、#12、#13），
+    // 元素一進入視窗就播放一次：
     // - [data-reveal-group]：群組內的 [data-reveal-item] 依序往上 2.5rem、帶 2° 旋轉淡入，0.5s
     // - [data-reveal-media]：往上 1.25rem 淡入，0.8s、延遲 0.3s
     const entranceEase = CustomEase.create("site-entrance", "0.25,0.46,0.45,0.94");
@@ -96,74 +95,41 @@
       GROUP_DELAYS[index] ?? GROUP_DELAYS.at(-1) + (index - GROUP_DELAYS.length + 1) * 0.3;
 
     const media = gsap.matchMedia();
-    media.add(
-      { all: "all", wide: "(min-width: 80rem)", reduced: "(prefers-reduced-motion: reduce)" },
-      ({ conditions }) => {
-        const entrance = (target, trigger, from, to) => {
-          if (conditions.reduced) completed.add(target);
-          if (completed.has(target)) return;
+    media.add({ all: "all", reduced: "(prefers-reduced-motion: reduce)" }, ({ conditions }) => {
+      const entrance = (target, trigger, from, to) => {
+        if (conditions.reduced) completed.add(target);
+        if (completed.has(target)) return;
 
-          gsap.fromTo(target, from, {
-            ...to,
-            ease: entranceEase,
-            // 播完移除行內 opacity／transform，讓元素本身的 hover 樣式（例如預約按鈕）繼續生效。
-            clearProps: "opacity,transform",
-            onComplete: () => completed.add(target),
-            scrollTrigger: { trigger, start: "top bottom", once: true },
-          });
-        };
+        gsap.fromTo(target, from, {
+          ...to,
+          ease: entranceEase,
+          // 播完移除行內 opacity／transform，讓元素本身的 hover 樣式（例如預約按鈕）繼續生效。
+          clearProps: "opacity,transform",
+          onComplete: () => completed.add(target),
+          scrollTrigger: { trigger, start: "top bottom", once: true },
+        });
+      };
 
-        for (const { trigger, items } of groups) {
-          items.forEach((item, index) =>
-            entrance(
-              item,
-              trigger,
-              { opacity: 0, y: 40, rotation: 2 },
-              { opacity: 1, y: 0, rotation: 0, duration: 0.5, delay: groupDelay(index) }
-            )
-          );
-        }
-
-        for (const element of mediaItems) {
+      for (const { trigger, items } of groups) {
+        items.forEach((item, index) =>
           entrance(
-            element,
-            element,
-            { opacity: 0, y: 20 },
-            { opacity: 1, y: 0, duration: 0.8, delay: 0.3 }
-          );
-        }
-
-        for (const element of elements) {
-          if (conditions.reduced) completed.add(element);
-          if (completed.has(element)) continue;
-
-          const direction = conditions.wide ? element.dataset.reveal : "up";
-          const delay = Number(element.dataset.revealDelay ?? 0);
-          gsap.fromTo(
-            element,
-            {
-              opacity: 0,
-              x: direction === "left" ? 48 : direction === "right" ? -48 : 0,
-              y: direction === "up" ? 48 : 0,
-            },
-            {
-              opacity: 1,
-              x: 0,
-              y: 0,
-              duration: 2,
-              delay: Number.isFinite(delay) ? Math.max(0, delay) / 1000 : 0,
-              ease: revealEase,
-              onComplete: () => completed.add(element),
-              scrollTrigger: {
-                trigger: element,
-                start: "top bottom-=120",
-                once: true,
-              },
-            }
-          );
-        }
+            item,
+            trigger,
+            { opacity: 0, y: 40, rotation: 2 },
+            { opacity: 1, y: 0, rotation: 0, duration: 0.5, delay: groupDelay(index) }
+          )
+        );
       }
-    );
+
+      for (const element of mediaItems) {
+        entrance(
+          element,
+          element,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.8, delay: 0.3 }
+        );
+      }
+    });
 
     const refresh = () => {
       if (refreshFrame !== null || paused) return;

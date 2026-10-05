@@ -20,13 +20,7 @@ function eventTarget(extra = {}) {
   };
 }
 
-function setup({
-  reduced = false,
-  wide = true,
-  missing = false,
-  missingLenis = false,
-  entrances = false,
-} = {}) {
+function setup({ reduced = false, missing = false, missingLenis = false } = {}) {
   const callbacks = new Set();
   const instances = [];
   const tweens = [];
@@ -34,19 +28,16 @@ function setup({
   const frames = new Map();
   const mediaQuery = eventTarget({ matches: reduced });
   const element = {
-    dataset: { reveal: "left", revealDelay: "250" },
     getBoundingClientRect: () => ({ top: 400, height: 200 }),
     scrollIntoView(options) {
       this.nativeScroll = options;
     },
   };
-  // 首頁進場：一個文字群組（三個項目）與一個媒體。
+  // 進場目標：一個文字群組（三個項目）與一個媒體。
   const items = [{ name: "over-title" }, { name: "title" }, { name: "body" }];
   const group = { querySelectorAll: () => items };
   const mediaElement = { name: "media" };
-  const selectors = entrances
-    ? { "[data-reveal-group]": [group], "[data-reveal-media]": [mediaElement] }
-    : {};
+  const selectors = { "[data-reveal-group]": [group], "[data-reveal-media]": [mediaElement] };
   const body = { locked: false, classList: { contains: () => body.locked } };
   let runMedia;
   let refreshes = 0;
@@ -54,8 +45,7 @@ function setup({
     readyState: "complete",
     body,
     documentElement: {},
-    querySelectorAll: (selector) =>
-      selector === "[data-reveal]" ? [element] : (selectors[selector] ?? []),
+    querySelectorAll: (selector) => selectors[selector] ?? [],
   });
   const window = eventTarget({
     innerHeight: 800,
@@ -79,7 +69,7 @@ function setup({
       matchMedia: () => ({
         add(conditions, callback) {
           assert.equal(conditions.all, "all", "ordinary mobile must also initialize reveals");
-          runMedia = () => callback({ conditions: { wide, reduced: mediaQuery.matches } });
+          runMedia = () => callback({ conditions: { reduced: mediaQuery.matches } });
           runMedia();
         },
       }),
@@ -189,7 +179,7 @@ test("reduced motion destroys Lenis and restores native immediate positioning", 
   env.setReduced(false);
   assert.equal(env.instances.length, 2);
   assert.equal(env.callbacks.size, 1);
-  assert.equal(env.tweens.length, 1, "visible content is not hidden again after reduced motion");
+  assert.equal(env.tweens.length, 4, "visible content is not hidden again after reduced motion");
 });
 
 test("missing libraries leave content visible and keep the scroll interface usable", () => {
@@ -211,23 +201,6 @@ test("center positioning uses actual page coordinates and nested locks use nativ
   assert.equal(env.element.nativeScroll.behavior, "instant");
 });
 
-test("reveal preserves delays and directions, and completed elements never replay", () => {
-  const desktop = setup();
-  const { from, to } = desktop.tweens[0];
-  assert.equal(from.x, 48);
-  assert.equal(from.y, 0);
-  assert.equal(to.duration, 2);
-  assert.equal(to.delay, 0.25);
-  assert.equal(to.scrollTrigger.start, "top bottom-=120");
-  assert.equal(to.scrollTrigger.once, true);
-  to.onComplete();
-  desktop.rerunMedia();
-  assert.equal(desktop.tweens.length, 1);
-  const mobile = setup({ wide: false });
-  assert.equal(mobile.tweens[0].from.x, 0);
-  assert.equal(mobile.tweens[0].from.y, 48);
-});
-
 test("layout refresh is coalesced and native keyboard scrolling cancels inertia", () => {
   const env = setup();
   env.window.emit("load");
@@ -242,7 +215,7 @@ test("layout refresh is coalesced and native keyboard scrolling cancels inertia"
 });
 
 test("entrances follow the reference timing: staggered text and delayed media", () => {
-  const env = setup({ entrances: true });
+  const env = setup();
   const byTarget = (target) => env.tweens.find((tween) => tween.target === target);
   const delays = env.items.map((item) => byTarget(item).to.delay);
   assert.deepEqual(delays, [0.1, 0.3, 0.5]);
@@ -263,11 +236,11 @@ test("entrances follow the reference timing: staggered text and delayed media", 
 });
 
 test("completed or reduced-motion entrances are never hidden again", () => {
-  const env = setup({ entrances: true });
+  const env = setup();
   const count = env.tweens.length;
   for (const tween of env.tweens) tween.to.onComplete();
   env.rerunMedia();
   assert.equal(env.tweens.length, count);
-  const reduced = setup({ entrances: true, reduced: true });
+  const reduced = setup({ reduced: true });
   assert.equal(reduced.tweens.length, 0);
 });
