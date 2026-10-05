@@ -41,6 +41,8 @@ function setup({ reduced = false, missing = false, missingLenis = false } = {}) 
   const body = { locked: false, classList: { contains: () => body.locked } };
   let runMedia;
   let refreshes = 0;
+  let resizeTimer = null;
+  const resizeObservers = [];
   const document = eventTarget({
     readyState: "complete",
     body,
@@ -58,7 +60,15 @@ function setup({ reduced = false, missing = false, missingLenis = false } = {}) 
     },
     cancelAnimationFrame: (id) => frames.delete(id),
     CustomEase: { create: () => "css-ease" },
-    ScrollTrigger: { update() {}, refresh: () => refreshes++ },
+    ScrollTrigger: {
+      update() {},
+      refresh: () => refreshes++,
+      config(options) {
+        this.options = options;
+      },
+    },
+    setTimeout: (callback) => (resizeTimer = callback),
+    clearTimeout() {},
     gsap: {
       registerPlugin() {},
       ticker: {
@@ -80,6 +90,7 @@ function setup({ reduced = false, missing = false, missingLenis = false } = {}) 
     constructor(options) {
       this.options = options;
       this.isStopped = false;
+      this.isScrolling = false;
       this.resizes = 0;
       instances.push(this);
     }
@@ -115,7 +126,13 @@ function setup({ reduced = false, missing = false, missingLenis = false } = {}) 
       observers.push({ target, callback: this.callback });
     }
   }
-  vm.runInNewContext(source, { window, document, MutationObserver });
+  class ResizeObserver {
+    constructor(callback) {
+      resizeObservers.push(callback);
+    }
+    observe() {}
+  }
+  vm.runInNewContext(source, { window, document, MutationObserver, ResizeObserver });
   return {
     window,
     document,
@@ -137,6 +154,12 @@ function setup({ reduced = false, missing = false, missingLenis = false } = {}) 
       runMedia?.();
     },
     rerunMedia: () => runMedia(),
+    resizeLayout: () => resizeObservers.forEach((callback) => callback()),
+    resizeWindow() {
+      window.emit("resize");
+      resizeTimer?.();
+    },
+    tick: (time = 1) => [...callbacks].forEach((callback) => callback(time)),
     flushFrames() {
       for (const callback of frames.values()) callback();
       frames.clear();
@@ -204,8 +227,14 @@ test("center positioning uses actual page coordinates and nested locks use nativ
 test("layout refresh is coalesced and native keyboard scrolling cancels inertia", () => {
   const env = setup();
   env.window.emit("load");
-  env.document.emit("load");
+  env.resizeLayout();
+  env.resizeWindow();
   assert.equal(env.flushFrames(), 1);
+  assert.equal(
+    env.window.ScrollTrigger.options.autoRefreshEvents,
+    "visibilitychange,DOMContentLoaded",
+    "load and resize refreshes are scheduled by motion.js, not ScrollTrigger itself"
+  );
   const lenis = env.instances[0];
   let stops = 0;
   lenis.stop = () => stops++;
@@ -243,4 +272,33 @@ test("completed or reduced-motion entrances are never hidden again", () => {
   assert.equal(env.tweens.length, count);
   const reduced = setup({ reduced: true });
   assert.equal(reduced.tweens.length, 0);
+});
+
+test("refresh waits until Lenis stops so scrolling never snaps back", () => {
+  const env = setup();
+  const before = env.flushFrames();
+  const lenis = env.instances[0];
+  lenis.isScrolling = "smooth";
+  env.resizeLayout();
+  env.window.emit("load");
+  assert.equal(env.flushFrames(), before, "no ScrollTrigger.refresh() while Lenis is moving");
+  env.tick();
+  assert.equal(env.flushFrames(), before, "still deferred while scrolling");
+  lenis.isScrolling = false;
+  env.tick();
+  assert.equal(env.flushFrames(), before + 1, "the deferred refresh runs once scrolling stops");
+  env.tick();
+  assert.equal(env.flushFrames(), before + 1, "and only once");
+});
+
+test("a refresh queued just before scrolling starts is deferred as well", () => {
+  const env = setup();
+  const before = env.flushFrames();
+  const lenis = env.instances[0];
+  env.resizeLayout();
+  lenis.isScrolling = "smooth";
+  assert.equal(env.flushFrames(), before);
+  lenis.isScrolling = false;
+  env.tick();
+  assert.equal(env.flushFrames(), before + 1);
 });

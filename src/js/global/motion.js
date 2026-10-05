@@ -9,6 +9,7 @@
     let lenis = null;
     let paused = false;
     let refreshFrame = null;
+    let refreshPending = false;
 
     const isLocked = () => document.body.classList.contains("overflow-hidden");
 
@@ -33,8 +34,14 @@
 
     if (!gsap || !ScrollTrigger || !CustomEase) return;
     gsap.registerPlugin(ScrollTrigger, CustomEase);
+    // load／resize 的重新量測改由下方 refresh() 統一排程，避免在 Lenis 捲動途中執行。
+    ScrollTrigger.config({ autoRefreshEvents: "visibilitychange,DOMContentLoaded" });
 
-    const tick = (time) => lenis?.raf(time * 1000);
+    const tick = (time) => {
+      lenis?.raf(time * 1000);
+      // 捲動途中延後的重新量測，等 Lenis 停下來再補做。
+      if (refreshPending && !lenis?.isScrolling) refresh();
+    };
     gsap.ticker.lagSmoothing(0);
 
     const syncLock = () => {
@@ -131,18 +138,38 @@
       }
     });
 
+    // ScrollTrigger.refresh() 量測時會把視窗捲到頂端再捲回原位。若發生在 Lenis 平滑捲動途中，
+    // Lenis 的目標位置會與實際位置脫節，下一次滾輪就先往回彈一段（剛載入時 lazy 圖片陸續
+    // 觸發重新量測，第一次往下捲最明顯）。所以捲動中只記下待辦，停下來才由 tick 補做。
     const refresh = () => {
-      if (refreshFrame !== null || paused) return;
+      if (paused) return;
+      if (lenis?.isScrolling) {
+        refreshPending = true;
+        return;
+      }
+      refreshPending = false;
+      if (refreshFrame !== null) return;
       refreshFrame = window.requestAnimationFrame(() => {
         refreshFrame = null;
+        if (lenis?.isScrolling) {
+          refreshPending = true;
+          return;
+        }
         lenis?.resize();
         ScrollTrigger.refresh();
       });
     };
 
+    let resizeTimer = null;
     window.addEventListener("load", refresh);
+    window.addEventListener("resize", () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(refresh, 150);
+    });
     document.fonts?.ready.then(refresh);
-    document.addEventListener("load", refresh, true);
+    // 只在版面高度真的改變時重新量測（字型換上、手風琴展開等）；
+    // 有固定比例的圖片載入不會改變版面，不需要逐張重新量測。
+    if (typeof ResizeObserver === "function") new ResizeObserver(refresh).observe(document.body);
     new MutationObserver(refresh).observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["lang"],
