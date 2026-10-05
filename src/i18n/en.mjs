@@ -20,6 +20,9 @@ export default {
   "home.appointment.title": "Make an Appointment",
   "home.appointment.subtitle": "Schedule an Appointment",
   "home.video.title": "Patek Philippe video",
+  "home.contact.title": "Contact Us",
+  "home.contact.body":
+    "Yung Hsin Watch welcomes every watch enthusiast. Whether you have questions about repairs, care or any other professional matter, we will be delighted to assist you.",
 
   // 預約彈跳視窗（src/components/booking-modal/），全站每頁都有。
   // 服務項目沿用 service.card.*、門市沿用 store.*.name，不在這裡重複一份。
