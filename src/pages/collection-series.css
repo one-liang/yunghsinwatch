@@ -39,6 +39,22 @@
   font-family: var(--font-label);
   font-size: 18px;
   line-height: 32px;
+  /* hover 卡片時名稱出現實線底線（Figma Mockup comment #10：decoration-solid）。
+     Figma 未定義粗細與間距，沿用瀏覽器預設；以底線顏色漸變，過場同全站 hover 0.3s ease-out。 */
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.3s ease-out;
+}
+
+@media (hover: hover) {
+  .series-watch-card:hover .series-watch-card__name {
+    text-decoration-color: currentColor;
+  }
+}
+
+.series-watch-card:focus-visible .series-watch-card__name {
+  text-decoration-color: currentColor;
 }
 
 .series-discover {

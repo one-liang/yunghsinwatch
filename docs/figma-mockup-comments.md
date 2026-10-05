@@ -16,7 +16,7 @@
 - [x] #6 【首頁】Scroll 動畫
 - [x] #9 【首頁、時計系列】卡片圖片 Hover 放大
 - [ ] #15 【Header】MD / LG 尺寸使用 scroll 版 Header
-- [ ] #10 【單系列列表、單錶介紹頁】手錶名稱 Hover 效果
+- [x] #10 【單系列列表、單錶介紹頁】手錶名稱 Hover 效果
 - [x] #12 【單系列列表、單錶介紹頁】Scroll 動畫
 - [x] #11 【精品店】進站 Scroll 動畫
 - [ ] #5 【精品店】圖片輪播
@@ -141,7 +141,10 @@ transition:
 > 單錶卡片的手錶名稱新增 Hover 效果
 > `decoration-solid`
 
-- [ ] 單錶卡片手錶名稱 Hover 底線（`decoration-solid`）
+- [x] 單錶卡片手錶名稱 Hover 底線（`decoration-solid`）
+
+實作說明：hover 卡片任一處時名稱底線由透明漸變為文字色（0.3s ease-out），鍵盤 focus 亦顯示；
+Figma 未定義底線粗細與間距，沿用瀏覽器預設。
 
 ### #12 【單系列列表、單錶介紹頁】Scroll 動畫
 
