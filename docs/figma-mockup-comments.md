@@ -12,7 +12,7 @@
 
 - [x] #8 【全站】按鈕 Hover 效果
 - [ ] #14 【Header】切換 Header 時由上往下展開
-- [ ] #7 【首頁】Banner 高度與影片
+- [x] #7 【首頁】Banner 高度與影片
 - [ ] #6 【首頁】Scroll 動畫
 - [ ] #9 【首頁、時計系列】卡片圖片 Hover 放大
 - [ ] #15 【Header】MD / LG 尺寸使用 scroll 版 Header
@@ -81,8 +81,11 @@ transition:
 > 1. Banner 設定 `max-height: 675px`
 > 2. 影片要用 `<iframe>`
 
-- [ ] Banner 設定 `max-height: 675px`
-- [ ] 影片改用 `<iframe>`
+- [x] Banner 設定 `max-height: 675px`
+- [x] 影片改用 `<iframe>`
+
+實作說明：Banner 依 Figma 32:15 比例隨寬度縮放，上限 675px，下限暫用 LG 的 480px（SM 版型待 home-responsive 處理）。
+影片以 `youtube-nocookie.com/embed/TTIt78URWb4` iframe 嵌入；YouTube 需要 Referer，`file://` 開啟 dist 時無法播放。
 
 ### #6 【首頁】Scroll 動畫
 

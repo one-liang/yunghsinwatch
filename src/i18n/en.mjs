@@ -19,6 +19,7 @@ export default {
   // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
   "home.appointment.title": "Make an Appointment",
   "home.appointment.subtitle": "Schedule an Appointment",
+  "home.video.title": "Patek Philippe video",
 
   // 預約彈跳視窗（src/components/booking-modal/），全站每頁都有。
   // 服務項目沿用 service.card.*、門市沿用 store.*.name，不在這裡重複一份。
