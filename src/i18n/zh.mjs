@@ -298,8 +298,8 @@ export default {
   // 同意項的錯誤訊息設計稿沒有定義，比照其他欄位的寫法補上。
   "contact.consent.error": "請先同意隱私政策",
   "contact.submit": "確認送出",
-  "contact.complete.title": "訊息已送出",
-  "contact.complete.body": "感謝您的詢問，我們將於 2 個工作日內回覆。",
+  "contact.complete.title": "訊息已發送",
+  "contact.complete.body": "感謝您的留言，聯絡訊息已送出，\n我們銷售顧問將盡快與您聯繫。",
 
   // 服務條款頁（src/pages/terms.html）。
   "terms.meta.title": "服務條款｜永新鐘錶百達翡麗專賣店",
