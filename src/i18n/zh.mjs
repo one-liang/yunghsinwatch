@@ -261,7 +261,7 @@ export default {
   "service.appointment.subtitle": "Schedule an Appointment",
 
   // 聯絡我們頁（src/pages/contact.html）。
-  // 稱謂與詢問類別的選項設計稿未定義，暫依既有服務範圍擬定。
+  // 稱謂的選項設計稿未定義，暫依既有服務範圍擬定。
   "contact.meta.title": "聯絡我們｜永新鐘錶百達翡麗專賣店",
   "contact.meta.description":
     "與永新鐘錶百達翡麗專賣店聯繫，填寫表單詢問腕錶選購、維修保養或預約服務，我們將於 2 個工作日內回覆。",
@@ -286,12 +286,8 @@ export default {
   "contact.field.phone.countryLabel": "國碼",
   "contact.field.phone.placeholder": "請輸入聯絡電話",
   "contact.field.phone.error": "請輸入聯絡電話",
-  "contact.field.topic.label": "詢問類別",
-  "contact.field.topic.collection": "時計系列",
-  "contact.field.topic.service": "維修保養",
-  "contact.field.topic.appointment": "預約服務",
-  "contact.field.topic.other": "其他",
-  "contact.field.topic.error": "請選擇詢問類別",
+  // 國家選項直接寫在 contact.html（中英文版都用英文國名），這裡只有欄位標籤。
+  "contact.field.country.label": "居住國家 / 地區",
   "contact.field.message.label": "留言內容",
   "contact.field.message.placeholder": "請輸入留言內容",
   "contact.field.message.error": "請輸入留言內容",
