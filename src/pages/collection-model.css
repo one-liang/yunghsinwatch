@@ -86,9 +86,9 @@
 
 .model-info__reference {
   font-family: var(--font-label);
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 32px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
   letter-spacing: 1px;
 }
 
@@ -97,17 +97,16 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  padding-bottom: 8px;
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 500;
-  line-height: 40px;
+  line-height: 32px;
   letter-spacing: 1px;
 }
 
 .model-info__price {
   font-family: var(--font-label);
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   line-height: 32px;
 }
 
@@ -237,13 +236,14 @@
   }
 
   .model-info__reference {
-    font-size: 20px;
-    line-height: 36px;
+    font-size: 36px;
+    line-height: 44px;
   }
 
   .model-info__name {
-    font-size: 32px;
-    line-height: 48px;
+    padding-bottom: 8px;
+    font-size: 24px;
+    line-height: 36px;
   }
 
   .model-specs__row {
