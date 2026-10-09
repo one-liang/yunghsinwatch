@@ -155,7 +155,7 @@ export default {
   "team.role.manager": "Manager",
   "team.role.sales": "Sales Consultant",
 
-  // 成員簡介：team.html 用 data-i18n-html 原樣插入，段落之間仍用 \n 搭配 whitespace-pre-line。
+  // 成員簡介：team.html 用 data-i18n-html 原樣插入，段落之間用 \n（builder 輸出成 <br />）。
   // 設計稿以 Inter Medium 強調的引言與關鍵句包 <strong>（Figma Mockup comment #18）。
   "team.member.henryLai.bio":
     "As the second-generation leader of Yung Hsin Watch Co., Henry Lai approaches haute horlogerie with gratitude and humility, believing that the true value of luxury watch retail lies not only in the timepiece itself, but in the trust built through genuine, long-term relationships. This philosophy echoes the spirit of Patek Philippe’s tradition, where craftsmanship, service, and quality are shaped by time rather than fleeting trends.\nFor Henry, a timepiece reflects far more than a collector’s taste—it embodies personality and life choices. Guided by the philosophy, “<strong>Connect first, build trust, then do business,</strong>” he encourages collectors to look beyond market trends and social expectations, rediscovering the pure joy of collecting and choosing watches that truly resonate with them. To Henry, Yung Hsin’s legacy is ultimately one of <strong>time, trust, and craftsmanship.</strong>",
@@ -235,7 +235,7 @@ export default {
 
   "service.faq.q6": "Watch Strap Care Tips",
   "service.faq.a6.leather.label": "Leather Straps:",
-  // 英文版內文在設計稿是兩個自然段，靠 \n 換行（HTML 用 whitespace-pre-line 呈現）。
+  // 英文版內文在設計稿是兩個自然段，靠 \n 換行（builder 輸出成 <br />）。
   "service.faq.a6.leather.body":
     "Because perspiration contains salts and other chemical substances, prolonged contact with leather may cause deterioration. A simple way to care for a leather strap is to apply leather conditioning oil with a clean, soft cloth and gently wipe the strap.\nThe metal buckle on a leather strap can be gently cleaned with a toothbrush and soapy water. Be careful not to get the leather wet. After cleaning, dry the buckle promptly with a dry cloth. If you tend to perspire heavily, try to avoid wearing a leather strap during activities that cause excessive sweating, and regularly wipe the inside of the strap.",
   "service.faq.a6.metal.label": "Metal Bracelets:",

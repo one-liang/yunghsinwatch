@@ -137,8 +137,7 @@ export default {
   "boutique.intro.title": "聚光燈下的鐘錶城堡",
   "boutique.intro.body":
     "以「稀缺工藝」與「精準美學」，永新百達翡麗專館透過傳承與創新，訴說時間的璀璨永恆。",
-  // 換行靠 CSS 的 whitespace-pre-line 呈現；build 時的翻譯只換純文字，
-  // 寫 <br> 會在切語系時被吃掉。
+  // 換行寫 \n，builder 會輸出成 <br />（data-i18n 會 escape，不能直接寫 <br>）。
   "boutique.story.body":
     "在時間的長河中，鐘錶不僅是計時工具，\n更是藝術、工藝與情感的載體。\n永新鐘錶以深厚的技藝底蘊與誠信的經營哲學，\n成為無數愛錶人士心中的殿堂。",
   // MD 以下設計稿把最後兩句合成一段、讓它自然折行（共 4 行），
@@ -162,7 +161,7 @@ export default {
   "team.role.manager": "經理",
   "team.role.sales": "銷售顧問",
 
-  // 成員簡介：team.html 用 data-i18n-html 原樣插入，段落之間仍用 \n 搭配 whitespace-pre-line。
+  // 成員簡介：team.html 用 data-i18n-html 原樣插入，段落之間用 \n（builder 輸出成 <br />）。
   // 內文裡的英文字包 <span lang="en">，改用 Inter（Figma Mockup comment #18）。
   "team.member.henryLai.bio":
     '在名錶薈萃與顧客期待交織的頂級鐘錶世界裡，身為永新鐘錶第二代經營者，<span lang="en">Henry</span>始終抱持感恩與謙遜，他認為頂級鐘錶服務真正珍貴的，是一份長久累積的信任，如朋友、家人般的真誠交流。這份長期價值的堅持，也呼應了百達翡麗「傳承」精神——從製錶工藝、銷售服務到維修保養，始終重視品質與時間的累積，而非追逐一時的市場熱度。\n面對鐘錶市場的快速變化，<span lang="en">Henry</span>觀察到「價值觀會改變審美觀」。在他眼中，鐘錶不只是收藏，更承載著一個人的品味、個性與人生選擇。因此，他以「先交流，再交心，再交易」為理念，希望陪伴藏家跳脫市場與社群的外在眼光，重新找回收藏最純粹的樂趣，選擇真正符合自身品味的時計。對<span lang="en">Henry</span>而言，永新鐘錶所傳承的，更是一份關於時間、信任與工藝的價值。',

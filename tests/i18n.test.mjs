@@ -166,9 +166,33 @@ test("data-i18n-html inserts dictionary markup without escaping", async (t) => {
 
   assert.match(
     html,
-    /<p class="bio">Lives by “<strong>give back more<\/strong>”\n<span lang="en">Leo<\/span><\/p>/
+    /<p class="bio">Lives by “<strong>give back more<\/strong>”<br \/><span lang="en">Leo<\/span><\/p>/
   );
   assert.doesNotMatch(html, /data-i18n|舊|<b>/);
+});
+
+test("dictionary newlines become <br /> so formatted output keeps the line breaks", async (t) => {
+  const root = await makeI18nFixture(t, {
+    en: { "home.title": "First line, long enough to be wrapped by Prettier & co.\nSecond <line>" },
+  });
+  await symlink(
+    path.join(projectRoot, "node_modules"),
+    path.join(root, "node_modules"),
+    "junction"
+  );
+  const config = await loadConfig(root);
+  const { html } = await renderPage(path.join(root, "src/pages/index.html"), config, {
+    locale: "en",
+  });
+
+  assert.match(
+    html,
+    /<h1 class="title">First line, long enough to be wrapped by Prettier &amp; co\.<br \/>Second &lt;line&gt;<\/h1>/
+  );
+
+  await buildSite(root);
+  const built = await readFile(path.join(root, "dist/en/index.html"), "utf8");
+  assert.match(built, /co\.<br \/>\s*Second\s+&lt;line&gt;/);
 });
 
 test("data-i18n-html rejects void elements and mixing with data-i18n", async (t) => {

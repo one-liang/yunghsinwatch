@@ -616,6 +616,8 @@ function rewriteHtmlAssetUrlsForOptions(html, sourceHtmlPath, config, options) {
 // - data-i18n-html="key"：元素內容換成字典值且不 escape（等同 innerHTML），讓譯文能帶
 //   <strong> 這類行內標記；字典是 repo 內的可信來源，但插入點已過組件展開與 asset 改寫，
 //   值裡只放行內標記，不要放 component tag 或 asset 路徑。
+//   兩者的字典值裡的 \n 都會輸出成 <br />：dist 會再經 Prettier 格式化並重新折行，
+//   靠 whitespace-pre-line 保留的換行會被併掉、又多出折行處的硬換行，<br /> 才不受影響。
 // - data-i18n-attr="attr:key,attr:key"：設定對應屬性。
 // - data-lang-switch="locale"：設成指向同頁該語系版本的連結，目前語系加 aria-current。
 // - <html lang> 設為該語系。各語系頁面放在各自的資料夾（如 en/），
@@ -682,10 +684,11 @@ export async function localizeHtml(html, { config, pagePath, locale }) {
           );
         }
         const value = translate(attrs.get(contentName));
+        const content = contentName === "data-i18n" ? escapeHtmlText(value) : String(value);
         edits.push({
           start: location.startTag.endOffset,
           end: location.endTag.startOffset,
-          text: contentName === "data-i18n" ? escapeHtmlText(value) : String(value),
+          text: content.replace(/\r?\n/g, "<br />"),
         });
       }
 
