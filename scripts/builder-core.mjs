@@ -613,6 +613,9 @@ function rewriteHtmlAssetUrlsForOptions(html, sourceHtmlPath, config, options) {
 
 // 依語系字典把 build-only 的翻譯標記套進 HTML，輸出後不留下任何標記：
 // - data-i18n="key"：元素內容換成字典文字（等同 textContent，會 escape）。
+// - data-i18n-html="key"：元素內容換成字典值且不 escape（等同 innerHTML），讓譯文能帶
+//   <strong> 這類行內標記；字典是 repo 內的可信來源，但插入點已過組件展開與 asset 改寫，
+//   值裡只放行內標記，不要放 component tag 或 asset 路徑。
 // - data-i18n-attr="attr:key,attr:key"：設定對應屬性。
 // - data-lang-switch="locale"：設成指向同頁該語系版本的連結，目前語系加 aria-current。
 // - <html lang> 設為該語系。各語系頁面放在各自的資料夾（如 en/），
@@ -663,17 +666,26 @@ export async function localizeHtml(html, { config, pagePath, locale }) {
         if (target === locale) changes.set("aria-current", "true");
       }
 
-      if (attrs.has("data-i18n")) {
-        removals.add("data-i18n");
+      const contentAttr = ["data-i18n", "data-i18n-html"].filter((name) => attrs.has(name));
+      if (contentAttr.length > 1) {
+        throw new Error(
+          `data-i18n and data-i18n-html cannot be used on the same element (<${node.tagName}>) in ${pagePath}`
+        );
+      }
+
+      const [contentName] = contentAttr;
+      if (contentName) {
+        removals.add(contentName);
         if (!location.endTag) {
           throw new Error(
-            `data-i18n requires an element with an end tag (<${node.tagName}>) in ${pagePath}`
+            `${contentName} requires an element with an end tag (<${node.tagName}>) in ${pagePath}`
           );
         }
+        const value = translate(attrs.get(contentName));
         edits.push({
           start: location.startTag.endOffset,
           end: location.endTag.startOffset,
-          text: escapeHtmlText(translate(attrs.get("data-i18n"))),
+          text: contentName === "data-i18n" ? escapeHtmlText(value) : String(value),
         });
       }
 
@@ -682,7 +694,7 @@ export async function localizeHtml(html, { config, pagePath, locale }) {
       }
 
       // 內容已整段替換，子孫節點不再處理（避免重疊的修改）。
-      if (attrs.has("data-i18n")) return;
+      if (contentName) return;
     }
 
     for (const child of node.content?.childNodes ?? node.childNodes ?? []) visit(child);

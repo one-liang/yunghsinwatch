@@ -152,6 +152,48 @@ test("renders the default locale with its own dictionary and untouched internal 
   assert.match(html, /<a href="\.\/en\/index\.html">EN<\/a>/);
 });
 
+test("data-i18n-html inserts dictionary markup without escaping", async (t) => {
+  const root = await makeI18nFixture(t, {
+    en: { "team.bio": 'Lives by “<strong>give back more</strong>”\n<span lang="en">Leo</span>' },
+  });
+  const pagePath = path.join(root, "src/pages/team.html");
+  await writeFile(
+    pagePath,
+    `<html lang="zh-Hant"><body><p class="bio" data-i18n-html="team.bio">舊 <b>內容</b></p></body></html>\n`
+  );
+  const config = await loadConfig(root);
+  const { html } = await renderPage(pagePath, config, { locale: "en" });
+
+  assert.match(
+    html,
+    /<p class="bio">Lives by “<strong>give back more<\/strong>”\n<span lang="en">Leo<\/span><\/p>/
+  );
+  assert.doesNotMatch(html, /data-i18n|舊|<b>/);
+});
+
+test("data-i18n-html rejects void elements and mixing with data-i18n", async (t) => {
+  const root = await makeI18nFixture(t, { en: { "team.bio": "<strong>bio</strong>" } });
+  const config = await loadConfig(root);
+  const pagePath = path.join(root, "src/pages/team.html");
+  const render = async (body) => {
+    await writeFile(pagePath, `<html><body>${body}</body></html>\n`);
+    return renderPage(pagePath, config, { locale: "en" });
+  };
+
+  await assert.rejects(
+    () => render(`<img data-i18n-html="team.bio" />`),
+    /data-i18n-html requires an element with an end tag \(<img>\)/
+  );
+  await assert.rejects(
+    () => render(`<p data-i18n="team.bio" data-i18n-html="team.bio">x</p>`),
+    /data-i18n and data-i18n-html cannot be used on the same element \(<p>\)/
+  );
+  await assert.rejects(
+    () => render(`<p data-i18n-html="team.missing">x</p>`),
+    /Missing i18n key "team\.missing" for locale "en"/
+  );
+});
+
 test("throws when a dictionary is missing a key", async (t) => {
   const root = await makeI18nFixture(t, { en: { "home.title": undefined } });
   const config = await loadConfig(root);
