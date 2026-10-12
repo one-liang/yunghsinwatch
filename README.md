@@ -161,7 +161,7 @@ src/pages/news/detail.html  -> src/js/news/detail.js
 - `scripts/dev.mjs`：建立 Vite dev server，實際 host、port 與 watch 設定來自 `vite.config.js`。
 - `scripts/build.mjs`：呼叫 builder 核心，將 `src/pages/**/*.html` 建置到 `dist/`。
 - `scripts/preview.mjs`：用 Node.js HTTP server 預覽已建置的 `dist/` 靜態檔案。
-- `scripts/deploy.mjs`：重新建置後，用 git worktree 把 `dist/` 內容攤平發佈到 `demo` 分支並 push（供 GitHub Pages）。可用 `DEPLOY_BRANCH`、`DEPLOY_REMOTE` 環境變數覆寫目標分支與遠端。
+- `scripts/deploy.mjs`：重新建置後，用 git worktree 把 `dist/` 內容攤平發佈到 `demo` 分支並 push（供 GitHub Pages），同時推到鏡像遠端。可用 `DEPLOY_BRANCH`、`DEPLOY_REMOTE`、`DEPLOY_MIRROR_REMOTES` 環境變數覆寫目標分支、遠端與鏡像遠端。
 - `scripts/check.mjs`：檢查 `dist/` 是否有基本輸出品質，例如頁面有載入 CSS、沒有殘留原始 component tag、輸出維持可讀換行。
 - `scripts/builder-core.mjs`：builder 核心，負責讀取設定、尋找頁面、渲染組件、收集 CSS/JS、編譯 Tailwind、改寫 asset URL、輸出 `dist/`。
 - `scripts/vite-builder-plugin.mjs`：Vite 開發模式 plugin，提供 dev middleware、即時渲染頁面、提供虛擬 CSS/JS 路徑，並在來源檔變更時觸發 full reload。
@@ -203,10 +203,12 @@ npm run deploy
 
 1. 重新跑一次 build 產生最新的 `dist/`。
 2. 用 git worktree 切換到 `demo` 分支（不存在時自動建立 orphan 分支），把 `dist/` 內容**攤平**到分支根目錄，並加上 `.nojekyll`（避免 GitHub Pages 跑 Jekyll）。
-3. commit 後 push 到 `origin/demo`，最後清理 worktree（不影響你目前在 `main` 的工作樹）。
+3. 在 `demo` 分支根目錄產生 `README.md`，列出各頁 demo 連結（只列中文頁，英文版由頁面上的語系切換進入）。
+4. commit 後 push 到 `origin/demo`。
+5. 同步推到鏡像遠端 `yunghsin`（for-demo 的 repo；本機沒設定這個 remote 時自動略過）。內容和 `origin` 相同，只把 README 的連結換成 for-demo 自己的 Pages，並接在 for-demo 現有的 `demo` 之後，不需要 force push。最後清理 worktree（不影響你目前在 `main` 的工作樹）。
 
 首次部署後，到 GitHub repo 設定一次 Pages 來源即可：
 
 **Settings → Pages → Build and deployment → Source: `Deploy from a branch` → Branch: `demo` / `(root)`**
 
-之後 demo 網址為 `https://<account>.github.io/<repo>/`（本專案為 `https://one-liang.github.io/yunghsinwatch/`）。因為輸出全為相對路徑，子路徑下也能正確載入頁面、CSS、圖片與頁面間連結。日後要更新 demo，只要再跑一次 `npm run deploy`。
+之後 demo 網址為 `https://<account>.github.io/<repo>/`。README 的連結依各 remote 的網址各自推導：one-liang 的 `demo` 連到 `https://one-liang.github.io/yunghsinwatch/`，for-demo 的連到 `https://for-demo.github.io/yunghsinwatch/`。因為輸出全為相對路徑，子路徑下也能正確載入頁面、CSS、圖片與頁面間連結。日後要更新 demo，只要再跑一次 `npm run deploy`。
