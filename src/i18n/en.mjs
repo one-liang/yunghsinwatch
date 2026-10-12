@@ -297,7 +297,7 @@ export default {
   "contact.complete.title": "Message Sent",
   // 英文版設計稿沒有已發送畫面，依中文版（Figma Mockup comment #21）的語意翻譯並同樣斷兩行。
   "contact.complete.body":
-    "Thank you for your message. Your enquiry has been sent,\nand our sales consultant will contact you shortly.",
+    "Thank you for your message. Your enquiry has been sent,\nand our professional consultants will contact you as soon as possible.",
 
   "terms.meta.title": "Terms of Service | Patek Philippe Boutique Taipei by Yung Hsin Watch",
   "terms.meta.description":
