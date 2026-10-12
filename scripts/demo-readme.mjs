@@ -36,9 +36,24 @@ function toHref(route, baseUrl) {
   return baseUrl ? `${baseUrl}${route}` : `./${route}`;
 }
 
-// 產生 demo 分支的 README（決定性內容，維持無變更則跳過的 idempotency）
-export function renderReadme(builtPages, baseUrl) {
-  const builtRoutes = new Set(builtPages.map(toRoute));
+// 從 git 遠端網址推導 GitHub Pages base URL；不是 GitHub 網址時回傳 null，README 改用相對連結。
+// deploy 會對每個 remote 各自推導，README 才會連到該 repo 自己的 Pages。
+export function pagesBaseUrlFromRemote(remoteUrl) {
+  const match = remoteUrl.trim().match(/github\.com[:/]([^/]+)\/(.+?)(?:\.git)?$/i);
+  if (!match) return null;
+  const [, owner, repo] = match;
+  if (repo.toLowerCase() === `${owner.toLowerCase()}.github.io`) {
+    return `https://${owner}.github.io/`;
+  }
+  return `https://${owner}.github.io/${repo}/`;
+}
+
+// 產生 demo 分支的 README（決定性內容，維持無變更則跳過的 idempotency）。
+// 傳入 locale 時只列該語系的頁面：英文版由各頁的語系切換進入，不另外列在 README。
+export function renderReadme(builtPages, baseUrl, { locale } = {}) {
+  const listedPages =
+    locale === undefined ? builtPages : builtPages.filter((page) => page.locale === locale);
+  const builtRoutes = new Set(listedPages.map(toRoute));
   const classifiedRoutes = new Set();
   const groups = [];
 

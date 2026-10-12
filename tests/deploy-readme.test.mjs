@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import path from "node:path";
 import test from "node:test";
 
-import { renderReadme } from "../scripts/demo-readme.mjs";
+import { pagesBaseUrlFromRemote, renderReadme } from "../scripts/demo-readme.mjs";
 
 const BASE_URL = "https://one-liang.github.io/yunghsinwatch/";
 
@@ -81,4 +81,49 @@ test("renderReadme 略過這次 build 沒有產生的頁面", () => {
   assert.match(readme, /^2\. 時計系列$/m);
   assert.match(readme, /^ {3}1\. \[時計系列\]/m);
   assert.doesNotMatch(readme, /單系列列表|單錶介紹頁|精品店|其他/);
+});
+
+test("renderReadme 傳入 locale 時只列該語系的頁面，不把英文頁列進「其他」", () => {
+  const pages = [
+    { pageRelative: "index.html", locale: "zh" },
+    { pageRelative: "service.html", locale: "zh" },
+    { pageRelative: path.join("en", "index.html"), locale: "en" },
+    { pageRelative: path.join("en", "service.html"), locale: "en" },
+  ];
+  const readme = renderReadme(pages, BASE_URL, { locale: "zh" });
+
+  assert.equal(
+    readme,
+    [
+      "# 頁面 demo 連結",
+      "",
+      `1. [首頁](${BASE_URL}index.html)`,
+      `2. [維修保養](${BASE_URL}service.html)`,
+      "",
+    ].join("\n")
+  );
+});
+
+test("pagesBaseUrlFromRemote 依各 remote 的 GitHub 網址推導自己的 Pages 網址", () => {
+  assert.equal(
+    pagesBaseUrlFromRemote("https://github.com/one-liang/yunghsinwatch.git"),
+    "https://one-liang.github.io/yunghsinwatch/"
+  );
+  assert.equal(
+    pagesBaseUrlFromRemote("https://github.com/for-demo/yunghsinwatch.git\n"),
+    "https://for-demo.github.io/yunghsinwatch/"
+  );
+  assert.equal(
+    pagesBaseUrlFromRemote("git@github.com:for-demo/yunghsinwatch.git"),
+    "https://for-demo.github.io/yunghsinwatch/"
+  );
+  assert.equal(
+    pagesBaseUrlFromRemote("https://github.com/for-demo/for-demo.github.io"),
+    "https://for-demo.github.io/"
+  );
+});
+
+test("pagesBaseUrlFromRemote 遇到非 GitHub 網址回傳 null", () => {
+  assert.equal(pagesBaseUrlFromRemote("https://gitlab.com/for-demo/yunghsinwatch.git"), null);
+  assert.equal(pagesBaseUrlFromRemote(""), null);
 });
