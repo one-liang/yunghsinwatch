@@ -298,7 +298,7 @@ export default {
   "contact.consent.error": "請先同意隱私政策",
   "contact.submit": "確認送出",
   "contact.complete.title": "訊息已發送",
-  "contact.complete.body": "感謝您的留言，聯絡訊息已送出，\n我們銷售顧問將盡快與您聯繫。",
+  "contact.complete.body": "感謝您的留言，聯絡訊息已送出，\n我們的專業顧問將會儘快與您聯繫。",
 
   // 服務條款頁（src/pages/terms.html）。
   "terms.meta.title": "服務條款｜永新鐘錶百達翡麗專賣店",
@@ -469,5 +469,5 @@ export default {
   "footer.address": "台北市士林區忠誠路一段 82 號 (第一銀行旁)",
   "footer.terms": "服務條款",
   "footer.privacy": "隱私權政策",
-  "footer.copyright": "© 2026 Yung Hsin Watch. All rights reserved.",
+  "footer.copyright": "© 2026 Yung Hsin Watch All rights reserved.",
 };

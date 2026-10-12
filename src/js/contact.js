@@ -1,4 +1,4 @@
-// 聯絡我們頁的表單驗證與送出狀態切換。
+// 聯絡我們頁的表單驗證、送出狀態切換，以及居住國家連動電話國碼。
 //
 // 後端尚未串接：這支只做前端必填／格式檢查，通過後把表單換成設計稿的「已發送」畫面。
 // 之後要接 API 時，把 showComplete() 換成送出成功的 callback 即可。
@@ -45,10 +45,34 @@
     if (error) error.hidden = valid;
   };
 
+  // 居住國家／地區連動聯絡電話國碼（Figma Mockup comment #20）。
+  // 國碼寫在國家選項的 data-dial-code；國碼選單列出所有不重複的國碼（依字串排序，+1 的加勒比海
+  // 各地會接在 +1 後面），切換國家時自動帶入對應國碼，使用者仍可手動改成其他國碼。
+  const initDialCode = (form) => {
+    const country = form.querySelector("[data-contact-country]");
+    const dialCode = form.querySelector("[data-contact-dial-code]");
+    if (!country || !dialCode) return;
+
+    const codes = [...new Set([...country.options].map(({ dataset }) => dataset.dialCode))]
+      .filter(Boolean)
+      .sort();
+    dialCode.replaceChildren(...codes.map((code) => new Option(`+${code}`, `+${code}`)));
+
+    const sync = () => {
+      const code = country.selectedOptions[0]?.dataset.dialCode;
+      if (code) dialCode.value = `+${code}`;
+    };
+
+    country.addEventListener("change", sync);
+    sync();
+  };
+
   const init = () => {
     const form = document.querySelector("[data-contact-form]");
     const complete = document.querySelector("[data-contact-complete]");
     if (!form || !complete) return;
+
+    initDialCode(form);
 
     const fields = [...form.querySelectorAll("[data-contact-field]")];
 
