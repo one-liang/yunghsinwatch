@@ -469,5 +469,5 @@ export default {
   "footer.address": "台北市士林區忠誠路一段 82 號 (第一銀行旁)",
   "footer.terms": "服務條款",
   "footer.privacy": "隱私權政策",
-  "footer.copyright": "© 2026 Yung Hsin Watch. All rights reserved.",
+  "footer.copyright": "© 2026 Yung Hsin Watch All rights reserved.",
 };

@@ -474,5 +474,5 @@ export default {
     "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City (next to First Bank)",
   "footer.terms": "TERMS OF SERVICE",
   "footer.privacy": "PRIVACY POLICY",
-  "footer.copyright": "© 2026 Yung Hsin Watch. All rights reserved.",
+  "footer.copyright": "© 2026 Yung Hsin Watch All rights reserved.",
 };
