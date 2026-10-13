@@ -18,7 +18,8 @@
     <main>
       <!-- Banner 高度：MD/SM 固定 256px；LG 起依 Figma 32:15 比例隨寬度縮放
            （2XL 1536×720、XL 1280×600、LG 1024×480），上限 675px（Figma Mockup comment #7）。
-           MD/SM 設計稿的 Banner 只有圖片與輪播圓點，標題與按鈕從 LG 起才顯示。 -->
+           MD/SM 設計稿的 Banner 只有圖片與輪播圓點，標題與按鈕從 LG 起才顯示。
+           第二張改用雲端的 1-2.jpeg（5270P，修改清單 #11）。 -->
       <section
         class="home-hero-swiper swiper h-64 w-full rounded-[4px] bg-black text-white lg:h-[clamp(480px,46.875vw,675px)]"
       >
@@ -34,12 +35,44 @@
               <div
                 class="absolute top-1/2 left-32 hidden w-[450px] -translate-y-1/2 flex-col items-start gap-6 lg:flex 2xl:w-[525px]"
               >
-                <p class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px]">
+                <p
+                  class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px] en:font-display"
+                  data-i18n-html="home.hero.title"
+                >
                   百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款
                 </p>
                 <button
-                  class="cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors hover:bg-white hover:text-black"
+                  class="cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors hover:bg-white hover:text-black en:type-label-nav-sm"
                   type="button"
+                  data-i18n="home.hero.cta"
+                >
+                  探索更多
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+            <img
+              class="absolute inset-0 size-full object-cover"
+              src="../assets/images/home/hero-5270p.jpg"
+              alt=""
+            />
+
+            <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
+              <div
+                class="absolute top-1/2 left-32 hidden w-[450px] -translate-y-1/2 flex-col items-start gap-6 lg:flex 2xl:w-[525px]"
+              >
+                <p
+                  class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px] en:font-display"
+                  data-i18n-html="home.hero.title"
+                >
+                  百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款
+                </p>
+                <button
+                  class="cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors hover:bg-white hover:text-black en:type-label-nav-sm"
+                  type="button"
+                  data-i18n="home.hero.cta"
                 >
                   探索更多
                 </button>
@@ -58,36 +91,16 @@
               <div
                 class="absolute top-1/2 left-32 hidden w-[450px] -translate-y-1/2 flex-col items-start gap-6 lg:flex 2xl:w-[525px]"
               >
-                <p class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px]">
-                  百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款
-                </p>
-                <button
-                  class="cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors hover:bg-white hover:text-black"
-                  type="button"
+                <p
+                  class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px] en:font-display"
+                  data-i18n-html="home.hero.title"
                 >
-                  探索更多
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
-            <img
-              class="absolute inset-0 size-full object-cover"
-              src="../assets/images/home/hero-nautilus.png"
-              alt=""
-            />
-
-            <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
-              <div
-                class="absolute top-1/2 left-32 hidden w-[450px] -translate-y-1/2 flex-col items-start gap-6 lg:flex 2xl:w-[525px]"
-              >
-                <p class="font-heading text-[40px] leading-[56px] font-medium tracking-[2px]">
                   百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款
                 </p>
                 <button
-                  class="cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors hover:bg-white hover:text-black"
+                  class="cursor-pointer border border-white py-3 pr-6 pl-[22px] type-body-sm text-white transition-colors hover:bg-white hover:text-black en:type-label-nav-sm"
                   type="button"
+                  data-i18n="home.hero.cta"
                 >
                   探索更多
                 </button>
