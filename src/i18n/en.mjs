@@ -22,7 +22,7 @@ export default {
   "home.hero.cta": "DISCOVER",
 
   // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
-  "home.appointment.title": "Make an Appointment",
+  "home.appointment.title": "BOOKING",
   "home.appointment.subtitle": "Schedule an Appointment",
   "home.video.title": "Patek Philippe video",
   "home.contact.title": "Contact Us",
