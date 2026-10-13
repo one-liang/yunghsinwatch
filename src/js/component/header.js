@@ -35,6 +35,14 @@
     const measureSubmenuTop = () =>
       `${background.getBoundingClientRect().bottom - dropdown.getBoundingClientRect().top}px`;
 
+    // 選單與語系連結、預約按鈕的內距和語系與按鈕的間距（header.css 的 CSS 變數）。
+    // Figma 的 Header_Scroll 在 LG、XL 比展開時窄，所以這些變數也在同一條 timeline 補間。
+    const SPACING = ["--site-header-link-px", "--site-header-cta-px", "--site-header-actions-gap"];
+    const readSpacing = () => {
+      const style = window.getComputedStyle(header);
+      return Object.fromEntries(SPACING.map((name) => [name, style.getPropertyValue(name).trim()]));
+    };
+
     // 沒有 timeline 時（行動版、減少動態、套件未載入）依目前布局直接量測。
     const placeSubmenu = () => {
       if (!dropdown || !background || timeline) return;
@@ -51,7 +59,8 @@
       timeline = null;
       gsap?.set(targets, { clearProps: "transform,opacity,visibility" });
       header.style.removeProperty(SUBMENU_TOP);
-      header.classList.remove("has-header-motion", "is-measuring-compact");
+      SPACING.forEach((name) => header.style.removeProperty(name));
+      header.classList.remove("has-header-motion", "is-measuring-spacing", "is-measuring-compact");
       if (!desktop.matches || !ease || reducedMotion.matches) {
         placeSubmenu();
         return;
@@ -62,6 +71,13 @@
       const brandBottom = brandText.getBoundingClientRect().bottom;
       const backgroundFrom = background.getBoundingClientRect().height;
       const submenuFrom = dropdown && measureSubmenuTop();
+      const spacingFrom = readSpacing();
+      // 間距補間時，元素在展開布局裡本身就會跟著移動、改變寬度；transform 只補從
+      // 「展開布局＋收合間距」到收合布局的差，兩者相加才會落在收合位置。
+      header.classList.add("is-measuring-spacing");
+      const spaced = parts.map((part) => part.getBoundingClientRect());
+      const spacingTo = readSpacing();
+      header.classList.remove("is-measuring-spacing");
       header.classList.add("is-measuring-compact");
       const last = parts.map((part) => part.getBoundingClientRect());
       const backgroundTo = background.getBoundingClientRect().height;
@@ -74,7 +90,7 @@
         defaults: { duration: TRANSITION_DURATION, ease: "none" },
       });
       parts.forEach((part, index) => {
-        const start = first[index];
+        const start = spaced[index];
         const end = last[index];
         timeline.to(
           part,
@@ -89,6 +105,13 @@
           0
         );
       });
+      // 間距以版面補間（只有 header 內部重排），只放有變的變數；2XL 收合前後相同，就不補間。
+      const spacingChanged = SPACING.filter((name) => spacingFrom[name] !== spacingTo[name]);
+      if (spacingChanged.length) {
+        const pick = (values) =>
+          Object.fromEntries(spacingChanged.map((name) => [name, values[name]]));
+        timeline.fromTo(header, pick(spacingFrom), pick(spacingTo), 0);
+      }
       // 背景縮到 CSS 收合狀態量到的高度，不寫死 88 / 172；展開高度若不是 172px
       // 也不會縮錯（修改清單 #3）。
       timeline.to(background, { scaleY: backgroundTo / backgroundFrom, force3D: true }, 0);

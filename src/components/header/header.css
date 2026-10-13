@@ -20,6 +20,12 @@
 @media (min-width: 64rem) {
   /* 佔位固定，視覺元素由同一條 GSAP timeline 以 transform 補間。 */
   .site-header {
+    /* 選單與語系連結、預約按鈕的左右內距，以及語系與按鈕的間距。展開時各斷點都依 Figma Header_st2，
+       收合值依各斷點的 Header_Scroll（見檔案後段的 media query），由 header.js 在同一條 timeline 補間。 */
+    --site-header-link-px: 1.5rem;
+    --site-header-cta-px: 1rem;
+    --site-header-actions-gap: 2.5rem;
+
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -44,9 +50,10 @@
     max-width: 32rem;
   }
 
+  /* Figma Header_st2 的 Menu 從 112px 開始（上排 Navigation 高 112），底下留 8px。 */
   .site-header__nav {
     position: absolute;
-    top: 116px;
+    top: 112px;
     right: 0;
     left: 0;
     display: block;
@@ -55,6 +62,19 @@
   .site-header__nav > ul {
     width: max-content;
     margin-inline: auto;
+  }
+
+  .site-header__menu-link,
+  .site-header__lang-link {
+    padding-inline: var(--site-header-link-px);
+  }
+
+  .site-header__cta {
+    padding-inline: var(--site-header-cta-px);
+  }
+
+  .site-header__actions {
+    gap: var(--site-header-actions-gap);
   }
 
   /* 收合後一律 88px 高。用高度而不是 scaleY(88 / 172)，header.js 再依量到的高度算縮放比例，
@@ -86,19 +106,39 @@
   }
 }
 
+/* 收合間距：is-measuring-spacing 是 header.js 量測「展開布局＋收合間距」用的。
+   LG 依 Figma Header_Scroll / LG：連結 16px、按鈕 8px、語系與按鈕間距 16px，選單接在 Logo 右側 32px 處靠左排。 */
 @media (min-width: 64rem) and (max-width: 79.9375rem) {
-  .site-header__menu-link,
-  .site-header__lang-link {
-    padding-inline: 1rem;
+  .site-header:is(
+    .is-measuring-spacing,
+    .is-measuring-compact,
+    .is-scrolled:not(.has-header-motion)
+  ) {
+    --site-header-link-px: 1rem;
+    --site-header-cta-px: 0.5rem;
+    --site-header-actions-gap: 1rem;
   }
 
-  .site-header__cta {
-    padding-inline: 0.5rem;
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__nav {
+    flex: 1;
+    margin-inline-start: 2rem;
   }
 
-  .site-header__lang-link::after {
-    right: 1rem;
-    left: 1rem;
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
+    .site-header__nav
+    > ul {
+    margin-inline: 0;
+  }
+}
+
+/* XL 依 Figma Header_Scroll（寬 1280）：語系與按鈕間距 24px，其餘同展開。2XL 收合間距與展開相同。 */
+@media (min-width: 80rem) and (max-width: 95.9375rem) {
+  .site-header:is(
+    .is-measuring-spacing,
+    .is-measuring-compact,
+    .is-scrolled:not(.has-header-motion)
+  ) {
+    --site-header-actions-gap: 1.5rem;
   }
 }
 
@@ -164,11 +204,12 @@
 
 /* ---------- 語言切換 ---------- */
 
+/* 底線左右對齊文字，跟著連結的左右內距走。 */
 .site-header__lang-link::after {
   position: absolute;
-  right: 1.5rem;
+  right: var(--site-header-link-px, 1.5rem);
   bottom: 0.6875rem;
-  left: 1.5rem;
+  left: var(--site-header-link-px, 1.5rem);
   height: 1px;
   background-color: var(--color-brand-gold);
   opacity: 0;
