@@ -470,8 +470,7 @@ export default {
   "store.nineTwo.name": "Patek Philippe Boutique Taipei by Nine-Two Watch",
   "store.nineTwo.address": "No. 109, Sec. 1, Yanping N. Rd., 10350 Taipei",
 
-  "footer.address":
-    "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City (next to First Bank)",
+  "footer.address": "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City",
   "footer.terms": "TERMS OF SERVICE",
   "footer.privacy": "PRIVACY POLICY",
   "footer.copyright": "© 2026 Yung Hsin Watch All rights reserved.",
