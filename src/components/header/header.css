@@ -101,7 +101,10 @@
 
 /* ---------- 桌機下拉子選單 ---------- */
 
+/* 位置貼齊整塊 Header 背景的底緣（Figma Header_st2 / 2XL 的 Sub Menu，修改清單 #2），
+   偏移量由 header.js 量測；沒有量到、或背景底緣高於按鈕時，退回按鈕底下，不蓋住按鈕。 */
 .site-header__submenu {
+  top: max(100%, var(--site-header-submenu-top, 100%));
   visibility: hidden;
   opacity: 0;
   transition:
@@ -121,6 +124,23 @@
     transform 0.2s ease,
     visibility 0s;
   transform: translate(-50%, 0);
+}
+
+/* 按鈕底緣到子選單之間補一塊透明的 hover 區，滑鼠往下移時 :hover 不會中斷。 */
+.site-header__dropdown::after {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  display: none;
+  height: calc(var(--site-header-submenu-top, 100%) - 100%);
+  content: "";
+}
+
+.site-header__dropdown:hover::after,
+.site-header__dropdown:focus-within::after,
+.site-header__dropdown.is-open::after {
+  display: block;
 }
 
 .site-header__caret {

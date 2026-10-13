@@ -20,7 +20,14 @@ function events(extra = {}) {
   };
 }
 
-function setup({ y = 0, reduced = false, desktop = true, missing = false, brandBottom = 76 } = {}) {
+function setup({
+  y = 0,
+  reduced = false,
+  desktop = true,
+  missing = false,
+  brandBottom = 76,
+  dropdownTop = 116,
+} = {}) {
   const classes = new Set();
   const frames = [];
   const timelines = [];
@@ -30,25 +37,38 @@ function setup({ y = 0, reduced = false, desktop = true, missing = false, brandB
   };
   let reads = 0;
   let languageChanged;
+  // 展開時背景底緣在 172、子選單 li 頂端在 dropdownTop；
+  // 收合時背景底緣在 88、li 頂端在 18。
+  const bottoms = { background: [172, 88], "brand-text": [brandBottom, brandBottom] };
+  const tops = { dropdown: [dropdownTop, 18] };
   const parts = Object.fromEntries(
-    ["background", "brand-text", "logo", "nav > ul", "actions"].map((name) => [
+    ["background", "brand-text", "logo", "nav > ul", "actions", "dropdown"].map((name) => [
       `.site-header__${name}`,
       events({
         getBoundingClientRect() {
           reads++;
-          const compact = classes.has("is-measuring-compact");
+          // 和 CSS 一樣：量測中、或沒有 timeline 時的捲動狀態都是收合布局。
+          const compact =
+            classes.has("is-measuring-compact") ||
+            (classes.has("is-scrolled") && !classes.has("has-header-motion"));
+          const state = compact ? 1 : 0;
           return {
             left: compact ? 80 : 0,
-            top: compact ? 16 : 100,
+            top: tops[name]?.[state] ?? (compact ? 16 : 100),
             width: compact ? 106 : 140,
             height: compact ? 56 : 74,
-            bottom: name === "brand-text" ? brandBottom : 174,
+            bottom: bottoms[name]?.[state] ?? 174,
           };
         },
       }),
     ])
   );
+  const style = new Map();
   const header = {
+    style: {
+      setProperty: (name, value) => style.set(name, value),
+      removeProperty: (name) => style.delete(name),
+    },
     classList: {
       add: (...names) => names.forEach((name) => classes.add(name)),
       remove: (...names) => names.forEach((name) => classes.delete(name)),
@@ -67,10 +87,15 @@ function setup({ y = 0, reduced = false, desktop = true, missing = false, brandB
       const timeline = {
         options,
         tweens: [],
+        fromTos: [],
         value: 0,
         transitions: [],
         to(target, values, position) {
           this.tweens.push({ target, values, position });
+          return this;
+        },
+        fromTo(target, from, to, position) {
+          this.fromTos.push({ target, from, to, position });
           return this;
         },
         progress(value) {
@@ -124,6 +149,7 @@ function setup({ y = 0, reduced = false, desktop = true, missing = false, brandB
   return {
     window,
     header,
+    style,
     classes,
     queries,
     timelines,
@@ -229,6 +255,62 @@ test("reduced motion, mobile and missing GSAP retain static functional states", 
   desktop.matches = false;
   desktop.emit("change");
   assert.equal(env.classes.has("has-header-motion"), false);
+});
+
+const SUBMENU_TOP = "--site-header-submenu-top";
+
+test("submenu offset tweens with the timeline from the full to the compact header bottom", () => {
+  const env = setup();
+  const [timeline] = env.timelines;
+  assert.equal(timeline.fromTos.length, 1);
+  // 物件是在 vm context 裡建立的，原型不同，所以逐欄比對。
+  const [{ target, from, to, position }] = timeline.fromTos;
+  assert.equal(target, env.header);
+  assert.equal(from[SUBMENU_TOP], "56px", "li top 116 to full header bottom 172");
+  assert.equal(to[SUBMENU_TOP], "70px", "li top 18 to compact header bottom 88");
+  assert.equal(position, 0);
+  assert.equal(env.style.has(SUBMENU_TOP), false, "the timeline owns the inline value");
+  const reads = env.reads;
+  env.scroll(500);
+  assert.equal(env.reads, reads, "scroll handlers must not read layout");
+});
+
+test("without a timeline the submenu offset follows the current static layout", () => {
+  for (const options of [{ reduced: true }, { missing: true }]) {
+    const env = setup(options);
+    assert.equal(env.style.get(SUBMENU_TOP), "56px");
+    env.scroll(500);
+    assert.equal(env.style.get(SUBMENU_TOP), "70px");
+    env.scroll(0);
+    assert.equal(env.style.get(SUBMENU_TOP), "56px");
+  }
+  const mobile = setup({ desktop: false });
+  mobile.scroll(500);
+  assert.equal(mobile.style.has(SUBMENU_TOP), false);
+
+  // 從靜態切回 timeline 時，要先清掉靜態量到的值，不能殘留到動畫裡。
+  const env = setup({ y: 500, reduced: true });
+  assert.equal(env.style.get(SUBMENU_TOP), "70px");
+  const reduced = env.queries["(prefers-reduced-motion: reduce)"];
+  reduced.matches = false;
+  reduced.emit("change");
+  assert.equal(env.style.has(SUBMENU_TOP), false);
+  assert.equal(env.timelines.at(-1).fromTos.length, 1);
+});
+
+test("CSS anchors the submenu to the measured offset but never above its button", async () => {
+  const css = await readFile(
+    new URL("../src/components/header/header.css", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    css,
+    /\.site-header__submenu\s*\{[^}]*top: max\(100%, var\(--site-header-submenu-top, 100%\)\)/
+  );
+  assert.match(
+    css,
+    /\.site-header__dropdown::after\s*\{[^}]*height: calc\(var\(--site-header-submenu-top, 100%\) - 100%\)/
+  );
 });
 
 test("CSS keeps the desktop spacer stable and leaves fixed overlays outside transforms", async () => {
