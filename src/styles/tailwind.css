@@ -294,6 +294,14 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   line-height: 1.375rem;
 }
 
+/* Footer 版權文字：Figma Footer_st2 的 Copyright 中英文皆為 Inter Regular 12/20（修改清單 #10）。 */
+@utility type-label-copyright {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+}
+
 @utility type-label-lang-md {
   font-family: var(--font-label);
   font-size: 1rem;
