@@ -158,10 +158,10 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   line-height: 2rem;
 }
 
-/* Figma 未定義 MD/SM 斷點的英文品牌文字，暫以中文 MD 的 16/24 級數對應，待設計確認。 */
+/* Header 英文店名 MD/SM：Figma Header MD（757:4024）中隱藏的英文圖層為 14/24（修改清單 #5）。 */
 @utility type-display-xs {
   font-family: var(--font-display);
-  font-size: 1rem;
+  font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.5rem;
 }
@@ -206,6 +206,22 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
+}
+
+/* Header 中文店名（修改清單 #4、#5）：Figma LG（961:11617）為 22/32、MD（757:4024）為 14/20；
+   2XL 沿用 type-heading-md 的 28/40。 */
+@utility type-heading-brand-lg {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+@utility type-heading-brand-sm {
+  font-family: var(--font-heading);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
 }
 
 @utility type-body-xl {
@@ -276,6 +292,14 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.375rem;
+}
+
+/* Footer 版權文字：Figma Footer_st2 的 Copyright 中英文皆為 Inter Regular 12/20（修改清單 #10）。 */
+@utility type-label-copyright {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.25rem;
 }
 
 @utility type-label-lang-md {

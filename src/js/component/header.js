@@ -20,6 +20,7 @@
     const brandText = header.querySelector(".site-header__brand-text");
     const logo = header.querySelector(".site-header__logo");
     const nav = header.querySelector(".site-header__nav > ul");
+    const dropdown = header.querySelector(".site-header__dropdown");
     const parts = [logo, nav, header.querySelector(".site-header__actions")].filter(Boolean);
     const targets = [...parts, background, brandText].filter(Boolean);
     let scrolled = null;
@@ -28,22 +29,59 @@
     let transition = null;
     const ease = gsap && CustomEase ? CustomEase.create("site-header", "0.25,0.1,0.25,1") : null;
 
-    // 只在初始化／尺寸與語言改變時量測兩個靜態端點。
-    // 回到 expanded 布局後，所有幀只寫 transform / opacity；不再改整頁高度。
+    // 子選單接在整塊 Header 背景的底緣，而不是按鈕底下（修改清單 #2）。
+    // 量測 li 頂端到背景底緣的距離，交給 CSS 的 --site-header-submenu-top。
+    const SUBMENU_TOP = "--site-header-submenu-top";
+    const measureSubmenuTop = () =>
+      `${background.getBoundingClientRect().bottom - dropdown.getBoundingClientRect().top}px`;
+
+    // 選單與語系連結、預約按鈕的內距和語系與按鈕的間距（header.css 的 CSS 變數）。
+    // Figma 的 Header_Scroll 在 LG、XL 比展開時窄，所以這些變數也在同一條 timeline 補間。
+    const SPACING = ["--site-header-link-px", "--site-header-cta-px", "--site-header-actions-gap"];
+    const readSpacing = () => {
+      const style = window.getComputedStyle(header);
+      return Object.fromEntries(SPACING.map((name) => [name, style.getPropertyValue(name).trim()]));
+    };
+
+    // 沒有 timeline 時（行動版、減少動態、套件未載入）依目前布局直接量測。
+    const placeSubmenu = () => {
+      if (!dropdown || !background || timeline) return;
+      if (desktop.matches) header.style.setProperty(SUBMENU_TOP, measureSubmenuTop());
+      else header.style.removeProperty(SUBMENU_TOP);
+    };
+
+    // 只在初始化／尺寸與語言改變時量測靜態端點。
+    // 回到 expanded 布局後，所有幀只寫 transform / opacity 與 header 上的 CSS 變數；不再改整頁高度。
     const rebuild = () => {
       transition?.kill();
       transition = null;
       timeline?.kill();
       timeline = null;
       gsap?.set(targets, { clearProps: "transform,opacity,visibility" });
-      header.classList.remove("has-header-motion", "is-measuring-compact");
-      if (!desktop.matches || !ease || reducedMotion.matches) return;
+      header.style.removeProperty(SUBMENU_TOP);
+      SPACING.forEach((name) => header.style.removeProperty(name));
+      header.classList.remove("has-header-motion", "is-measuring-spacing", "is-measuring-compact");
+      if (!desktop.matches || !ease || reducedMotion.matches) {
+        placeSubmenu();
+        return;
+      }
 
       header.classList.add("has-header-motion");
       const first = parts.map((part) => part.getBoundingClientRect());
       const brandBottom = brandText.getBoundingClientRect().bottom;
+      const backgroundFrom = background.getBoundingClientRect().height;
+      const submenuFrom = dropdown && measureSubmenuTop();
+      const spacingFrom = readSpacing();
+      // 間距補間時，元素在展開布局裡本身就會跟著移動、改變寬度；transform 只補從
+      // 「展開布局＋收合間距」到收合布局的差，兩者相加才會落在收合位置。
+      header.classList.add("is-measuring-spacing");
+      const spaced = parts.map((part) => part.getBoundingClientRect());
+      const spacingTo = readSpacing();
+      header.classList.remove("is-measuring-spacing");
       header.classList.add("is-measuring-compact");
       const last = parts.map((part) => part.getBoundingClientRect());
+      const backgroundTo = background.getBoundingClientRect().height;
+      const submenuTo = dropdown && measureSubmenuTop();
       header.classList.remove("is-measuring-compact");
 
       // 元素補間保持線性，easing 交給控制時間的 tween，兩個方向才有相同起步速度。
@@ -52,7 +90,7 @@
         defaults: { duration: TRANSITION_DURATION, ease: "none" },
       });
       parts.forEach((part, index) => {
-        const start = first[index];
+        const start = spaced[index];
         const end = last[index];
         timeline.to(
           part,
@@ -67,7 +105,21 @@
           0
         );
       });
-      timeline.to(background, { scaleY: 88 / 172, force3D: true }, 0);
+      // 間距以版面補間（只有 header 內部重排），只放有變的變數；2XL 收合前後相同，就不補間。
+      const spacingChanged = SPACING.filter((name) => spacingFrom[name] !== spacingTo[name]);
+      if (spacingChanged.length) {
+        const pick = (values) =>
+          Object.fromEntries(spacingChanged.map((name) => [name, values[name]]));
+        timeline.fromTo(header, pick(spacingFrom), pick(spacingTo), 0);
+      }
+      // 背景縮到 CSS 收合狀態量到的高度，不寫死 88 / 172；展開高度若不是 172px
+      // 也不會縮錯（修改清單 #3）。
+      timeline.to(background, { scaleY: backgroundTo / backgroundFrom, force3D: true }, 0);
+      // nav 位移與背景縮放都是線性補間，兩者的距離也隨進度線性變化，
+      // 所以子選單的偏移同樣線性補間，就能在動畫中一直貼著背景底緣。
+      if (dropdown) {
+        timeline.fromTo(header, { [SUBMENU_TOP]: submenuFrom }, { [SUBMENU_TOP]: submenuTo }, 0);
+      }
       // 收合先淡出品牌；展開則等 nav 移到文字下方才淡入，避免兩者交疊閃動。
       const navIndex = parts.indexOf(nav);
       const navTravel = first[navIndex].top - last[navIndex].top;
@@ -99,7 +151,10 @@
       const animate = scrolled !== null;
       scrolled = next;
       header.classList.toggle("is-scrolled", next);
-      if (!timeline) return;
+      if (!timeline) {
+        placeSubmenu();
+        return;
+      }
       // 不直接 reverse ease-out（反播會變成慢起步的 ease-in）。
       // 兩個方向都從目前位置，用相同的時間與 easing 前往目標。
       if (!animate) timeline.progress(next ? 1 : 0).pause();

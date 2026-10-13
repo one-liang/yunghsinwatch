@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import test from "node:test";
 import vm from "node:vm";
 
@@ -20,7 +20,17 @@ function events(extra = {}) {
   };
 }
 
-function setup({ y = 0, reduced = false, desktop = true, missing = false, brandBottom = 76 } = {}) {
+function setup({
+  y = 0,
+  reduced = false,
+  desktop = true,
+  missing = false,
+  brandBottom = 76,
+  headerHeight = 172,
+  dropdownTop = 112,
+  spacingTo = null,
+  spacedLeft = 0,
+} = {}) {
   const classes = new Set();
   const frames = [];
   const timelines = [];
@@ -30,25 +40,58 @@ function setup({ y = 0, reduced = false, desktop = true, missing = false, brandB
   };
   let reads = 0;
   let languageChanged;
+  // 展開時背景高 headerHeight（預設 172），子選單 li 頂端在 dropdownTop；
+  // 收合時背景一律 88px 高、li 頂端在 18。
+  const bottoms = { background: [headerHeight, 88], "brand-text": [brandBottom, brandBottom] };
+  const heights = { background: [headerHeight, 88] };
+  const tops = { dropdown: [dropdownTop, 18] };
   const parts = Object.fromEntries(
-    ["background", "brand-text", "logo", "nav > ul", "actions"].map((name) => [
+    ["background", "brand-text", "logo", "nav > ul", "actions", "dropdown"].map((name) => [
       `.site-header__${name}`,
       events({
         getBoundingClientRect() {
           reads++;
-          const compact = classes.has("is-measuring-compact");
+          // 和 CSS 一樣：量測中、或沒有 timeline 時的捲動狀態都是收合布局。
+          const compact =
+            classes.has("is-measuring-compact") ||
+            (classes.has("is-scrolled") && !classes.has("has-header-motion"));
+          const state = compact ? 1 : 0;
+          // 「展開布局＋收合間距」只改水平位置，用 spacedLeft 模擬間距變窄造成的位移。
+          const spaced = classes.has("is-measuring-spacing");
           return {
-            left: compact ? 80 : 0,
-            top: compact ? 16 : 100,
+            left: compact ? 80 : spaced ? spacedLeft : 0,
+            top: tops[name]?.[state] ?? (compact ? 16 : 100),
             width: compact ? 106 : 140,
-            height: compact ? 56 : 74,
-            bottom: name === "brand-text" ? brandBottom : 174,
+            height: heights[name]?.[state] ?? (compact ? 56 : 74),
+            bottom: bottoms[name]?.[state] ?? 174,
           };
         },
       }),
     ])
   );
+  // header.css 的間距變數：展開值，以及收合間距（量測中或沒有 timeline 時的捲動狀態）的值。
+  // 預設兩者相同，等於 2XL。
+  const spacingFrom = {
+    "--site-header-link-px": "1.5rem",
+    "--site-header-cta-px": "1rem",
+    "--site-header-actions-gap": "2.5rem",
+  };
+  const spacingCompact = spacingTo ?? spacingFrom;
+  const getComputedStyle = () => ({
+    getPropertyValue(name) {
+      const compact =
+        classes.has("is-measuring-spacing") ||
+        classes.has("is-measuring-compact") ||
+        (classes.has("is-scrolled") && !classes.has("has-header-motion"));
+      return (compact ? spacingCompact : spacingFrom)[name] ?? "";
+    },
+  });
+  const style = new Map();
   const header = {
+    style: {
+      setProperty: (name, value) => style.set(name, value),
+      removeProperty: (name) => style.delete(name),
+    },
     classList: {
       add: (...names) => names.forEach((name) => classes.add(name)),
       remove: (...names) => names.forEach((name) => classes.delete(name)),
@@ -67,10 +110,15 @@ function setup({ y = 0, reduced = false, desktop = true, missing = false, brandB
       const timeline = {
         options,
         tweens: [],
+        fromTos: [],
         value: 0,
         transitions: [],
         to(target, values, position) {
           this.tweens.push({ target, values, position });
+          return this;
+        },
+        fromTo(target, from, to, position) {
+          this.fromTos.push({ target, from, to, position });
           return this;
         },
         progress(value) {
@@ -107,6 +155,7 @@ function setup({ y = 0, reduced = false, desktop = true, missing = false, brandB
     gsap: missing ? undefined : gsap,
     CustomEase: { create: (_name, curve) => curve },
     matchMedia: (query) => queries[query],
+    getComputedStyle,
     requestAnimationFrame: (callback) => frames.push(callback),
   });
   const document = events({
@@ -124,6 +173,7 @@ function setup({ y = 0, reduced = false, desktop = true, missing = false, brandB
   return {
     window,
     header,
+    style,
     classes,
     queries,
     timelines,
@@ -229,6 +279,154 @@ test("reduced motion, mobile and missing GSAP retain static functional states", 
   desktop.matches = false;
   desktop.emit("change");
   assert.equal(env.classes.has("has-header-motion"), false);
+});
+
+const SUBMENU_TOP = "--site-header-submenu-top";
+
+test("background shrinks to the measured compact height instead of a fixed ratio", () => {
+  const scaleOf = (env) =>
+    env.timelines[0].tweens.find(({ target }) => target === env.parts[".site-header__background"])
+      .values.scaleY;
+  assert.equal(scaleOf(setup()), 88 / 172);
+  // 展開高度不是 172px 時（例如本來就是 88px），比例跟著量測，不能縮成 45px（修改清單 #3）。
+  const compactPage = setup({ headerHeight: 88, dropdownTop: 18 });
+  assert.equal(scaleOf(compactPage), 1);
+  const [{ from, to }] = compactPage.timelines[0].fromTos;
+  assert.equal(from[SUBMENU_TOP], "70px");
+  assert.equal(to[SUBMENU_TOP], "70px");
+});
+
+test("CSS sizes the compact background by height so compact headers keep 88px", async () => {
+  const css = await readFile(
+    new URL("../src/components/header/header.css", import.meta.url),
+    "utf8"
+  );
+  assert.match(css, /\.site-header__background\s*\{\s*bottom: auto;\s*height: 88px;/);
+  assert.doesNotMatch(css, /scaleY\(calc\(88 \/ 172\)\)/);
+});
+
+test("submenu offset tweens with the timeline from the full to the compact header bottom", () => {
+  const env = setup();
+  const [timeline] = env.timelines;
+  assert.equal(timeline.fromTos.length, 1);
+  // 物件是在 vm context 裡建立的，原型不同，所以逐欄比對。
+  const [{ target, from, to, position }] = timeline.fromTos;
+  assert.equal(target, env.header);
+  assert.equal(from[SUBMENU_TOP], "60px", "li top 112 to full header bottom 172");
+  assert.equal(to[SUBMENU_TOP], "70px", "li top 18 to compact header bottom 88");
+  assert.equal(position, 0);
+  assert.equal(env.style.has(SUBMENU_TOP), false, "the timeline owns the inline value");
+  const reads = env.reads;
+  env.scroll(500);
+  assert.equal(env.reads, reads, "scroll handlers must not read layout");
+});
+
+test("without a timeline the submenu offset follows the current static layout", () => {
+  for (const options of [{ reduced: true }, { missing: true }]) {
+    const env = setup(options);
+    assert.equal(env.style.get(SUBMENU_TOP), "60px");
+    env.scroll(500);
+    assert.equal(env.style.get(SUBMENU_TOP), "70px");
+    env.scroll(0);
+    assert.equal(env.style.get(SUBMENU_TOP), "60px");
+  }
+  const mobile = setup({ desktop: false });
+  mobile.scroll(500);
+  assert.equal(mobile.style.has(SUBMENU_TOP), false);
+
+  // 從靜態切回 timeline 時，要先清掉靜態量到的值，不能殘留到動畫裡。
+  const env = setup({ y: 500, reduced: true });
+  assert.equal(env.style.get(SUBMENU_TOP), "70px");
+  const reduced = env.queries["(prefers-reduced-motion: reduce)"];
+  reduced.matches = false;
+  reduced.emit("change");
+  assert.equal(env.style.has(SUBMENU_TOP), false);
+  assert.equal(env.timelines.at(-1).fromTos.length, 1);
+});
+
+test("CSS anchors the submenu to the measured offset but never above its button", async () => {
+  const css = await readFile(
+    new URL("../src/components/header/header.css", import.meta.url),
+    "utf8"
+  );
+  assert.match(
+    css,
+    /\.site-header__submenu\s*\{[^}]*top: max\(100%, var\(--site-header-submenu-top, 100%\)\)/
+  );
+  assert.match(
+    css,
+    /\.site-header__dropdown::after\s*\{[^}]*height: calc\(var\(--site-header-submenu-top, 100%\) - 100%\)/
+  );
+});
+
+const SPACING_LG = {
+  "--site-header-link-px": "1rem",
+  "--site-header-cta-px": "0.5rem",
+  "--site-header-actions-gap": "1rem",
+};
+
+test("collapsed spacing tweens on the header and transforms start from the spaced layout", () => {
+  const env = setup({ spacingTo: SPACING_LG, spacedLeft: 10 });
+  const [timeline] = env.timelines;
+  const spacing = timeline.fromTos.find(({ from }) => "--site-header-link-px" in from);
+  assert.equal(spacing.target, env.header);
+  assert.equal(spacing.position, 0);
+  assert.equal(spacing.from["--site-header-link-px"], "1.5rem");
+  assert.equal(spacing.from["--site-header-cta-px"], "1rem");
+  assert.equal(spacing.from["--site-header-actions-gap"], "2.5rem");
+  assert.equal(spacing.to["--site-header-link-px"], "1rem");
+  assert.equal(spacing.to["--site-header-cta-px"], "0.5rem");
+  assert.equal(spacing.to["--site-header-actions-gap"], "1rem");
+  // 間距變窄時版面本身已移動 10px，transform 只補剩下的：收合中心減「展開布局＋收合間距」的中心。
+  const logo = timeline.tweens.find(({ target }) => target === env.parts[".site-header__logo"]);
+  assert.equal(logo.values.x, 80 + 106 / 2 - (10 + 140 / 2));
+  assert.equal(env.classes.has("is-measuring-spacing"), false);
+  assert.equal(env.classes.has("is-measuring-compact"), false);
+
+  // 2XL 收合前後間距相同，不補間；重建時清掉上一條 timeline 留下的 inline 值。
+  const wide = setup();
+  assert.equal(
+    wide.timelines[0].fromTos.some(({ from }) => "--site-header-link-px" in from),
+    false
+  );
+  wide.style.set("--site-header-link-px", "1rem");
+  wide.window.emit("resize");
+  assert.equal(wide.style.has("--site-header-link-px"), false);
+});
+
+test("CSS sets desktop spacing by variables with Figma's collapsed LG and XL values", async () => {
+  const css = await readFile(
+    new URL("../src/components/header/header.css", import.meta.url),
+    "utf8"
+  );
+  assert.match(css, /--site-header-link-px: 1\.5rem;\s*--site-header-cta-px: 1rem;/);
+  assert.match(
+    css,
+    /\.site-header__menu-link,\s*\.site-header__lang-link\s*\{\s*padding-inline: var\(--site-header-link-px\);/
+  );
+  assert.match(css, /\.site-header__cta\s*\{\s*padding-inline: var\(--site-header-cta-px\);/);
+  assert.match(css, /\.site-header__actions\s*\{\s*gap: var\(--site-header-actions-gap\);/);
+  const block = (query) =>
+    css.match(new RegExp(`@media ${query} \\{([\\s\\S]*?)\\r?\\n\\}`))?.[1] ?? "";
+  const lg = block(String.raw`\(min-width: 64rem\) and \(max-width: 79\.9375rem\)`);
+  assert.match(lg, /\.is-measuring-spacing/);
+  assert.match(
+    lg,
+    /--site-header-link-px: 1rem;\s*--site-header-cta-px: 0\.5rem;\s*--site-header-actions-gap: 1rem;/
+  );
+  assert.match(lg, /flex: 1;\s*margin-inline-start: 2rem;/);
+  const xl = block(String.raw`\(min-width: 80rem\) and \(max-width: 95\.9375rem\)`);
+  assert.match(xl, /--site-header-actions-gap: 1\.5rem;/);
+});
+
+test("no page overrides the shared header, so the brand text shows before scrolling", async () => {
+  const dir = new URL("../src/pages/", import.meta.url);
+  const sheets = (await readdir(dir)).filter((name) => name.endsWith(".css"));
+  assert.ok(sheets.length > 0);
+  for (const name of sheets) {
+    const css = await readFile(new URL(name, dir), "utf8");
+    assert.doesNotMatch(css, /\.site-header/, `${name} must not restyle the header`);
+  }
 });
 
 test("CSS keeps the desktop spacer stable and leaves fixed overlays outside transforms", async () => {
