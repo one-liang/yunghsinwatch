@@ -135,47 +135,6 @@
   }
 }
 
-@media (min-width: 64rem) and (max-width: 95.9375rem) {
-  .series-page .site-header {
-    height: 88px;
-    justify-content: center;
-  }
-
-  .series-page .site-header__bar {
-    height: 80px;
-  }
-
-  .series-page .site-header__logo {
-    width: 106px;
-    height: 56px;
-  }
-
-  .series-page .site-header__brand-text {
-    display: none;
-  }
-
-  .series-page .site-header__nav {
-    position: static;
-    inset: auto;
-  }
-}
-
-@media (min-width: 64rem) and (max-width: 79.9375rem) {
-  .series-page .site-header__menu-link,
-  .series-page .site-header__lang-link {
-    padding-inline: 1rem;
-  }
-
-  .series-page .site-header__cta {
-    padding-inline: 0.5rem;
-  }
-
-  .series-page .site-header__lang-link::after {
-    right: 1rem;
-    left: 1rem;
-  }
-}
-
 @media (min-width: 80rem) {
   .series-watch-grid {
     grid-template-columns: repeat(4, 248px);

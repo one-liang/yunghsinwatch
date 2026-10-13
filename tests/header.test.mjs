@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import test from "node:test";
 import vm from "node:vm";
 
@@ -335,6 +335,16 @@ test("CSS anchors the submenu to the measured offset but never above its button"
     css,
     /\.site-header__dropdown::after\s*\{[^}]*height: calc\(var\(--site-header-submenu-top, 100%\) - 100%\)/
   );
+});
+
+test("no page overrides the shared header, so the brand text shows before scrolling", async () => {
+  const dir = new URL("../src/pages/", import.meta.url);
+  const sheets = (await readdir(dir)).filter((name) => name.endsWith(".css"));
+  assert.ok(sheets.length > 0);
+  for (const name of sheets) {
+    const css = await readFile(new URL(name, dir), "utf8");
+    assert.doesNotMatch(css, /\.site-header/, `${name} must not restyle the header`);
+  }
 });
 
 test("CSS keeps the desktop spacer stable and leaves fixed overlays outside transforms", async () => {
