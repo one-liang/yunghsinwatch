@@ -269,7 +269,9 @@
       </section>
 
       <!-- 整塊連到聯絡我們頁，hover 或鍵盤 focus 時底圖放大 1.1 倍（修改清單 #17），和文章卡片一致。
-           底圖改為裝飾用的空 alt，連結名稱由標題與內文提供。 -->
+           底圖改為裝飾用的空 alt，連結名稱由標題與內文提供。
+           英文版標題用 Playfair Display、內文用 Inter（修改清單 #18），字級各斷點同中文；
+           type-heading-* 在 lg／xl 會重設字型，所以各斷點都要補 en: 的字型。 -->
       <section class="h-[250px] xl:h-[300px]">
         <a
           class="group relative flex size-full items-center justify-center overflow-hidden text-white"
@@ -286,14 +288,14 @@
             data-reveal-group
           >
             <h2
-              class="type-heading-md tracking-[1px] lg:type-heading-lg xl:type-heading-xl xl:tracking-[2px]"
+              class="type-heading-md tracking-[1px] lg:type-heading-lg xl:type-heading-xl xl:tracking-[2px] en:font-display lg:en:font-display xl:en:font-display"
               data-i18n="home.contact.title"
               data-reveal-item
             >
               聯絡我們
             </h2>
             <p
-              class="pt-2 font-heading text-base leading-7 font-medium tracking-[1px] lg:text-lg lg:leading-8 xl:type-heading-xs"
+              class="pt-2 font-heading text-base leading-7 font-medium tracking-[1px] lg:text-lg lg:leading-8 xl:type-heading-xs en:font-label xl:en:font-label"
               data-i18n="home.contact.body"
               data-reveal-item
             >
