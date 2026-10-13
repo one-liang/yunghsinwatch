@@ -22,15 +22,15 @@
 - [x] #8 【Footer】FB 與 IG Logo 消失
 - [x] #9 【Footer】英文地址刪除「(next to First Bank)」
 - [x] #10 【Footer】版權文字字型改為 Inter
-- [ ] #11 【首頁】Banner 輪播第二張照片更換
-- [ ] #12 【首頁】Banner 輪播文字區塊 `left-32` 改為 `left-12`
-- [ ] #13 【首頁】Banner 輪播文字區塊寬高與字型大小
-- [ ] #14 【首頁】YouTube 影片播放器設定
-- [ ] #15 【首頁】圖文卡片標題字重 500 改為 600
-- [ ] #16 【首頁】圖文卡片 `gap-4` 改為 `gap-3`
-- [ ] #17 【首頁】圖文卡片與聯絡我們加連結與 hover 放大
-- [ ] #18 【首頁】英文版 Contact Us 字型
-- [ ] #19 【首頁】英文版「Make an Appointment」改為「BOOKING」
+- [x] #11 【首頁】Banner 輪播第二張照片更換
+- [x] #12 【首頁】Banner 輪播文字區塊 `left-32` 改為 `left-12`
+- [x] #13 【首頁】Banner 輪播文字區塊寬高與字型大小
+- [x] #14 【首頁】YouTube 影片播放器設定
+- [x] #15 【首頁】圖文卡片標題字重 500 改為 600
+- [x] #16 【首頁】圖文卡片 `gap-4` 改為 `gap-3`
+- [x] #17 【首頁】圖文卡片與聯絡我們加連結與 hover 放大
+- [x] #18 【首頁】英文版 Contact Us 字型
+- [x] #19 【首頁】英文版「Make an Appointment」改為「BOOKING」
 
 ---
 
@@ -293,8 +293,18 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > Banner輪播 >
 > 更換第二張照片(雲端1-2.jpeg)，英文版也一樣，英文文字參考設計稿
 
-- [ ] Banner 輪播第二張改用雲端的 1-2.jpeg（中英文版都換）
-- [ ] 英文版第二張的文字依設計稿更新
+- [x] Banner 輪播第二張改用雲端的 1-2.jpeg（中英文版都換）
+- [x] 英文版第二張的文字依設計稿更新
+
+實作說明：雲端資料夾是公開的，直接下載 1-2.jpeg（5270P，1920×1080），存成 `src/assets/images/home/hero-5270p.jpg`，
+中英文首頁的第二張都改用它。資料夾裡的 1-1.jpeg 和第一、三張用的 `hero-nautilus.png` 是同一個檔案（內容其實是 JPEG），沒有更動。
+英文文字依 [Index_EN / Banner](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1088-9585)（`1088:9585`）：
+標題「Patek Philippe Golden Eagle Nautilus 50th Anniversary Four-Piece Limited Edition」（Playfair Display Medium、字距 2px），
+按鈕「DISCOVER」（Inter Regular 14/22）。原本 Banner 文字直接寫在 `index.html`，英文版也顯示中文，現在改成字典的
+`home.hero.title`（`data-i18n-html`，中文的「Nautilus」維持英文字型）與 `home.hero.cta`，三張共用。
+
+待確認：Figma 的三張 Banner 都只畫了第一張，第二張沿用同一組文字。英文設計稿的 5270P 配的也是 Nautilus 五十週年的標題，
+所以照設計稿處理；之後若每張要放不同文字，再拆成各自的字典 key。
 
 ### #12 【首頁】Banner 輪播文字區塊 `left-32` 改為 `left-12`（試算表編號 11，與上一列重複）
 
@@ -303,7 +313,7 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > Banner輪播 >
 > 文字區塊`<div>`left-32改為left-12
 
-- [ ] Banner 輪播文字區塊 `<div>` 的 `left-32` 改為 `left-12`
+- [x] Banner 輪播文字區塊 `<div>` 的 `left-32` 改為 `left-12`
 
 ### #13 【首頁】Banner 輪播文字區塊寬高與字型大小（試算表編號 12）
 
@@ -312,8 +322,45 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > 螢幕尺寸LG + MD&SM >
 > Banner輪播的文字區塊的寬度高度有變更，以及文字字型大小，參考設計搞
 
-- [ ] LG、MD、SM：依設計稿更新 Banner 輪播文字區塊的寬度與高度
-- [ ] LG、MD、SM：依設計稿更新 Banner 輪播文字的字型大小
+- [x] LG、MD、SM：依設計稿更新 Banner 輪播文字區塊的寬度與高度
+- [x] LG、MD、SM：依設計稿更新 Banner 輪播文字的字型大小
+
+實作說明（#12、#13）：設計稿為 [Index / LG](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1088-10332)（`1088:10332`）、
+[Index / SM](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1088-11083)（`1088:11083`），另對照 2XL（`933:14359`）與 XL（`1088:10054`）。
+各斷點的文字區塊如下，標題皆為 Noto Serif TC Medium、字距 2px，按鈕為 Noto Sans TC 14/22：
+
+| 斷點                  | 位置                 | 寬度  | 標題  | 按鈕 | 原本程式                  |
+| --------------------- | -------------------- | ----- | ----- | ---- | ------------------------- |
+| 2XL（1536px 以上）    | 左 128px、垂直置中   | 525px | 40/56 | 有   | 不變                      |
+| XL（1280～1535px）    | 左 48px、垂直置中    | 450px | 40/56 | 有   | 左 128px                  |
+| LG（1024～1279px）    | 左 48px、垂直置中    | 400px | 32/44 | 有   | 左 128px、寬 450px、40/56 |
+| MD、SM（1023px 以下） | 左右 20px、距底 38px | 填滿  | 24/36 | 無   | 不顯示文字                |
+
+#12 的 `left-32` 改 `left-12` 套用在 LG 與 XL；2XL 的設計稿（中英文）仍是左側 128px，所以 `2xl:left-32` 保留。
+SM 的標題在 Figma 設定超過兩行顯示「…」，所以加上 `line-clamp-2`（LG 以上不限行數）。
+SM 的設計稿另外有幾處和原本不同，因為會影響文字區塊的位置，一併照設計稿修改：
+
+- Banner 高度由 256px 改為 350px（Figma Index / SM 393×350）。MD 沒有另外的設計稿，跟 SM 一樣是 350px。
+- 輪播圓點距底由 24px 改為 12px，文字區塊在圓點上方 20px。LG 以上維持 24px。
+- 底圖在 Figma 放大約 1.1 倍並貼齊底緣，所以 MD、SM 的圖片加上 `origin-bottom scale-110`；LG 以上不放大。
+
+按鈕在 Figma 是 102×46，框線畫在內側；程式的 `border` 加在外側，原本是 104×48，所以內距改成 `py-[11px] pr-[23px] pl-[21px]`。
+
+驗證：用 headless Chrome 以 `file://` 開打包後的中英文首頁，在 393／768／1023／1024／1280／1536／1920px 量測第一、二張：
+
+- 中文文字區塊 SM 為 (20, 240) 353×72、LG 為 (48, 160.5) 400×159、XL 為 (48, 180.5) 450×239。
+  Figma 分別是 (20, 240) 353×72、(48, 161) 400×158、(48, 181) 450×238。
+  差的 1px 是中文標題夾著 Playfair 的「Nautilus」，兩種字型的基線不同，那一行會多 1px。
+- 按鈕 102×46（英文 116×46，和 Figma Index_EN 相同）；圓點距底 SM 12px、LG 以上 24px。
+- 標題折行和 Figma 的 SM、LG、XL 以及英文 2XL 截圖一致。
+- 第二張是 5270P；兩張圖都載入成功，沒有水平捲軸，console 沒有錯誤。
+
+待確認：英文版只有 2XL 的設計稿。SM、LG、XL 裡隱藏的英文圖層仍是 40/56、寬 450px，比 SM 的文字框還寬，看起來沒有調整過，
+所以英文先沿用各斷點的中文字級（24/36、32/44、40/56），字型換成 Playfair Display。英文標題在 MD、SM 會被截成兩行
+（「Patek Philippe Golden Eagle Nautilus 50th…」）。
+
+另外發現的既有問題（未修改）：Figma SM 的 Banner 沒有圓角，程式各斷點都是 4px 圓角；2XL 的 Banner 在 Figma 是 720px 高，
+程式依 Figma Mockup comment #7 限制在 675px，所以 2XL 文字區塊的垂直位置比 Figma 高 22.5px（仍垂直置中）。
 
 ### #14 【首頁】YouTube 影片播放器設定
 
@@ -322,7 +369,17 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > Youtube影片
 > 影片播放器設定錯誤?
 
-- [ ] 確認 YouTube 影片播放器的設定錯誤是指什麼（原文是問句），再修正
+- [x] 確認 YouTube 影片播放器的設定錯誤是指什麼（原文是問句），再修正
+
+實作說明：這是直接以 `file://` 開啟 `dist/index.html` 才會出現的畫面。YouTube 嵌入播放器要靠 HTTP Referer 辨識網站，
+`file://` 的頁面不會送出 Referer，播放器就只顯示「影片播放器設定錯誤（錯誤 153）」。用 http 開啟（`npm run preview`、
+GitHub Pages、正式網址）會帶 Referer，影片可以正常播放，所以正式上線不會有這個問題，網頁端也沒辦法讓 `file://` 帶 Referer。
+
+確認後（2026-10-13）不另外做 `file://` 用的替代畫面，程式維持原本的 YouTube iframe 嵌入，沒有修改。
+要看影片請用 `npm run preview` 或 GitHub Pages 開啟。
+
+驗證：用 headless Chrome 截圖影片區塊，`file://` 開啟時為「錯誤 153」，送出的請求沒有 Referer；
+用 http 預覽開啟時 Referer 為預覽網址，影片可以正常播放。
 
 ### #15 【首頁】圖文卡片標題字重 500 改為 600（試算表編號 14，與上一列重複）
 
@@ -332,8 +389,21 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > 標題`<h2>`font-weight:500改為font-weight:600
 > (@font-face要再新增一個)
 
-- [ ] 圖文卡片標題 `<h2>` 由 font-weight 500 改為 600
-- [ ] 新增 600 字重的 `@font-face`
+- [x] 圖文卡片標題 `<h2>` 由 font-weight 500 改為 600
+- [x] 新增 600 字重的 `@font-face`
+
+實作說明：Figma 的 Featured Card（[Article / LG](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1088-10344)、
+2XL `1032:14726`、XL `1088:9616`、SM `1096:12099`）標題為 Noto Serif TC SemiBold，SM／MD／LG 24/36、XL 以上 28/40，字距 1px。
+專案原本只有 Noto Serif TC 500，所以從原本的來源 Fontsource 5.3.0（`@fontsource/noto-serif-tc`，現有 500 檔案與套件內容完全相同）
+加入 `noto-serif-tc-chinese-traditional-600-normal.woff2`，`tailwind.css` 補上 600 的 `@font-face`，字型 README 一併更新。
+`tailwind.css` 新增 `type-heading-featured-sm`（600 24/36）與 `type-heading-featured-md`（600 28/40），三張卡片的 `<h2>`
+由 `type-heading-sm`／`xl:type-heading-md` 改用這兩個。
+
+驗證：在 393／768／1024／1280／1536px 以 `file://` 開首頁，三個標題皆為 Noto Serif TC 600，字級與 Figma 相同，600 字型檔狀態為 loaded（不是瀏覽器模擬的粗體）。
+`npm run check` 的本地引用數由 1446 增為 1468：每頁 CSS 都多一個 600 的 `@font-face`，瀏覽器只會在頁面用到 600 時才下載。
+
+備註：Figma LG 的第二張卡片（5396R，`I1088:11739;1088:10790`）標題仍是 Medium 500，其他斷點與另外兩張都是 SemiBold，
+試算表要求標題一律 600，所以三張都改成 600。
 
 ### #16 【首頁】圖文卡片 `gap-4` 改為 `gap-3`（試算表編號 15；修改頁面、語系欄空白）
 
@@ -342,7 +412,11 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > 圖文卡片 >
 > `<article>`裡面`<div>`gap-4改為gap-3
 
-- [ ] 圖文卡片 `<article>` 內 `<div>` 的 `gap-4` 改為 `gap-3`
+- [x] 圖文卡片 `<article>` 內 `<div>` 的 `gap-4` 改為 `gap-3`
+
+實作說明：Figma 標題與內文的間距為 SM 8px、LG 16px、XL 以上 32px，和試算表的 `gap-3`（12px）不同。
+經確認（2026-10-13）依試算表處理：文字區塊 `flex flex-col gap-4 lg:min-w-0 lg:flex-1 xl:gap-8` 的 `gap-4` 改為 `gap-3`，
+`xl:gap-8` 不變。量測三張卡片標題與內文的距離：1279px 以下 12px、1280px 以上 32px。
 
 備註：修改頁面欄空白，因內容接在 #15 的圖文卡片之後，先歸在首頁。
 
@@ -354,10 +428,27 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > 圖文卡片與聯絡我們 >
 > 區塊需要放連結，以及hover時底圖可以放大，參考連結(MEET OUR BESTSELLERS區塊)
 
-- [ ] 圖文卡片與聯絡我們區塊加上連結
-- [ ] hover 時底圖放大，效果參考 furlanmarri.com 的 MEET OUR BESTSELLERS 區塊
+- [x] 圖文卡片與聯絡我們區塊加上連結
+- [x] hover 時底圖放大，效果參考 furlanmarri.com 的 MEET OUR BESTSELLERS 區塊
 
-備註：Figma comment #9 已做過首頁文章卡片的圖片 hover 放大，可能和本項的圖文卡片重疊，要確認範圍。
+實作說明：參考站 MEET OUR BESTSELLERS 的卡片是把圖片包在商品連結裡，hover 時圖片放大（CSS 為 `scale(1.05)`、`transform .5s`），
+外框 `overflow: hidden` 裁切。首頁改成：
+
+- 三張圖文卡片整張是一個連結（`<article>` 裡包 `<a class="group …">`），圖片、標題與內文都能點。
+  還沒有文章頁，先比照時計系列頁的卡片連到單錶介紹頁 `collection-model.html`。
+- 聯絡我們整塊連到 `contact.html`，hover 時底圖放大。底圖在連結裡只是裝飾，`alt` 改為空字串，
+  連結名稱由標題與內文提供（原本的「百達翡麗時計工藝細節」英文版也顯示中文）。
+- 卡片原本就依 Figma Mockup comment #9 在 hover 時放大 1.1 倍、0.3s ease-out，聯絡我們沿用同一組數值，全站一致，
+  沒有改成參考站的 1.05／0.5s。兩者都另外加上鍵盤 focus（`:focus-visible`）時放大。
+
+驗證：在 393／768／1024／1280／1536px 以 `file://` 開中英文首頁：
+
+- 三張卡片與聯絡我們都是連結，網址如上；英文版連到 `en/` 底下的同名頁面。
+- 滑鼠移入時圖片由 1 放大到 1.1、移出後回到 1，Tab 鍵 focus 時也放大到 1.1。
+- 卡片尺寸與間距和修改前相同（例如 LG 928×338、間距 80px）。
+- `npm run check` 的本地引用數由 1468 增為 1476，就是中英文兩頁各多 4 個連結，全部都找得到。
+
+待確認：卡片要連到的實際文章或單錶頁網址；目前三張都連到同一個單錶介紹頁範本。
 
 ### #18 【首頁】英文版 Contact Us 字型
 
@@ -366,8 +457,20 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > Contact Us
 > 標題字型為Playfair Display，內文字型為Inter
 
-- [ ] 英文版 Contact Us 區塊標題改用 Playfair Display
-- [ ] 英文版 Contact Us 區塊內文改用 Inter
+- [x] 英文版 Contact Us 區塊標題改用 Playfair Display
+- [x] 英文版 Contact Us 區塊內文改用 Inter
+
+實作說明：依 [Index_EN / Contact](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1036-7605)（`1036:7605`），
+標題為 Playfair Display Medium 40/50、字距 2px（Display/XL），內文為 Inter Medium 20/32、字距 1px，和中文 2XL 的字級相同。
+英文只有 2XL 的設計稿，LG（`1088:10350`）、SM（`1088:11101`）沒有英文圖層，所以英文沿用各斷點的中文字級，只換字型：
+標題 28/40、32/44、40/50，內文 16/28、18/32、20/32。中文的 `type-heading-*` 在 lg／xl 會重新設定字型，
+所以英文的字型在各斷點都補上（`en:font-display lg:en:font-display xl:en:font-display`、`en:font-label xl:en:font-label`）。
+
+驗證：中英文首頁在 393～1536px 的標題與內文字型、字重、字級、行高、字距都和上述相同，中文維持 Noto Serif TC；
+英文內文在 393px 為 5 行，上下各留 23px，沒有超出 250px 高的區塊。
+
+待確認：Figma 英文版的標題是全大寫「CONTACT US」，內文也比現在長（「Yung Hsin Watch warmly welcomes all watch enthusiasts. …」）。
+試算表只要求改字型，所以文字沒有動。Figma 的內文放到 SM 會超過 7 行，在 250px 高的區塊裡放不下；要換文字時，SM 的高度或字級也要一起調整。
 
 ### #19 【首頁】英文版「Make an Appointment」改為「BOOKING」
 
@@ -376,10 +479,18 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > 「Make an Appointment」改為「BOOKING」
 > 字型改為Playfair Display
 
-- [ ] 英文版「Make an Appointment」改為「BOOKING」
-- [ ] 字型改為 Playfair Display
+- [x] 英文版「Make an Appointment」改為「BOOKING」
+- [x] 字型改為 Playfair Display
 
-備註：精品店頁的 `boutique.appointment.title` 也是「Make an Appointment」，試算表只列了首頁。
+實作說明：`en.mjs` 的 `home.appointment.title` 改為「BOOKING」，字型依
+[Index_EN / Appointment](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1096-12251)（`1096:12251`）改為 Playfair Display Medium，
+2XL 為 40/50、字距 2px；MD（`1088:11293`）隱藏的英文圖層為 28/40、字距 1px，和中文 MD 相同，所以各斷點沿用中文字級（28/40、32/44、40/50）。
+副標「SCHEDULE AN APPOINTMENT」原本就是 Figma 的 Inter Medium 16/24（Label/Eyebrow-LG），不用改。
+
+驗證：英文首頁在 393～1536px 皆為 Playfair Display 500，字級同上；中文「我要預約」維持 Noto Serif TC。點擊仍會開啟預約彈跳視窗。
+
+待確認：LG（`1088:11269`）隱藏的英文圖層仍是 2XL 的 40/50，和 LG 的中文（32/44）不同，看起來沒有調整過，所以 LG 先用 32/44。
+精品店頁的 `boutique.appointment.title` 也是「Make an Appointment」，試算表只列了首頁，沒有更動。
 
 ## 未收錄的列
 
