@@ -148,7 +148,9 @@
         />
       </section>
 
-      <!-- 文章卡片 hover 時圖片放大 1.1 倍（Figma Mockup comment #9），過場沿用全站 0.3s ease-out；
+      <!-- 整張文章卡片是一個連結（修改清單 #17，參考 furlanmarri.com 的 MEET OUR BESTSELLERS）。
+           還沒有文章頁，先比照時計系列頁的卡片連到單錶介紹頁 collection-model.html。
+           hover 或鍵盤 focus 時圖片放大 1.1 倍（Figma Mockup comment #9），過場沿用全站 0.3s ease-out；
            外層 div 負責裁切與進場動畫，transform 不會和 hover 的 scale 互相干擾。
            捲動進場（Figma Mockup comment #6，參考 furlanmarri.com）：文字區塊用 data-reveal-group，
            內部 data-reveal-item 依序往上；影片與照片用 data-reveal-media 往上淡入。見 src/js/global/motion.js。
@@ -159,126 +161,146 @@
         ></span>
 
         <div class="mx-auto flex max-w-[1280px] flex-col gap-12 lg:gap-20 xl:gap-28">
-          <article class="group flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-[72px]">
-            <div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1 xl:gap-8" data-reveal-group>
-              <h2
-                class="type-heading-featured-sm tracking-[1px] text-brown-dark lg:line-clamp-3 xl:line-clamp-none xl:type-heading-featured-md"
-                data-reveal-item
-              >
-                首度加入日出日落 Grand Complications 6105G-001
-              </h2>
-              <p
-                class="line-clamp-4 type-body-base tracking-[1px] xl:line-clamp-5"
-                data-reveal-item
-              >
-                當時間不再只是指針的流動，而化為一場關於宇宙運行的精密演繹，PATEK PHILIPPE Ref.
-                6105G-001 以嶄新高度重新定義天文複雜功能腕錶。此款 2026
-                年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
-              </p>
-            </div>
-            <div
-              class="order-first aspect-video w-full overflow-hidden lg:order-none lg:w-[600px] lg:shrink-0 xl:w-[800px]"
-              data-reveal-media
+          <article>
+            <a
+              class="group flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-[72px]"
+              href="./collection-model.html"
             >
-              <img
-                class="size-full object-cover transition-transform group-hover:scale-110"
-                src="../assets/images/home/article-6105g.png"
-                alt="百達翡麗 Grand Complications 6105G-001 腕錶"
-                loading="lazy"
-              />
-            </div>
+              <div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1 xl:gap-8" data-reveal-group>
+                <h2
+                  class="type-heading-featured-sm tracking-[1px] text-brown-dark lg:line-clamp-3 xl:line-clamp-none xl:type-heading-featured-md"
+                  data-reveal-item
+                >
+                  首度加入日出日落 Grand Complications 6105G-001
+                </h2>
+                <p
+                  class="line-clamp-4 type-body-base tracking-[1px] xl:line-clamp-5"
+                  data-reveal-item
+                >
+                  當時間不再只是指針的流動，而化為一場關於宇宙運行的精密演繹，PATEK PHILIPPE Ref.
+                  6105G-001 以嶄新高度重新定義天文複雜功能腕錶。此款 2026
+                  年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
+                </p>
+              </div>
+              <div
+                class="order-first aspect-video w-full overflow-hidden lg:order-none lg:w-[600px] lg:shrink-0 xl:w-[800px]"
+                data-reveal-media
+              >
+                <img
+                  class="size-full object-cover transition-transform group-hover:scale-110 group-focus-visible:scale-110"
+                  src="../assets/images/home/article-6105g.png"
+                  alt="百達翡麗 Grand Complications 6105G-001 腕錶"
+                  loading="lazy"
+                />
+              </div>
+            </a>
           </article>
 
-          <article class="group flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-[72px]">
-            <div
-              class="aspect-video w-full overflow-hidden lg:w-[600px] lg:shrink-0 xl:w-[800px]"
-              data-reveal-media
+          <article>
+            <a
+              class="group flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-[72px]"
+              href="./collection-model.html"
             >
-              <img
-                class="size-full object-cover transition-transform group-hover:scale-110"
-                src="../assets/images/home/article-5396r.png"
-                alt="百達翡麗 5396R 年曆腕錶"
-                loading="lazy"
-              />
-            </div>
-            <div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1 xl:gap-8" data-reveal-group>
-              <h2
-                class="type-heading-featured-sm tracking-[1px] text-brown-dark lg:line-clamp-3 xl:line-clamp-none xl:type-heading-featured-md"
-                data-reveal-item
+              <div
+                class="aspect-video w-full overflow-hidden lg:w-[600px] lg:shrink-0 xl:w-[800px]"
+                data-reveal-media
               >
-                百達翡麗 5396R 年曆腕錶三十週年致敬之作
-              </h2>
-              <p
-                class="line-clamp-4 type-body-base tracking-[1px] xl:line-clamp-5"
-                data-reveal-item
-              >
-                回顧現代高級製錶發展，一項真正具有影響力的複雜功能，往往不只是增加腕錶的技術含量，也可能重新改變市場對實用性的理解。1996
-                年，Patek Philippe 百達翡麗推出 Ref.
-                5035，首度將獲得專利的年曆複雜功能帶到世人面前。它既不是萬年曆的簡化版本，也不只是全日曆的小幅改良，而是一套能夠自動辨識
-                30 天與 31
-                天月份的機制。換句話說，佩戴者一年只需要在二月底手動調校一次。這項設計正好填補全日曆與萬年曆之間的空白，也憑藉更貼近日常使用的特性，逐漸成為百達翡麗最具代表性的複雜功能之一。
-              </p>
-            </div>
+                <img
+                  class="size-full object-cover transition-transform group-hover:scale-110 group-focus-visible:scale-110"
+                  src="../assets/images/home/article-5396r.png"
+                  alt="百達翡麗 5396R 年曆腕錶"
+                  loading="lazy"
+                />
+              </div>
+              <div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1 xl:gap-8" data-reveal-group>
+                <h2
+                  class="type-heading-featured-sm tracking-[1px] text-brown-dark lg:line-clamp-3 xl:line-clamp-none xl:type-heading-featured-md"
+                  data-reveal-item
+                >
+                  百達翡麗 5396R 年曆腕錶三十週年致敬之作
+                </h2>
+                <p
+                  class="line-clamp-4 type-body-base tracking-[1px] xl:line-clamp-5"
+                  data-reveal-item
+                >
+                  回顧現代高級製錶發展，一項真正具有影響力的複雜功能，往往不只是增加腕錶的技術含量，也可能重新改變市場對實用性的理解。1996
+                  年，Patek Philippe 百達翡麗推出 Ref.
+                  5035，首度將獲得專利的年曆複雜功能帶到世人面前。它既不是萬年曆的簡化版本，也不只是全日曆的小幅改良，而是一套能夠自動辨識
+                  30 天與 31
+                  天月份的機制。換句話說，佩戴者一年只需要在二月底手動調校一次。這項設計正好填補全日曆與萬年曆之間的空白，也憑藉更貼近日常使用的特性，逐漸成為百達翡麗最具代表性的複雜功能之一。
+                </p>
+              </div>
+            </a>
           </article>
 
-          <article class="group flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-[72px]">
-            <div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1 xl:gap-8" data-reveal-group>
-              <h2
-                class="type-heading-featured-sm tracking-[1px] text-brown-dark lg:line-clamp-3 xl:line-clamp-none xl:type-heading-featured-md"
-                data-reveal-item
-              >
-                百達翡麗Twenty~4
-              </h2>
-              <p
-                class="line-clamp-4 type-body-base tracking-[1px] xl:line-clamp-5"
-                data-reveal-item
-              >
-                Twenty~4時計於一九九九年面世，是百達翡麗首枚女士專屬的腕錶款式。腕錶設計時尚，誠為相伴現代女性多采多姿的生活而設。顧名思義，腕錶日夜佩戴皆可，莊閒場合皆宜，堪稱永恆優雅與卓越不凡的典範。編號4910／1201R-001新款腕錶搭配石英機芯，是第三枚展現Twenty~4時計全新面貌的法式袖口腕錶款是。集18K金錶殼和朱古力啡色放射狀錶面於一身，盡顯女性的溫婉、精緻與魅力。
-              </p>
-            </div>
-            <div
-              class="order-first aspect-video w-full overflow-hidden lg:order-none lg:w-[600px] lg:shrink-0 xl:w-[800px]"
-              data-reveal-media
+          <article>
+            <a
+              class="group flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-[72px]"
+              href="./collection-model.html"
             >
-              <img
-                class="size-full object-cover transition-transform group-hover:scale-110"
-                src="../assets/images/home/article-twenty-4.jpg"
-                alt="百達翡麗 Twenty~4 4910/1201R-001 腕錶"
-                loading="lazy"
-              />
-            </div>
+              <div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1 xl:gap-8" data-reveal-group>
+                <h2
+                  class="type-heading-featured-sm tracking-[1px] text-brown-dark lg:line-clamp-3 xl:line-clamp-none xl:type-heading-featured-md"
+                  data-reveal-item
+                >
+                  百達翡麗Twenty~4
+                </h2>
+                <p
+                  class="line-clamp-4 type-body-base tracking-[1px] xl:line-clamp-5"
+                  data-reveal-item
+                >
+                  Twenty~4時計於一九九九年面世，是百達翡麗首枚女士專屬的腕錶款式。腕錶設計時尚，誠為相伴現代女性多采多姿的生活而設。顧名思義，腕錶日夜佩戴皆可，莊閒場合皆宜，堪稱永恆優雅與卓越不凡的典範。編號4910／1201R-001新款腕錶搭配石英機芯，是第三枚展現Twenty~4時計全新面貌的法式袖口腕錶款是。集18K金錶殼和朱古力啡色放射狀錶面於一身，盡顯女性的溫婉、精緻與魅力。
+                </p>
+              </div>
+              <div
+                class="order-first aspect-video w-full overflow-hidden lg:order-none lg:w-[600px] lg:shrink-0 xl:w-[800px]"
+                data-reveal-media
+              >
+                <img
+                  class="size-full object-cover transition-transform group-hover:scale-110 group-focus-visible:scale-110"
+                  src="../assets/images/home/article-twenty-4.jpg"
+                  alt="百達翡麗 Twenty~4 4910/1201R-001 腕錶"
+                  loading="lazy"
+                />
+              </div>
+            </a>
           </article>
         </div>
       </section>
 
-      <section
-        class="relative flex h-[250px] items-center justify-center overflow-hidden text-white xl:h-[300px]"
-      >
-        <img
-          class="absolute inset-0 size-full object-cover"
-          src="../assets/images/home/contact-background.png"
-          alt="百達翡麗時計工藝細節"
-        />
-        <div class="absolute inset-0 bg-black/50"></div>
-        <div
-          class="relative flex w-full flex-col items-center gap-4 px-5 text-center lg:w-[640px] lg:gap-6 lg:px-0"
-          data-reveal-group
+      <!-- 整塊連到聯絡我們頁，hover 或鍵盤 focus 時底圖放大 1.1 倍（修改清單 #17），和文章卡片一致。
+           底圖改為裝飾用的空 alt，連結名稱由標題與內文提供。 -->
+      <section class="h-[250px] xl:h-[300px]">
+        <a
+          class="group relative flex size-full items-center justify-center overflow-hidden text-white"
+          href="./contact.html"
         >
-          <h2
-            class="type-heading-md tracking-[1px] lg:type-heading-lg xl:type-heading-xl xl:tracking-[2px]"
-            data-i18n="home.contact.title"
-            data-reveal-item
+          <img
+            class="absolute inset-0 size-full object-cover transition-transform group-hover:scale-110 group-focus-visible:scale-110"
+            src="../assets/images/home/contact-background.png"
+            alt=""
+          />
+          <div class="absolute inset-0 bg-black/50"></div>
+          <div
+            class="relative flex w-full flex-col items-center gap-4 px-5 text-center lg:w-[640px] lg:gap-6 lg:px-0"
+            data-reveal-group
           >
-            聯絡我們
-          </h2>
-          <p
-            class="pt-2 font-heading text-base leading-7 font-medium tracking-[1px] lg:text-lg lg:leading-8 xl:type-heading-xs"
-            data-i18n="home.contact.body"
-            data-reveal-item
-          >
-            永新鐘錶歡迎愛錶人士，不論是鐘錶維修問題、如何保養、或是其他專業諮詢，我們都將誠摯為您服務。
-          </p>
-        </div>
+            <h2
+              class="type-heading-md tracking-[1px] lg:type-heading-lg xl:type-heading-xl xl:tracking-[2px]"
+              data-i18n="home.contact.title"
+              data-reveal-item
+            >
+              聯絡我們
+            </h2>
+            <p
+              class="pt-2 font-heading text-base leading-7 font-medium tracking-[1px] lg:text-lg lg:leading-8 xl:type-heading-xs"
+              data-i18n="home.contact.body"
+              data-reveal-item
+            >
+              永新鐘錶歡迎愛錶人士，不論是鐘錶維修問題、如何保養、或是其他專業諮詢，我們都將誠摯為您服務。
+            </p>
+          </div>
+        </a>
       </section>
 
       <section
