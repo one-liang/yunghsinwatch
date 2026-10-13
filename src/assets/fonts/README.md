@@ -6,7 +6,8 @@
 - Playfair Display Latin：400、500；用於英文展示標題。
 - Inter Latin：400、500、600；用於標籤、UI 元件、數字、資料值及 Copyright，
   400 為英文版導覽列與按鈕文字（Figma Navbar 英文版），600 為單錶介紹頁價格。
-- Noto Serif TC Traditional Chinese：500；用於中文大標、Modal 與文章標題。
+- Noto Serif TC Traditional Chinese：500、600；用於中文大標、Modal 與文章標題，
+  600 為首頁圖文卡片標題（Figma Featured Card 的 SemiBold）。
 - Noto Sans TC Traditional Chinese：400、500、700；用於中文內文與 UI 說明文字，
   700 為服務條款與隱私權政策的條目標題（Figma Terms List / CH 的 20/36 Bold）。
 

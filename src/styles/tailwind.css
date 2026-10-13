@@ -74,6 +74,15 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   src: url("../assets/fonts/noto-serif-tc-chinese-traditional-500-normal.woff2") format("woff2");
 }
 
+/* 600 只有首頁圖文卡片的標題用到（Figma Featured Card：Noto Serif TC SemiBold，修改清單 #15）。 */
+@font-face {
+  font-family: "Noto Serif TC";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../assets/fonts/noto-serif-tc-chinese-traditional-600-normal.woff2") format("woff2");
+}
+
 @font-face {
   font-family: "Noto Sans TC";
   font-style: normal;
@@ -199,6 +208,21 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 2rem;
+}
+
+/* 首頁圖文卡片標題（修改清單 #15）：Figma Featured Card 為 SemiBold，SM／LG 24/36、XL／2XL 28/40。 */
+@utility type-heading-featured-sm {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.25rem;
+}
+
+@utility type-heading-featured-md {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 2.5rem;
 }
 
 @utility type-heading-2xs {
