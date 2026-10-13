@@ -57,9 +57,12 @@
     margin-inline: auto;
   }
 
+  /* 收合後一律 88px 高。用高度而不是 scaleY(88 / 172)，header.js 再依量到的高度算縮放比例，
+     展開時的高度若不是 172px 也不會縮錯（修改清單 #3）。 */
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
     .site-header__background {
-    transform: scaleY(calc(88 / 172));
+    bottom: auto;
+    height: 88px;
   }
 
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__bar {

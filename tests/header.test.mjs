@@ -26,6 +26,7 @@ function setup({
   desktop = true,
   missing = false,
   brandBottom = 76,
+  headerHeight = 172,
   dropdownTop = 116,
 } = {}) {
   const classes = new Set();
@@ -37,9 +38,10 @@ function setup({
   };
   let reads = 0;
   let languageChanged;
-  // 展開時背景底緣在 172、子選單 li 頂端在 dropdownTop；
-  // 收合時背景底緣在 88、li 頂端在 18。
-  const bottoms = { background: [172, 88], "brand-text": [brandBottom, brandBottom] };
+  // 展開時背景高 headerHeight（預設 172），子選單 li 頂端在 dropdownTop；
+  // 收合時背景一律 88px 高、li 頂端在 18。
+  const bottoms = { background: [headerHeight, 88], "brand-text": [brandBottom, brandBottom] };
+  const heights = { background: [headerHeight, 88] };
   const tops = { dropdown: [dropdownTop, 18] };
   const parts = Object.fromEntries(
     ["background", "brand-text", "logo", "nav > ul", "actions", "dropdown"].map((name) => [
@@ -56,7 +58,7 @@ function setup({
             left: compact ? 80 : 0,
             top: tops[name]?.[state] ?? (compact ? 16 : 100),
             width: compact ? 106 : 140,
-            height: compact ? 56 : 74,
+            height: heights[name]?.[state] ?? (compact ? 56 : 74),
             bottom: bottoms[name]?.[state] ?? 174,
           };
         },
@@ -258,6 +260,28 @@ test("reduced motion, mobile and missing GSAP retain static functional states", 
 });
 
 const SUBMENU_TOP = "--site-header-submenu-top";
+
+test("background shrinks to the measured compact height instead of a fixed ratio", () => {
+  const scaleOf = (env) =>
+    env.timelines[0].tweens.find(({ target }) => target === env.parts[".site-header__background"])
+      .values.scaleY;
+  assert.equal(scaleOf(setup()), 88 / 172);
+  // 展開高度不是 172px 時（例如本來就是 88px），比例跟著量測，不能縮成 45px（修改清單 #3）。
+  const compactPage = setup({ headerHeight: 88, dropdownTop: 18 });
+  assert.equal(scaleOf(compactPage), 1);
+  const [{ from, to }] = compactPage.timelines[0].fromTos;
+  assert.equal(from[SUBMENU_TOP], "70px");
+  assert.equal(to[SUBMENU_TOP], "70px");
+});
+
+test("CSS sizes the compact background by height so compact headers keep 88px", async () => {
+  const css = await readFile(
+    new URL("../src/components/header/header.css", import.meta.url),
+    "utf8"
+  );
+  assert.match(css, /\.site-header__background\s*\{\s*bottom: auto;\s*height: 88px;/);
+  assert.doesNotMatch(css, /scaleY\(calc\(88 \/ 172\)\)/);
+});
 
 test("submenu offset tweens with the timeline from the full to the compact header bottom", () => {
   const env = setup();

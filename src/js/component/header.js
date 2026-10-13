@@ -60,9 +60,11 @@
       header.classList.add("has-header-motion");
       const first = parts.map((part) => part.getBoundingClientRect());
       const brandBottom = brandText.getBoundingClientRect().bottom;
+      const backgroundFrom = background.getBoundingClientRect().height;
       const submenuFrom = dropdown && measureSubmenuTop();
       header.classList.add("is-measuring-compact");
       const last = parts.map((part) => part.getBoundingClientRect());
+      const backgroundTo = background.getBoundingClientRect().height;
       const submenuTo = dropdown && measureSubmenuTop();
       header.classList.remove("is-measuring-compact");
 
@@ -87,7 +89,9 @@
           0
         );
       });
-      timeline.to(background, { scaleY: 88 / 172, force3D: true }, 0);
+      // 背景縮到 CSS 收合狀態量到的高度，不寫死 88 / 172；展開高度若不是 172px
+      // 也不會縮錯（修改清單 #3）。
+      timeline.to(background, { scaleY: backgroundTo / backgroundFrom, force3D: true }, 0);
       // nav 位移與背景縮放都是線性補間，兩者的距離也隨進度線性變化，
       // 所以子選單的偏移同樣線性補間，就能在動畫中一直貼著背景底緣。
       if (dropdown) {
