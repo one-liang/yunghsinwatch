@@ -16,8 +16,13 @@ export default {
   "lang.zh": "中文",
   "lang.en": "EN",
 
+  // 首頁 Banner 輪播（src/pages/index.html），三張共用同一組文字；英文依 Figma Index_EN（1088:9585）。
+  "home.hero.title":
+    "Patek Philippe Golden Eagle Nautilus 50th Anniversary Four-Piece Limited Edition",
+  "home.hero.cta": "DISCOVER",
+
   // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
-  "home.appointment.title": "Make an Appointment",
+  "home.appointment.title": "BOOKING",
   "home.appointment.subtitle": "Schedule an Appointment",
   "home.video.title": "Patek Philippe video",
   "home.contact.title": "Contact Us",

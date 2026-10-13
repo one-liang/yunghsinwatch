@@ -16,6 +16,10 @@ export default {
   "lang.zh": "中文",
   "lang.en": "EN",
 
+  // 首頁 Banner 輪播（src/pages/index.html），三張共用同一組文字；標題用 data-i18n-html，Nautilus 換成英文字型。
+  "home.hero.title": '百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款',
+  "home.hero.cta": "探索更多",
+
   // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
   "home.appointment.title": "我要預約",
   "home.appointment.subtitle": "Schedule an Appointment",

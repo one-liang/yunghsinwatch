@@ -1,10 +1,17 @@
+/* 圓點離底緣 MD/SM 12px（Figma Index / SM，文字區塊在圓點上方 20px）、LG 以上 24px。 */
 .home-hero-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
-  bottom: 24px;
+  bottom: 12px;
   left: 50%;
   display: flex;
   width: auto;
   gap: 10px;
   transform: translateX(-50%);
+}
+
+@media (min-width: 64rem) {
+  .home-hero-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+    bottom: 24px;
+  }
 }
 
 .home-hero-pagination.swiper-pagination-bullets .swiper-pagination-bullet {
