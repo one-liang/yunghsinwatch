@@ -13,7 +13,7 @@ export default {
 
   "cta.booking": "預約服務",
 
-  "lang.zh": "ZH",
+  "lang.zh": "中文",
   "lang.en": "EN",
 
   // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
