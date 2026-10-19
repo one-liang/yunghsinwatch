@@ -102,6 +102,18 @@
   }
 }
 
+/* 640～1023px 三個一組（修改清單 #25）：依 Figma Series Page（寬 640，1287:9299），卡片 160px、間距 24px，
+   最後一列只剩一張時放在中間欄。 */
+@media (min-width: 40rem) and (width < 64rem) {
+  .series-watch-grid {
+    grid-template-columns: repeat(3, 160px);
+  }
+
+  .series-watch-card:last-child:nth-child(3n + 1) {
+    grid-column: 2;
+  }
+}
+
 @media (min-width: 64rem) {
   .series-watch-grid {
     grid-template-columns: repeat(4, 196px);
@@ -123,15 +135,6 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 48px;
     max-width: 928px;
-  }
-
-  .series-discover__card {
-    gap: 20px;
-  }
-
-  .series-discover__card h3 {
-    font-size: 28px;
-    line-height: 40px;
   }
 }
 

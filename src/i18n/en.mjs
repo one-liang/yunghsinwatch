@@ -96,9 +96,9 @@ export default {
     "Discover the Patek Philippe Golden Ellipse collection and the elegant harmony of its iconic elliptical form.",
   "series.headingSuffix": " COLLECTION",
   "series.description":
-    "Discover the captivating world of the Golden Ellipse collection, whose long history ranks second among Patek Philippe collections, surpassed only by Calatrava.",
+    "Delve into the fascinating universe of the Golden Ellipse, the second oldest watch in the Patek Philippe collection after the Calatrava.",
   "series.watchName": "GOLDEN ELLIPSE WATCH",
-  "series.discoverTitle": "CONTINUE EXPLORING",
+  "series.discoverTitle": "Explore More",
 
   "model.meta.title": "Golden Ellipse 5204G-010 | Yung Hsin Watch",
   "model.meta.description":
