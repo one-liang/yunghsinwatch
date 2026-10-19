@@ -87,9 +87,9 @@ export default {
   "collection.meta.title": "Patek Philippe Collection | Yung Hsin Watch",
   "collection.meta.description":
     "Explore the Patek Philippe collection and its enduring standards of watchmaking, quality, and innovation.",
-  "collection.heading": "Patek Philippe Collection",
+  "collection.heading": "ALL COLLECTIONS",
   "collection.description":
-    "The Patek Philippe collection comprises more than 150 models in regular production, each produced in small series to ensure the highest standards of quality embodied by the Patek Philippe Seal.",
+    "Patek Philippe have over 150 references in regular production, manufactured in limited quantity to ensure they respect the extremely high quality standards of the Patek Philippe Seal.",
 
   "series.meta.title": "Golden Ellipse Collection | Yung Hsin Watch",
   "series.meta.description":
