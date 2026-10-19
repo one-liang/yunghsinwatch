@@ -49,10 +49,10 @@
 - [x] #21 【頁首介紹】介紹內文 `<p>` 改小
 - [x] #22 【時計系列】英文版大標題改為「ALL COLLECTIONS」並重貼介紹內文
 - [x] #23 【時計系列】系列卡片標題刪除 LG 字級，與圖片間距改為 16px
-- [ ] #24 【單系列列表】英文版大標題多了「COLLECTION」並貼上介紹內文
-- [ ] #25 【單系列列表】MD 改為三個一組
-- [ ] #26 【單系列列表】英文版繼續探索標題改為「Explore More」
-- [ ] #27 【單系列列表】繼續探索卡片標題改為 24/36，與圖片間距改為 16px
+- [x] #24 【單系列列表】英文版大標題拿掉多出的「COLLECTION」並貼上介紹內文
+- [x] #25 【單系列列表】MD 改為三個一組
+- [x] #26 【單系列列表】英文版繼續探索標題改為「Explore More」
+- [x] #27 【單系列列表】繼續探索卡片標題改為 24/36，與圖片間距改為 16px
 - [ ] #28 【單錶介紹頁】介紹內文與規格的英文字型改為 Inter
 - [ ] #29 【單錶介紹頁】腕錶卡片字型大小比照單系列列表
 - [ ] #30 【單錶介紹頁】複製一頁，照片改用 2-1 系列（超過 4 張）
@@ -643,10 +643,17 @@ Heading Banner（`1032:12270`）與 Description（`1032:12271`）：
 >
 > 貼介紹內文，從設計稿裡抓
 
-- [ ] 英文版大標題加上「COLLECTION」（`class="font-heading"`）
-- [ ] 介紹內文依設計稿貼上
+- [x] 英文版大標題拿掉多出來的「COLLECTION」（`class="font-heading"`）
+- [x] 介紹內文依設計稿貼上
 
-備註：中文大標題後面的「 系列」是 `<span class="font-heading" data-i18n="series.headingSuffix">`，英文版應是在同一個位置顯示「COLLECTION」。
+實作說明：依 [Series Page_EN](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=724-2517)（`724:2517`），
+Heading Banner（`1018:10517`）的大標題只有「GOLDEN ELLIPSE」（Playfair Display Medium 40/50、字距 2px），沒有後綴。
+原本英文版大標題是「GOLDEN ELLIPSE COLLECTION」，「COLLECTION」來自 `series.headingSuffix`、`class="font-heading"`，
+就是試算表說的「多了」的那段，所以這個 `<span>` 加上 `en:hidden`，英文版只顯示「GOLDEN ELLIPSE」；中文版仍是「GOLDEN ELLIPSE 系列」。
+字典的 `series.headingSuffix`（英文「 COLLECTION」）保留不動，因為 builder 要求兩個語系都有這個 key。
+
+介紹內文依 Description（`1018:10424`）換成「Delve into the fascinating universe of the Golden Ellipse, the second oldest watch in
+the Patek Philippe collection after the Calatrava.」（文法照設計稿）。
 
 ### #25 【單系列列表】MD 改為三個一組（試算表編號 23）
 
@@ -655,10 +662,17 @@ Heading Banner（`1032:12270`）與 Description（`1032:12271`）：
 > 螢幕尺寸MD >
 > 新增三個為一組
 
-- [ ] MD：改為三個一組（先確認是哪個區塊）
+- [x] MD：腕錶列表改為三個一組
 
-備註：MD（768～1023px）的腕錶列表 `.series-watch-grid` 目前是兩欄（每欄 160px、置中），「繼續探索」的三張卡片是單欄直排。
-原文沒寫是哪個區塊。這一列現在排在腕錶列表與「繼續探索」之間；可能是指這三張卡片在 MD 排成一列，也可能是腕錶列表改成三欄，待確認。
+實作說明：Figma 單系列列表新增了一個寬 640 的 [Series Page / SM](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1287-9299)
+（`1287:9299`），腕錶列表是一排三張，「繼續探索」的三張卡片仍是單欄直排，所以「三個一組」指的是腕錶列表。
+卡片寬 160px、左右與上下間距都是 24px，整組 528px 置中；16 張排成五排加一張，最後一張放在中間欄。
+
+`collection-series.css` 新增 640～1023px 的 `.series-watch-grid` 規則：`grid-template-columns: repeat(3, 160px)`（間距沿用原本的 24px），
+最後一列只剩一張時（`:last-child:nth-child(3n + 1)`）放在第 2 欄。
+起點用 640px 而不是 768px：試算表寫「MD」，但設計稿的畫面寬度是 640px，三欄在 640px 已放得下；639px 以下維持兩欄。
+media query 的上限用 `width < 64rem`：Windows 的顯示比例會讓 1023px 視窗的寬度略大於 1023px，
+`max-width: 63.9375rem` 在這時不成立，會有一段寬度變回兩欄。
 
 ### #26 【單系列列表】英文版繼續探索標題改為「Explore More」（試算表編號 24）
 
@@ -668,8 +682,12 @@ Heading Banner（`1032:12270`）與 Description（`1032:12271`）：
 > 大標題改為「Explore More」
 > 大標題字型改為Playfair Display
 
-- [ ] 英文版「繼續探索」大標題改為「Explore More」
-- [ ] 大標題字型改為 Playfair Display
+- [x] 英文版「繼續探索」大標題改為「Explore More」
+- [x] 大標題字型改為 Playfair Display
+
+實作說明：依 Series Page_EN 的 Recommend / Title（`1026:10962`），標題為「Explore More」，Playfair Display Medium 32/44、字距 1px。
+`en.mjs` 的 `series.discoverTitle` 由「CONTINUE EXPLORING」改為「Explore More」，`<h2>` 加上 `en:font-display`。
+英文只有 2XL 的設計稿，字級沿用中文各斷點（22/36、LG 28/40、XL 以上 32/44），XL 以上和設計稿相同。
 
 ### #27 【單系列列表】繼續探索卡片標題改為 24/36，與圖片間距改為 16px
 
@@ -681,11 +699,19 @@ Heading Banner（`1032:12270`）與 Description（`1032:12271`）：
 > line-height: 36px;
 > 以及與圖片間距(gap)改為16px
 
-- [ ] 「繼續探索」系列卡片 `<h3>` 改為 font-size 24px、line-height 36px
-- [ ] 卡片圖片與標題的間距改為 16px
+- [x] 「繼續探索」系列卡片 `<h3>` 改為 font-size 24px、line-height 36px
+- [x] 卡片圖片與標題的間距改為 16px
 
-備註：樣式在 `collection-series.css`。`.series-discover__card h3` 在 LG 以下已經是 24/36，LG 以上是 28/40；
-`.series-discover__card` 的 `gap` 在 LG 以下是 16px，LG 以上是 20px。要改的是 LG 以上的這兩個值。
+實作說明：`collection-series.css` 的 LG 以上原本把 `.series-discover__card h3` 改成 28/40、`.series-discover__card` 的 `gap` 改成 20px，
+這兩段都刪掉，各斷點都用基本的 24/36 與 16px。
+
+驗證（#24～#27）：`npm run build` 後用 `npm run preview` 開中英文單系列列表，在 393／639／640／768／1023／1024／1280／1536px 量測：
+
+- 英文大標題為「GOLDEN ELLIPSE」，中文為「GOLDEN ELLIPSE 系列」；英文介紹內文為設計稿的文字。
+- 「繼續探索」標題英文為「Explore More」、Playfair Display，中文維持 Noto Serif TC，字級如上。
+- 腕錶列表 639px 以下兩欄、640～1023px 三欄（160px、間距 24px，最後一張在中間欄、和列表中心對齊）、1024px 以上四欄。
+- 「繼續探索」卡片標題各斷點都是 Inter 24/36，圖片底緣到標題 16px。
+- 沒有水平捲軸。
 
 ## 7. 4-單錶介紹頁
 
