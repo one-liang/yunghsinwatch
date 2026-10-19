@@ -108,6 +108,8 @@ export default {
     "CHR 29-535 PS Q manually wound movement with split-seconds chronograph and perpetual calendar. Two column wheels and a horizontal clutch. The 30-minute instantaneous counter sits at 3 o'clock and the small seconds at 9 o'clock. Seven patented innovations, six of them dedicated to the chronograph and one to the split-seconds mechanism. Navy blue sunburst dial with twin apertures at 12 o'clock for the day and month, a moon-phase display at 6 o'clock and the date shown by a hand. Tachymeter scale printed in white. 40 mm white gold case with a fully polished finish. Navy blue composite strap with a fabric pattern and contrasting red stitching, fitted with a patented white gold fold-over clasp. An additional dark blue alligator strap is supplied, continuing Patek Philippe's long tradition of astronomical timepieces.",
   "model.recommendWatchName": "GOLDEN ELLIPSE WATCH",
   "model.recommendTitle": "YOU MAY ALSO LIKE",
+  "model.gallery.prev": "Previous image",
+  "model.gallery.next": "Next image",
 
   "model.spec.dial.label": "DIAL",
   "model.spec.dial.value":
