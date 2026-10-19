@@ -1,14 +1,28 @@
 # 永新鐘錶修改清單（Google 試算表）
 
 - 來源：[永新鐘錶\_修改 / 工作表1](https://docs.google.com/spreadsheets/d/17R5KGBXLNXc-hmn-yyKfb1b5CzN6x_aYN4tVvrNLiwM/edit?gid=0#gid=0)
-- 擷取日期：2026-10-13（第 2～21 列，共 19 筆有內容；第 21 列只填了語系，第 22～35 列只有編號）
-- 「修改內容」以引言照錄，錯字（Navbra、設計搞）也照錄；「截圖/連結」欄的超連結一併附上
-- 「處理狀況」欄的下拉選項為「已處理／驗證完畢」，「阿良」「一瓶」兩欄，擷取時全部空白
-- `#` 依列順序重新編號（= 試算表列號 − 1）。試算表的編號欄有空白與重複（第 6、10、13、14、16、17 列），
-  不一致的地方在小節標題後註明試算表原本的編號，方便對照
+- 擷取日期：2026-10-20（第 2～38 列，共 37 筆有內容；第 39～51 列只有編號）
+- 「修改內容」以引言照錄，錯字（Navbra、設計搞、腕脿）也照錄；「截圖/連結」欄的超連結一併附上
+- 「處理狀況」欄的下拉選項為「已處理／驗證完畢」，擷取時 #1～#19 為「已處理」，#20 以後空白；
+  「阿良」欄只有 #14 有內容（照錄在該項），「一瓶」欄全部空白
+- `#` 依列順序重新編號（= 試算表列號 − 1）。試算表的編號欄有空白與重複（第 6、10、13、14、16、17、25、26、
+  27、31 列），不一致的地方在小節標題後註明試算表原本的編號，方便對照
 - 排序：沿用試算表順序，依「修改頁面」分節
 
 完成後把 `- [ ]` 改成 `- [x]`。
+
+擷取紀錄：
+
+- 2026-10-13：第一次擷取，第 2～21 列（#1～#19）
+- 2026-10-14：重新擷取。#1～#19 的處理狀況都改為「已處理」；#3 的截圖檔名改為 1-Header.jpg（連結不變）；
+  #10 的修改內容多了一行字型堆疊；#14 的「阿良」欄有回覆；#17 的參考改為「跟時計系列卡片一樣」，拿掉參考網站；
+  新增 #20～#22、#24～#27（時計系列、單系列列表、單錶介紹頁、精品店）
+- 2026-10-20：重新擷取。#1～#19 沒有變動。第 21 列以後插入多筆新項目，原本的 #20～#27 列號往後移，
+  依列號重新編號：舊 #20 → #23、舊 #21 → #27、舊 #22 → #25、舊 #24 → #28、舊 #25 → #29、舊 #26 → #33、
+  舊 #27 → #34（舊 #23 是空白列，已被新項目填滿）。內容有改的：舊 #26（現 #33）由「圖片有五張要放」改為
+  「照片有5張要放」；舊 #27（現 #34）多了「(如截圖)」。新增 #20～#22、#24、#26、#30～#32、#35～#37
+  （頁首介紹標題與內文、時計系列與單系列列表的英文大標題、繼續探索英文標題、單錶介紹頁多圖範例、精品店英文大標題與底色、
+  我們的團隊底色、維修保養 FAQ 動畫、聯絡我們下拉符號）
 
 ## 進度總覽
 
@@ -31,6 +45,24 @@
 - [x] #17 【首頁】圖文卡片與聯絡我們加連結與 hover 放大
 - [x] #18 【首頁】英文版 Contact Us 字型
 - [x] #19 【首頁】英文版「Make an Appointment」改為「BOOKING」
+- [x] #20 【頁首介紹】介紹標題 `<h2>` 改小
+- [x] #21 【頁首介紹】介紹內文 `<p>` 改小
+- [ ] #22 【時計系列】英文版大標題改為「ALL COLLECTIONS」並重貼介紹內文
+- [ ] #23 【時計系列】系列卡片標題刪除 LG 字級，與圖片間距改為 16px
+- [ ] #24 【單系列列表】英文版大標題多了「COLLECTION」並貼上介紹內文
+- [ ] #25 【單系列列表】MD 改為三個一組
+- [ ] #26 【單系列列表】英文版繼續探索標題改為「Explore More」
+- [ ] #27 【單系列列表】繼續探索卡片標題改為 24/36，與圖片間距改為 16px
+- [ ] #28 【單錶介紹頁】介紹內文與規格的英文字型改為 Inter
+- [ ] #29 【單錶介紹頁】腕錶卡片字型大小比照單系列列表
+- [ ] #30 【單錶介紹頁】複製一頁，照片改用 2-1 系列（超過 4 張）
+- [ ] #31 【精品店】英文版大標題改為「Patek Philippe Boutique Taipei by Yung Hsin Watch」並重貼介紹內文
+- [ ] #32 【精品店】內文底色改為 `bg-background`
+- [ ] #33 【精品店】放入五張照片
+- [ ] #34 【精品店】地圖右側只顯示店面資訊（詢問是否要另給設計樣式）
+- [ ] #35 【我們的團隊】內文底色改為 `bg-background`
+- [ ] #36 【維修保養】FAQ「=」→「×」加動畫
+- [ ] #37 【聯絡我們】聯絡電話 ▼ 符號改為 20×20
 
 ---
 
@@ -83,7 +115,7 @@ CSS 的 `top` 用 `max(100%, …)`，背景底緣若高於按鈕，子選單最�
 ### #3 【Header】1534px 以下 Navbar 下滑時高度被截掉
 
 - 語系：中文、EN
-- 截圖：[1-1.jpg](https://drive.google.com/file/d/1WL1L6Lvk3t1UYjw2MrzDYpc4MYlakv-r/view?usp=sharing)
+- 截圖：[1-Header.jpg](https://drive.google.com/file/d/1WL1L6Lvk3t1UYjw2MrzDYpc4MYlakv-r/view?usp=sharing)（原檔名 1-1.jpg，連結相同）
 
 > 螢幕尺寸1534px以下 >
 > Navbra下滑時高度被截掉
@@ -274,12 +306,16 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 
 > © 2026 Yung Hsin Watch All rights reserved.
 > 字型改為Inter
+> Inter, "Noto Sans TC", ...
 
 - [x] 版權文字字型改為 Inter
 
 實作說明：Figma 中英文 Footer 的 Copyright 都是 Inter Regular 12/20、Brown/Warm #8C7A66。原本是 `type-body-xs`（Noto Sans TC 12/20），
 只有英文版靠 `en:font-label` 換成 Inter。`tailwind.css` 新增 `type-label-copyright`（Inter 12/20），中英文都改用它；
 量測各斷點中英文首頁皆為 Inter 400 12px／20px。
+
+2026-10-14 重新擷取時，修改內容多了第三行的字型堆疊。`type-label-copyright` 用的 `--font-label` 是
+`Inter, "Noto Sans TC", ui-sans-serif, system-ui, sans-serif`，前兩個字型和試算表相同，不用再改。
 
 備註：版權文字的內容已在 Figma comment #23 改成上述文字（見 `figma-mockup-comments.md`），本項只改字型。
 
@@ -369,6 +405,10 @@ SM 的設計稿另外有幾處和原本不同，因為會影響文字區塊的�
 > Youtube影片
 > 影片播放器設定錯誤?
 
+「阿良」欄（2026-10-14 擷取）：
+
+> Youtube 是崁入的直接開 file 檔案看不到，在 github demo 那邊可以看到的話就沒問題
+
 - [x] 確認 YouTube 影片播放器的設定錯誤是指什麼（原文是問句），再修正
 
 實作說明：這是直接以 `file://` 開啟 `dist/index.html` 才會出現的畫面。YouTube 嵌入播放器要靠 HTTP Referer 辨識網站，
@@ -380,6 +420,8 @@ GitHub Pages、正式網址）會帶 Referer，影片可以正常播放，所以
 
 驗證：用 headless Chrome 截圖影片區塊，`file://` 開啟時為「錯誤 153」，送出的請求沒有 Referer；
 用 http 預覽開啟時 Referer 為預覽網址，影片可以正常播放。
+
+待確認：「阿良」欄的回覆以 GitHub demo 能播放為準，還沒有在 GitHub Pages 上實際播放過（本機 http 預覽已確認可以播放）。
 
 ### #15 【首頁】圖文卡片標題字重 500 改為 600（試算表編號 14，與上一列重複）
 
@@ -423,16 +465,21 @@ GitHub Pages、正式網址）會帶 Referer，影片可以正常播放，所以
 ### #17 【首頁】圖文卡片與聯絡我們加連結與 hover 放大
 
 - 語系：中文、EN
-- 參考：https://www.furlanmarri.com/ （MEET OUR BESTSELLERS 區塊）
 
 > 圖文卡片與聯絡我們 >
-> 區塊需要放連結，以及hover時底圖可以放大，參考連結(MEET OUR BESTSELLERS區塊)
+> 區塊需要放連結，以及hover時底圖可以放大，跟時計系列卡片一樣
+
+2026-10-13 擷取時的原文是「…hover時底圖可以放大，參考連結(MEET OUR BESTSELLERS區塊)」，參考網站為
+https://www.furlanmarri.com/ ，2026-10-14 改成上面的「跟時計系列卡片一樣」。
 
 - [x] 圖文卡片與聯絡我們區塊加上連結
-- [x] hover 時底圖放大，效果參考 furlanmarri.com 的 MEET OUR BESTSELLERS 區塊
+- [x] hover 時底圖放大，效果跟時計系列卡片一樣
 
-實作說明：參考站 MEET OUR BESTSELLERS 的卡片是把圖片包在商品連結裡，hover 時圖片放大（CSS 為 `scale(1.05)`、`transform .5s`），
-外框 `overflow: hidden` 裁切。首頁改成：
+更新後的需求不用再改：時計系列頁（`collection.html`）的卡片也是 hover 時圖片放大 1.1 倍、0.3s ease-out（全站預設過場），
+外層 `overflow-hidden` 裁切，和下面的實作相同。差別是時計系列卡片只有圖片是連結，也沒有鍵盤 focus 放大。
+
+實作說明（依原本的參考網站）：參考站 MEET OUR BESTSELLERS 的卡片是把圖片包在商品連結裡，hover 時圖片放大
+（CSS 為 `scale(1.05)`、`transform .5s`），外框 `overflow: hidden` 裁切。首頁改成：
 
 - 三張圖文卡片整張是一個連結（`<article>` 裡包 `<a class="group …">`），圖片、標題與內文都能點。
   還沒有文章頁，先比照時計系列頁的卡片連到單錶介紹頁 `collection-model.html`。
@@ -492,7 +539,273 @@ GitHub Pages、正式網址）會帶 Referer，影片可以正常播放，所以
 待確認：LG（`1088:11269`）隱藏的英文圖層仍是 2XL 的 40/50，和 LG 的中文（32/44）不同，看起來沒有調整過，所以 LG 先用 32/44。
 精品店頁的 `boutique.appointment.title` 也是「Make an Appointment」，試算表只列了首頁，沒有更動。
 
+## 4. 頁首介紹（試算表「修改頁面」空白）
+
+### #20 【頁首介紹】介紹標題 `<h2>` 改小（修改頁面欄空白）
+
+- 語系：中文、EN
+- 截圖：[3-標題.png](https://drive.google.com/file/d/1rO-epdKSg8sCOvU3banIwMa5ygIen0LE/view?usp=drive_link)
+
+> 幫我把這系列的標題與內文改小一點好了😆如截圖，不確定你有沒有設定組件，想說寫這樣給你
+> 標題`<h2>`
+> text-xl leading-8 md:text-2xl md:leading-9 xl:type-heading-lg
+> type-heading-lg {font-size:1.75rem line-height: 2.5rem;}
+
+- [x] 介紹標題 `<h2>` 改為 `text-xl leading-8 md:text-2xl md:leading-9 xl:type-heading-lg`
+- [x] `type-heading-lg` 改為 28/40（1.75rem／2.5rem）
+
+### #21 【頁首介紹】介紹內文 `<p>` 改小（修改頁面欄空白）
+
+- 語系：中文、EN
+
+> 內容`<p>`
+> text-base leading-7 xl:text-lg xl:leading-8
+
+- [x] 介紹內文 `<p>` 改為 `text-base leading-7 xl:text-lg xl:leading-8`
+
+實作說明（#20、#21）：截圖是英文版關於我們頁（`about.html`）在 768px 寬的介紹標題「Earn trust through integrity; …」。
+同一組 class 也用在精品店頁（`boutique.html`）的介紹區塊，沒有獨立組件，兩頁一起改。關於我們頁另外四段內文
+（創辦人、重新出發、服務、傳承）和介紹內文用同一組 class，也是「這系列」的內文，一起改成新的字級，整頁維持一致。
+
+| 斷點                   | 標題（原本 → 現在） | 內文（原本 → 現在） |
+| ---------------------- | ------------------- | ------------------- |
+| SM（767px 以下）       | 22/36 → 20/32       | 18/32 → 16/28       |
+| MD（768～1023px）      | 22/36 → 24/36       | 18/32 → 16/28       |
+| LG（1024～1279px）     | 24/36 → 24/36       | 18/32 → 16/28       |
+| XL 以上（1280px 以上） | 32/44 → 28/40       | 20/32 → 18/32       |
+
+字型、字重（Noto Serif TC 500）、字距 1px 和顏色都沒變；英文版的介紹標題與內文原本就是 Noto Serif TC，沒有另外換字型。
+
+`type-heading-lg` 依確認（2026-10-20）整個 utility 改為 28/40，所以其他用到它的地方也跟著變小，和 `type-heading-md` 同為 28/40：
+
+- Banner 大標題（關於我們、聯絡我們、維修保養、隱私權、服務條款）在 LG 由 32/44 改為 28/40，XL 以上仍是 `type-heading-xl`（40/50）；
+  精品店的 Banner 原本就沒有 LG 字級，不受影響
+- 預約橫幅標題（首頁、精品店、維修保養）與首頁聯絡我們標題在 LG 由 32/44 改為 28/40（#18、#19 寫的 LG 字級因此改變）
+- 維修保養頁 FAQ 標題在 XL 以上由 32/44 改為 28/40
+
+驗證：`npm run build` 後用 `npm run preview` 開中英文的關於我們、精品店頁，在 390／768／1024／1280／1536px 量測，
+標題與內文的字級、行高都和上表相同（關於我們 5 段、精品店 1 段內文），關於我們的 Banner 大標題在 1024px 為 28/40、1280px 以上 40/50，沒有水平捲軸。
+
+## 5. 2-時計系列
+
+### #22 【時計系列】英文版大標題改為「ALL COLLECTIONS」並重貼介紹內文
+
+- 語系：EN
+
+> 大標題改為「ALL COLLECTIONS」
+> 字型改為Playfair Display
+>
+> 重貼介紹內文，從設計稿裡抓
+
+- [ ] 英文版大標題改為「ALL COLLECTIONS」
+- [ ] 大標題字型改為 Playfair Display
+- [ ] 介紹內文依設計稿重貼
+
+備註：目前英文字典 `collection.heading` 為「Patek Philippe Collection」。
+
+### #23 【時計系列】系列卡片標題刪除 LG 字級，與圖片間距改為 16px
+
+- 語系：中文、EN
+
+> 系列卡片 >
+> `<h2>`刪除lg:text-[28px] lg:leading-10
+> 以及與圖片間距(gap)改為16px
+
+- [ ] 系列卡片 `<h2>` 刪除 `lg:text-[28px] lg:leading-10`
+- [ ] 卡片圖片與標題的間距改為 16px
+
+備註：`collection.html` 有 9 張系列卡片，`<h2>` 為 `font-label text-2xl leading-9 … lg:text-[28px] lg:leading-10`，
+刪掉後各斷點都是 24/36。`<article>` 為 `gap-4 lg:gap-5`（LG 以上 20px），改成 16px 就是拿掉 `lg:gap-5`。
+
+## 6. 3-單系列列表
+
+### #24 【單系列列表】英文版大標題多了「COLLECTION」並貼上介紹內文（試算表編號 22，與 #22 重複）
+
+- 語系：EN
+
+> 大標題多了"COLLECTION"(class="font-heading")
+>
+> 貼介紹內文，從設計稿裡抓
+
+- [ ] 英文版大標題加上「COLLECTION」（`class="font-heading"`）
+- [ ] 介紹內文依設計稿貼上
+
+備註：中文大標題後面的「 系列」是 `<span class="font-heading" data-i18n="series.headingSuffix">`，英文版應是在同一個位置顯示「COLLECTION」。
+
+### #25 【單系列列表】MD 改為三個一組（試算表編號 23）
+
+- 語系：中文、EN
+
+> 螢幕尺寸MD >
+> 新增三個為一組
+
+- [ ] MD：改為三個一組（先確認是哪個區塊）
+
+備註：MD（768～1023px）的腕錶列表 `.series-watch-grid` 目前是兩欄（每欄 160px、置中），「繼續探索」的三張卡片是單欄直排。
+原文沒寫是哪個區塊。這一列現在排在腕錶列表與「繼續探索」之間；可能是指這三張卡片在 MD 排成一列，也可能是腕錶列表改成三欄，待確認。
+
+### #26 【單系列列表】英文版繼續探索標題改為「Explore More」（試算表編號 24）
+
+- 語系：EN
+
+> 繼續探索 >
+> 大標題改為「Explore More」
+> 大標題字型改為Playfair Display
+
+- [ ] 英文版「繼續探索」大標題改為「Explore More」
+- [ ] 大標題字型改為 Playfair Display
+
+### #27 【單系列列表】繼續探索卡片標題改為 24/36，與圖片間距改為 16px
+
+- 語系：中文、EN
+
+> 繼續探索 系列卡片 >
+> `<h3>`改為
+> font-size: 24px;
+> line-height: 36px;
+> 以及與圖片間距(gap)改為16px
+
+- [ ] 「繼續探索」系列卡片 `<h3>` 改為 font-size 24px、line-height 36px
+- [ ] 卡片圖片與標題的間距改為 16px
+
+備註：樣式在 `collection-series.css`。`.series-discover__card h3` 在 LG 以下已經是 24/36，LG 以上是 28/40；
+`.series-discover__card` 的 `gap` 在 LG 以下是 16px，LG 以上是 20px。要改的是 LG 以上的這兩個值。
+
+## 7. 4-單錶介紹頁
+
+### #28 【單錶介紹頁】介紹內文與規格的英文字型改為 Inter
+
+- 語系：中文、EN
+
+> 介紹內文與規格的英文字型為Inter
+> Inter, "Noto Sans TC", ...
+
+- [ ] 介紹內文的英文改用 Inter
+- [ ] 規格的英文改用 Inter
+
+備註：`collection-model.html` 的介紹內文是 `type-body-lg`，規格（`.model-specs__label`、`.model-specs__value`）用 `--font-body`，
+中英文版都是 Noto Sans TC。語系欄填「中文, EN」，第二行又給了字型堆疊，看起來是中英文頁的英數字（如「CHR 29-535 PS Q」）用 Inter、
+中文退回 Noto Sans TC，等同全站的 `--font-label`（`Inter, "Noto Sans TC", ui-sans-serif, system-ui, sans-serif`）。
+#10 的版權文字也有同一行。
+
+### #29 【單錶介紹頁】腕錶卡片字型大小比照單系列列表
+
+- 語系：中文、EN
+
+> 腕脿卡片字型大小要跟單系列列表的腕脿卡片一樣
+
+- [ ] 「推薦其他腕錶」區塊的腕錶卡片，字型大小改成和單系列列表的腕錶卡片一樣
+
+備註：兩頁的卡片目前都用 Inter，字級不同（樣式分別在 `collection-series.css`、`collection-model.css`）：
+
+| 卡片文字                    | 單系列列表 `.series-watch-card`    | 單錶介紹頁 `.model-watch-card` |
+| --------------------------- | ---------------------------------- | ------------------------------ |
+| 型號（如 5738/1R-001）      | 600 18/32、LG 以上 20/32，字距 1px | 400 16/28，字距 1px            |
+| 名稱（GOLDEN ELLIPSE 腕錶） | 400 16/28，字距 1px                | 400 18/32，無字距              |
+
+### #30 【單錶介紹頁】複製一頁，照片改用 2-1 系列（超過 4 張）（試算表編號 28，與 #28 重複）
+
+- 語系：中文、EN
+- 連結：[2-3-單錶介紹頁](https://drive.google.com/drive/u/0/folders/1C5IV2kQVzgVmPAOvY4-ghkMN1aGMar4h)（雲端資料夾）
+
+> 複製一份內文一樣，但照片抓2-1系列，顯示照片超過4張的樣子
+
+- [ ] 複製一份單錶介紹頁，內文相同
+- [ ] 照片改用雲端的 2-1 系列，呈現照片超過 4 張時的樣子
+
+備註：資料夾是公開的，擷取時有 `1-1.png`～`1-4.png`、`2-1.png`～`2-6.png`、`3.png`、`4.png`，以及一個名為「5」的項目
+（應是子資料夾）。「2-1 系列」應是指 `2-1.png`～`2-6.png` 這 6 張；`1-1`～`1-4` 看起來是目前單錶介紹頁的 4 張。新頁面的檔名待確認。
+
+## 8. 5-精品店
+
+### #31 【精品店】英文版大標題改為「Patek Philippe Boutique Taipei by Yung Hsin Watch」並重貼介紹內文
+
+- 語系：EN
+
+> 大標題改為「Patek Philippe Boutique Taipei by Yung Hsin Watch」
+> 字型改為Playfair Display
+>
+> 重貼介紹內文，從設計稿裡抓
+
+- [ ] 英文版大標題改為「Patek Philippe Boutique Taipei by Yung Hsin Watch」
+- [ ] 大標題字型改為 Playfair Display
+- [ ] 介紹內文依設計稿重貼
+
+備註：目前英文字典 `boutique.hero.title` 為「Patek Philippe Boutique Taipei」。
+
+### #32 【精品店】內文底色改為 `bg-background`
+
+- 語系：中文、EN
+
+> 內文底色bg-background(#F4F2F0)，參考設計稿
+
+- [ ] 內文區塊底色改為 `bg-background`（#F4F2F0），範圍依設計稿
+
+備註：`tailwind.css` 已有 `--color-background: #f4f2f0`，精品店頁的 `<body>` 目前是 `bg-white`。
+
+### #33 【精品店】放入五張照片
+
+- 語系：中文、EN
+- 連結：[3-1-精品店](https://drive.google.com/drive/u/0/folders/1M16SWJZ_mIHObDl6W0PuuwkEYA-pJofR)（雲端資料夾）
+
+> 照片有5張要放
+
+- [ ] 放入雲端資料夾的五張照片
+
+備註：資料夾是公開的，擷取時有 6 個檔案：`0-精品店-Header.jpg`、`1-1-VIP Room.jpg`、`1-2-VIP Room.jpg`、`1-3-Sales Area.jpg`、
+`1-4-Sales Area.jpg`、`1-5-Shop Front .jpg`（最後一個檔名在副檔名前有空白，照錄）。五張應是 1-1～1-5，精品店頁的輪播目前只有兩張
+（`slide-1.jpg`、`slide-2.jpg`）。`0-精品店-Header.jpg` 看檔名是頁首 Banner（目前用 `hero.jpg`），試算表沒提到，待確認是否也要換。
+
+### #34 【精品店】地圖右側只顯示店面資訊（詢問是否要另給設計樣式）
+
+- 語系：中文、EN
+- 截圖：[2-精品店MAP.png](https://drive.google.com/file/d/1uhLXZRwP40ttf3clcy_3WDenfzMu8xDc/view?usp=drive_link)
+
+> map右側可以只出現他們店面資訊(如截圖)嗎? 需要我額外給設計樣式嗎?
+
+- [ ] 回覆：地圖右側能不能只顯示店面資訊、需不需要另外提供設計樣式
+- [ ] 確認後修改地圖右側的內容
+
+備註：截圖是百達翡麗官網的門市地圖（PATEK PHILIPPE SALONS GENÈVE）：左邊是地圖，右邊只放一家店的名稱、地址、店面照片、
+可展開的營業時間，以及「更多詳情」按鈕。目前 `store-locator` 組件（只有精品店頁使用）右側是四家專賣店的列表（永新、高登、
+金生儀、九二），點選後切換地圖。「他們店面」應是指永新的店面，但是否要拿掉其他三家，還是保留列表、點選後改顯示截圖那樣的
+店面資訊，待確認。
+
+## 9. 6-我們的團隊
+
+### #35 【我們的團隊】內文底色改為 `bg-background`
+
+- 語系：中文、EN
+
+> 內文底色bg-background(#F4F2F0)，參考設計稿
+
+- [ ] 內文區塊底色改為 `bg-background`（#F4F2F0），範圍依設計稿
+
+備註：和 #32 相同；我們的團隊頁的 `<body>` 目前是 `bg-white`。
+
+## 10. 8-維修保養
+
+### #36 【維修保養】FAQ「=」→「×」加動畫
+
+- 語系：中文、EN
+- 連結：<https://www.furlanmarri.com/faq>
+
+> = → x 可以加animation，如連結
+
+- [ ] FAQ 手風琴展開時，圖示由「=」轉成「×」加上動畫（參考連結）
+
+備註：維修保養頁（`service.html`）的 FAQ 是 `data-accordion` 手風琴。參考網站的動畫細節還沒看。
+
+## 11. 9-聯絡我們
+
+### #37 【聯絡我們】聯絡電話 ▼ 符號改為 20×20
+
+- 語系：中文、EN
+
+> 聯絡電話 ▼ 符號是 20x20 才對
+
+- [ ] 聯絡電話（國碼下拉選單）的 ▼ 符號改為 20×20
+
 ## 未收錄的列
 
-- 第 21 列（#20）：語系欄填「中文, EN」，其他欄空白
-- 第 22～35 列（#21～#34）：只有編號
+- 第 39～51 列（編號 38～50）：只有編號
