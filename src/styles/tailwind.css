@@ -182,11 +182,12 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   line-height: 3.125rem;
 }
 
+/* 修改清單 #20：由 32/44 改為 28/40（試算表指定 1.75rem／2.5rem）。 */
 @utility type-heading-lg {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 500;
-  line-height: 2.75rem;
+  line-height: 2.5rem;
 }
 
 @utility type-heading-md {
