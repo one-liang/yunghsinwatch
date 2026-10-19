@@ -1,0 +1,112 @@
+/* 單錶介紹頁「推薦其他腕錶」（collection-model*.html 共用）。 */
+
+.model-recommend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 32px 20px;
+}
+
+.model-recommend__grid {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(2, 160px);
+  justify-content: center;
+  gap: 24px;
+}
+
+.model-watch-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.model-watch-card > img {
+  width: 100%;
+  aspect-ratio: 272 / 381;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.model-watch-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+}
+
+/* 型號與名稱的字級比照單系列列表的 .series-watch-card（修改清單 #29）。 */
+.model-watch-card__reference {
+  font-family: var(--font-label);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 32px;
+  letter-spacing: 1px;
+}
+
+.model-watch-card__name {
+  font-family: var(--font-label);
+  font-size: 16px;
+  line-height: 28px;
+  letter-spacing: 1px;
+  /* hover 卡片時名稱出現實線底線（Figma Mockup comment #10：decoration-solid）。
+     Figma 未定義粗細與間距，沿用瀏覽器預設；以底線顏色漸變，過場同全站 hover 0.3s ease-out。 */
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.3s ease-out;
+}
+
+@media (hover: hover) {
+  .model-watch-card:hover .model-watch-card__name {
+    text-decoration-color: currentColor;
+  }
+}
+
+.model-watch-card:focus-visible .model-watch-card__name {
+  text-decoration-color: currentColor;
+}
+
+@media (max-width: 23.9375rem) {
+  .model-recommend__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (min-width: 64rem) {
+  .model-recommend {
+    padding: 64px 48px;
+  }
+
+  .model-recommend__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 48px;
+  }
+
+  .model-watch-card__reference {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 80rem) {
+  .model-recommend {
+    padding: 80px 48px;
+  }
+
+  .model-recommend__grid {
+    gap: 64px;
+  }
+}
+
+@media (min-width: 96rem) {
+  .model-recommend {
+    padding-inline: 0;
+  }
+
+  .model-recommend__grid {
+    max-width: 1280px;
+  }
+}

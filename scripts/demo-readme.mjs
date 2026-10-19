@@ -10,6 +10,7 @@ export const DEMO_PAGE_GROUPS = [
       { route: "collection.html", label: "時計系列" },
       { route: "collection-series.html", label: "單系列列表" },
       { route: "collection-model.html", label: "單錶介紹頁" },
+      { route: "collection-model-2.html", label: "單錶介紹頁（照片超過 4 張）" },
     ],
   },
   {

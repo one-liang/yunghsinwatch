@@ -1,3 +1,6 @@
+/* 單錶介紹頁上半部（collection-model*.html 共用）：版面、圖片展示輪播、錶款資訊與規格表。
+   圖片展示的照片由各頁 HTML 提供，本組件放錶款資訊；輪播行為在 src/js/component/model-detail.js。 */
+
 /* ---------- 上半部：圖片展示 + 錶款資訊 ---------- */
 
 .model-top {
@@ -33,6 +36,10 @@
   object-position: center bottom;
 }
 
+.model-gallery__thumbs-wrap {
+  position: relative;
+}
+
 .model-gallery__thumbs {
   width: 100%;
 }
@@ -53,6 +60,44 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* 縮圖超過一排時的左右箭頭（修改清單 #30）：依 Figma Model Page / 2XL_EN 的 Icon Button（1201:9621），
+   32px 圓形、Brown/Light 20% 底、內距 6px，壓在縮圖列外緣 16px、垂直置中。
+   Swiper 在已到頭尾時加 .swiper-button-disabled、照片不足一排時加 .swiper-button-lock，兩者都隱藏，
+   所以只有 4 張照片的頁面不會出現箭頭。 */
+.model-gallery__nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background-color: rgb(172 150 125 / 0.2);
+  padding: 6px;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.model-gallery__nav img {
+  width: 20px;
+  height: 20px;
+}
+
+.model-gallery__nav--prev {
+  left: -16px;
+}
+
+.model-gallery__nav--next {
+  right: -16px;
+}
+
+.model-gallery__nav.swiper-button-disabled,
+.model-gallery__nav.swiper-button-lock {
+  display: none;
 }
 
 /* ---------- 錶款資訊 ---------- */
@@ -126,11 +171,12 @@
   letter-spacing: 1px;
 }
 
+/* 規格的英數字用 Inter、中文退回 Noto Sans TC（修改清單 #28；--font-label 即 Inter, "Noto Sans TC", …）。 */
 .model-specs__label {
   width: 168px;
   flex: none;
   color: var(--color-brown-warm);
-  font-family: var(--font-body);
+  font-family: var(--font-label);
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;
@@ -139,84 +185,9 @@
 .model-specs__value {
   min-width: 0;
   flex: 1 1 0;
-  font-family: var(--font-body);
-  font-size: 16px;
-  line-height: 28px;
-}
-
-/* ---------- 推薦其他腕錶 ---------- */
-
-.model-recommend {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 32px;
-  padding: 32px 20px;
-}
-
-.model-recommend__grid {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(2, 160px);
-  justify-content: center;
-  gap: 24px;
-}
-
-.model-watch-card {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.model-watch-card > img {
-  width: 100%;
-  aspect-ratio: 272 / 381;
-  border-radius: 4px;
-  object-fit: cover;
-}
-
-.model-watch-card__text {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  text-align: center;
-}
-
-.model-watch-card__reference {
   font-family: var(--font-label);
   font-size: 16px;
   line-height: 28px;
-  letter-spacing: 1px;
-}
-
-.model-watch-card__name {
-  font-family: var(--font-label);
-  font-size: 18px;
-  line-height: 32px;
-  /* hover 卡片時名稱出現實線底線（Figma Mockup comment #10：decoration-solid）。
-     Figma 未定義粗細與間距，沿用瀏覽器預設；以底線顏色漸變，過場同全站 hover 0.3s ease-out。 */
-  text-decoration-line: underline;
-  text-decoration-style: solid;
-  text-decoration-color: transparent;
-  transition: text-decoration-color 0.3s ease-out;
-}
-
-@media (hover: hover) {
-  .model-watch-card:hover .model-watch-card__name {
-    text-decoration-color: currentColor;
-  }
-}
-
-.model-watch-card:focus-visible .model-watch-card__name {
-  text-decoration-color: currentColor;
-}
-
-@media (max-width: 23.9375rem) {
-  .model-recommend__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-  }
 }
 
 /* ---------- LG：單欄，規格表改為左標籤右內容 ---------- */
@@ -250,15 +221,6 @@
     flex-direction: row;
     padding-block: 20px;
   }
-
-  .model-recommend {
-    padding: 64px 48px;
-  }
-
-  .model-recommend__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 48px;
-  }
 }
 
 /* ---------- XL：圖片展示與資訊並排 ---------- */
@@ -281,14 +243,6 @@
     min-width: 0;
     flex: 1 1 0;
   }
-
-  .model-recommend {
-    padding: 80px 48px;
-  }
-
-  .model-recommend__grid {
-    gap: 64px;
-  }
 }
 
 /* ---------- 2XL：內容固定 1280 置中 ---------- */
@@ -302,13 +256,5 @@
 
   .model-gallery {
     width: 600px;
-  }
-
-  .model-recommend {
-    padding-inline: 0;
-  }
-
-  .model-recommend__grid {
-    max-width: 1280px;
   }
 }
