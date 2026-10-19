@@ -47,8 +47,8 @@
 - [x] #19 【首頁】英文版「Make an Appointment」改為「BOOKING」
 - [x] #20 【頁首介紹】介紹標題 `<h2>` 改小
 - [x] #21 【頁首介紹】介紹內文 `<p>` 改小
-- [ ] #22 【時計系列】英文版大標題改為「ALL COLLECTIONS」並重貼介紹內文
-- [ ] #23 【時計系列】系列卡片標題刪除 LG 字級，與圖片間距改為 16px
+- [x] #22 【時計系列】英文版大標題改為「ALL COLLECTIONS」並重貼介紹內文
+- [x] #23 【時計系列】系列卡片標題刪除 LG 字級，與圖片間距改為 16px
 - [ ] #24 【單系列列表】英文版大標題多了「COLLECTION」並貼上介紹內文
 - [ ] #25 【單系列列表】MD 改為三個一組
 - [ ] #26 【單系列列表】英文版繼續探索標題改為「Explore More」
@@ -597,11 +597,25 @@ https://www.furlanmarri.com/ ，2026-10-14 改成上面的「跟時計系列卡�
 >
 > 重貼介紹內文，從設計稿裡抓
 
-- [ ] 英文版大標題改為「ALL COLLECTIONS」
-- [ ] 大標題字型改為 Playfair Display
-- [ ] 介紹內文依設計稿重貼
+- [x] 英文版大標題改為「ALL COLLECTIONS」
+- [x] 大標題字型改為 Playfair Display
+- [x] 介紹內文依設計稿重貼
 
-備註：目前英文字典 `collection.heading` 為「Patek Philippe Collection」。
+實作說明：依 [Collection_EN](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1032-12267)（`1032:12267`）的
+Heading Banner（`1032:12270`）與 Description（`1032:12271`）：
+
+- `en.mjs` 的 `collection.heading` 由「Patek Philippe Collection」改為「ALL COLLECTIONS」（Figma 文字本身就是全大寫）。
+- 大標題在 Figma 為 Playfair Display Medium 40/50、字距 2px（Display/XL）。`<h1>` 比照關於我們等頁的 Banner 加上
+  `en:font-display xl:en:type-display-xl`；英文只有 2XL 的設計稿，XL 以下沿用中文字級（28/40），只換字型。
+- `collection.description` 換成設計稿的英文：「Patek Philippe have over 150 references in regular production, manufactured in
+  limited quantity to ensure they respect the extremely high quality standards of the Patek Philippe Seal.」（文法照設計稿，未修改）
+
+驗證：英文時計系列頁在 393／768／1024／1280／1536px，大標題皆為 Playfair Display 500，1279px 以下 28/40、1280px 以上 40/50、字距 2px，
+介紹內文為設計稿的英文；中文版維持 Noto Serif TC 與原本的中文。
+
+另外發現的既有問題（未修改）：介紹內文在 Figma 2XL 是 Noto Serif TC 18/32，程式 XL 以上是 20/32（`xl:text-xl`），中英文都是。
+這段和 #21 改過的關於我們、精品店介紹內文原本是同一組 class，#21 只改了那兩頁；要不要一起改成 `text-base leading-7 xl:text-lg xl:leading-8`，待確認。
+`collection.meta.title` 仍是「Patek Philippe Collection | Yung Hsin Watch」，試算表沒提到，沒有更動。
 
 ### #23 【時計系列】系列卡片標題刪除 LG 字級，與圖片間距改為 16px
 
@@ -611,11 +625,13 @@ https://www.furlanmarri.com/ ，2026-10-14 改成上面的「跟時計系列卡�
 > `<h2>`刪除lg:text-[28px] lg:leading-10
 > 以及與圖片間距(gap)改為16px
 
-- [ ] 系列卡片 `<h2>` 刪除 `lg:text-[28px] lg:leading-10`
-- [ ] 卡片圖片與標題的間距改為 16px
+- [x] 系列卡片 `<h2>` 刪除 `lg:text-[28px] lg:leading-10`
+- [x] 卡片圖片與標題的間距改為 16px
 
-備註：`collection.html` 有 9 張系列卡片，`<h2>` 為 `font-label text-2xl leading-9 … lg:text-[28px] lg:leading-10`，
-刪掉後各斷點都是 24/36。`<article>` 為 `gap-4 lg:gap-5`（LG 以上 20px），改成 16px 就是拿掉 `lg:gap-5`。
+實作說明：`collection.html` 9 張系列卡片的 `<h2>` 都刪掉 `lg:text-[28px] lg:leading-10`，各斷點都是 Inter Medium 24/36、字距 1px；
+`<article>` 的 `gap-4 lg:gap-5` 拿掉 `lg:gap-5`，圖片與標題的間距各斷點都是 16px（原本 LG 以上 20px）。
+
+驗證：中英文時計系列頁在 393／768／1024／1280／1536px 量測 9 張卡片，標題都是 24/36，圖片底緣到標題頂端都是 16px，沒有水平捲軸。
 
 ## 6. 3-單系列列表
 
