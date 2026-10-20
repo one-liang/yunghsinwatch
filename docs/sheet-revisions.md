@@ -56,10 +56,10 @@
 - [x] #28 【單錶介紹頁】介紹內文與規格的英文字型改為 Inter
 - [x] #29 【單錶介紹頁】腕錶卡片字型大小比照單系列列表
 - [x] #30 【單錶介紹頁】複製一頁，照片改用 2-1 系列（超過 4 張）
-- [ ] #31 【精品店】英文版大標題改為「Patek Philippe Boutique Taipei by Yung Hsin Watch」並重貼介紹內文
-- [ ] #32 【精品店】內文底色改為 `bg-background`
-- [ ] #33 【精品店】放入五張照片
-- [ ] #34 【精品店】地圖右側只顯示店面資訊（詢問是否要另給設計樣式）
+- [x] #31 【精品店】英文版大標題改為「Patek Philippe Boutique Taipei by Yung Hsin Watch」並重貼介紹內文
+- [x] #32 【精品店】內文底色改為 `bg-background`
+- [x] #33 【精品店】放入五張照片
+- [x] #34 【精品店】地圖右側點選門市後顯示店面資訊
 - [ ] #35 【我們的團隊】內文底色改為 `bg-background`
 - [ ] #36 【維修保養】FAQ「=」→「×」加動畫
 - [ ] #37 【聯絡我們】聯絡電話 ▼ 符號改為 20×20
@@ -802,11 +802,22 @@ media query 的上限用 `width < 64rem`：Windows 的顯示比例會讓 1023px 
 >
 > 重貼介紹內文，從設計稿裡抓
 
-- [ ] 英文版大標題改為「Patek Philippe Boutique Taipei by Yung Hsin Watch」
-- [ ] 大標題字型改為 Playfair Display
-- [ ] 介紹內文依設計稿重貼
+- [x] 英文版大標題改為「Patek Philippe Boutique Taipei by Yung Hsin Watch」
+- [x] 大標題字型改為 Playfair Display
+- [x] 介紹內文依設計稿重貼
 
-備註：目前英文字典 `boutique.hero.title` 為「Patek Philippe Boutique Taipei」。
+實作說明：依 [About The Boutique_EN](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=733-3049)（`733:3049`）：
+
+- 大標題（Heading Banner `931:11565`）為 Playfair Display Medium 40/50、字距 2px。`en.mjs` 的 `boutique.hero.title` 改為
+  「Patek Philippe Boutique Taipei by Yung Hsin Watch」，`<h1>` 比照其他頁 Banner 加上 `en:font-display xl:en:type-display-xl`。
+  英文只有 2XL 的設計稿，XL 以下沿用中文字級 28/40。標題變長，在 393px 折成 3 行、768px 折成 2 行，1024px 以上一行，都在 Banner 內。
+- 介紹（Description `931:11573`）：標題「The Watchmaking Castle in the Spotlight」，內文「Through “Rare Craftsmanship” and
+  “Precise Aesthetics,” the Yung Hsin Patek Philippe Boutique tells a story of the timeless brilliance of watchmaking through a
+  seamless dialogue between heritage and innovation.」（引號照設計稿用彎引號）。
+- 輪播下方的故事段落（Description `931:11584`）在設計稿也有英文，一併換成「Throughout the river of time, a watch is far more than an
+  instrument for telling time—it is a vessel for art, craftsmanship, and emotion. With its deep-rooted expertise in horology and
+  philosophy of integrity, Yung Hsin Watch has become a cherished destination and a true haven in the hearts of countless watch enthusiasts.」
+  設計稿是一整段、沒有斷行，所以 `boutique.story.body` 與 `boutique.story.bodySm` 都用同一段文字（原本有 `\n` 斷行）。
 
 ### #32 【精品店】內文底色改為 `bg-background`
 
@@ -814,9 +825,12 @@ media query 的上限用 `width < 64rem`：Windows 的顯示比例會讓 1023px 
 
 > 內文底色bg-background(#F4F2F0)，參考設計稿
 
-- [ ] 內文區塊底色改為 `bg-background`（#F4F2F0），範圍依設計稿
+- [x] 內文區塊底色改為 `bg-background`（#F4F2F0），範圍依設計稿
 
-備註：`tailwind.css` 已有 `--color-background: #f4f2f0`，精品店頁的 `<body>` 目前是 `bg-white`。
+實作說明：Figma [About The Boutique / 2XL](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=308-151)（`308:151`）中，
+Banner 下方從介紹、圖片輪播到故事段落都是 Background 底色，下面接地圖與預約橫幅。這三段 `<section>` 外面包一層
+`<div class="bg-background">`，底色滿版（介紹與故事段落本身限寬 768px，所以底色加在外層）。地圖（`c-store-locator`）原本就是
+`bg-background`，預約橫幅維持 Brown/Dark。
 
 ### #33 【精品店】放入五張照片
 
@@ -825,26 +839,58 @@ media query 的上限用 `width < 64rem`：Windows 的顯示比例會讓 1023px 
 
 > 照片有5張要放
 
-- [ ] 放入雲端資料夾的五張照片
+- [x] 放入雲端資料夾的五張照片
 
-備註：資料夾是公開的，擷取時有 6 個檔案：`0-精品店-Header.jpg`、`1-1-VIP Room.jpg`、`1-2-VIP Room.jpg`、`1-3-Sales Area.jpg`、
-`1-4-Sales Area.jpg`、`1-5-Shop Front .jpg`（最後一個檔名在副檔名前有空白，照錄）。五張應是 1-1～1-5，精品店頁的輪播目前只有兩張
-（`slide-1.jpg`、`slide-2.jpg`）。`0-精品店-Header.jpg` 看檔名是頁首 Banner（目前用 `hero.jpg`），試算表沒提到，待確認是否也要換。
+實作說明：資料夾裡的 `1-1-VIP Room.jpg`～`1-5-Shop Front .jpg` 依序放進輪播，共 5 張。原檔是 Canon R6 的 5873×3915（每張 12～15MB），
+比照原本輪播圖縮成 1800×1200、JPEG 品質 82、去掉 EXIF，存成 `src/assets/images/boutique/slide-1.jpg`～`slide-5.jpg`（每張 235～430KB）。
+原本的 `slide-1.jpg`、`slide-2.jpg` 其實就是 `1-3-Sales Area`、`1-4-Sales Area`，已被新的檔案覆蓋。輪播是非 loop，第 5 張時右箭頭隱藏。
 
-### #34 【精品店】地圖右側只顯示店面資訊（詢問是否要另給設計樣式）
+`0-精品店-Header.jpg` 和 `1-5-Shop Front .jpg` 是同一個檔案（MD5 相同），試算表沒提到頁首 Banner，`hero.jpg` 沒有更換。
+
+驗證（#31～#33）：`npm run build` 後用 `npm run preview` 開中英文精品店頁，在 393／768／1024／1280／1536px 量測：
+英文大標題為 Playfair Display，字級如上；介紹與故事段落為設計稿的英文；三段底色都是 #F4F2F0、滿版；輪播 5 張，
+按右箭頭 4 次到第 5 張後右箭頭隱藏；中文版文字不變；console 沒有錯誤，沒有水平捲軸。
+
+### #34 【精品店】地圖右側點選門市後顯示店面資訊
 
 - 語系：中文、EN
 - 截圖：[2-精品店MAP.png](https://drive.google.com/file/d/1uhLXZRwP40ttf3clcy_3WDenfzMu8xDc/view?usp=drive_link)
+- 參考：[patek.com 銷售點](https://www.patek.com/zh/%E9%94%80%E5%94%AE%E7%82%B9)（點 Patek Philippe Salons Genève 後的店面資訊）
 
 > map右側可以只出現他們店面資訊(如截圖)嗎? 需要我額外給設計樣式嗎?
 
-- [ ] 回覆：地圖右側能不能只顯示店面資訊、需不需要另外提供設計樣式
-- [ ] 確認後修改地圖右側的內容
+- [x] 回覆：地圖右側能不能只顯示店面資訊、需不需要另外提供設計樣式
+- [x] 確認後修改地圖右側的內容
 
-備註：截圖是百達翡麗官網的門市地圖（PATEK PHILIPPE SALONS GENÈVE）：左邊是地圖，右邊只放一家店的名稱、地址、店面照片、
-可展開的營業時間，以及「更多詳情」按鈕。目前 `store-locator` 組件（只有精品店頁使用）右側是四家專賣店的列表（永新、高登、
-金生儀、九二），點選後切換地圖。「他們店面」應是指永新的店面，但是否要拿掉其他三家，還是保留列表、點選後改顯示截圖那樣的
-店面資訊，待確認。
+回覆（2026-10-20）：參考 patek.com 銷售點頁，點選門市後顯示店面資訊，照官網樣式做，不另出設計稿；有對應圖片的才放照片。
+
+實作說明：`store-locator` 組件（只有精品店頁使用）的右側改成兩種狀態：
+
+- 門市列表：和原本相同，四家專賣店。
+- 店面資訊：點列表中的門市後，列表換成該店的店名、地址、照片、可展開的營業時間與「更多詳情」按鈕，右上角 × 回到列表。
+  頁面一載入就打開永新的店面資訊，所以預設右側只有永新的資料；地圖同時帶到該店。
+
+版型與間距照官網的店面資訊（官網面板寬 491px、內距 48px）：地址在店名下 12px，照片在地址下 32px、比例 395:187，
+營業時間在照片下 48px，「更多詳情」在營業時間下 48px。字型沿用列表既有的店名（Inter 500、大寫、Brown/Dark）與地址樣式；
+營業時間標題 Inter 500 16/24、Brown/Warm，狀態與表格 14/22；按鈕 48px 高、全圓角、Brown/Warm 底白字。
+
+資料來源：
+
+- 營業時間取自 patek.com 各店頁面（2026-10-20）：永新每天 11:00–19:00；高登週一至週四、週日 11:00–21:30，週五、週六 11:00–22:00；
+  金生儀週一至週六 11:00–20:30，週日 12:00–20:00；九二週一至週六 11:30–20:00，週日公休。時間兩種語系都用 24 小時制。
+- 營業狀態（「營業中 - 19:00 打烊」／「休息中 - 11:00 開門」）由 JS 依台北時間計算，不受瀏覽者時區影響；今天那一列加粗。
+- 「更多詳情」連到 patek.com 該店頁面（中文版連簡體中文站，英文版連英文站），另開分頁。
+- 照片只有永新有（`slide-5.jpg`，#33 的 1-5 店面外觀）。其他三家專案裡沒有照片，官網的店面照屬於百達翡麗，沒有拿來用，所以不顯示照片。
+
+驗證：`npm run build` 後用 `npm run preview` 開中英文精品店頁，在 393／1024／1280／1536px：
+
+- 載入後右側是永新的店面資訊，照片 1536px 為 395×187（和官網相同），1024px 為 314×149；LG、XL 面板較矮，內容超出時面板內捲動。
+- 按 × 回到四家列表；點九二後顯示九二的資訊（沒有照片）、地圖換到九二；展開營業時間後週日顯示「公休」。
+- 手機切到「門市列表」先看到永新的店面資訊，按 × 後點高登，停在列表這側顯示高登的資訊。
+- console 沒有錯誤，沒有水平捲軸。
+
+另外發現的既有問題（未修改）：英文版地圖用 `data-store-query-en`（「Yung Hsin Watch, No. 82, Sec. 1, Jhongcheng Rd., …」）查詢時，
+Google 地圖把永新定位到大稻埕一帶，不是天母的店；中文版位置正確。其他三家的英文查詢沒有逐一確認。
 
 ## 9. 6-我們的團隊
 
