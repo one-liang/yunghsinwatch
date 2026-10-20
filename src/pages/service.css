@@ -1,0 +1,35 @@
+/* FAQ 圖示 ＋ → ✕：旋轉交叉淡入淡出（修改清單 #36）。
+   ＋ 與 ✕ 疊在同一個 SVG，展開時 ＋ 順時針轉 90° 淡出、✕ 從 −90° 轉回 0° 淡入，收合時反過來；
+   0.3s ease-out，和答案面板的展開動畫同步。
+   線寬 1.556px、圓頭，和原本 Icon / Add、Icon / Close 的實心路徑粗細相同。 */
+
+.faq-icon path {
+  stroke: currentColor;
+  stroke-width: 1.556;
+  stroke-linecap: round;
+  transform-origin: 12px 12px;
+  transition:
+    transform 0.3s ease-out,
+    opacity 0.3s ease-out;
+}
+
+.faq-icon__cross {
+  opacity: 0;
+  transform: rotate(-90deg);
+}
+
+[aria-expanded="true"] > span > .faq-icon .faq-icon__plus {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+
+[aria-expanded="true"] > span > .faq-icon .faq-icon__cross {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-icon path {
+    transition: none;
+  }
+}
