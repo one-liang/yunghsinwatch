@@ -137,14 +137,14 @@ export default {
   "boutique.meta.description":
     "Step inside the Patek Philippe Boutique Taipei by Yung Hsin Watch, and find the official points of sale in Taipei.",
   "boutique.hero.eyebrow": "Boutique",
-  "boutique.hero.title": "Patek Philippe Boutique Taipei",
-  "boutique.intro.title": "A Citadel of Time in the Spotlight",
+  "boutique.hero.title": "Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "boutique.intro.title": "The Watchmaking Castle in the Spotlight",
   "boutique.intro.body":
-    "Through rare craftsmanship and precise aesthetics, our salon carries tradition into innovation, and tells the story of time’s enduring brilliance.",
+    "Through “Rare Craftsmanship” and “Precise Aesthetics,” the Yung Hsin Patek Philippe Boutique tells a story of the timeless brilliance of watchmaking through a seamless dialogue between heritage and innovation.",
   "boutique.story.body":
-    "In the long river of time, a timepiece is far more than an instrument.\nIt carries artistry, craftsmanship and emotion.\nWith profound expertise and a philosophy built on integrity,\nYung Hsin Watch has become a sanctuary for collectors.",
+    "Throughout the river of time, a watch is far more than an instrument for telling time—it is a vessel for art, craftsmanship, and emotion. With its deep-rooted expertise in horology and philosophy of integrity, Yung Hsin Watch has become a cherished destination and a true haven in the hearts of countless watch enthusiasts.",
   "boutique.story.bodySm":
-    "In the long river of time, a timepiece is far more than an instrument.\nIt carries artistry, craftsmanship and emotion.\nWith profound expertise and a philosophy built on integrity, Yung Hsin Watch has become a sanctuary for collectors.",
+    "Throughout the river of time, a watch is far more than an instrument for telling time—it is a vessel for art, craftsmanship, and emotion. With its deep-rooted expertise in horology and philosophy of integrity, Yung Hsin Watch has become a cherished destination and a true haven in the hearts of countless watch enthusiasts.",
   "boutique.carousel.prev": "Previous image",
   "boutique.carousel.next": "Next image",
   "boutique.appointment.title": "Make an Appointment",
@@ -476,6 +476,28 @@ export default {
   "store.kingSign.address": "No. 231-1, Sec. 4, Zhongxiao E. Rd., 10692 Taipei",
   "store.nineTwo.name": "Patek Philippe Boutique Taipei by Nine-Two Watch",
   "store.nineTwo.address": "No. 109, Sec. 1, Yanping N. Rd., 10350 Taipei",
+
+  "store.detail.close": "Close",
+  "store.detail.more": "More details",
+  "store.hours.title": "Opening hours:",
+  "store.hours.open": "Open - Closes at {time}",
+  "store.hours.closed": "Closed - Opens at {time}",
+  "store.hours.dayOff": "Closed",
+  "store.day.mon": "Monday",
+  "store.day.tue": "Tuesday",
+  "store.day.wed": "Wednesday",
+  "store.day.thu": "Thursday",
+  "store.day.fri": "Friday",
+  "store.day.sat": "Saturday",
+  "store.day.sun": "Sunday",
+  "store.yungHsin.url":
+    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-yung-hsin-watch",
+  "store.cortina.url":
+    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-cortina-watch",
+  "store.kingSign.url":
+    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-king-sign-watch",
+  "store.nineTwo.url":
+    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-nine-two-watch",
 
   "footer.address": "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City",
   "footer.terms": "TERMS OF SERVICE",

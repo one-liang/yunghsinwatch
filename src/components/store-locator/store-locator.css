@@ -121,6 +121,151 @@
   }
 }
 
+/* ---------- 店面資訊（修改清單 #34） ----------
+   點列表中的門市後，列表換成該店的店面資訊；版型與間距參考 patek.com 銷售點頁的 active-pos：
+   店名列右側是 × 按鈕，地址下方 32px 放照片，再隔 48px 是可展開的營業時間與「更多詳情」按鈕。 */
+
+.store-locator__detail[hidden],
+.store-locator__list[hidden] {
+  display: none;
+}
+
+.store-locator__detail .store-locator__name {
+  color: var(--color-brown-dark);
+}
+
+.store-locator__close {
+  display: flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-block-start: 0.125rem;
+  color: var(--color-brown-dark);
+  cursor: pointer;
+  transition: transform 0.3s ease-out;
+}
+
+.store-locator__close svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (hover: hover) {
+  .store-locator__close:hover {
+    transform: rotate(90deg);
+  }
+}
+
+.store-locator__detail .store-locator__address {
+  margin-block-start: 0.75rem;
+}
+
+/* 照片比例照參考站（395×187），只有手邊有店面照的門市才放。 */
+.store-locator__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 395 / 187;
+  margin-block-start: 2rem;
+  object-fit: cover;
+}
+
+.store-locator__hours {
+  margin-block-start: 3rem;
+}
+
+.store-locator__hours-toggle {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: var(--color-brown-warm);
+  text-align: start;
+  cursor: pointer;
+}
+
+.store-locator__hours-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.store-locator__hours-title {
+  font-family: var(--font-label);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.store-locator__hours-status {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+}
+
+.store-locator__hours-status:empty {
+  display: none;
+}
+
+.store-locator__hours-chevron {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease-out;
+}
+
+.store-locator__hours-toggle[aria-expanded="true"] .store-locator__hours-chevron {
+  transform: rotate(180deg);
+}
+
+.store-locator__hours-table {
+  margin-block-start: 0.75rem;
+  border-collapse: collapse;
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  line-height: 1.375rem;
+}
+
+.store-locator__hours-table th,
+.store-locator__hours-table td {
+  padding-block: 0.125rem;
+  text-align: start;
+  font-weight: 400;
+}
+
+.store-locator__hours-table th {
+  padding-inline-end: 1.5rem;
+}
+
+/* 今天那一列加粗，方便對照目前的營業狀態。 */
+.store-locator__hours-table tr[data-today] {
+  font-weight: 600;
+}
+
+.store-locator__hours-table tr[data-today] th,
+.store-locator__hours-table tr[data-today] td {
+  font-weight: inherit;
+}
+
+.store-locator__more {
+  margin-block-start: 3rem;
+  font-family: var(--font-label);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.375rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease-out;
+}
+
+@media (hover: hover) {
+  .store-locator__more:hover {
+    opacity: 0.8;
+  }
+}
+
 /* ---------- 手機／平板（lg 以下）：地圖與列表二擇一 ---------- */
 
 @media (width < 64rem) {
