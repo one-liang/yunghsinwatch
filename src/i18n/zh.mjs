@@ -472,6 +472,28 @@ export default {
   "store.nineTwo.name": "九二鐘錶百達翡麗專賣店",
   "store.nineTwo.address": "台北市大同區延平北路一段 109 號",
 
+  "store.detail.close": "關閉",
+  "store.detail.more": "更多詳情",
+  "store.hours.title": "營業時間：",
+  "store.hours.open": "營業中 - {time} 打烊",
+  "store.hours.closed": "休息中 - {time} 開門",
+  "store.hours.dayOff": "公休",
+  "store.day.mon": "星期一",
+  "store.day.tue": "星期二",
+  "store.day.wed": "星期三",
+  "store.day.thu": "星期四",
+  "store.day.fri": "星期五",
+  "store.day.sat": "星期六",
+  "store.day.sun": "星期日",
+  "store.yungHsin.url":
+    "https://www.patek.com/zh/销售点/亚洲/中国台湾地区/台北市/patek-philippe-boutique-taipei-by-yung-hsin-watch",
+  "store.cortina.url":
+    "https://www.patek.com/zh/销售点/亚洲/中国台湾地区/台北市/patek-philippe-boutique-taipei-by-cortina-watch",
+  "store.kingSign.url":
+    "https://www.patek.com/zh/销售点/亚洲/中国台湾地区/台北市/patek-philippe-boutique-taipei-by-king-sign-watch",
+  "store.nineTwo.url":
+    "https://www.patek.com/zh/销售点/亚洲/中国台湾地区/台北市/patek-philippe-boutique-taipei-by-nine-two-watch",
+
   "footer.address": "台北市士林區忠誠路一段 82 號 (第一銀行旁)",
   "footer.terms": "服務條款",
   "footer.privacy": "隱私權政策",

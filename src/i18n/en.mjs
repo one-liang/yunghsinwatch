@@ -477,6 +477,28 @@ export default {
   "store.nineTwo.name": "Patek Philippe Boutique Taipei by Nine-Two Watch",
   "store.nineTwo.address": "No. 109, Sec. 1, Yanping N. Rd., 10350 Taipei",
 
+  "store.detail.close": "Close",
+  "store.detail.more": "More details",
+  "store.hours.title": "Opening hours:",
+  "store.hours.open": "Open - Closes at {time}",
+  "store.hours.closed": "Closed - Opens at {time}",
+  "store.hours.dayOff": "Closed",
+  "store.day.mon": "Monday",
+  "store.day.tue": "Tuesday",
+  "store.day.wed": "Wednesday",
+  "store.day.thu": "Thursday",
+  "store.day.fri": "Friday",
+  "store.day.sat": "Saturday",
+  "store.day.sun": "Sunday",
+  "store.yungHsin.url":
+    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-yung-hsin-watch",
+  "store.cortina.url":
+    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-cortina-watch",
+  "store.kingSign.url":
+    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-king-sign-watch",
+  "store.nineTwo.url":
+    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-nine-two-watch",
+
   "footer.address": "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City",
   "footer.terms": "TERMS OF SERVICE",
   "footer.privacy": "PRIVACY POLICY",
