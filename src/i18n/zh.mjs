@@ -32,7 +32,6 @@ export default {
   // 服務項目沿用 service.card.*、門市沿用 store.*.name，不在這裡重複一份。
   "booking.eyebrow": "Booking",
   "booking.title": "填寫預約資料",
-  "booking.subtitle": "Schedule an Appointment",
 
   "booking.field.selectPlaceholder": "請選擇",
   "booking.field.service.label": "服務項目",
@@ -92,6 +91,7 @@ export default {
   "series.meta.title": "Golden Ellipse 系列｜永新鐘錶百達翡麗專賣店",
   "series.meta.description":
     "探索百達翡麗 Golden Ellipse 系列，感受經典橢圓造型與和諧比例所展現的優雅美學。",
+  "series.heading": "GOLDEN ELLIPSE",
   "series.headingSuffix": " 系列",
   "series.description":
     "深入探索 Golden Ellipse 系列的迷人世界，其悠久歷史在百達翡麗各大時計中位列第二，僅次於 Calatrava 系列。",

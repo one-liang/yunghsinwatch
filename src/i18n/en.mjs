@@ -25,15 +25,14 @@ export default {
   "home.appointment.title": "BOOKING",
   "home.appointment.subtitle": "Schedule an Appointment",
   "home.video.title": "Patek Philippe video",
-  "home.contact.title": "Contact Us",
+  "home.contact.title": "CONTACT US",
   "home.contact.body":
     "Yung Hsin Watch welcomes every watch enthusiast. Whether you have questions about repairs, care or any other professional matter, we will be delighted to assist you.",
 
   // 預約彈跳視窗（src/components/booking-modal/），全站每頁都有。
   // 服務項目沿用 service.card.*、門市沿用 store.*.name，不在這裡重複一份。
   "booking.eyebrow": "Booking",
-  "booking.title": "Booking Details",
-  "booking.subtitle": "Schedule an Appointment",
+  "booking.title": "Schedule an Appointment",
 
   "booking.field.selectPlaceholder": "Please select.",
   "booking.field.service.label": "Service",
@@ -87,13 +86,14 @@ export default {
   "collection.meta.title": "Patek Philippe Collection | Yung Hsin Watch",
   "collection.meta.description":
     "Explore the Patek Philippe collection and its enduring standards of watchmaking, quality, and innovation.",
-  "collection.heading": "ALL COLLECTIONS",
+  "collection.heading": "All Collections",
   "collection.description":
     "Patek Philippe have over 150 references in regular production, manufactured in limited quantity to ensure they respect the extremely high quality standards of the Patek Philippe Seal.",
 
   "series.meta.title": "Golden Ellipse Collection | Yung Hsin Watch",
   "series.meta.description":
     "Discover the Patek Philippe Golden Ellipse collection and the elegant harmony of its iconic elliptical form.",
+  "series.heading": "Golden Ellipse",
   "series.headingSuffix": " COLLECTION",
   "series.description":
     "Delve into the fascinating universe of the Golden Ellipse, the second oldest watch in the Patek Philippe collection after the Calatrava.",
@@ -147,8 +147,8 @@ export default {
     "Throughout the river of time, a watch is far more than an instrument for telling time—it is a vessel for art, craftsmanship, and emotion. With its deep-rooted expertise in horology and philosophy of integrity, Yung Hsin Watch has become a cherished destination and a true haven in the hearts of countless watch enthusiasts.",
   "boutique.carousel.prev": "Previous image",
   "boutique.carousel.next": "Next image",
-  "boutique.appointment.title": "Make an Appointment",
-  "boutique.appointment.subtitle": "Book a private visit",
+  "boutique.appointment.title": "BOOKING",
+  "boutique.appointment.subtitle": "Schedule an Appointment",
 
   // 我們的團隊頁（src/pages/team.html）。
   "team.meta.title": "Our Team | Patek Philippe Boutique Taipei by Yung Hsin Watch",

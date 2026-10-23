@@ -1,10 +1,12 @@
 # 永新鐘錶修改清單（Google 試算表）
 
 - 來源：[永新鐘錶\_修改 / 工作表1](https://docs.google.com/spreadsheets/d/17R5KGBXLNXc-hmn-yyKfb1b5CzN6x_aYN4tVvrNLiwM/edit?gid=0#gid=0)
-- 擷取日期：2026-10-20（第 2～38 列，共 37 筆有內容；第 39～51 列只有編號）
+- 擷取日期：2026-10-23（第 2～42 列，共 41 筆有內容；第 43～53 列只有編號）
 - 「修改內容」以引言照錄，錯字（Navbra、設計搞、腕脿）也照錄；「截圖/連結」欄的超連結一併附上
-- 「處理狀況」欄的下拉選項為「已處理／驗證完畢」，擷取時 #1～#19 為「已處理」，#20 以後空白；
-  「阿良」欄只有 #14 有內容（照錄在該項），「一瓶」欄全部空白
+- 「處理狀況」欄的下拉選項為「已處理／驗證完畢」。2026-10-23 擷取時，#18、#21、#22、#24、#25、#34、#36、
+  #38、#40、#41 空白，其餘都是「驗證完畢」
+- 「阿良」欄有內容的是 #14、#20、#30、#35、#38、#39，「一瓶」欄有內容的是 #18、#21、#22、#24、#25、#35、#38
+  （「一瓶」欄都照錄在該項；「阿良」欄是對處理結果的回覆，照錄 #14、#39）
 - `#` 依列順序重新編號（= 試算表列號 − 1）。試算表的編號欄有空白與重複（第 6、10、13、14、16、17、25、26、
   27、31 列），不一致的地方在小節標題後註明試算表原本的編號，方便對照
 - 排序：沿用試算表順序，依「修改頁面」分節
@@ -23,6 +25,11 @@
   「照片有5張要放」；舊 #27（現 #34）多了「(如截圖)」。新增 #20～#22、#24、#26、#30～#32、#35～#37
   （頁首介紹標題與內文、時計系列與單系列列表的英文大標題、繼續探索英文標題、單錶介紹頁多圖範例、精品店英文大標題與底色、
   我們的團隊底色、維修保養 FAQ 動畫、聯絡我們下拉符號）
+- 2026-10-23：重新擷取。#1～#33 的列號沒有變動，第 35 列（精品店）以後插入新項目，原本的 #34～#37 往後移：
+  舊 #34 → #35、舊 #35 → #37、舊 #36 → #38、舊 #37 → #39。新增 #34（精品店第二段文字大小）、#36（精品店英文版預約橫幅）、
+  #40（聯絡我們同意勾選框預設不勾）、#41（預約服務時間標題字級）。內容有改的：#22 的大標題由「ALL COLLECTIONS」改為
+  「All Collections」；#38 的「= → x」改為「+ → x」。沒有標「驗證完畢」的 #18、#21、#22、#24、#25、#38
+  在「一瓶」欄留言要求調整，已依留言修改（見各項「依一瓶留言調整」）；#34、#36、#40、#41 沒有留言，當時還沒處理（已於 2026-10-24 依指示處理）
 
 ## 進度總覽
 
@@ -47,7 +54,7 @@
 - [x] #19 【首頁】英文版「Make an Appointment」改為「BOOKING」
 - [x] #20 【頁首介紹】介紹標題 `<h2>` 改小
 - [x] #21 【頁首介紹】介紹內文 `<p>` 改小
-- [x] #22 【時計系列】英文版大標題改為「ALL COLLECTIONS」並重貼介紹內文
+- [x] #22 【時計系列】英文版大標題改為「All Collections」並重貼介紹內文
 - [x] #23 【時計系列】系列卡片標題刪除 LG 字級，與圖片間距改為 16px
 - [x] #24 【單系列列表】英文版大標題拿掉多出的「COLLECTION」並貼上介紹內文
 - [x] #25 【單系列列表】MD 改為三個一組
@@ -59,10 +66,14 @@
 - [x] #31 【精品店】英文版大標題改為「Patek Philippe Boutique Taipei by Yung Hsin Watch」並重貼介紹內文
 - [x] #32 【精品店】內文底色改為 `bg-background`
 - [x] #33 【精品店】放入五張照片
-- [x] #34 【精品店】地圖右側點選門市後顯示店面資訊
-- [x] #35 【我們的團隊】內文底色改為 `bg-background`
-- [x] #36 【維修保養】FAQ「＋」→「×」加動畫
-- [x] #37 【聯絡我們】聯絡電話 ▼ 符號改為 20×20
+- [x] #34 【精品店】第二段文字大小比照第一段
+- [x] #35 【精品店】地圖右側點選門市後顯示店面資訊
+- [x] #36 【精品店】英文版預約橫幅改為「BOOKING」
+- [x] #37 【我們的團隊】內文底色改為 `bg-background`
+- [x] #38 【維修保養】FAQ「＋」→「×」加動畫
+- [x] #39 【聯絡我們】聯絡電話 ▼ 符號改為 20×20
+- [x] #40 【聯絡我們】同意條款勾選框預設改為不勾選
+- [x] #41 【預約服務】預約時間標題字級依設計稿
 
 ---
 
@@ -519,6 +530,14 @@ https://www.furlanmarri.com/ ，2026-10-14 改成上面的「跟時計系列卡�
 待確認：Figma 英文版的標題是全大寫「CONTACT US」，內文也比現在長（「Yung Hsin Watch warmly welcomes all watch enthusiasts. …」）。
 試算表只要求改字型，所以文字沒有動。Figma 的內文放到 SM 會超過 7 行，在 250px 高的區塊裡放不下；要換文字時，SM 的高度或字級也要一起調整。
 
+「一瓶」欄（2026-10-23 擷取，處理狀況空白）：
+
+> 我寫錯了，首頁的才要大寫才對
+> CONTACT US
+
+依一瓶留言調整（2026-10-23）：`en.mjs` 的 `home.contact.title` 由「Contact Us」改為「CONTACT US」，和 Figma 相同；
+字型維持 Playfair Display。聯絡我們頁的 Banner（`contact.hero.title`）不是首頁，維持「Contact Us」。內文沒有更動，上面的待確認仍成立。
+
 ### #19 【首頁】英文版「Make an Appointment」改為「BOOKING」
 
 - 語系：EN
@@ -586,13 +605,23 @@ https://www.furlanmarri.com/ ，2026-10-14 改成上面的「跟時計系列卡�
 驗證：`npm run build` 後用 `npm run preview` 開中英文的關於我們、精品店頁，在 390／768／1024／1280／1536px 量測，
 標題與內文的字級、行高都和上表相同（關於我們 5 段、精品店 1 段內文），關於我們的 Banner 大標題在 1024px 為 28/40、1280px 以上 40/50，沒有水平捲軸。
 
+「一瓶」欄（#21，2026-10-23 擷取，處理狀況空白）：
+
+> 未改到的頁面
+> collection.html
+> collection-series.html
+
+依一瓶留言調整（2026-10-23）：時計系列（`collection.html`）與單系列列表（`collection-series.html`）的介紹內文 `<p>`
+由 `text-[18px] leading-8 xl:text-xl` 改為 `text-base leading-7 xl:text-lg xl:leading-8`，字級和上表內文相同
+（1279px 以下 16/28、1280px 以上 18/32），中英文都適用。#22 記下的「另外發現的既有問題」就是這一項，已一併解決。
+
 ## 5. 2-時計系列
 
-### #22 【時計系列】英文版大標題改為「ALL COLLECTIONS」並重貼介紹內文
+### #22 【時計系列】英文版大標題改為「All Collections」並重貼介紹內文
 
 - 語系：EN
 
-> 大標題改為「ALL COLLECTIONS」
+> 大標題改為「All Collections」
 > 字型改為Playfair Display
 >
 > 重貼介紹內文，從設計稿裡抓
@@ -616,6 +645,13 @@ Heading Banner（`1032:12270`）與 Description（`1032:12271`）：
 另外發現的既有問題（未修改）：介紹內文在 Figma 2XL 是 Noto Serif TC 18/32，程式 XL 以上是 20/32（`xl:text-xl`），中英文都是。
 這段和 #21 改過的關於我們、精品店介紹內文原本是同一組 class，#21 只改了那兩頁；要不要一起改成 `text-base leading-7 xl:text-lg xl:leading-8`，待確認。
 `collection.meta.title` 仍是「Patek Philippe Collection | Yung Hsin Watch」，試算表沒提到，沒有更動。
+
+「一瓶」欄（2026-10-23 擷取，處理狀況空白；修改內容也同時由「ALL COLLECTIONS」改為「All Collections」）：
+
+> 我寫錯了...第二個字母後面要小寫才對 Orz
+> All Collections
+
+依一瓶留言調整（2026-10-23）：`collection.heading` 改為「All Collections」，字型與字級不變。介紹內文字級的既有問題已在 #21 一併修改。
 
 ### #23 【時計系列】系列卡片標題刪除 LG 字級，與圖片間距改為 16px
 
@@ -655,6 +691,14 @@ Heading Banner（`1018:10517`）的大標題只有「GOLDEN ELLIPSE」（Playfai
 介紹內文依 Description（`1018:10424`）換成「Delve into the fascinating universe of the Golden Ellipse, the second oldest watch in
 the Patek Philippe collection after the Calatrava.」（文法照設計稿）。
 
+「一瓶」欄（2026-10-23 擷取，處理狀況空白）：
+
+> 我寫錯了...第二個字母後面要小寫才對 Orz
+> Golden Ellipse
+
+依一瓶留言調整（2026-10-23）：大標題原本寫死在 HTML，改成 `data-i18n="series.heading"`，字典新增 `series.heading`：
+英文「Golden Ellipse」、中文維持「GOLDEN ELLIPSE」（留言只針對英文版）。中文版仍是「GOLDEN ELLIPSE 系列」，英文版只顯示「Golden Ellipse」。
+
 ### #25 【單系列列表】MD 改為三個一組（試算表編號 23）
 
 - 語系：中文、EN
@@ -673,6 +717,17 @@ the Patek Philippe collection after the Calatrava.」（文法照設計稿）。
 起點用 640px 而不是 768px：試算表寫「MD」，但設計稿的畫面寬度是 640px，三欄在 640px 已放得下；639px 以下維持兩欄。
 media query 的上限用 `width < 64rem`：Windows 的顯示比例會讓 1023px 視窗的寬度略大於 1023px，
 `max-width: 63.9375rem` 在這時不成立，會有一段寬度變回兩欄。
+
+「一瓶」欄（2026-10-23 擷取，處理狀況空白）：
+
+> grid-template-columns: repeat(3, 160px);
+> 我看MD尺寸有設定寬度，160px可以設為auto嗎?
+> 「推薦其他腕錶」保持原設定，不要動
+> 這樣可以嗎??
+
+依一瓶留言調整（2026-10-23）：640～1023px 改為 `grid-template-columns: repeat(3, minmax(0, 1fr))`，三欄平分容器寬度
+（扣掉左右 20px 內距與 24px 間距），卡片隨視窗變寬，不再固定 160px。用 `minmax(0, 1fr)` 而不是 `auto`：`auto` 會依圖片原始寬度
+決定欄寬，三欄可能不等寬。最後一張放中間欄的規則不變。「推薦其他腕錶」（`model-recommend` 組件，單錶介紹頁）沒有更動。
 
 ### #26 【單系列列表】英文版繼續探索標題改為「Explore More」（試算表編號 24）
 
@@ -851,7 +906,20 @@ Banner 下方從介紹、圖片輪播到故事段落都是 Background 底色，�
 英文大標題為 Playfair Display，字級如上；介紹與故事段落為設計稿的英文；三段底色都是 #F4F2F0、滿版；輪播 5 張，
 按右箭頭 4 次到第 5 張後右箭頭隱藏；中文版文字不變；console 沒有錯誤，沒有水平捲軸。
 
-### #34 【精品店】地圖右側點選門市後顯示店面資訊
+### #34 【精品店】第二段文字大小比照第一段
+
+- 語系：中文、EN
+
+> 第二段文字`<p>`文字大小沒有改到
+> 要跟第一段一樣
+
+- [x] 精品店第二段文字 `<p>` 的字級改成和第一段相同
+
+實作說明（2026-10-24）：第二段是故事段落，依斷點分成兩份文案（`boutique.story.bodySm` 在 LG 以下、`boutique.story.body` 在 LG 以上），
+原本是 `text-[18px] leading-8`、XL 以上 `xl:text-xl`，#21 改第一段（介紹內文）時沒有一起改到。兩個 `<p>` 都改成和第一段相同的
+`text-base leading-7 xl:text-lg xl:leading-8`：1279px 以下 16/28、1280px 以上 18/32，中英文都適用。
+
+### #35 【精品店】地圖右側點選門市後顯示店面資訊
 
 - 語系：中文、EN
 - 截圖：[2-精品店MAP.png](https://drive.google.com/file/d/1uhLXZRwP40ttf3clcy_3WDenfzMu8xDc/view?usp=drive_link)
@@ -892,9 +960,28 @@ Banner 下方從介紹、圖片輪播到故事段落都是 Background 底色，�
 另外發現的既有問題（未修改）：英文版地圖用 `data-store-query-en`（「Yung Hsin Watch, No. 82, Sec. 1, Jhongcheng Rd., …」）查詢時，
 Google 地圖把永新定位到大稻埕一帶，不是天母的店；中文版位置正確。其他三家的英文查詢沒有逐一確認。
 
+「一瓶」欄（2026-10-23 擷取）：
+
+> 我覺得ok呀，先這樣好了，之後再看他們想要什麼好了
+
+### #36 【精品店】英文版預約橫幅改為「BOOKING」
+
+- 語系：EN
+
+> 我要預約 > (跟首頁的一樣)
+> 大標題改為「BOOKING」，內文改為「SCHEDULE AN APPOINTMENT」
+
+- [x] 英文版「我要預約」大標題改為「BOOKING」
+- [x] 內文改為「SCHEDULE AN APPOINTMENT」
+
+實作說明（2026-10-24）：比照首頁 #19。`en.mjs` 的 `boutique.appointment.title` 由「Make an Appointment」改為「BOOKING」，
+`boutique.appointment.subtitle` 由「Book a private visit」改為「Schedule an Appointment」（和 `home.appointment.subtitle` 相同，
+`<span>` 本身有 `uppercase`，畫面顯示「SCHEDULE AN APPOINTMENT」）。大標題加上 `en:font-display lg:en:font-display xl:en:font-display`，
+英文改用 Playfair Display，字級沿用中文各斷點；中文「我要預約」不變。#19 的待確認提過 `boutique.appointment.title` 仍是「Make an Appointment」，就是這一項。
+
 ## 9. 6-我們的團隊
 
-### #35 【我們的團隊】內文底色改為 `bg-background`
+### #37 【我們的團隊】內文底色改為 `bg-background`
 
 - 語系：中文、EN
 
@@ -910,12 +997,12 @@ Banner 下方到 Footer 之間的八位成員介紹都在 Background 底色上�
 
 ## 10. 8-維修保養
 
-### #36 【維修保養】FAQ「＋」→「×」加動畫
+### #38 【維修保養】FAQ「＋」→「×」加動畫
 
 - 語系：中文、EN
 - 連結：<https://www.furlanmarri.com/faq>
 
-> = → x 可以加animation，如連結
+> \+ → x 可以加animation，如連結
 
 - [x] FAQ 手風琴展開時，圖示由「＋」轉成「×」加上動畫（參考連結）
 
@@ -933,9 +1020,17 @@ Banner 下方到 Footer 之間的八位成員介紹都在 Background 底色上�
 驗證：用 `npm run preview` 開中英文維修保養頁（各 7 題），點第一題：0.12 秒時 ＋ 轉約 53°、透明度 0.41，✕ 轉到約 −37°、
 透明度 0.59；0.3 秒後只剩 ✕（0°、不透明）。再點一次回到 ＋。放大截圖確認兩個圖示都以中心旋轉；console 沒有錯誤。
 
+「一瓶」欄（2026-10-23 擷取，處理狀況空白；修改內容的「= → x」也改為「+ → x」）：
+
+> 還是說用同一svg，右轉45度呢?像精品店地圖旁邊的店面資訊那樣呢?
+
+依一瓶留言調整（2026-10-23）：改回四種效果裡的「旋轉 45°」。七個 FAQ 圖示只留一條 ＋ 路徑，拿掉 ✕ 路徑與淡入淡出；
+展開時 ＋ 以中心順時針轉 45° 成為 ✕，收合時轉回，0.3s ease-out，和精品店門市資訊關閉鈕（`store-locator__close`）的
+旋轉過場相同。減少動態效果時直接切換。
+
 ## 11. 9-聯絡我們
 
-### #37 【聯絡我們】聯絡電話 ▼ 符號改為 20×20
+### #39 【聯絡我們】聯絡電話 ▼ 符號改為 20×20
 
 - 語系：中文、EN
 
@@ -951,6 +1046,51 @@ Banner 下方到 Footer 之間的八位成員介紹都在 Background 底色上�
 另外發現的既有問題（未修改）：預約彈跳視窗（`booking-modal`，Header 的「預約服務」）裡的國碼選單也是 24×24 的 ▼、`pr-10`，
 試算表只列了聯絡我們頁，沒有更動。
 
+「阿良」欄（2026-10-23 擷取）：
+
+> 眼力好好lol
+
+### #40 【聯絡我們】同意條款勾選框預設改為不勾選
+
+- 語系：中文、EN
+
+> 我同意...，預設改為「不勾選」的狀態
+
+- [x] 「我同意…」勾選框預設改為不勾選
+
+實作說明（2026-10-24）：聯絡我們頁（`contact.html`）同意條款的 `<input type="checkbox">` 拿掉 `checked`，載入時是空方框，
+仍是 `required`，不勾無法送出。預約彈跳視窗（`booking-modal`）的同意框結構相同，依確認（2026-10-24）一起改為預設不勾，和 Figma 中文 step1（`539:1950`）相同
+（英文版 `1365:9414` 畫的是已勾選，以中文版為準）。
+
+## 12. 預約服務
+
+### #41 【預約服務】預約時間標題字級依設計稿
+
+- 語系：中文、EN
+
+> 預約時間 >
+> 標題字型大小修改，參考設計稿(我有新增)
+
+- [x] 預約時間的標題字級依設計稿（新增的圖層）修改
+
+設計稿（2026-10-24 提供）：
+[Booking Modal_EN](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1365-9414)（`1365:9414`）、
+[Booking Modal_step1](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=539-1950)（`539:1950`）、
+[Booking Modal_step2](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=528-2216)（`528:2216`）
+
+實作說明：「預約時間」指 Header「預約服務」打開的預約彈跳視窗（`booking-modal`），三個畫面的標題區（`1365:9471` 等）一樣：
+
+- 「BOOKING」Inter Medium 16/24、字距 1.5px、Brown/Light，和原本相同。
+- 下方 8px 接一行主標：中文「填寫預約資料」Noto Serif TC Medium 32/44、字距 1px；英文「Schedule an Appointment」
+  Playfair Display Medium 32/44、字距 1px。
+
+原本中文主標是 28/40、LG 以上 40/50、字距 2px，下面還有一行 Playfair Regular 40/48 的英文副標「Schedule an Appointment」
+（中英文都顯示），標題區上下各留 24px、行距 16px。現在改成：
+
+- 主標 `type-heading-md tracking-[1px] lg:text-[2rem] lg:leading-11 en:font-display`：LG 以上 32/44，LG 以下設計稿未定義，沿用 28/40。
+- 拿掉英文副標那一行與字典的 `booking.subtitle`；英文版主標 `booking.title` 由「Booking Details」改為「Schedule an Appointment」。
+- 標題區拿掉 `py-6`、間距 `gap-4` 改為 `gap-2`（8px），和設計稿相同；標題區到表單的 32px 沿用面板的 `lg:gap-8`。
+
 ## 未收錄的列
 
-- 第 39～51 列（編號 38～50）：只有編號
+- 第 43～53 列（編號 42～52）：只有編號

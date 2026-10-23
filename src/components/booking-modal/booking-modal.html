@@ -20,9 +20,12 @@
       <div
         class="booking-modal__panel flex w-full max-w-[1024px] flex-col items-center gap-6 bg-white p-6 text-black lg:gap-8 lg:p-10"
       >
-        <!-- text-center 是給 SM 用的：英文副標在窄螢幕會折成兩行，沒有它會變成靠左。 -->
+        <!-- 標題依 Booking Modal_step1／step2／EN（539:1950、528:2216、1365:9414，修改清單 #41）：
+             BOOKING 下 8px 接主標，主標中文 Noto Serif TC、英文 Playfair Display，皆 Medium 32/44、字距 1px。
+             LG 以下設計稿未定義，沿用 type-heading-md 的 28/40。
+             text-center 是給 SM 用的：英文主標在窄螢幕會折成兩行，沒有它會變成靠左。 -->
         <div
-          class="flex w-full flex-col items-center justify-center gap-4 py-6 text-center lg:w-[768px]"
+          class="flex w-full flex-col items-center justify-center gap-2 text-center lg:w-[768px]"
         >
           <p
             class="type-label-eyebrow-lg tracking-[1.5px] text-brown-light uppercase"
@@ -30,20 +33,12 @@
           >
             Booking
           </p>
-          <div class="flex flex-col items-center">
-            <p class="type-heading-md tracking-[2px] lg:type-heading-xl" data-i18n="booking.title">
-              填寫預約資料
-            </p>
-            <!-- 設計稿是 Playfair Regular 40/48；type-display-xl 是 500/50，字重與行高都不同，
-                 與其層層覆寫不如直接寫級數（比照 contact.html 的「訊息已送出」標題）。
-                 LG 以下設計稿未定義，沿用中文主標的 28/40。 -->
-            <p
-              class="font-display text-[28px] leading-10 font-normal lg:text-[40px] lg:leading-12"
-              data-i18n="booking.subtitle"
-            >
-              Schedule an Appointment
-            </p>
-          </div>
+          <p
+            class="type-heading-md tracking-[1px] lg:text-[2rem] lg:leading-11 en:font-display"
+            data-i18n="booking.title"
+          >
+            填寫預約資料
+          </p>
         </div>
 
         <!-- 兩個 step 疊在同一個 grid 格子裡，高度過渡由 JS 量測後寫在這層的 height 上。 -->
@@ -334,7 +329,6 @@
                   class="peer sr-only"
                   name="consent"
                   type="checkbox"
-                  checked
                   required
                   data-booking-field
                 />
