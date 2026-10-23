@@ -102,11 +102,11 @@
   }
 }
 
-/* 640～1023px 三個一組（修改清單 #25）：依 Figma Series Page（寬 640，1287:9299），卡片 160px、間距 24px，
+/* 640～1023px 三個一組（修改清單 #25）：依 Figma Series Page（寬 640，1287:9299），間距 24px；卡片寬度依一瓶回覆由 160px 改為平分欄寬，
    最後一列只剩一張時放在中間欄。 */
 @media (min-width: 40rem) and (width < 64rem) {
   .series-watch-grid {
-    grid-template-columns: repeat(3, 160px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .series-watch-card:last-child:nth-child(3n + 1) {
