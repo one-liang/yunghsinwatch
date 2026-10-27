@@ -154,7 +154,7 @@
            外層 div 負責裁切與進場動畫，transform 不會和 hover 的 scale 互相干擾。
            捲動進場（Figma Mockup comment #6，參考 furlanmarri.com）：文字區塊用 data-reveal-group，
            內部 data-reveal-item 依序往上；影片與照片用 data-reveal-media 往上淡入。見 src/js/global/motion.js。
-           MD/SM 一律上圖下文；內文依設計稿截斷行數（LG 以下 4 行、XL 起 5 行，LG 標題最多 3 行）。 -->
+           MD/SM 一律上圖下文；LG 標題最多 3 行，內文全部顯示（修改清單 #46 拿掉 line-clamp）。 -->
       <section class="relative bg-background px-5 py-12 lg:px-12 lg:py-[72px] xl:py-28">
         <span
           class="absolute -top-6 left-1/2 h-12 w-px -translate-x-1/2 bg-brand-gold lg:-top-10 lg:h-20"
@@ -173,10 +173,7 @@
                 >
                   首度加入日出日落 Grand Complications 6105G-001
                 </h2>
-                <p
-                  class="line-clamp-4 type-body-base tracking-[1px] xl:line-clamp-5"
-                  data-reveal-item
-                >
+                <p class="type-body-base tracking-[1px]" data-reveal-item>
                   當時間不再只是指針的流動，而化為一場關於宇宙運行的精密演繹，PATEK PHILIPPE Ref.
                   6105G-001 以嶄新高度重新定義天文複雜功能腕錶。此款 2026
                   年話題之作首度將日出與日落時間顯示納入，結合星空圖、月相與日期等多重天文資訊，並透過六項專利加持的機械結構，實現夏令與冬令時間的同步校正，作為百達翡麗天文顯示時計悠久傳統的延續之作。
@@ -219,10 +216,7 @@
                 >
                   百達翡麗 5396R 年曆腕錶三十週年致敬之作
                 </h2>
-                <p
-                  class="line-clamp-4 type-body-base tracking-[1px] xl:line-clamp-5"
-                  data-reveal-item
-                >
+                <p class="type-body-base tracking-[1px]" data-reveal-item>
                   回顧現代高級製錶發展，一項真正具有影響力的複雜功能，往往不只是增加腕錶的技術含量，也可能重新改變市場對實用性的理解。1996
                   年，Patek Philippe 百達翡麗推出 Ref.
                   5035，首度將獲得專利的年曆複雜功能帶到世人面前。它既不是萬年曆的簡化版本，也不只是全日曆的小幅改良，而是一套能夠自動辨識
@@ -245,10 +239,7 @@
                 >
                   百達翡麗Twenty~4
                 </h2>
-                <p
-                  class="line-clamp-4 type-body-base tracking-[1px] xl:line-clamp-5"
-                  data-reveal-item
-                >
+                <p class="type-body-base tracking-[1px]" data-reveal-item>
                   Twenty~4時計於一九九九年面世，是百達翡麗首枚女士專屬的腕錶款式。腕錶設計時尚，誠為相伴現代女性多采多姿的生活而設。顧名思義，腕錶日夜佩戴皆可，莊閒場合皆宜，堪稱永恆優雅與卓越不凡的典範。編號4910／1201R-001新款腕錶搭配石英機芯，是第三枚展現Twenty~4時計全新面貌的法式袖口腕錶款是。集18K金錶殼和朱古力啡色放射狀錶面於一身，盡顯女性的溫婉、精緻與魅力。
                 </p>
               </div>

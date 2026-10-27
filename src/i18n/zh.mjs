@@ -97,6 +97,8 @@ export default {
     "深入探索 Golden Ellipse 系列的迷人世界，其悠久歷史在百達翡麗各大時計中位列第二，僅次於 Calatrava 系列。",
   "series.watchName": "GOLDEN ELLIPSE 腕錶",
   "series.discoverTitle": "繼續探索",
+  "series.discover.prev": "上一個系列",
+  "series.discover.next": "下一個系列",
 
   // 單錶介紹頁（src/pages/collection/model.html）。
   // model.spec.*.label 為各頁共用的規格欄位名稱，model.spec.*.value 為此錶款的內容。
@@ -497,5 +499,7 @@ export default {
   "footer.address": "台北市士林區忠誠路一段 82 號 (第一銀行旁)",
   "footer.terms": "服務條款",
   "footer.privacy": "隱私權政策",
+  "footer.cookie": '<span class="font-label">Cookie</span>偏好',
+  "footer.gotop": "回到頁面頂端",
   "footer.copyright": "© 2026 Yung Hsin Watch All rights reserved.",
 };

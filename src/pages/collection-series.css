@@ -67,11 +67,12 @@
   padding: 32px 20px;
 }
 
-.series-discover__grid {
-  display: flex;
+/* 繼續探索輪播（修改清單 #47）：Swiper 控制每頁張數與間距（src/js/collection-series.js），
+   箭頭放在 viewport 外、騎在最外側卡片的圖片邊緣。設計稿只畫了右箭頭：2XL 左緣 = 列表右緣 − 22px，
+   640px 版 36×36、左緣 = 列表右緣 − 22px；左箭頭左右對稱。top 扣掉標題（36px + 間距 16px）的一半，對齊圖片中線。 */
+.series-discover__carousel {
+  position: relative;
   width: 100%;
-  flex-direction: column;
-  gap: 48px;
 }
 
 .series-discover__card {
@@ -85,6 +86,49 @@
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+}
+
+.series-discover__nav {
+  position: absolute;
+  top: calc(50% - 26px);
+  z-index: 2;
+  display: flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  background: rgb(255 255 255 / 80%);
+  cursor: pointer;
+  translate: 0 -50%;
+  transition:
+    opacity 0.3s ease-out,
+    scale 0.3s ease-out;
+}
+
+.series-discover__nav img {
+  width: 20px;
+  height: 20px;
+}
+
+.series-discover__nav--prev {
+  left: -14px;
+}
+
+.series-discover__nav--next {
+  right: -14px;
+}
+
+@media (hover: hover) {
+  .series-discover__nav:hover {
+    scale: 1.05;
+  }
+}
+
+/* 非 loop，到頭／尾時 Swiper 掛上 swiper-button-disabled，比照精品店輪播直接淡出。 */
+.series-discover__nav.swiper-button-disabled {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .series-discover__card h3 {
@@ -130,11 +174,26 @@
     padding: 64px 48px;
   }
 
-  .series-discover__grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 48px;
+  .series-discover__carousel {
     max-width: 928px;
+  }
+
+  .series-discover__nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .series-discover__nav img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .series-discover__nav--prev {
+    left: -22px;
+  }
+
+  .series-discover__nav--next {
+    right: -22px;
   }
 }
 
@@ -150,8 +209,7 @@
     padding-block: 80px;
   }
 
-  .series-discover__grid {
-    gap: 64px;
+  .series-discover__carousel {
     max-width: 1184px;
   }
 }
@@ -164,7 +222,7 @@
     padding-inline: 0;
   }
 
-  .series-discover__grid {
+  .series-discover__carousel {
     max-width: 1280px;
   }
 }
