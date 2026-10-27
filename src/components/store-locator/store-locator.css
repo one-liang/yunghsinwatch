@@ -268,19 +268,21 @@
 
 /* ---------- 手機／平板（lg 以下）：地圖與列表二擇一 ---------- */
 
+/* 修改清單 #48：原本列表以 300px 高、內部捲動的面板疊在地圖上，手機上看不出來還能往下滑。
+   改成列表模式時收起地圖、列表照內容高度展開（不再有內部捲軸），跟著頁面一起捲；
+   地圖模式的地圖高度由 300px 調高到 400px。 */
 @media (width < 64rem) {
   .store-locator__panel {
-    position: absolute;
-    inset-inline: 0;
-    top: 100%;
-    z-index: 2;
     display: none;
-    height: 300px;
-    background-color: var(--color-background);
+    overflow: visible;
   }
 
   .store-locator[data-view="list"] .store-locator__panel {
     display: block;
+  }
+
+  .store-locator[data-view="list"] .store-locator__map {
+    display: none;
   }
 
   .store-locator[data-view="map"] [data-store-switch-map],

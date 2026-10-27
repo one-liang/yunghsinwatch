@@ -99,6 +99,8 @@ export default {
     "Delve into the fascinating universe of the Golden Ellipse, the second oldest watch in the Patek Philippe collection after the Calatrava.",
   "series.watchName": "GOLDEN ELLIPSE WATCH",
   "series.discoverTitle": "Explore More",
+  "series.discover.prev": "Previous collection",
+  "series.discover.next": "Next collection",
 
   "model.meta.title": "Golden Ellipse 5204G-010 | Yung Hsin Watch",
   "model.meta.description":
@@ -502,5 +504,7 @@ export default {
   "footer.address": "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City",
   "footer.terms": "TERMS OF SERVICE",
   "footer.privacy": "PRIVACY POLICY",
+  "footer.cookie": "COOKIE SETTINGS",
+  "footer.gotop": "Back to top",
   "footer.copyright": "© 2026 Yung Hsin Watch All rights reserved.",
 };

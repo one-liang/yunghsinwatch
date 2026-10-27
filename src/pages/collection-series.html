@@ -10,6 +10,7 @@
     />
     <link rel="icon" href="../assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
     <title data-i18n="series.meta.title">Golden Ellipse 系列｜永新鐘錶百達翡麗專賣店</title>
+    <link rel="stylesheet" href="../assets/vendor/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="../assets/vendor/lenis/lenis.css" />
   </head>
   <body class="series-page min-h-screen overflow-x-clip bg-white type-body-base text-black">
@@ -192,33 +193,82 @@
           </h2>
         </div>
 
-        <div class="series-discover__grid">
-          <a class="series-discover__card" href="./collection-series.html" data-reveal-media>
-            <img
-              src="../assets/images/collection/series/discover-grand-complications.png"
-              alt="Grand Complications"
-            />
-            <h3>Grand Complications</h3>
-          </a>
-          <a class="series-discover__card" href="./collection-series.html" data-reveal-media>
-            <img
-              src="../assets/images/collection/series/discover-complications.png"
-              alt="Complications"
-            />
-            <h3>Complications</h3>
-          </a>
-          <a class="series-discover__card" href="./collection-series.html" data-reveal-media>
-            <img
-              src="../assets/images/collection/series/discover-golden-ellipse.png"
-              alt="Golden Ellipse"
-            />
-            <h3>Golden Ellipse</h3>
-          </a>
+        <!-- 修改清單 #47：放入目前系列（Golden Ellipse）以外的 8 個系列，LG 以上一次 3 個、640～1023px 2 個、640px 以下 1 個，
+             左右按鈕比照精品店輪播（44×44 白底 80%，MD/SM 36×36），到頭／尾時淡出。見 src/js/collection-series.js。 -->
+        <div class="series-discover__carousel" data-reveal-media>
+          <div class="series-discover__viewport swiper">
+            <div class="swiper-wrapper">
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img
+                  src="../assets/images/collection/grand-complications.png"
+                  alt="Grand Complications"
+                  loading="lazy"
+                />
+                <h3>Grand Complications</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img
+                  src="../assets/images/collection/complications.png"
+                  alt="Complications"
+                  loading="lazy"
+                />
+                <h3>Complications</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img
+                  src="../assets/images/collection/calatrava.png"
+                  alt="Calatrava"
+                  loading="lazy"
+                />
+                <h3>Calatrava</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/gondolo.png" alt="Gondolo" loading="lazy" />
+                <h3>Gondolo</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/cubitus.png" alt="Cubitus" loading="lazy" />
+                <h3>Cubitus</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/nautilus.png" alt="Nautilus" loading="lazy" />
+                <h3>Nautilus</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/aquanaut.png" alt="Aquanaut" loading="lazy" />
+                <h3>Aquanaut</h3>
+              </a>
+              <a class="series-discover__card swiper-slide" href="./collection-series.html">
+                <img src="../assets/images/collection/twenty4.png" alt="Twenty~4" loading="lazy" />
+                <h3>Twenty~4</h3>
+              </a>
+            </div>
+          </div>
+
+          <button
+            class="series-discover__nav series-discover__nav--prev"
+            type="button"
+            data-discover-prev
+            data-i18n-attr="aria-label:series.discover.prev"
+            aria-label="上一個系列"
+          >
+            <img class="rotate-180" src="@assets/icons/arrow-right.svg" alt="" />
+          </button>
+          <button
+            class="series-discover__nav series-discover__nav--next"
+            type="button"
+            data-discover-next
+            data-i18n-attr="aria-label:series.discover.next"
+            aria-label="下一個系列"
+          >
+            <img src="@assets/icons/arrow-right.svg" alt="" />
+          </button>
         </div>
       </section>
     </main>
 
     <c-footer />
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
     <c-motion-scripts />
   </body>
 </html>

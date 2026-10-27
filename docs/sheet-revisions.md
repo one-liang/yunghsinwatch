@@ -1,7 +1,7 @@
 # 永新鐘錶修改清單（Google 試算表）
 
 - 來源：[永新鐘錶\_修改 / 工作表1](https://docs.google.com/spreadsheets/d/17R5KGBXLNXc-hmn-yyKfb1b5CzN6x_aYN4tVvrNLiwM/edit?gid=0#gid=0)
-- 擷取日期：2026-10-23（第 2～42 列，共 41 筆有內容；第 43～53 列只有編號）
+- 擷取日期：2026-10-28（第 2～49 列，共 48 筆有內容；第 50～54 列只有編號）
 - 「修改內容」以引言照錄，錯字（Navbra、設計搞、腕脿）也照錄；「截圖/連結」欄的超連結一併附上
 - 「處理狀況」欄的下拉選項為「已處理／驗證完畢」。2026-10-23 擷取時，#18、#21、#22、#24、#25、#34、#36、
   #38、#40、#41 空白，其餘都是「驗證完畢」
@@ -30,6 +30,10 @@
   #40（聯絡我們同意勾選框預設不勾）、#41（預約服務時間標題字級）。內容有改的：#22 的大標題由「ALL COLLECTIONS」改為
   「All Collections」；#38 的「= → x」改為「+ → x」。沒有標「驗證完畢」的 #18、#21、#22、#24、#25、#38
   在「一瓶」欄留言要求調整，已依留言修改（見各項「依一瓶留言調整」）；#34、#36、#40、#41 沒有留言，當時還沒處理（已於 2026-10-24 依指示處理）
+- 2026-10-28：重新擷取 #42～#48（第 43～49 列），#1～#41 未重新比對。新增 #42～#44（Footer cookies Alert、
+  Cookies資訊、logo 連官網）、#45（全站 gotop 鈕，註明先略過）、#46（首頁圖文卡片內文全顯示）、
+  #47（單系列列表繼續探索左右按鈕）、#48（精品店手機版地圖／列表露出高度）；處理狀況、阿良、一瓶欄都空白。
+  同日依指示實作 #43～#48，#42 沒有設計稿先不調整
 
 ## 進度總覽
 
@@ -74,6 +78,13 @@
 - [x] #39 【聯絡我們】聯絡電話 ▼ 符號改為 20×20
 - [x] #40 【聯絡我們】同意條款勾選框預設改為不勾選
 - [x] #41 【預約服務】預約時間標題字級依設計稿
+- [ ] #42 【Footer】新增同意 cookies 資訊的 Alert
+- [x] #43 【Footer】新增「Cookies資訊」並依 Style Guide 調整排版
+- [x] #44 【Footer】永新鐘錶 logo 點擊另開官網
+- [x] #45 【全站】右下角新增 gotop 鈕
+- [x] #46 【首頁】圖文卡片內文刪除 line-clamp
+- [x] #47 【單系列列表】繼續探索新增左右按鈕，放入其他 8 個系列
+- [x] #48 【精品店】手機版地圖與門市列表切換區露出高度調高
 
 ---
 
@@ -330,6 +341,49 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 
 備註：版權文字的內容已在 Figma comment #23 改成上述文字（見 `figma-mockup-comments.md`），本項只改字型。
 
+### #42 【Footer】新增同意 cookies 資訊的 Alert
+
+- 語系：中文、EN
+- 截圖/連結：<https://www.yunghsinwatch.com/>
+
+> 新增Alert >
+> 同意cookies資訊，已新增在設計稿
+
+- [ ] 新增同意 cookies 資訊的 Alert（依設計稿）
+
+2026-10-28：依指示先不調整，設計稿還沒有這個 Alert。
+
+### #43 【Footer】新增「Cookies資訊」（英文「Cookie Settings」）並依 Style Guide 調整排版
+
+- 語系：中文、EN
+
+> 因新增"Cookies資訊"，英文"Cookie Settings"，
+> 設計稿的排版有做修改( Style Guide > Footer)
+
+- [x] Footer 新增「Cookies資訊」／「Cookie Settings」，排版依設計稿 Style Guide > Footer
+
+設計稿：[Style Guide > Footer](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=676-4569)（`Footer_st2 /2XL` `361:308`、`/ MD` `769:4926`）
+
+實作說明：Footer 連結列「服務條款・隱私權政策」後面加一個圓點與第三個連結，各斷點的排列沿用原本的連結列
+（LG 以上靠右在社群圖示下方，LG 以下置中），字型同其他連結（Noto Sans TC 14/24、字距 1px）。
+
+- 中文文字依設計稿用「Cookie偏好」（試算表寫「Cookies資訊」，設計稿較新，以設計稿為準），「Cookie」用 Inter，
+  字典 `footer.cookie` 用 `data-i18n-html` 帶 `<span class="font-label">`。
+- 英文依試算表為「Cookie Settings」，和同列其他英文連結一樣全大寫「COOKIE SETTINGS」（設計稿 Footer_EN 還沒更新）。
+- 還沒有 Cookie 設定頁或 Alert（#42），先連到 `#`。
+
+### #44 【Footer】永新鐘錶 logo 點擊另開官網
+
+- 語系：中文、EN
+
+> 永新鐘錶logo >
+> 點擊後新增另開永新鐘錶的官網
+> https://www.yunghsinwatch.com/
+
+- [x] Footer 的永新鐘錶 logo 連到 <https://www.yunghsinwatch.com/>，另開新分頁
+
+實作說明：永新 logo 外包 `<a target="_blank" rel="noopener">`，hover／focus 時透明度 80%；百達翡麗 logo 不變。
+
 ## 3. 1-首頁
 
 ### #11 【首頁】Banner 輪播第二張照片更換
@@ -558,6 +612,18 @@ https://www.furlanmarri.com/ ，2026-10-14 改成上面的「跟時計系列卡�
 待確認：LG（`1088:11269`）隱藏的英文圖層仍是 2XL 的 40/50，和 LG 的中文（32/44）不同，看起來沒有調整過，所以 LG 先用 32/44。
 精品店頁的 `boutique.appointment.title` 也是「Make an Appointment」，試算表只列了首頁，沒有更動。
 
+### #46 【首頁】圖文卡片內文刪除 line-clamp，文字全部顯示
+
+- 語系：中文、EN
+
+> 圖文卡片 >
+> 內文<p> 刪除 line-clamp-4 xl:line-clamp-5
+> (文字要全show)
+
+- [x] 圖文卡片內文 `<p>` 拿掉 `line-clamp-4 xl:line-clamp-5`
+
+實作說明：首頁三張文章卡片的內文都拿掉 `line-clamp-4 xl:line-clamp-5`，中英文全部顯示；LG 標題的 `lg:line-clamp-3` 沒有動。
+
 ## 4. 頁首介紹（試算表「修改頁面」空白）
 
 ### #20 【頁首介紹】介紹標題 `<h2>` 改小（修改頁面欄空白）
@@ -767,6 +833,33 @@ media query 的上限用 `width < 64rem`：Windows 的顯示比例會讓 1023px 
 - 腕錶列表 639px 以下兩欄、640～1023px 三欄（160px、間距 24px，最後一張在中間欄、和列表中心對齊）、1024px 以上四欄。
 - 「繼續探索」卡片標題各斷點都是 Inter 24/36，圖片底緣到標題 16px。
 - 沒有水平捲軸。
+
+### #47 【單系列列表】繼續探索新增左右按鈕，放入其他 8 個系列
+
+- 語系：中文、EN
+
+> 繼續探索 >
+> 新增左右按鈕，把其他8個系列圖(排除原本自己的)都放進去
+> 一次show 3個(一排)，手機版也更換了排版方式，再參考設計稿(Series Page / 2XL)
+> 左右按鈕樣式可以抓精品店的按鈕大小
+
+- [x] 繼續探索放入其他 8 個系列（排除目前系列），一次顯示 3 個，加左右按鈕（大小比照精品店按鈕）
+- [x] 手機版排版依設計稿（Series Page / 2XL）
+
+設計稿：[Series Page / 2XL Recommend](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=649-2589)（`649:2589`）、
+[Series Page（寬 640）Recommend](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1287-9321)（`1287:9321`）
+
+實作說明：原本的三張固定卡片改成 Swiper 輪播（`src/js/collection-series.js`，頁面另外載入 swiper-bundle），
+放時計系列頁除了 Golden Ellipse 以外的 8 個系列（Grand Complications、Complications、Calatrava、Gondolo、Cubitus、
+Nautilus、Aquanaut、Twenty~4），圖片沿用時計系列頁的 `collection/*.png`，都連到 `collection-series.html`。
+
+- 每次顯示：LG 以上 3 個（XL 起間距 64px、LG 48px），640～1023px 2 個、間距 48px（照 640 寬設計稿）。
+  640px 以下沒有新版設計稿（393 寬的那張還是舊的直排），2 個時卡片只剩約 144px，24px 的系列名稱會被截掉，所以改成 1 個。
+- 左右按鈕比照精品店輪播：白底 80%、圓形，LG 以上 44×44（24px 圖示），以下 36×36（20px 圖示），
+  騎在第一張／最後一張卡片的圖片邊緣（LG 以上外露 22px、以下 14px），垂直對齊圖片中線。不開 loop，到頭／尾時按鈕淡出。
+- 設計稿只畫了右箭頭，左箭頭照右箭頭左右對稱。
+
+原本的 `collection/series/discover-*.png` 三張圖已經沒有用到，沒有刪除。
 
 ## 7. 4-單錶介紹頁
 
@@ -979,6 +1072,23 @@ Google 地圖把永新定位到大稻埕一帶，不是天母的店；中文版�
 `<span>` 本身有 `uppercase`，畫面顯示「SCHEDULE AN APPOINTMENT」）。大標題加上 `en:font-display lg:en:font-display xl:en:font-display`，
 英文改用 Playfair Display，字級沿用中文各斷點；中文「我要預約」不變。#19 的待確認提過 `boutique.appointment.title` 仍是「Make an Appointment」，就是這一項。
 
+### #48 【精品店】手機版地圖與門市列表切換區露出高度調高
+
+- 語系：中文、EN
+
+> 手機版他們覺得看不到完整地圖跟列表資訊，是不是因為裡面還有一個scrollbra的關係，有什麼建議的解法嗎?
+> 以下是他們寫的
+> "手機版下方 地圖跟門市列表 切換 這裡露出高度可以調高一點，因為手機版不知道門市資料這裡可以往下滑，下面還有資訊會沒看到"
+
+- [x] 手機版地圖／門市列表切換區露出高度調高，讓使用者知道門市資料可以往下滑
+
+實作說明：問題出在 LG 以下「門市列表」是一個固定 300px 高、疊在地圖上的面板，內容要在面板裡面捲（內層 scrollbar），
+手機上看不出還能往下滑。改法：
+
+- 切到「門市列表」時收起地圖，列表照內容高度整個展開，不再有內層捲軸，直接跟著頁面往下捲。
+- 「地圖」模式的地圖高度由 300px 調高到 400px。
+- LG 以上（左地圖右列表）不變。
+
 ## 9. 6-我們的團隊
 
 ### #37 【我們的團隊】內文底色改為 `bg-background`
@@ -1091,6 +1201,26 @@ Banner 下方到 Footer 之間的八位成員介紹都在 Background 底色上�
 - 拿掉英文副標那一行與字典的 `booking.subtitle`；英文版主標 `booking.title` 由「Booking Details」改為「Schedule an Appointment」。
 - 標題區拿掉 `py-6`、間距 `gap-4` 改為 `gap-2`（8px），和設計稿相同；標題區到表單的 32px 沿用面板的 `lg:gap-8`。
 
+## 13. 全站（試算表「修改頁面」空白）
+
+### #45 【全站】右下角新增 gotop 鈕
+
+- 語系：中文、EN
+
+> (這個先略過，我icon要再換一個)全站右下角新增gotop鈕，已新增在設計稿(Index / 2XL)
+> LG- right:32px bottom:40px
+> MD&SM- right:20px bottom:32px
+
+- [x] 全站右下角新增 gotop 鈕：LG `right:32px bottom:40px`；MD、SM `right:20px bottom:32px`
+
+2026-10-28：確認設計稿已有 gotop 與 icon，照設計稿實作。
+
+設計稿：[Index / 2XL Icon Button](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1389-9489)（`1389:9489`）
+
+實作說明：按鈕放在 Footer 組件（每頁都有），品牌金底 `#C6BA82`、白色向上箭頭 24px、內距 10px、圓形、
+陰影 `0 0 8px rgb(0 0 0 / 12%)`，`position: fixed`，LG 以上 right 32px、bottom 40px，以下 right 20px、bottom 32px。
+捲過一個視窗高度後才淡入（0.3s），點擊用 `SITE_SCROLL` 平滑捲回頂端（`src/js/component/footer.js`）。
+
 ## 未收錄的列
 
-- 第 43～53 列（編號 42～52）：只有編號
+- 第 50～54 列（編號 49～53）：只有編號
