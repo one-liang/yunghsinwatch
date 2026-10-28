@@ -3,10 +3,9 @@
 - 來源：[永新鐘錶\_修改 / 工作表1](https://docs.google.com/spreadsheets/d/17R5KGBXLNXc-hmn-yyKfb1b5CzN6x_aYN4tVvrNLiwM/edit?gid=0#gid=0)
 - 擷取日期：2026-10-28（第 2～49 列，共 48 筆有內容；第 50～54 列只有編號）
 - 「修改內容」以引言照錄，錯字（Navbra、設計搞、腕脿）也照錄；「截圖/連結」欄的超連結一併附上
-- 「處理狀況」欄的下拉選項為「已處理／驗證完畢」。2026-10-23 擷取時，#18、#21、#22、#24、#25、#34、#36、
-  #38、#40、#41 空白，其餘都是「驗證完畢」
-- 「阿良」欄有內容的是 #14、#20、#30、#35、#38、#39，「一瓶」欄有內容的是 #18、#21、#22、#24、#25、#35、#38
-  （「一瓶」欄都照錄在該項；「阿良」欄是對處理結果的回覆，照錄 #14、#39）
+- 「處理狀況」欄的下拉選項為「已處理／驗證完畢」。2026-10-28 第二次擷取時，#42、#43、#45 空白，其餘都是「驗證完畢」
+- 「阿良」欄有內容的是 #14、#20、#25、#30、#35、#38、#39、#48，「一瓶」欄有內容的是 #18、#21、#22、#24、#25、
+  #35、#38、#42、#43、#45（「一瓶」欄都照錄在該項；「阿良」欄是對處理結果的回覆，照錄 #14、#39）
 - `#` 依列順序重新編號（= 試算表列號 − 1）。試算表的編號欄有空白與重複（第 6、10、13、14、16、17、25、26、
   27、31 列），不一致的地方在小節標題後註明試算表原本的編號，方便對照
 - 排序：沿用試算表順序，依「修改頁面」分節
@@ -34,6 +33,10 @@
   Cookies資訊、logo 連官網）、#45（全站 gotop 鈕，註明先略過）、#46（首頁圖文卡片內文全顯示）、
   #47（單系列列表繼續探索左右按鈕）、#48（精品店手機版地圖／列表露出高度）；處理狀況、阿良、一瓶欄都空白。
   同日依指示實作 #43～#48，#42 沒有設計稿先不調整
+- 2026-10-28（第二次）：重新擷取第 2～49 列，列號與 #1～#41 內容都沒有變動。處理狀況：#1～#41、#44、#46～#48
+  都是「驗證完畢」，#42、#43、#45 空白。#45 的修改內容拿掉了「(這個先略過，我icon要再換一個)」。
+  「一瓶」欄新增：#42 註明 Alert mockup 的設計稿位置、#43 說 XL & LG 版面有調整要再對設計稿、#45 要求換 icon
+  （見各項「一瓶」欄），同日依留言處理
 
 ## 進度總覽
 
@@ -78,7 +81,7 @@
 - [x] #39 【聯絡我們】聯絡電話 ▼ 符號改為 20×20
 - [x] #40 【聯絡我們】同意條款勾選框預設改為不勾選
 - [x] #41 【預約服務】預約時間標題字級依設計稿
-- [ ] #42 【Footer】新增同意 cookies 資訊的 Alert
+- [x] #42 【Footer】新增同意 cookies 資訊的 Alert
 - [x] #43 【Footer】新增「Cookies資訊」並依 Style Guide 調整排版
 - [x] #44 【Footer】永新鐘錶 logo 點擊另開官網
 - [x] #45 【全站】右下角新增 gotop 鈕
@@ -349,9 +352,29 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
 > 新增Alert >
 > 同意cookies資訊，已新增在設計稿
 
-- [ ] 新增同意 cookies 資訊的 Alert（依設計稿）
+- [x] 新增同意 cookies 資訊的 Alert（依設計稿）
 
 2026-10-28：依指示先不調整，設計稿還沒有這個 Alert。
+
+「一瓶」欄（2026-10-28 第二次擷取，處理狀況空白）：
+
+> Mockup放在這個位置
+> https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/%E7%99%BE%E9%81%94%E7%BF%A1%E9%BA%97%E5%B0%88%E8%B3%A3%E5%BA%97_%E5%AE%98%E6%96%B9%E7%B6%B2%E7%AB%99?node-id=1393-10713#1984674089
+
+設計稿：[Cookies Alert mockup](https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/?node-id=1393-10713)（`1393:10713`）。
+
+實作說明（2026-10-28）：新增組件 `src/components/cookie-consent/`（巢狀放在 footer，每頁都有）與
+`src/js/component/cookie-consent.js`。
+
+- 版面依 Modal Content（`1393:10868`）：白底寬 786px、內距 40px，遮罩 `bg-black/40`；標題 Noto Serif TC
+  SemiBold 28/40，說明 18/32 置中，「我接受所有 Cookies」實心、「我不接受 Cookies」外框按鈕各 172px、間距 40px；
+  分隔線 #DADADA；下方「絕對必要」（無勾選框）、「分析和統計」（內含 Google Analytics、Patek Philippe 兩個子項，
+  底色 `bg-background`）、「廣告與行銷」三組，勾選框沿用專案的 square／tick-square 圖示。內文中的「Cookies」等英文用 Inter。
+- 行為：依指示只切版、不做記錄等功能。每次載入頁面都會開啟，Footer「Cookie偏好」可再次開啟；
+  兩個按鈕、點遮罩或 Esc 都直接關閉，勾選框只是可點的樣式，不會儲存。
+- 設計稿未定義、自行決定的部分：LG 以下沿用同一欄式排版（內距 24px、按鈕上下排）；英文版只有標題與說明在設計稿
+  （隱藏的 EN 圖層），其餘英文文字（按鈕、三組標題與內文）為自行翻譯；「Google 隱私權聲明」連到
+  policies.google.com/privacy，「Patek Philippe cookie 政策」連到 patek.com 的 cookie policy，請再確認。
 
 ### #43 【Footer】新增「Cookies資訊」（英文「Cookie Settings」）並依 Style Guide 調整排版
 
@@ -371,6 +394,18 @@ Chrome 會以 CORS 模式抓 mask 圖檔，而 `file://` 不支援 CORS，consol
   字典 `footer.cookie` 用 `data-i18n-html` 帶 `<span class="font-label">`。
 - 英文依試算表為「Cookie Settings」，和同列其他英文連結一樣全大寫「COOKIE SETTINGS」（設計稿 Footer_EN 還沒更新）。
 - 還沒有 Cookie 設定頁或 Alert（#42），先連到 `#`。
+
+「一瓶」欄（2026-10-28 第二次擷取，處理狀況空白）：
+
+> XL & LG 的版面有調整，再參考一下設計稿
+> Style Guide > Footer
+> https://www.figma.com/design/8SNUs9FJPBfLP5ZC8gkUQS/%E7%99%BE%E9%81%94%E7%BF%A1%E9%BA%97%E5%B0%88%E8%B3%A3%E5%BA%97_%E5%AE%98%E6%96%B9%E7%B6%B2%E7%AB%99?node-id=676-4569#1984683882
+
+- [x] 依設計稿 Style Guide > Footer 重新調整 XL、LG 版面
+
+依一瓶留言調整（2026-10-28）：設計稿 `Footer_st2 / XL`（`779:5562`）、`/ LG`（`769:4971`）改成上下兩層置中：
+上層 logo 與地址／電話／信箱並排（XL 間距 56px、LG 20px），下層社群圖示與連結列置中。原本 LG 以上左右分欄、
+連結列靠右的排法拿掉。LG 設計稿第三個連結誤植成「隱私權政策」，依 XL 用「Cookie偏好」。
 
 ### #44 【Footer】永新鐘錶 logo 點擊另開官網
 
@@ -1220,6 +1255,15 @@ Banner 下方到 Footer 之間的八位成員介紹都在 Background 底色上�
 實作說明：按鈕放在 Footer 組件（每頁都有），品牌金底 `#C6BA82`、白色向上箭頭 24px、內距 10px、圓形、
 陰影 `0 0 8px rgb(0 0 0 / 12%)`，`position: fixed`，LG 以上 right 32px、bottom 40px，以下 right 20px、bottom 32px。
 捲過一個視窗高度後才淡入（0.3s），點擊用 `SITE_SCROLL` 平滑捲回頂端（`src/js/component/footer.js`）。
+
+2026-10-28 第二次擷取：修改內容拿掉了開頭的「(這個先略過，我icon要再換一個)」。「一瓶」欄（處理狀況空白）：
+
+> 啊!!!!!幫我換個icon
+
+- [x] 換 gotop 鈕的 icon
+
+依一瓶留言調整（2026-10-28）：設計稿的 Icon Button（`1389:9489`）已換成 `Icon / Top`（上方橫線加向上箭頭），
+照設計稿的路徑替換原本的 ^ 箭頭，大小、底色、位置不變。
 
 ## 未收錄的列
 

@@ -500,6 +500,24 @@ export default {
   "footer.terms": "服務條款",
   "footer.privacy": "隱私權政策",
   "footer.cookie": '<span class="font-label">Cookie</span>偏好',
+  "cookie.title": "在永新鐘錶百達翡麗專賣店，我們重視您的隱私",
+  "cookie.description":
+    '我們的網站使用 <span class="font-label">Cookies</span> 來提供更好的用戶體驗。透過點擊「我接受所有 <span class="font-label">Cookies</span>」，我們將視為您願意收到本網站上的所有 <span class="font-label">Cookies</span>。',
+  "cookie.accept": '我接受所有 <span class="font-label">Cookies</span>',
+  "cookie.reject": '我不接受 <span class="font-label">Cookies</span>',
+  "cookie.necessary.title": "絕對必要",
+  "cookie.necessary.text":
+    '必要的 <span class="font-label">Cookies</span> 將啟用網站核心功能，例如頁面導覽和瀏覽安全區域。沒有這些 <span class="font-label">Cookies</span>，網站將無法正常運行。',
+  "cookie.analytics.title": "分析和統計",
+  "cookie.analytics.text":
+    '分析性 <span class="font-label">Cookies</span> 透過收集和報告有關其使用情況的資訊，來幫助我們改進我們的網站；例如，網頁使用者瀏覽了哪些頁面，停留了多長時間，或者是否有返回。收集的數據保持匿名。',
+  "cookie.ga.text":
+    '<span class="font-label">Google</span> 網站分析 <span class="font-label">Cookie</span>，建立網站造訪的統計資料。如需更多資訊，請參閱<a href="https://policies.google.com/privacy" target="_blank" rel="noopener"><span class="font-label">Google</span> 隱私權聲明</a>',
+  "cookie.patek.text":
+    '了解有關 <a href="https://www.patek.com/en/legal-notices/cookie-policy" target="_blank" rel="noopener"><span class="font-label">Patek Philippe cookie</span> 政策</a>',
+  "cookie.marketing.title": "廣告與行銷",
+  "cookie.marketing.text":
+    '這類 <span class="font-label">Cookies</span> 透過收集您的個人偏好及在網站上的行為（例如點選過的商品或頁面），讓我們與協力廠商廣告夥伴（如 <span class="font-label">Google、Meta</span>）能更精準地向您推播感興趣的內容。',
   "footer.gotop": "回到頁面頂端",
   "footer.copyright": "© 2026 Yung Hsin Watch All rights reserved.",
 };

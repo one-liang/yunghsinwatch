@@ -1,0 +1,57 @@
+/* Cookies 彈跳視窗的進出場，寫法與時間沿用 booking-modal.css（.is-open 切換、visibility 延遲到動畫結束）。 */
+
+.cookie-consent {
+  visibility: hidden;
+  transition: visibility 0s linear 0.3s;
+}
+
+.cookie-consent.is-open {
+  visibility: visible;
+  transition: visibility 0s;
+}
+
+.cookie-consent__scrim {
+  opacity: 0;
+  transition: opacity 0.24s ease;
+}
+
+.cookie-consent.is-open .cookie-consent__scrim {
+  opacity: 1;
+}
+
+.cookie-consent__panel {
+  opacity: 0;
+  transform: translate3d(0, 48px, 0) scale(0.98);
+  transition:
+    opacity 0.44s cubic-bezier(0.22, 0.61, 0.36, 1) 0.06s,
+    transform 0.44s cubic-bezier(0.22, 0.61, 0.36, 1) 0.06s;
+}
+
+.cookie-consent.is-open .cookie-consent__panel {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.cookie-consent:not(.is-open) .cookie-consent__panel {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.cookie-consent__scroll {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 文字內的外部連結（Google 隱私權聲明、Patek Philippe cookie 政策）依設計稿加底線。 */
+.cookie-consent__panel a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-consent__scrim,
+  .cookie-consent__panel {
+    transition: none;
+    transform: none;
+  }
+}

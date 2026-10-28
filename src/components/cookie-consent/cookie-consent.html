@@ -1,0 +1,168 @@
+<!-- 同意 Cookies 的彈跳視窗（修改清單 #42，Figma Cookies / 2XL 的 Modal Content 1393:10868）。
+     只切版、不記錄選擇：每次載入都開啟，Footer 的「Cookie偏好」（data-cookie-open）可再次開啟。
+     設計稿沒有畫關閉鈕與 LG 以下版面：兩個按鈕、點遮罩或 Esc 都直接關閉，
+     窄螢幕沿用同一欄式排版、內距縮小。開關邏輯在 src/js/component/cookie-consent.js。
+     這支被巢狀放在 footer.html 裡，所以每一頁都有。 -->
+<div class="cookie-consent fixed inset-0 z-50" data-cookie-consent aria-hidden="true">
+  <div class="cookie-consent__scrim absolute inset-0 bg-black/40"></div>
+
+  <div
+    class="cookie-consent__scroll absolute inset-0 overflow-y-auto overscroll-contain"
+    data-lenis-prevent
+  >
+    <div class="flex min-h-full items-center justify-center px-5 py-10 lg:px-8">
+      <div
+        class="cookie-consent__panel flex w-full max-w-[786px] flex-col items-center gap-8 bg-white p-6 text-black lg:p-10"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cookie-consent-title"
+      >
+        <div class="flex w-full flex-col items-center gap-8">
+          <p
+            class="w-full text-center type-heading-md font-semibold tracking-[1px] text-brown-dark en:font-medium"
+            id="cookie-consent-title"
+            data-i18n="cookie.title"
+          >
+            在永新鐘錶百達翡麗專賣店，我們重視您的隱私
+          </p>
+          <p
+            class="w-full text-center type-body-lg en:font-label en:text-base en:leading-7 en:tracking-[1px]"
+            data-i18n-html="cookie.description"
+          >
+            我們的網站使用 Cookies 來提供更好的用戶體驗。
+          </p>
+          <div class="flex flex-col items-center gap-4 sm:flex-row sm:gap-10">
+            <button
+              class="w-[172px] cursor-pointer border border-brown-dark bg-brown-dark px-4 py-3 text-center type-body-sm text-white transition-opacity hover:opacity-90 en:font-label"
+              type="button"
+              data-cookie-close
+              data-i18n-html="cookie.accept"
+            >
+              我接受所有 Cookies
+            </button>
+            <button
+              class="w-[172px] cursor-pointer border border-brown-dark px-4 py-3 text-center type-body-sm text-brown-dark transition-colors hover:bg-background en:font-label"
+              type="button"
+              data-cookie-close
+              data-i18n-html="cookie.reject"
+            >
+              我不接受 Cookies
+            </button>
+          </div>
+        </div>
+
+        <hr class="w-full border-t border-[#dadada]" />
+
+        <div class="flex w-full flex-col gap-8 tracking-[1px]">
+          <div class="flex flex-col gap-1">
+            <p
+              class="type-body-base leading-6 font-bold text-brown-dark en:font-label"
+              data-i18n="cookie.necessary.title"
+            >
+              絕對必要
+            </p>
+            <p class="type-body-base en:font-label" data-i18n-html="cookie.necessary.text">
+              必要的 Cookies
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="flex cursor-pointer items-start gap-2">
+              <input class="peer sr-only" type="checkbox" checked />
+              <img
+                class="size-6 shrink-0 peer-checked:hidden"
+                src="@assets/icons/square.svg"
+                alt=""
+              />
+              <img
+                class="hidden size-6 shrink-0 peer-checked:block"
+                src="@assets/icons/tick-square.svg"
+                alt=""
+              />
+              <span
+                class="type-body-base leading-6 font-bold text-brown-dark en:font-label"
+                data-i18n="cookie.analytics.title"
+              >
+                分析和統計
+              </span>
+            </label>
+            <div class="flex flex-col gap-2 pl-8">
+              <p class="type-body-base en:font-label" data-i18n-html="cookie.analytics.text">
+                分析性 Cookies
+              </p>
+              <div class="flex flex-col gap-3 bg-background p-4">
+                <div class="flex flex-col gap-2">
+                  <label class="flex cursor-pointer items-start gap-2">
+                    <input class="peer sr-only" type="checkbox" checked />
+                    <img
+                      class="size-6 shrink-0 peer-checked:hidden"
+                      src="@assets/icons/square.svg"
+                      alt=""
+                    />
+                    <img
+                      class="hidden size-6 shrink-0 peer-checked:block"
+                      src="@assets/icons/tick-square.svg"
+                      alt=""
+                    />
+                    <span class="font-label text-base leading-6 font-semibold text-brown-dark">
+                      Google Analytics
+                    </span>
+                  </label>
+                  <p class="pl-8 type-body-base en:font-label" data-i18n-html="cookie.ga.text">
+                    Google 網站分析 Cookie
+                  </p>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <label class="flex cursor-pointer items-start gap-2">
+                    <input class="peer sr-only" type="checkbox" checked />
+                    <img
+                      class="size-6 shrink-0 peer-checked:hidden"
+                      src="@assets/icons/square.svg"
+                      alt=""
+                    />
+                    <img
+                      class="hidden size-6 shrink-0 peer-checked:block"
+                      src="@assets/icons/tick-square.svg"
+                      alt=""
+                    />
+                    <span class="font-label text-base leading-6 font-semibold text-brown-dark">
+                      Patek Philippe
+                    </span>
+                  </label>
+                  <p class="pl-8 type-body-base en:font-label" data-i18n-html="cookie.patek.text">
+                    了解有關 Patek Philippe cookie 政策
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label class="flex cursor-pointer items-start gap-2">
+              <input class="peer sr-only" type="checkbox" checked />
+              <img
+                class="size-6 shrink-0 peer-checked:hidden"
+                src="@assets/icons/square.svg"
+                alt=""
+              />
+              <img
+                class="hidden size-6 shrink-0 peer-checked:block"
+                src="@assets/icons/tick-square.svg"
+                alt=""
+              />
+              <span
+                class="type-body-base leading-6 font-bold text-brown-dark en:font-label"
+                data-i18n="cookie.marketing.title"
+              >
+                廣告與行銷
+              </span>
+            </label>
+            <p class="pl-8 type-body-base en:font-label" data-i18n-html="cookie.marketing.text">
+              這類 Cookies
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
