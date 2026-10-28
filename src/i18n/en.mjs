@@ -505,6 +505,24 @@ export default {
   "footer.terms": "TERMS OF SERVICE",
   "footer.privacy": "PRIVACY POLICY",
   "footer.cookie": "COOKIE SETTINGS",
+  "cookie.title": "At YH Watch Patek Philippe Boutique, we value your privacy",
+  "cookie.description":
+    'Our website uses cookies to provide a better user experience. By clicking "Accept All Cookies", you consent to the use of all cookies on this website.',
+  "cookie.accept": "Accept All Cookies",
+  "cookie.reject": "Reject All Cookies",
+  "cookie.necessary.title": "Strictly Necessary",
+  "cookie.necessary.text":
+    "Necessary cookies enable core website functions such as page navigation and access to secure areas. The website cannot function properly without these cookies.",
+  "cookie.analytics.title": "Analytics and Statistics",
+  "cookie.analytics.text":
+    "Analytics cookies help us improve our website by collecting and reporting information on how it is used, such as which pages visitors view, how long they stay and whether they return. The data collected remains anonymous.",
+  "cookie.ga.text":
+    'Google Analytics cookies create statistics on website visits. For more information, please see the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>',
+  "cookie.patek.text":
+    'Learn more about the <a href="https://www.patek.com/en/legal-notices/cookie-policy" target="_blank" rel="noopener">Patek Philippe cookie policy</a>',
+  "cookie.marketing.title": "Advertising and Marketing",
+  "cookie.marketing.text":
+    "These cookies collect your preferences and behavior on the website (such as products or pages you click) so that we and our third-party advertising partners (such as Google and Meta) can show you more relevant content.",
   "footer.gotop": "Back to top",
   "footer.copyright": "© 2026 Yung Hsin Watch All rights reserved.",
 };
