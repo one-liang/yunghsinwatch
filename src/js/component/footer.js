@@ -6,9 +6,17 @@
   const button = document.querySelector("[data-gotop]");
   if (!button) return;
 
+  // 行動版選單、預約彈窗打開時 body 會加上 overflow-hidden（header.js），這時隱藏，
+  // 避免 gotop 浮在選單上（修改清單 #45 一瓶回饋）。
   const update = () => {
-    button.toggleAttribute("data-visible", window.scrollY > window.innerHeight);
+    const locked = document.body.classList.contains("overflow-hidden");
+    button.toggleAttribute("data-visible", !locked && window.scrollY > window.innerHeight);
   };
+
+  new MutationObserver(update).observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 
   window.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update);
