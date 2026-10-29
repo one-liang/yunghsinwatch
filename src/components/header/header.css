@@ -2,6 +2,13 @@
   display: none;
 }
 
+/* 英文版行動版店名每行行高 1.125rem（修改清單 #49）。 */
+@media (max-width: 63.9375rem) {
+  :lang(en) .site-header__brand-line {
+    line-height: 1.125rem;
+  }
+}
+
 /* ---------- 桌機（lg 以上） ---------- */
 
 .site-header__nav {
