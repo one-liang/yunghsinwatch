@@ -52,7 +52,7 @@
       if (event.key === "Escape" && isOpen()) close();
     });
 
-    //open();
+    /*! open(); */
   };
 
   if (document.readyState === "loading") {
