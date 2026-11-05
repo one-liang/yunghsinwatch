@@ -17,6 +17,7 @@ export default {
   "lang.en": "EN",
 
   // 首頁 Banner 輪播（src/pages/index.html），三張共用同一組文字；英文依 Figma Index_EN（1088:9585）。
+  "home.seoTitle": "Patek Philippe Boutique Taipei by Yung Hsin Watch",
   "home.hero.title":
     "Patek Philippe Golden Eagle Nautilus 50th Anniversary Four-Piece Limited Edition",
   "home.hero.cta": "DISCOVER",
