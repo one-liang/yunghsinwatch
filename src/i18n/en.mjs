@@ -29,6 +29,20 @@ export default {
   "home.contact.body":
     "Yung Hsin Watch welcomes every watch enthusiast. Whether you have questions about repairs, care or any other professional matter, we will be delighted to assist you.",
 
+  // 首頁文章區塊（src/pages/index.html）；英文依 Figma Article（1036:7599）。
+  "home.article1.title": "Grand Complications Ref. 6105G-001",
+  "home.article1.body":
+    "When time is no longer simply the movement of hands, but becomes an intricate expression of the cosmos in motion, the Patek Philippe Ref. 6105G-001 redefines the astronomical complication with a new level of sophistication.\nA highlight of 2026, this exceptional timepiece introduces, for the first time,",
+  "home.article1.alt": "Patek Philippe Grand Complications Ref. 6105G-001 watch",
+  "home.article2.title": "Patek Philippe Ref. 5396R Annual Calendar",
+  "home.article2.body":
+    "Looking back at the development of modern haute horlogerie, truly influential complications often do more than enhance a timepiece’s technical sophistication—they can also reshape the market’s understanding of practicality. In 1996, Patek Philippe introduced Ref. 5035, unveiling its patented Annual Calendar complication to the world for the first time.",
+  "home.article2.alt": "Patek Philippe Ref. 5396R Annual Calendar watch",
+  "home.article3.title": "Patek Philippe Twenty~4",
+  "home.article3.body":
+    "The Twenty~4 timepiece was introduced in 1999 as Patek Philippe’s first collection created exclusively for women. With its contemporary and stylish design, it was conceived to accompany the multifaceted lifestyle of the modern woman. True to its name, the timepiece is designed to be worn day and night, effortlessly transitioning from casual to formal occasions, and embodying timeless elegance and exceptional sophistication.",
+  "home.article3.alt": "Patek Philippe Twenty~4 Ref. 4910/1201R-001 watch",
+
   // 預約彈跳視窗（src/components/booking-modal/），全站每頁都有。
   // 服務項目沿用 service.card.*、門市沿用 store.*.name，不在這裡重複一份。
   "booking.eyebrow": "Booking",
