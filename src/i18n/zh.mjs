@@ -17,6 +17,7 @@ export default {
   "lang.en": "EN",
 
   // 首頁 Banner 輪播（src/pages/index.html），三張共用同一組文字；標題用 data-i18n-html，Nautilus 換成英文字型。
+  "home.seoTitle": "永新鐘錶百達翡麗專賣店",
   "home.hero.title": '百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款',
   "home.hero.cta": "探索更多",
 

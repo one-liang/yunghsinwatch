@@ -1,5 +1,5 @@
 // 同意 Cookies 彈跳視窗（修改清單 #42）：目前只切版，不記錄使用者的選擇。
-// 每次載入頁面都會開啟；Footer「Cookie偏好」可再次開啟，按鈕、點遮罩或 Esc 關閉。
+// 不自動開啟（由 CMP 程式控制）；Footer「Cookie偏好」可開啟，按鈕、點遮罩或 Esc 關閉。
 (() => {
   "use strict";
 
@@ -52,7 +52,7 @@
       if (event.key === "Escape" && isOpen()) close();
     });
 
-    open();
+    //open();
   };
 
   if (document.readyState === "loading") {
