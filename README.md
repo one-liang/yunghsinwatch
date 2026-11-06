@@ -14,3 +14,5 @@
 5. [聯絡我們](https://one-liang.github.io/yunghsinwatch/contact.html)
 6. [服務條款](https://one-liang.github.io/yunghsinwatch/terms.html)
 7. [隱私權政策](https://one-liang.github.io/yunghsinwatch/privacy.html)
+8. 其他
+   1. [contact-complete.html](https://one-liang.github.io/yunghsinwatch/contact-complete.html)
