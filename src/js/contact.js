@@ -1,7 +1,7 @@
 // 聯絡我們頁的表單驗證、送出狀態切換，以及居住國家連動電話國碼。
 //
-// 後端尚未串接：這支只做前端必填／格式檢查，通過後把表單換成設計稿的「已發送」畫面。
-// 之後要接 API 時，把 showComplete() 換成送出成功的 callback 即可。
+// 後端尚未串接：這支只做前端必填／格式檢查，通過後導向獨立的「已發送」頁（contact-complete.html）。
+// 之後要接 API 時，改在送出成功的 callback 裡導向即可。
 //
 // 錯誤樣式由欄位上的 data-invalid 屬性驅動（HTML 用 data-invalid: 變體寫死樣式），
 // 錯誤訊息則是欄位群組裡那個 [data-contact-error] 的 hidden 切換。
@@ -69,8 +69,7 @@
 
   const init = () => {
     const form = document.querySelector("[data-contact-form]");
-    const complete = document.querySelector("[data-contact-complete]");
-    if (!form || !complete) return;
+    if (!form) return;
 
     initDialCode(form);
 
@@ -100,9 +99,8 @@
         return;
       }
 
-      form.hidden = true;
-      complete.hidden = false;
-      window.SITE_SCROLL.scrollTo(complete, { block: "center" });
+      // 各語系頁面放在各自資料夾，相對連結自然導向同語系的完成頁。
+      window.location.href = "./contact-complete.html";
     });
   };
 
