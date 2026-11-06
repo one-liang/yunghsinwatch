@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <meta
+      name="description"
+      content="您的訊息已送出，永新鐘錶百達翡麗專賣店的專業顧問將會儘快與您聯繫。"
+      data-i18n-attr="content:contact.complete.meta.description"
+    />
+    <link rel="icon" href="../assets/images/home/patek-philippe-mark.svg" type="image/svg+xml" />
+    <title data-i18n="contact.complete.meta.title">訊息已發送｜永新鐘錶百達翡麗專賣店</title>
+    <link rel="stylesheet" href="../assets/vendor/lenis/lenis.css" />
+  </head>
+  <body class="contact-page min-h-screen bg-white type-body-base text-black">
+    <c-header />
+
+    <main class="bg-background">
+      <section class="relative h-[250px] overflow-hidden text-white xl:h-[375px]">
+        <img
+          class="absolute inset-0 size-full object-cover"
+          src="../assets/images/contact/hero.jpg"
+          alt=""
+        />
+        <div class="absolute inset-0 bg-black/48"></div>
+        <div
+          class="absolute right-5 bottom-6 left-5 flex flex-col items-center gap-2 text-center xl:right-16 xl:bottom-12 xl:left-16 xl:gap-4"
+        >
+          <p
+            class="font-label text-sm leading-[22px] font-medium tracking-[1.5px] text-background uppercase lg:text-base lg:leading-6"
+            data-i18n="contact.hero.eyebrow"
+          >
+            Get in Touch
+          </p>
+          <h1
+            class="type-heading-md tracking-[2px] lg:type-heading-lg xl:type-heading-xl en:font-display xl:en:type-display-xl"
+            data-i18n="contact.hero.title"
+          >
+            聯絡我們
+          </h1>
+        </div>
+      </section>
+
+      <!-- 送出成功頁（設計稿「已發送」）。contact.html 的表單通過前端驗證後導向這裡；
+           版面沿用聯絡我們頁的 banner 與表單區間距。 -->
+      <section class="mx-auto w-full max-w-[768px] px-5 py-8 lg:px-0 lg:py-16 xl:py-28">
+        <div class="flex flex-col items-center gap-8">
+          <span class="flex size-18 items-center justify-center rounded-full bg-brand-gold p-4">
+            <svg class="size-10" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <path
+                d="M33.8216 8.82162C34.4726 8.17105 35.5277 8.1709 36.1784 8.82162C36.829 9.47257 36.8291 10.5277 36.1784 11.1784L16.167 31.1784C15.8543 31.4909 15.4291 31.6669 14.987 31.6667C14.5451 31.6663 14.1209 31.491 13.8086 31.1784L3.81999 21.1784C3.16962 20.5271 3.1704 19.4704 3.82161 18.82C4.47288 18.1696 5.52956 18.1704 6.18001 18.8216L14.9886 27.6416L33.8216 8.82162Z"
+                fill="white"
+              />
+            </svg>
+          </span>
+          <div class="flex flex-col items-center gap-4 text-center">
+            <p
+              class="font-body text-[40px] leading-[48px] font-medium tracking-[0.8px] text-brown-dark en:font-label"
+              data-i18n="contact.complete.title"
+            >
+              訊息已發送
+            </p>
+            <!-- 設計稿把內文斷成兩行，字典值用 \n 斷行（builder 輸出成 <br />）。 -->
+            <p
+              class="type-body-base text-[#878787] en:font-label"
+              data-i18n="contact.complete.body"
+            >
+              感謝您的留言，聯絡訊息已送出， 我們的專業顧問將會儘快與您聯繫。
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <c-footer />
+    <c-motion-scripts />
+  </body>
+</html>

@@ -318,6 +318,9 @@ export default {
   "contact.consent.after": "for the purpose of responding to my inquiry.",
   "contact.consent.error": "Please agree to the Privacy Policy.",
   "contact.submit": "Submit",
+  "contact.complete.meta.title": "Message Sent | Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "contact.complete.meta.description":
+    "Your message has been sent. A specialist from Patek Philippe Boutique Taipei by Yung Hsin Watch will contact you shortly.",
   "contact.complete.title": "Message Sent",
   // 英文版設計稿沒有已發送畫面，依中文版（Figma Mockup comment #21）的語意翻譯並同樣斷兩行。
   "contact.complete.body":

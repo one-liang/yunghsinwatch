@@ -46,7 +46,7 @@
            差異只在與 banner 的間距（32 / 64 / 112）；XL 沿用 2XL 的值，與維修保養頁 XL＝2XL 一致。
 
            錯誤樣式（設計稿「輸入錯誤」）靠欄位上的 data-invalid 屬性切換，由 contact.js 設定。
-           目前沒有串接後端：送出只做前端驗證，通過後切換成設計稿的「已發送」狀態。 -->
+           目前沒有串接後端：送出只做前端驗證，通過後導向獨立的 contact-complete.html（設計稿「已發送」）。 -->
       <section class="mx-auto w-full max-w-[768px] px-5 py-8 lg:px-0 lg:py-16 xl:py-28">
         <form class="flex flex-col gap-8" novalidate data-contact-form>
           <div class="flex flex-col gap-8 lg:grid lg:grid-cols-3">
@@ -632,37 +632,7 @@
             確認送出
           </button>
         </form>
-
-        <!-- 送出成功狀態（設計稿「已發送」），通過前端驗證後由 contact.js 切換顯示。 -->
-        <div class="flex flex-col items-center gap-8" hidden data-contact-complete>
-          <span class="flex size-18 items-center justify-center rounded-full bg-brand-gold p-4">
-            <svg class="size-10" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-              <path
-                d="M33.8216 8.82162C34.4726 8.17105 35.5277 8.1709 36.1784 8.82162C36.829 9.47257 36.8291 10.5277 36.1784 11.1784L16.167 31.1784C15.8543 31.4909 15.4291 31.6669 14.987 31.6667C14.5451 31.6663 14.1209 31.491 13.8086 31.1784L3.81999 21.1784C3.16962 20.5271 3.1704 19.4704 3.82161 18.82C4.47288 18.1696 5.52956 18.1704 6.18001 18.8216L14.9886 27.6416L33.8216 8.82162Z"
-                fill="white"
-              />
-            </svg>
-          </span>
-          <div class="flex flex-col items-center gap-4 text-center">
-            <p
-              class="font-body text-[40px] leading-[48px] font-medium tracking-[0.8px] text-brown-dark en:font-label"
-              data-i18n="contact.complete.title"
-            >
-              訊息已發送
-            </p>
-            <!-- 設計稿把內文斷成兩行，字典值用 \n 斷行（builder 輸出成 <br />）。 -->
-            <p
-              class="type-body-base text-[#878787] en:font-label"
-              data-i18n="contact.complete.body"
-            >
-              感謝您的留言，聯絡訊息已送出， 我們的專業顧問將會儘快與您聯繫。
-            </p>
-          </div>
-        </div>
       </section>
     </main>
-
-    <c-footer />
-    <c-motion-scripts />
   </body>
 </html>
