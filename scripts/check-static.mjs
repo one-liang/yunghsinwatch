@@ -3,6 +3,10 @@ import { readFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
+// 第三方嵌入碼只能從原廠網址載入，無法放進 dist；這裡逐一列出允許的外部 script。
+// 百達翡麗官方影片嵌入（修改清單 #54）：設定檔只允許授權網域讀取，本機與 file:// 不會顯示影片。
+export const allowedRemoteScripts = new Set(["https://iframe.patek.com/script.js"]);
+
 // 檢查 file:// 交付所需的本機資源與相對路徑，不啟動伺服器或下載任何檔案。
 export async function checkStaticSite(directory) {
   const root = path.resolve(directory);
@@ -10,9 +14,10 @@ export async function checkStaticSite(directory) {
   let pages = 0;
   const isExternal = (value) => /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(value);
 
-  const checkReference = async (file, value, { localOnly = false } = {}) => {
+  const checkReference = async (file, value, { localOnly = false, script = false } = {}) => {
     if (!value || value.startsWith("#") || value.startsWith("data:")) return;
     if (isExternal(value)) {
+      if (script && allowedRemoteScripts.has(value)) return;
       assert.ok(!localOnly, `${file}: runtime resource must be local: ${value}`);
       return;
     }
@@ -45,8 +50,9 @@ export async function checkStaticSite(directory) {
           const localOnly =
             /^<(?:script|img|video|source)\b/i.test(tag[0]) ||
             (/^<link\b/i.test(tag[0]) && /\brel=["']stylesheet["']/i.test(tag[0]));
+          const script = /^<script\b/i.test(tag[0]);
           for (const attribute of tag[0].matchAll(/\b(?:src|href|poster)=["']([^"']*)["']/gi)) {
-            await checkReference(file, attribute[1], { localOnly });
+            await checkReference(file, attribute[1], { localOnly, script });
           }
         }
       } else {

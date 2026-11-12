@@ -26,9 +26,19 @@ test("static delivery resolves assets relative to HTML and CSS without a server"
   assert.deepEqual(await checkStaticSite(root), { pages: 1, references: 4 });
 });
 
+test("static delivery allows only listed remote embed scripts", async (t) => {
+  const root = await fixture(t, '<script async src="https://iframe.patek.com/script.js"></script>');
+  assert.deepEqual(await checkStaticSite(root), { pages: 1, references: 1 });
+});
+
 for (const [label, html, pattern] of [
   ["missing resource", '<script src="./missing.js"></script>', /ENOENT/],
   ["CDN dependency", '<script src="https://cdn.example.com/site.js"></script>', /must be local/],
+  [
+    "allowed script URL used as an image",
+    '<img src="https://iframe.patek.com/script.js">',
+    /must be local/,
+  ],
   ["server root path", '<script src="/assets/site.js"></script>', /relative URL/],
   ["escaping the delivery", '<script src="../outside.js"></script>', /leaves the delivery/],
   ["module script", '<script type="module" src="./assets/site.js"></script>', /module script/],

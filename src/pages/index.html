@@ -19,8 +19,8 @@
     <main>
       <!-- Banner 高度：MD/SM 固定 350px（Figma Index / SM）；LG 起依 Figma 32:15 比例隨寬度縮放
            （2XL 1536×720、XL 1280×600、LG 1024×480），上限 675px（Figma Mockup comment #7）。
-           文字區塊（修改清單 #12、#13）：2XL 左側 128px、寬 525px；XL 左側 48px、寬 450px；
-           LG 左側 48px、寬 400px，標題 32/44；MD/SM 貼底置中、左右 20px，標題 24/36、最多兩行，
+           文字區塊（修改清單 #12、#13、#53）：LG 起寬度一律 400px；2XL 左側 128px，XL、LG 左側 48px；
+           LG 標題 32/44；MD/SM 貼底置中、左右 20px，標題 24/36、最多兩行，
            不顯示按鈕。MD/SM 的底圖依 Figma 放大約 1.1 倍並貼齊底緣。按鈕在 Figma 是 102×46、框線畫在內側，
            border 會加在外側，所以內距各少 1px。
            第二張改用雲端的 1-2.jpeg（5270P，修改清單 #11）。 -->
@@ -37,7 +37,7 @@
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
               <div
-                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 xl:w-[450px] 2xl:left-32 2xl:w-[525px]"
+                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 2xl:left-32"
               >
                 <p
                   class="line-clamp-2 font-heading text-[24px] leading-[36px] font-medium tracking-[2px] lg:line-clamp-none lg:text-[32px] lg:leading-[44px] xl:text-[40px] xl:leading-[56px] en:font-display"
@@ -65,7 +65,7 @@
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
               <div
-                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 xl:w-[450px] 2xl:left-32 2xl:w-[525px]"
+                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 2xl:left-32"
               >
                 <p
                   class="line-clamp-2 font-heading text-[24px] leading-[36px] font-medium tracking-[2px] lg:line-clamp-none lg:text-[32px] lg:leading-[44px] xl:text-[40px] xl:leading-[56px] en:font-display"
@@ -93,7 +93,7 @@
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
               <div
-                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 xl:w-[450px] 2xl:left-32 2xl:w-[525px]"
+                class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 2xl:left-32"
               >
                 <p
                   class="line-clamp-2 font-heading text-[24px] leading-[36px] font-medium tracking-[2px] lg:line-clamp-none lg:text-[32px] lg:leading-[44px] xl:text-[40px] xl:leading-[56px] en:font-display"
@@ -119,28 +119,12 @@
       <section
         class="flex w-full flex-col items-center gap-8 px-5 py-12 lg:gap-12 lg:px-12 lg:pt-14 lg:pb-12 xl:gap-14 xl:py-[72px]"
       >
-        <!-- 影片以 YouTube iframe 嵌入（Figma Mockup comment #7），採隱私強化模式的
-             youtube-nocookie 網域。YouTube 嵌入需要 Referer，直接以 file:// 開啟 dist 時
-             會無法播放，需透過 preview 或正式網址檢視。 -->
-        <iframe
-          class="aspect-video w-full max-w-[1200px] border-0 bg-black"
-          src="https://www.youtube-nocookie.com/embed/TTIt78URWb4"
-          title="百達翡麗影片"
-          data-i18n-attr="title:home.video.title"
-          loading="lazy"
-          allow="
-            accelerometer;
-            autoplay;
-            clipboard-write;
-            encrypted-media;
-            gyroscope;
-            picture-in-picture;
-            web-share;
-          "
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-          data-reveal-media
-        ></iframe>
+        <!-- 影片改用百達翡麗官方提供的嵌入碼（修改清單 #54）：script.js 會在 #PPiframe 內產生 iframe。
+             key 與 lang 照官方提供的值，中英文頁都用 lang="en"。外層 div 負責寬度、比例與進場動畫。 -->
+        <div class="aspect-video w-full max-w-[1200px] bg-black" data-reveal-media>
+          <div id="PPiframe" class="size-full" key="0cd9b5da" lang="en"></div>
+        </div>
+        <script async src="https://iframe.patek.com/script.js"></script>
         <img
           class="size-8 lg:size-10 xl:size-14"
           src="../assets/images/home/patek-philippe-mark.svg"
