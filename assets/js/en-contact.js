@@ -393,12 +393,11 @@
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const { gsap, CustomEase } = window;
     const background = header.querySelector(".site-header__background");
-    const brandText = header.querySelector(".site-header__brand-text");
     const logo = header.querySelector(".site-header__logo");
     const nav = header.querySelector(".site-header__nav > ul");
     const dropdown = header.querySelector(".site-header__dropdown");
     const parts = [logo, nav, header.querySelector(".site-header__actions")].filter(Boolean);
-    const targets = [...parts, background, brandText].filter(Boolean);
+    const targets = [...parts, background].filter(Boolean);
     let scrolled = null;
     let ticking = false;
     let timeline = null;
@@ -431,8 +430,6 @@
         return;
       }
       header.classList.add("has-header-motion");
-      const first = parts.map((part) => part.getBoundingClientRect());
-      const brandBottom = brandText.getBoundingClientRect().bottom;
       const backgroundFrom = background.getBoundingClientRect().height;
       const submenuFrom = dropdown && measureSubmenuTop();
       const spacingFrom = readSpacing();
@@ -475,22 +472,6 @@
       if (dropdown) {
         timeline.fromTo(header, { [SUBMENU_TOP]: submenuFrom }, { [SUBMENU_TOP]: submenuTo }, 0);
       }
-      const navIndex = parts.indexOf(nav);
-      const navTravel = first[navIndex].top - last[navIndex].top;
-      const brandFadePortion = Math.max(
-        0.05,
-        Math.min(0.4, (first[navIndex].top - brandBottom - 8) / Math.max(1, navTravel))
-      );
-      timeline.to(
-        brandText,
-        {
-          autoAlpha: 0,
-          x: -16,
-          force3D: true,
-          duration: TRANSITION_DURATION * brandFadePortion,
-        },
-        0
-      );
       timeline.progress(scrolled ? 1 : 0).pause();
     };
     const sync = () => {

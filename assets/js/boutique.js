@@ -393,12 +393,11 @@
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const { gsap, CustomEase } = window;
     const background = header.querySelector(".site-header__background");
-    const brandText = header.querySelector(".site-header__brand-text");
     const logo = header.querySelector(".site-header__logo");
     const nav = header.querySelector(".site-header__nav > ul");
     const dropdown = header.querySelector(".site-header__dropdown");
     const parts = [logo, nav, header.querySelector(".site-header__actions")].filter(Boolean);
-    const targets = [...parts, background, brandText].filter(Boolean);
+    const targets = [...parts, background].filter(Boolean);
     let scrolled = null;
     let ticking = false;
     let timeline = null;
@@ -431,8 +430,6 @@
         return;
       }
       header.classList.add("has-header-motion");
-      const first = parts.map((part) => part.getBoundingClientRect());
-      const brandBottom = brandText.getBoundingClientRect().bottom;
       const backgroundFrom = background.getBoundingClientRect().height;
       const submenuFrom = dropdown && measureSubmenuTop();
       const spacingFrom = readSpacing();
@@ -475,22 +472,6 @@
       if (dropdown) {
         timeline.fromTo(header, { [SUBMENU_TOP]: submenuFrom }, { [SUBMENU_TOP]: submenuTo }, 0);
       }
-      const navIndex = parts.indexOf(nav);
-      const navTravel = first[navIndex].top - last[navIndex].top;
-      const brandFadePortion = Math.max(
-        0.05,
-        Math.min(0.4, (first[navIndex].top - brandBottom - 8) / Math.max(1, navTravel))
-      );
-      timeline.to(
-        brandText,
-        {
-          autoAlpha: 0,
-          x: -16,
-          force3D: true,
-          duration: TRANSITION_DURATION * brandFadePortion,
-        },
-        0
-      );
       timeline.progress(scrolled ? 1 : 0).pause();
     };
     const sync = () => {
@@ -683,68 +664,23 @@
           .find((item) => item.dataset.storeId === detail.dataset.storeDetail)
           ?.focus({ preventScroll: true });
       });
-      const toggle = detail.querySelector("[data-store-hours-toggle]");
-      const table = toggle && document.getElementById(toggle.getAttribute("aria-controls"));
-      toggle?.addEventListener("click", () => {
-        const open = toggle.getAttribute("aria-expanded") !== "true";
-        toggle.setAttribute("aria-expanded", String(open));
-        if (table) table.hidden = !open;
-      });
     }
     const updateHours = (detail) => {
-      const status = detail.querySelector("[data-store-hours-status]");
-      const rows = [...detail.querySelectorAll("tr[data-weekday]")];
-      if (!status || !rows.length) return;
       const now = taipeiNow();
-      const toMinutes = (time) => {
-        const [h, m] = time.split(":").map(Number);
-        return h * 60 + m;
-      };
-      const byDay = new Map(rows.map((row) => [Number(row.dataset.weekday), row]));
-      for (const row of rows)
+      for (const row of detail.querySelectorAll("tr[data-weekday]"))
         row.toggleAttribute("data-today", Number(row.dataset.weekday) === now.day);
-      const today = byDay.get(now.day);
-      if (today?.dataset.open && today.dataset.close) {
-        const open = toMinutes(today.dataset.open);
-        const close = toMinutes(today.dataset.close);
-        if (now.minutes >= open && now.minutes < close) {
-          status.textContent = (root.dataset.hoursOpen ?? "").replace(
-            "{time}",
-            today.dataset.close
-          );
-          return;
-        }
-        if (now.minutes < open) {
-          status.textContent = (root.dataset.hoursClosed ?? "").replace(
-            "{time}",
-            today.dataset.open
-          );
-          return;
-        }
-      }
-      for (let offset = 1; offset <= 7; offset += 1) {
-        const row = byDay.get((now.day + offset) % 7);
-        if (row?.dataset.open) {
-          status.textContent = (root.dataset.hoursClosed ?? "").replace("{time}", row.dataset.open);
-          return;
-        }
-      }
-      status.textContent = "";
     };
     const taipeiNow = () => {
       const parts = Object.fromEntries(
         new Intl.DateTimeFormat("en-US", {
           timeZone: "Asia/Taipei",
           weekday: "short",
-          hour: "2-digit",
-          minute: "2-digit",
-          hourCycle: "h23",
         })
           .formatToParts(new Date())
           .map((part) => [part.type, part.value])
       );
       const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(parts.weekday);
-      return { day, minutes: Number(parts.hour) * 60 + Number(parts.minute) };
+      return { day };
     };
     switcher?.addEventListener("click", () => {
       root.dataset.view = root.dataset.view === "list" ? "map" : "list";
