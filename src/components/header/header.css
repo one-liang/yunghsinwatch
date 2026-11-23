@@ -1,14 +1,3 @@
-.site-header__brand-line:empty {
-  display: none;
-}
-
-/* 英文版行動版店名每行行高 1.125rem（修改清單 #49）。 */
-@media (max-width: 63.9375rem) {
-  :lang(en) .site-header__brand-line {
-    line-height: 1.125rem;
-  }
-}
-
 /* ---------- 桌機（lg 以上） ---------- */
 
 .site-header__nav {
@@ -41,7 +30,6 @@
   }
 
   .site-header__logo,
-  .site-header__brand-text,
   .site-header__actions,
   .site-header__nav > ul,
   .site-header__drawer,
@@ -53,8 +41,18 @@
     transform-origin: center;
   }
 
-  .site-header__brand-text {
-    max-width: 32rem;
+  /* Figma 11/20 Header_st2：展開時 Logo（144×76）在上排 112px 內水平、垂直置中（Mockup comment #33）。
+     收合時回到一般排列，靠左（見下方 compact 規則）。 */
+  .site-header__brand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Logo 脫離排列後，上排只剩語系與預約按鈕，靠右。 */
+  .site-header__actions {
+    margin-inline-start: auto;
   }
 
   /* Figma Header_st2 的 Menu 從 112px 開始（上排 Navigation 高 112），底下留 8px。 */
@@ -101,9 +99,14 @@
     height: 56px;
   }
 
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__brand {
+    position: static;
+    transform: none;
+  }
+
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
-    .site-header__brand-text {
-    display: none;
+    .site-header__actions {
+    margin-inline-start: 0;
   }
 
   /* compact 僅用於一次性端點量測與無套件 fallback，不在動畫中切換布局。 */
@@ -206,7 +209,7 @@
 .site-header__dropdown:hover .site-header__menu-link,
 .site-header__dropdown:focus-within .site-header__menu-link,
 .site-header__dropdown.is-open .site-header__menu-link {
-  color: var(--color-brand-gold);
+  color: var(--color-brown-dark);
 }
 
 /* ---------- 語言切換 ---------- */
@@ -218,14 +221,14 @@
   bottom: 0.6875rem;
   left: var(--site-header-link-px, 1.5rem);
   height: 1px;
-  background-color: var(--color-brand-gold);
+  background-color: var(--color-brown-dark);
   opacity: 0;
   transition: opacity 0.2s ease;
   content: "";
 }
 
 .site-header__lang-link[aria-current="true"] {
-  color: var(--color-brand-gold);
+  color: var(--color-brown-dark);
 }
 
 .site-header__lang-link[aria-current="true"]::after {
@@ -239,17 +242,16 @@
 /* ---------- 預約按鈕 ---------- */
 
 /* hover 過場與全站一致：0.3s ease-out（Figma Mockup comment #8）。
-   暗化改用 inset box-shadow 疊色：background-image 漸層無法補間，會直接跳變。 */
+   Figma 11/20 Header 的 Hover & Active：底色與框線由 Brown/Warm 換成 Brown/Dark。 */
 .site-header__cta {
-  box-shadow: inset 0 0 0 100vmax rgb(0 0 0 / 0%);
   transition:
     border-color 0.3s ease-out,
-    box-shadow 0.3s ease-out;
+    background-color 0.3s ease-out;
 }
 
 .site-header__cta:hover {
-  border-color: #aea472;
-  box-shadow: inset 0 0 0 100vmax rgb(0 0 0 / 12%);
+  border-color: var(--color-brown-dark);
+  background-color: var(--color-brown-dark);
 }
 
 /* ---------- 行動版抽屜 ---------- */
@@ -292,6 +294,11 @@
 
 .site-header__accordion.is-open .site-header__accordion-panel {
   grid-template-rows: 1fr;
+}
+
+/* Figma 行動版選單展開時，「專賣店」整列（文字與箭頭）改為 Brown/Dark。 */
+.site-header__accordion.is-open > div {
+  color: var(--color-brown-dark);
 }
 
 .site-header__accordion.is-open .site-header__caret {

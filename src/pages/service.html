@@ -45,58 +45,229 @@
         </div>
       </section>
 
-      <!-- 服務項目：SM 單欄堆疊、LG 以上三欄。圖片比例 SM 為 353:275，LG 以上改為正方形。 -->
+      <!-- 服務項目：上方說明（#36），下方圖片 SM 單欄堆疊、LG 以上三欄。圖片比例 SM 為 353:275，LG 以上改為正方形。
+           Figma 11/20（Mockup comment #37）：圖片下方的文字（標語）刪除，改放到圖片的 alt。
+           上下留白與說明到圖片的間距相同：SM 48、LG 64、XL 以上 80。 -->
       <section
-        class="mx-auto w-full max-w-[1536px] px-5 pt-12 pb-8 lg:px-12 lg:pt-16 lg:pb-12 xl:pt-28 xl:pb-20 2xl:px-32"
+        class="mx-auto flex w-full max-w-[1536px] flex-col gap-12 px-5 py-12 lg:gap-16 lg:px-12 lg:py-16 xl:gap-20 xl:py-20 2xl:px-32"
       >
+        <!-- Figma 11/20（Mockup comment #36）：服務區新增內文。標題 SM 20/32、LG 24/36、XL 以上 28/40；
+             分類 LG 以上左欄 200px、以下疊在上方；英文分類為 Noto Serif TC SemiBold、內文改 Inter。 -->
+        <div class="mx-auto flex w-full max-w-[768px] flex-col items-center gap-8 text-center">
+          <h2
+            class="w-full pt-2 type-heading-xs tracking-[1px] text-brown-dark lg:type-heading-sm xl:type-heading-md"
+            data-i18n="service.intro.title"
+            data-reveal-item
+          >
+            快速服務腕錶維護與保養項目
+          </h2>
+          <img
+            class="size-8"
+            src="@assets/images/home/patek-philippe-mark.svg"
+            alt=""
+            data-reveal-item
+          />
+          <div class="flex w-full flex-col gap-2 text-left lg:flex-row" data-reveal-group>
+            <h3
+              class="type-body-lg text-black lg:w-[200px] lg:shrink-0 en:font-heading en:font-semibold en:tracking-[1px] en:text-brown-dark"
+              data-i18n="service.intro.g1.title"
+              data-reveal-item
+            >
+              佩戴調整與外觀維護
+            </h3>
+            <ul class="flex min-w-0 flex-1 flex-col gap-2">
+              <li data-reveal-item>
+                <p
+                  class="flex items-center gap-2.5 type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                >
+                  <span
+                    class="size-1.5 shrink-0 rounded-full bg-brown-dark"
+                    aria-hidden="true"
+                  ></span>
+                  <span data-i18n="service.intro.g1.i1.title">錶帶尺寸調整</span>
+                </p>
+                <p
+                  class="pl-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  data-i18n="service.intro.g1.i1.body"
+                >
+                  依據手腕尺寸與佩戴習慣，提供精準的錶帶調整及佩戴舒適度建議。
+                </p>
+              </li>
+              <li data-reveal-item>
+                <p
+                  class="flex items-center gap-2.5 type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                >
+                  <span
+                    class="size-1.5 shrink-0 rounded-full bg-brown-dark"
+                    aria-hidden="true"
+                  ></span>
+                  <span data-i18n="service.intro.g1.i2.title">腕錶清潔</span>
+                </p>
+                <p
+                  class="pl-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  data-i18n="service.intro.g1.i2.body"
+                >
+                  提供錶殼、錶帶及外部零件的日常清潔與護理，維持腕錶外觀與整潔。
+                </p>
+              </li>
+              <li data-reveal-item>
+                <p
+                  class="flex items-center gap-2.5 type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                >
+                  <span
+                    class="size-1.5 shrink-0 rounded-full bg-brown-dark"
+                    aria-hidden="true"
+                  ></span>
+                  <span data-i18n="service.intro.g1.i3.title">錶帶與電池更換</span>
+                </p>
+                <p
+                  class="pl-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  data-i18n="service.intro.g1.i3.body"
+                >
+                  提供原廠正品錶帶及錶目更換與訂購服務更換電池（防水及耗電測試、更換膠圈），維護腕錶的完整性與品質。
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="flex w-full flex-col gap-2 text-left lg:flex-row" data-reveal-group>
+            <h3
+              class="type-body-lg text-black lg:w-[200px] lg:shrink-0 en:font-heading en:font-semibold en:tracking-[1px] en:text-brown-dark"
+              data-i18n="service.intro.g2.title"
+              data-reveal-item
+            >
+              機芯與性能檢測
+            </h3>
+            <ul class="flex min-w-0 flex-1 flex-col gap-2">
+              <li data-reveal-item>
+                <p
+                  class="flex items-center gap-2.5 type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                >
+                  <span
+                    class="size-1.5 shrink-0 rounded-full bg-brown-dark"
+                    aria-hidden="true"
+                  ></span>
+                  <span data-i18n="service.intro.g2.i1.title">走時精準度與功能檢測</span>
+                </p>
+                <p
+                  class="pl-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  data-i18n="service.intro.g2.i1.body"
+                >
+                  檢測腕錶走時狀況，評估時間偏差，檢查機芯運作、上鍊功能、日曆及各項功能是否正常。
+                </p>
+              </li>
+              <li data-reveal-item>
+                <p
+                  class="flex items-center gap-2.5 type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                >
+                  <span
+                    class="size-1.5 shrink-0 rounded-full bg-brown-dark"
+                    aria-hidden="true"
+                  ></span>
+                  <span data-i18n="service.intro.g2.i2.title">防水性能檢測</span>
+                </p>
+                <p
+                  class="pl-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  data-i18n="service.intro.g2.i2.body"
+                >
+                  檢測腕錶防水性能與密封狀態，確認日常佩戴的防護能力。
+                </p>
+              </li>
+              <li data-reveal-item>
+                <p
+                  class="flex items-center gap-2.5 type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                >
+                  <span
+                    class="size-1.5 shrink-0 rounded-full bg-brown-dark"
+                    aria-hidden="true"
+                  ></span>
+                  <span data-i18n="service.intro.g2.i3.title">磁化檢測與消磁</span>
+                </p>
+                <p
+                  class="pl-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  data-i18n="service.intro.g2.i3.body"
+                >
+                  檢查腕錶是否受到磁場影響，並視情況提供專業消磁處理。
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="flex w-full flex-col gap-2 text-left lg:flex-row" data-reveal-group>
+            <h3
+              class="type-body-lg text-black lg:w-[200px] lg:shrink-0 en:font-heading en:font-semibold en:tracking-[1px] en:text-brown-dark"
+              data-i18n="service.intro.g3.title"
+              data-reveal-item
+            >
+              定期保養與售後服務
+            </h3>
+            <ul class="flex min-w-0 flex-1 flex-col gap-2">
+              <li data-reveal-item>
+                <p
+                  class="flex items-center gap-2.5 type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                >
+                  <span
+                    class="size-1.5 shrink-0 rounded-full bg-brown-dark"
+                    aria-hidden="true"
+                  ></span>
+                  <span data-i18n="service.intro.g3.i1.title">定期保養與維修服務</span>
+                </p>
+                <p
+                  class="pl-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  data-i18n="service.intro.g3.i1.body"
+                >
+                  依據腕錶狀況，提供定期保養建議、維修諮詢及送修安排。
+                </p>
+              </li>
+              <li data-reveal-item>
+                <p
+                  class="flex items-center gap-2.5 type-body-base-medium tracking-[1px] text-brown-dark en:font-label"
+                >
+                  <span
+                    class="size-1.5 shrink-0 rounded-full bg-brown-dark"
+                    aria-hidden="true"
+                  ></span>
+                  <span data-i18n="service.intro.g3.i2.title">專業售後諮詢</span>
+                </p>
+                <p
+                  class="pl-4 type-body-base tracking-[1px] text-brown-dark en:font-label"
+                  data-i18n="service.intro.g3.i2.body"
+                >
+                  針對腕錶使用、操作、保養週期及異常狀況，提供專業說明與後續服務建議。
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         <ul class="flex flex-col gap-8 lg:grid lg:grid-cols-3 lg:gap-12 xl:gap-16">
-          <li class="flex flex-col gap-2 lg:gap-4" data-reveal-group>
+          <li>
             <img
               class="aspect-[353/275] w-full object-cover lg:aspect-square"
               src="../assets/images/service/watch-care.jpg"
-              alt=""
+              alt="鐘錶養護"
+              data-i18n-attr="alt:service.card.care"
               loading="lazy"
               data-reveal-media
             />
-            <p
-              class="px-4 text-center type-body-xl tracking-[1px] xl:text-2xl xl:leading-9 en:font-label"
-              data-i18n="service.card.care"
-              data-reveal-item
-            >
-              鐘錶養護
-            </p>
           </li>
-          <li class="flex flex-col gap-2 lg:gap-4" data-reveal-group>
+          <li>
             <img
               class="aspect-[353/275] w-full object-cover lg:aspect-square"
               src="../assets/images/service/maintenance-warranty.jpg"
-              alt=""
+              alt="保養保固"
+              data-i18n-attr="alt:service.card.warranty"
               loading="lazy"
               data-reveal-media
             />
-            <p
-              class="px-4 text-center type-body-xl tracking-[1px] xl:text-2xl xl:leading-9 en:font-label"
-              data-i18n="service.card.warranty"
-              data-reveal-item
-            >
-              保養保固
-            </p>
           </li>
-          <li class="flex flex-col gap-2 lg:gap-4" data-reveal-group>
+          <li>
             <img
               class="aspect-[353/275] w-full object-cover lg:aspect-square"
               src="../assets/images/service/expert-consultation.jpg"
-              alt=""
+              alt="專業諮詢"
+              data-i18n-attr="alt:service.card.consultation"
               loading="lazy"
               data-reveal-media
             />
-            <p
-              class="px-4 text-center type-body-xl tracking-[1px] xl:text-2xl xl:leading-9 en:font-label"
-              data-i18n="service.card.consultation"
-              data-reveal-item
-            >
-              專業諮詢
-            </p>
           </li>
         </ul>
       </section>
@@ -123,8 +294,9 @@
             >
               FAQ
             </p>
+            <!-- Figma 11/20（Mockup comment #37、#45，只改維修保養頁）：SM 20/32、LG 24/36、XL 以上 28/40。 -->
             <h2
-              class="type-heading-sm tracking-[1px] lg:type-heading-md xl:type-heading-lg en:font-display"
+              class="type-heading-xs tracking-[1px] lg:type-heading-sm xl:type-heading-md en:font-display"
               data-i18n="service.faq.title"
               data-reveal-item
             >

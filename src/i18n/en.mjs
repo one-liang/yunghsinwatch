@@ -1,8 +1,5 @@
 // 英文文字檔。key 必須與 zh.mjs 完全一致；build 時產生 en/*.html，不會打包進 dist。
 export default {
-  "brand.line1": "Patek Philippe Boutique Taipei",
-  "brand.line2": "by Yung Hsin Watch",
-
   "nav.collection": "COLLECTION",
   "nav.boutique": "BOUTIQUE",
   "nav.boutique.store": "ABOUT THE BOUTIQUE",
@@ -21,6 +18,9 @@ export default {
   "home.hero.title":
     "Patek Philippe Golden Eagle Nautilus 50th Anniversary Four-Piece Limited Edition",
   "home.hero.cta": "DISCOVER",
+  "home.intro.title": "Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "home.intro.body":
+    "Rooted in integrity and dedicated to service, Patek Philippe Boutique Taipei by Yung Hsin Watch warmly welcomes you.\nLocated at No. 82, Section 1, Zhongcheng Road, Shilin District, Taipei, the boutique reflects Patek Philippe’s spirit of tradition and innovation. We offer timepiece presentations, collection insights, personalized consultations, and comprehensive after-sales services.\nThrough professional expertise and genuine exchanges, we invite you to discover Patek Philippe’s rich heritage, exceptional craftsmanship, and enduring legacy—embodied in every timepiece.",
 
   // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
   "home.appointment.title": "BOOKING",
@@ -170,8 +170,11 @@ export default {
   "team.meta.title": "Our Team | Patek Philippe Boutique Taipei by Yung Hsin Watch",
   "team.meta.description":
     "Meet the team behind Patek Philippe Boutique Taipei by Yung Hsin Watch: eight watch advisors who accompany every collector with expertise and sincerity.",
-  "team.hero.eyebrow": "Our Team",
+  "team.hero.eyebrow": "Boutique",
   "team.hero.title": "Our Team",
+  "team.intro.logoAlt": "Yung Hsin Watch",
+  "team.intro.body":
+    "Since 1986, Yung Hsin Watch has established a deep-rooted presence in Taipei’s Tianmu district. Originally founded under the name Rong An Watch, the company was later renamed Yung Hsin Watch. It was here, in this culturally rich and vibrant neighborhood, that Yung Hsin began its journey of partnership with Patek Philippe. In 2013, Yung Hsin expanded its presence with the opening of Taiwan’s first Patek Philippe Boutique. Featuring a new boutique concept, the space conveyed Patek Philippe’s exceptional craftsmanship and enduring spirit of heritage, while also embodying the Yung Hsin family’s own legacy—a milestone of profound significance.",
 
   // 職稱：後六位成員都是銷售顧問，共用同一個 key。
   "team.role.gm": "General Manager",
@@ -204,8 +207,6 @@ export default {
   "about.hero.eyebrow": "Boutique",
   "about.hero.title": "About Yung-Hsin",
   "about.intro.title": "Earn trust through integrity; pass on the family spirit through sincerity.",
-  "about.intro.body":
-    "Since 1986, Yung Hsin Watch has established a deep-rooted presence in Taipei’s Tianmu district. Originally founded under the name Rong An Watch, the company was later renamed Yung Hsin Watch. It was here, in this culturally rich and vibrant neighborhood, that Yung Hsin began its journey of partnership with Patek Philippe. In 2013, Yung Hsin expanded its presence with the opening of Taiwan’s first Patek Philippe Boutique. Featuring a new boutique concept, the space conveyed Patek Philippe’s exceptional craftsmanship and enduring spirit of heritage, while also embodying the Yung Hsin family’s own legacy—a milestone of profound significance.",
   "about.founders.body":
     "Founder Mr. Lai Chien-Fa and Ms. Chuang Mei-Ling have worked hand in hand with their second-generation successor and current General Manager, Henry, to uphold Yung Hsin Watch’s longstanding commitment to “integrity and service.” Over the years, this philosophy has cultivated an unparalleled level of trust among discerning collectors of fine timepieces, becoming the most precious and irreplaceable foundation of Yung Hsin’s journey.",
   "about.renewal.body":
@@ -220,6 +221,34 @@ export default {
     "Yung Hsin Watch offers watch care, maintenance and warranty support, and expert consultation, alongside guidance on servicing, magnetism, water resistance, and strap care.",
   "service.hero.eyebrow": "After-Sales Service",
   "service.hero.title": "Service",
+  "service.intro.title": "Watch Maintenance & Care Services",
+  "service.intro.g1.title": "Wear & Appearance Care",
+  "service.intro.g1.i1.title": "Bracelet Sizing & Adjustment",
+  "service.intro.g1.i1.body":
+    "Precise bracelet adjustments tailored to your wrist size and wearing preferences, ensuring an optimal fit and lasting comfort.",
+  "service.intro.g1.i2.title": "Watch Cleaning",
+  "service.intro.g1.i2.body":
+    "Routine cleaning and care for the watch case, bracelet, and external components to maintain the watch’s appearance and pristine condition.",
+  "service.intro.g1.i3.title": "Strap, Bracelet & Battery Replacement",
+  "service.intro.g1.i3.body":
+    "Genuine manufacturer straps, bracelet links, and components are available for replacement and order. Battery replacement services include water resistance and power consumption testing, as well as gasket replacement, to help maintain the watch’s integrity, performance, and quality.",
+  "service.intro.g2.title": "Movement & Performance Inspection",
+  "service.intro.g2.i1.title": "Timekeeping Accuracy & Function Inspection",
+  "service.intro.g2.i1.body":
+    "Assessment of timekeeping performance and accuracy, including movement operation, winding mechanism, calendar functions, and other watch functions.",
+  "service.intro.g2.i2.title": "Water Resistance Testing",
+  "service.intro.g2.i2.body":
+    "Inspection of the watch’s water resistance and sealing condition to ensure adequate protection for everyday wear.",
+  "service.intro.g2.i3.title": "Magnetism Detection & Demagnetization",
+  "service.intro.g2.i3.body":
+    "Examination for magnetic interference that may affect watch performance, with professional demagnetization provided when necessary.",
+  "service.intro.g3.title": "Regular Maintenance & After-Sales Services",
+  "service.intro.g3.i1.title": "Periodic Maintenance & Repair Services",
+  "service.intro.g3.i1.body":
+    "Maintenance recommendations, repair consultations, and service arrangements tailored to the condition and requirements of each timepiece.",
+  "service.intro.g3.i2.title": "Professional After-Sales Consultation",
+  "service.intro.g3.i2.body":
+    "Expert guidance on watch operation, usage, maintenance intervals, and any irregularities, along with recommendations for appropriate follow-up services.",
   "service.card.care": "Watch Care",
   "service.card.warranty": "Maintenance & Warranty",
   "service.card.consultation": "Expert Consultation",
@@ -497,10 +526,10 @@ export default {
   "store.nineTwo.address": "No. 109, Sec. 1, Yanping N. Rd., 10350 Taipei",
 
   "store.detail.close": "Close",
-  "store.detail.more": "More details",
+  "store.detail.more": "Directions",
+  "store.yungHsin.hours":
+    "Monday to Sunday, 11:00 - 19:00\n<strong>(Closed on the fourth Sunday of each month.)</strong>",
   "store.hours.title": "Opening hours:",
-  "store.hours.open": "Open - Closes at {time}",
-  "store.hours.closed": "Closed - Opens at {time}",
   "store.hours.dayOff": "Closed",
   "store.day.mon": "Monday",
   "store.day.tue": "Tuesday",
@@ -510,13 +539,13 @@ export default {
   "store.day.sat": "Saturday",
   "store.day.sun": "Sunday",
   "store.yungHsin.url":
-    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-yung-hsin-watch",
+    "https://www.google.com/maps/dir/?api=1&destination=Yung%20Hsin%20Watch%2C%20No.%2082%2C%20Sec.%201%2C%20Jhongcheng%20Rd.%2C%2011148%20Taipei%2C%20Taiwan&hl=en",
   "store.cortina.url":
-    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-cortina-watch",
+    "https://www.google.com/maps/dir/?api=1&destination=Patek%20Philippe%20Boutique%20Taipei%20by%20Cortina%20Watch%2C%20Taipei%20101%20Mall%202F%2C%20No.%2045%2C%20Shihfu%20Rd.%2C%2011049%20Taipei%2C%20Taiwan&hl=en",
   "store.kingSign.url":
-    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-king-sign-watch",
+    "https://www.google.com/maps/dir/?api=1&destination=Patek%20Philippe%20Boutique%20Taipei%20by%20King%20Sign%20Watch%2C%20No.%20231-1%2C%20Sec.%204%2C%20Zhongxiao%20E.%20Rd.%2C%2010692%20Taipei%2C%20Taiwan&hl=en",
   "store.nineTwo.url":
-    "https://www.patek.com/en/points-of-sale/asia/taiwan-area/taipei/patek-philippe-boutique-taipei-by-nine-two-watch",
+    "https://www.google.com/maps/dir/?api=1&destination=Patek%20Philippe%20Boutique%20Taipei%20by%20Nine-Two%20Watch%2C%20No.%20109%2C%20Sec.%201%2C%20Yanping%20N.%20Rd.%2C%2010350%20Taipei%2C%20Taiwan&hl=en",
 
   "footer.address": "No. 82, Sec. 1, Zhongcheng Rd., Shilin Dist., Taipei City",
   "footer.terms": "TERMS OF SERVICE",

@@ -35,17 +35,18 @@
           >
             Boutique
           </p>
+          <!-- Figma 11/20（Mockup comment #30）：中文版標題也用英文，字型同英文版（Display/XL）。 -->
           <h1
-            class="type-heading-md tracking-[2px] xl:type-heading-xl en:font-display xl:en:type-display-xl"
+            class="type-heading-md font-display tracking-[2px] xl:type-display-xl"
             data-i18n="boutique.hero.title"
             data-reveal-item
           >
-            永新鐘錶百達翡麗專賣店
+            Patek Philippe Boutique Taipei by Yung Hsin Watch
           </h1>
         </div>
       </section>
 
-      <!-- 介紹、輪播與故事三段共用 Background 底色（修改清單 #32，依 Figma About The Boutique）。 -->
+      <!-- 介紹、門市地圖、輪播與故事共用 Background 底色（修改清單 #32，依 Figma About The Boutique）。 -->
       <div class="bg-background">
         <section
           class="mx-auto flex max-w-[768px] flex-col items-center gap-4 px-5 py-12 text-center xl:px-0 xl:py-20"
@@ -66,6 +67,9 @@
             以「稀缺工藝」與「精準美學」，永新百達翡麗專館透過傳承與創新，訴說時間的璀璨永恆。
           </p>
         </section>
+
+        <!-- Figma 11/20（Mockup comment #43）：門市地圖移到介紹下方、輪播上方。 -->
+        <c-store-locator />
 
         <!-- 圖片輪播：slide 比容器窄且置中，容器不裁切，左右自然露出相鄰的圖。
            非 loop，到頭／尾時對應的箭頭淡出；LG 以下不顯示箭頭，改用滑動。
@@ -144,8 +148,6 @@
           </p>
         </section>
       </div>
-
-      <c-store-locator />
 
       <section
         class="flex items-center justify-center bg-brown-dark px-5 py-10 text-white lg:h-[175px] lg:py-0 xl:h-[200px]"

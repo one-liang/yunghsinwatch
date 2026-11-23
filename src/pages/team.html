@@ -56,8 +56,43 @@
            <span lang="en">（Inter），對應 Figma Mockup comment #18。 -->
       <!-- 內文底色 Background（修改清單 #35，依 Figma Our Team）：區塊本身限寬 1536px，底色加在外層才會滿版。 -->
       <div class="bg-background">
+        <!-- Figma 11/20（Mockup comment #44）：文與圖從關於永新搬過來。
+             Description：XL 以上上下 80px、Logo 300×109、間距 32px；以下上下 48px、Logo 250×91、間距 24px。
+             內文 LG 以上 18/32，以下 16/28。圖片尺寸沿用原本關於永新的設定。 -->
         <section
-          class="mx-auto flex w-full max-w-[1536px] flex-col gap-8 px-5 py-8 lg:gap-12 lg:px-12 lg:py-12 xl:gap-28 xl:py-28 2xl:px-32"
+          class="mx-auto flex max-w-[768px] flex-col items-center gap-6 px-5 py-12 text-center lg:px-0 xl:gap-8 xl:py-20"
+          data-reveal-group
+        >
+          <img
+            class="h-[91px] w-[250px] xl:h-[109px] xl:w-[300px]"
+            src="@assets/images/logo-yh.svg"
+            alt="永新鐘錶"
+            data-i18n-attr="alt:team.intro.logoAlt"
+            data-reveal-item
+          />
+          <p
+            class="pt-2 font-heading text-base leading-7 font-medium tracking-[1px] text-brown-dark lg:text-lg lg:leading-8"
+            data-i18n="team.intro.body"
+            data-reveal-item
+          >
+            永新鐘錶1986
+            年起深耕台北天母多年，最早以榮安鐘錶為名，之後更名為永新鐘錶，並於此人文薈萃之地，開啟了與百達翡麗合作的序章。2013年永新鐘錶擴大經營版圖，全台首間百達翡麗專館落成，以嶄新專館形象傳遞百達翡麗卓越工藝與世代相傳的品牌精神，並承載著家族傳承，意義非凡。
+          </p>
+        </section>
+
+        <div class="mx-auto w-full max-w-[768px] px-5 lg:px-0 xl:max-w-[950px] 2xl:max-w-[1200px]">
+          <img
+            class="aspect-video w-full object-cover"
+            src="../assets/images/about/salon.jpg"
+            alt=""
+            loading="lazy"
+            data-reveal-media
+          />
+        </div>
+
+        <!-- 成員卡上下留白依 Figma：SM 72／32、LG 72／72、XL 以上 112／112。 -->
+        <section
+          class="mx-auto flex w-full max-w-[1536px] flex-col gap-8 px-5 pt-[72px] pb-8 lg:gap-12 lg:px-12 lg:pb-[72px] xl:gap-28 xl:py-28 2xl:px-32"
         >
           <article
             class="flex flex-col items-center gap-6 lg:flex-row lg:gap-[72px] lg:even:flex-row-reverse"

@@ -17,27 +17,33 @@
     <c-header />
 
     <main>
-      <!-- Banner 高度：MD/SM 固定 350px（Figma Index / SM）；LG 起依 Figma 32:15 比例隨寬度縮放
-           （2XL 1536×720、XL 1280×600、LG 1024×480），上限 675px（Figma Mockup comment #7）。
-           文字區塊（修改清單 #12、#13、#53）：LG 起寬度一律 400px；2XL 左側 128px，XL、LG 左側 48px；
-           LG 標題 32/44；MD/SM 貼底置中、左右 20px，標題 24/36、最多兩行，
-           不顯示按鈕。MD/SM 的底圖依 Figma 放大約 1.1 倍並貼齊底緣。按鈕在 Figma 是 102×46、框線畫在內側，
-           border 會加在外側，所以內距各少 1px。
-           第二張改用雲端的 1-2.jpeg（5270P，修改清單 #11）。 -->
+      <!-- Banner（Figma 11/20 Mockup comment #41）：3 張輪播、每 2 秒切換，每張連到對應錶款（#38～#40，demo 站）。
+           比例依各斷點 Figma（Index / SM 393×350、LG 1024×576、XL 1280×720、2XL 1536×800）：
+           平常是 16:9，和 Banner 原圖同比例，圖片不會被裁切；2XL（1536px）以上改 1536:800、不設高度上限，
+           寬螢幕等比放大（原本固定 800px 高，螢幕越寬圖上下被裁得越多）。窄螢幕 16:9 會矮於 350px 時
+           由 min-height 撐到 350px，底圖依 Figma SM 放大 1.1 倍並貼齊底緣，16:9 夠高（622px 寬）以上不放大。
+           用 aspect-ratio 而不是 vw，捲軸寬度不會讓比例跑掉。 -->
       <section
-        class="home-hero-swiper swiper h-[350px] w-full rounded-[4px] bg-black text-white lg:h-[clamp(480px,46.875vw,675px)]"
+        class="home-hero-swiper swiper aspect-video min-h-[350px] w-full rounded-[4px] bg-black text-white 2xl:aspect-[1536/800]"
       >
         <div class="swiper-wrapper">
-          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+          <a
+            class="swiper-slide relative block h-full overflow-hidden rounded-[4px]"
+            href="https://pp-yunghsin-demo.hmgroup.com.tw/watch/5738g-001"
+            target="_blank"
+            rel="noopener"
+          >
             <img
-              class="absolute inset-0 size-full origin-bottom scale-110 object-cover lg:scale-100"
-              src="../assets/images/home/hero-nautilus.png"
+              class="absolute inset-0 size-full origin-bottom scale-110 object-cover min-[622px]:scale-100"
+              src="../assets/images/home/hero-5738g.jpg"
               alt=""
             />
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
+              <!-- 文字先隱藏（Mockup comment #41：新 Banner 圖本身已壓字），之後要恢復拿掉 hidden 即可。 -->
               <div
                 class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 2xl:left-32"
+                hidden
               >
                 <p
                   class="line-clamp-2 font-heading text-[24px] leading-[36px] font-medium tracking-[2px] lg:line-clamp-none lg:text-[32px] lg:leading-[44px] xl:text-[40px] xl:leading-[56px] en:font-display"
@@ -45,27 +51,33 @@
                 >
                   百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款
                 </p>
-                <button
-                  class="hidden cursor-pointer border border-white py-[11px] pr-[23px] pl-[21px] type-body-sm text-white transition-colors hover:bg-white hover:text-black lg:block en:type-label-nav-sm"
-                  type="button"
+                <span
+                  class="hidden border border-white py-[11px] pr-[23px] pl-[21px] type-body-sm text-white lg:block en:type-label-nav-sm"
                   data-i18n="home.hero.cta"
                 >
                   探索更多
-                </button>
+                </span>
               </div>
             </div>
-          </article>
+          </a>
 
-          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+          <a
+            class="swiper-slide relative block h-full overflow-hidden rounded-[4px]"
+            href="https://pp-yunghsin-demo.hmgroup.com.tw/watch/7043g-001"
+            target="_blank"
+            rel="noopener"
+          >
             <img
-              class="absolute inset-0 size-full origin-bottom scale-110 object-cover lg:scale-100"
-              src="../assets/images/home/hero-5270p.jpg"
+              class="absolute inset-0 size-full origin-bottom scale-110 object-cover min-[622px]:scale-100"
+              src="../assets/images/home/hero-7043g.jpg"
               alt=""
             />
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
+              <!-- 文字先隱藏（Mockup comment #41：新 Banner 圖本身已壓字），之後要恢復拿掉 hidden 即可。 -->
               <div
                 class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 2xl:left-32"
+                hidden
               >
                 <p
                   class="line-clamp-2 font-heading text-[24px] leading-[36px] font-medium tracking-[2px] lg:line-clamp-none lg:text-[32px] lg:leading-[44px] xl:text-[40px] xl:leading-[56px] en:font-display"
@@ -73,27 +85,33 @@
                 >
                   百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款
                 </p>
-                <button
-                  class="hidden cursor-pointer border border-white py-[11px] pr-[23px] pl-[21px] type-body-sm text-white transition-colors hover:bg-white hover:text-black lg:block en:type-label-nav-sm"
-                  type="button"
+                <span
+                  class="hidden border border-white py-[11px] pr-[23px] pl-[21px] type-body-sm text-white lg:block en:type-label-nav-sm"
                   data-i18n="home.hero.cta"
                 >
                   探索更多
-                </button>
+                </span>
               </div>
             </div>
-          </article>
+          </a>
 
-          <article class="swiper-slide relative h-full overflow-hidden rounded-[4px]">
+          <a
+            class="swiper-slide relative block h-full overflow-hidden rounded-[4px]"
+            href="https://pp-yunghsin-demo.hmgroup.com.tw/watch/7340%7C1r-010"
+            target="_blank"
+            rel="noopener"
+          >
             <img
-              class="absolute inset-0 size-full origin-bottom scale-110 object-cover lg:scale-100"
-              src="../assets/images/home/hero-nautilus.png"
+              class="absolute inset-0 size-full origin-bottom scale-110 object-cover min-[622px]:scale-100"
+              src="../assets/images/home/hero-7340-1r.jpg"
               alt=""
             />
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
+              <!-- 文字先隱藏（Mockup comment #41：新 Banner 圖本身已壓字），之後要恢復拿掉 hidden 即可。 -->
               <div
                 class="absolute right-5 bottom-[38px] left-5 flex flex-col items-start gap-6 lg:top-1/2 lg:right-auto lg:bottom-auto lg:left-12 lg:w-[400px] lg:-translate-y-1/2 2xl:left-32"
+                hidden
               >
                 <p
                   class="line-clamp-2 font-heading text-[24px] leading-[36px] font-medium tracking-[2px] lg:line-clamp-none lg:text-[32px] lg:leading-[44px] xl:text-[40px] xl:leading-[56px] en:font-display"
@@ -101,28 +119,61 @@
                 >
                   百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款
                 </p>
-                <button
-                  class="hidden cursor-pointer border border-white py-[11px] pr-[23px] pl-[21px] type-body-sm text-white transition-colors hover:bg-white hover:text-black lg:block en:type-label-nav-sm"
-                  type="button"
+                <span
+                  class="hidden border border-white py-[11px] pr-[23px] pl-[21px] type-body-sm text-white lg:block en:type-label-nav-sm"
                   data-i18n="home.hero.cta"
                 >
                   探索更多
-                </button>
+                </span>
               </div>
             </div>
-          </article>
+          </a>
         </div>
 
         <div class="home-hero-pagination swiper-pagination"></div>
       </section>
 
+      <!-- 首頁說明文字（Figma Description，Mockup comment #28）：標題中英文版都用英文；
+           內文中文版置中、英文版靠左（英文分三段，字典以 \n 斷行）。
+           MD/SM 標題 20/32、內文 16/28、左右 20px；LG 標題 24/36；XL 起標題 28/40、內文 18/32、上下 80px。 -->
       <section
-        class="flex w-full flex-col items-center gap-8 px-5 py-12 lg:gap-12 lg:px-12 lg:pt-14 lg:pb-12 xl:gap-14 xl:py-[72px]"
+        class="mx-auto flex max-w-[768px] flex-col items-center gap-4 px-5 py-12 text-center lg:px-0 xl:py-20"
+        data-reveal-group
+      >
+        <h2
+          class="pt-2 font-heading text-xl leading-8 font-medium tracking-[1px] text-brown-dark lg:text-2xl lg:leading-9 xl:type-heading-md"
+          data-i18n="home.intro.title"
+          data-reveal-item
+        >
+          Patek Philippe Boutique Taipei by Yung Hsin Watch
+        </h2>
+        <img
+          class="size-8"
+          src="@assets/images/home/patek-philippe-mark.svg"
+          alt=""
+          data-reveal-item
+        />
+        <p
+          class="pt-2 font-heading text-base leading-7 font-medium tracking-[1px] text-brown-dark lg:text-lg lg:leading-8 en:text-left"
+          data-i18n="home.intro.body"
+          data-reveal-item
+        >
+          以誠信為本、以服務為念，Patek Philippe Boutique Taipei by Yung Hsin Watch
+          誠摯歡迎您的蒞臨。專賣店座落於台北市士林區忠誠路一段82號，以明亮而沉穩的空間設計，呈現百達翡麗經典與創新兼具的品牌精神，提供腕錶鑑賞、系列探索、選購諮詢與完善的售後服務。我們期待透過專業分享與真誠交流，陪伴您深入認識百達翡麗深厚的品牌歷史與卓越製錶工藝，感受跨越世代、歷久彌新的時計價值。
+        </p>
+      </section>
+
+      <section
+        class="flex w-full flex-col items-center gap-8 px-5 pb-12 lg:gap-12 lg:px-12 xl:gap-14 xl:pb-[72px]"
       >
         <!-- 影片改用百達翡麗官方提供的嵌入碼（修改清單 #54）：script.js 會在 #PPiframe 內產生 iframe。
-             key 與 lang 照官方提供的值，中英文頁都用 lang="en"。外層 div 負責寬度、比例與進場動畫。 -->
-        <div class="aspect-video w-full max-w-[1200px] bg-black" data-reveal-media>
-          <div id="PPiframe" class="size-full" key="0cd9b5da" lang="en"></div>
+             11/20 嵌入碼更新為 key="default" banner="true"（Mockup comment #29）；lang 維持原本的 "en"，
+             中英文頁相同。外層 div 負責寬度（Figma 1200 寬）與進場動畫。
+             banner 模式的播放器自己決定高度（約 2.49:1、最高 45vh），16:9 影片在裡面左右留空；
+             原本外層固定 16:9 又是黑底，播放器下方與左右的空白就變成黑屏。現在外層不設比例與底色，
+             高度跟著播放器；500px 以上再由 index.js 把播放器的投影片改成 16:9，影片填滿 Figma 的 1200×675。 -->
+        <div class="w-full max-w-[1200px]" data-reveal-media>
+          <div id="PPiframe" class="w-full" key="default" banner="true" lang="en"></div>
         </div>
         <script async src="https://iframe.patek.com/script.js"></script>
         <img
@@ -152,7 +203,10 @@
               class="group flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-[72px]"
               href="./collection-model.html"
             >
-              <div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1 xl:gap-8" data-reveal-group>
+              <div
+                class="flex flex-col gap-2 lg:min-w-0 lg:flex-1 lg:gap-4 xl:gap-8"
+                data-reveal-group
+              >
                 <h2
                   class="type-heading-featured-sm tracking-[1px] text-brown-dark lg:line-clamp-3 xl:line-clamp-none xl:type-heading-featured-md en:font-medium xl:en:font-medium"
                   data-i18n="home.article1.title"
@@ -202,7 +256,10 @@
                   loading="lazy"
                 />
               </div>
-              <div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1 xl:gap-8" data-reveal-group>
+              <div
+                class="flex flex-col gap-2 lg:min-w-0 lg:flex-1 lg:gap-4 xl:gap-8"
+                data-reveal-group
+              >
                 <h2
                   class="type-heading-featured-sm tracking-[1px] text-brown-dark lg:line-clamp-3 xl:line-clamp-none xl:type-heading-featured-md en:font-medium xl:en:font-medium"
                   data-i18n="home.article2.title"
@@ -230,7 +287,10 @@
               class="group flex flex-col gap-4 lg:flex-row lg:items-center lg:gap-[72px]"
               href="./collection-model.html"
             >
-              <div class="flex flex-col gap-3 lg:min-w-0 lg:flex-1 xl:gap-8" data-reveal-group>
+              <div
+                class="flex flex-col gap-2 lg:min-w-0 lg:flex-1 lg:gap-4 xl:gap-8"
+                data-reveal-group
+              >
                 <h2
                   class="type-heading-featured-sm tracking-[1px] text-brown-dark lg:line-clamp-3 xl:line-clamp-none xl:type-heading-featured-md en:font-medium xl:en:font-medium"
                   data-i18n="home.article3.title"

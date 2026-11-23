@@ -1,10 +1,7 @@
 // 繁體中文文字檔（預設語系）。build 時由 builder 套用到 data-i18n 標記，不會打包進 dist。
 export default {
-  "brand.line1": "永新鐘錶百達翡麗專賣店",
-  "brand.line2": "",
-
   "nav.collection": "時計系列",
-  "nav.boutique": "品牌專賣店",
+  "nav.boutique": "專賣店",
   "nav.boutique.store": "精品店",
   "nav.boutique.team": "我們的團隊",
   "nav.boutique.about": "關於永新",
@@ -20,6 +17,9 @@ export default {
   "home.seoTitle": "永新鐘錶百達翡麗專賣店",
   "home.hero.title": '百達翡麗金鷹<span class="font-display">Nautilus</span>五十週年四大限量紀念款',
   "home.hero.cta": "探索更多",
+  "home.intro.title": "Patek Philippe Boutique Taipei by Yung Hsin Watch",
+  "home.intro.body":
+    "以誠信為本、以服務為念，Patek Philippe Boutique Taipei by Yung Hsin Watch 誠摯歡迎您的蒞臨。專賣店座落於台北市士林區忠誠路一段82號，以明亮而沉穩的空間設計，呈現百達翡麗經典與創新兼具的品牌精神，提供腕錶鑑賞、系列探索、選購諮詢與完善的售後服務。我們期待透過專業分享與真誠交流，陪伴您深入認識百達翡麗深厚的品牌歷史與卓越製錶工藝，感受跨越世代、歷久彌新的時計價值。",
 
   // 首頁的「我要預約」橫幅（src/pages/index.html），點擊開啟預約彈跳視窗。
   "home.appointment.title": "我要預約",
@@ -155,7 +155,7 @@ export default {
   "boutique.meta.description":
     "走進永新鐘錶百達翡麗專賣店，感受稀缺工藝與精準美學交織的空間，並查詢台北地區的官方銷售點。",
   "boutique.hero.eyebrow": "Boutique",
-  "boutique.hero.title": "永新鐘錶百達翡麗專賣店",
+  "boutique.hero.title": "Patek Philippe Boutique Taipei by Yung Hsin Watch",
   "boutique.intro.title": "聚光燈下的鐘錶城堡",
   "boutique.intro.body":
     "以「稀缺工藝」與「精準美學」，永新百達翡麗專館透過傳承與創新，訴說時間的璀璨永恆。",
@@ -175,8 +175,11 @@ export default {
   "team.meta.title": "我們的團隊｜永新鐘錶百達翡麗專賣店",
   "team.meta.description":
     "認識永新鐘錶百達翡麗專賣店的團隊，八位鐘錶顧問以專業與真誠，陪伴每一位藏家走過收藏旅程。",
-  "team.hero.eyebrow": "Our Team",
+  "team.hero.eyebrow": "Boutique",
   "team.hero.title": "我們的團隊",
+  "team.intro.logoAlt": "永新鐘錶",
+  "team.intro.body":
+    "永新鐘錶1986 年起深耕台北天母多年，最早以榮安鐘錶為名，之後更名為永新鐘錶，並於此人文薈萃之地，開啟了與百達翡麗合作的序章。2013年永新鐘錶擴大經營版圖，全台首間百達翡麗專館落成，以嶄新專館形象傳遞百達翡麗卓越工藝與世代相傳的品牌精神，並承載著家族傳承，意義非凡。",
 
   // 職稱：後六位成員都是銷售顧問，共用同一個 key。
   "team.role.gm": "總經理",
@@ -209,8 +212,6 @@ export default {
   "about.hero.eyebrow": "Boutique",
   "about.hero.title": "關於永新",
   "about.intro.title": "以信立人 以誠傳家",
-  "about.intro.body":
-    "永新鐘錶1986 年起深耕台北天母多年，最早以榮安鐘錶為名，之後更名為永新鐘錶，並於此人文薈萃之地，開啟了與百達翡麗合作的序章。2013年永新鐘錶擴大經營版圖，全台首間百達翡麗專館落成，以嶄新專館形象傳遞百達翡麗卓越工藝與世代相傳的品牌精神，並承載著家族傳承，意義非凡。",
   "about.founders.body":
     "創辦人賴建發先生與莊美玲小姐夫婦，攜手第二代亦是現任總經理Henry，延續永新鐘錶以「誠信與服務」為本的經營特色，建構起頂級腕錶藏家無可取代的信任，也是永新鐘錶一路走來最珍貴、無可取代的基石。",
   "about.renewal.body":
@@ -228,6 +229,29 @@ export default {
     "永新鐘錶提供鐘錶養護、保養保固與專業諮詢服務，並整理腕錶洗油、防磁、防水與錶帶保養的使用須知。",
   "service.hero.eyebrow": "After-Sales Service",
   "service.hero.title": "維修保養",
+  "service.intro.title": "快速服務腕錶維護與保養項目",
+  "service.intro.g1.title": "佩戴調整與外觀維護",
+  "service.intro.g1.i1.title": "錶帶尺寸調整",
+  "service.intro.g1.i1.body": "依據手腕尺寸與佩戴習慣，提供精準的錶帶調整及佩戴舒適度建議。",
+  "service.intro.g1.i2.title": "腕錶清潔",
+  "service.intro.g1.i2.body": "提供錶殼、錶帶及外部零件的日常清潔與護理，維持腕錶外觀與整潔。",
+  "service.intro.g1.i3.title": "錶帶與電池更換",
+  "service.intro.g1.i3.body":
+    "提供原廠正品錶帶及錶目更換與訂購服務\n更換電池（防水及耗電測試、更換膠圈），維護腕錶的完整性與品質。",
+  "service.intro.g2.title": "機芯與性能檢測",
+  "service.intro.g2.i1.title": "走時精準度與功能檢測",
+  "service.intro.g2.i1.body":
+    "檢測腕錶走時狀況，評估時間偏差，檢查機芯運作、上鍊功能、日曆及各項功能是否正常。",
+  "service.intro.g2.i2.title": "防水性能檢測",
+  "service.intro.g2.i2.body": "檢測腕錶防水性能與密封狀態，確認日常佩戴的防護能力。",
+  "service.intro.g2.i3.title": "磁化檢測與消磁",
+  "service.intro.g2.i3.body": "檢查腕錶是否受到磁場影響，並視情況提供專業消磁處理。",
+  "service.intro.g3.title": "定期保養與售後服務",
+  "service.intro.g3.i1.title": "定期保養與維修服務",
+  "service.intro.g3.i1.body": "依據腕錶狀況，提供定期保養建議、維修諮詢及送修安排。",
+  "service.intro.g3.i2.title": "專業售後諮詢",
+  "service.intro.g3.i2.body":
+    "針對腕錶使用、操作、保養週期及異常狀況，提供專業說明與後續服務建議。",
   "service.card.care": "鐘錶養護",
   "service.card.warranty": "保養保固",
   "service.card.consultation": "專業諮詢",
@@ -492,10 +516,9 @@ export default {
   "store.nineTwo.address": "台北市大同區延平北路一段 109 號",
 
   "store.detail.close": "關閉",
-  "store.detail.more": "更多詳情",
+  "store.detail.more": "路線導航",
+  "store.yungHsin.hours": "週一至週日 11:00 - 19:00\n(每月第四個星期日公休)",
   "store.hours.title": "營業時間：",
-  "store.hours.open": "營業中 - {time} 打烊",
-  "store.hours.closed": "休息中 - {time} 開門",
   "store.hours.dayOff": "公休",
   "store.day.mon": "星期一",
   "store.day.tue": "星期二",
@@ -505,13 +528,13 @@ export default {
   "store.day.sat": "星期六",
   "store.day.sun": "星期日",
   "store.yungHsin.url":
-    "https://www.patek.com/zh/销售点/亚洲/中国台湾地区/台北市/patek-philippe-boutique-taipei-by-yung-hsin-watch",
+    "https://www.google.com/maps/dir/?api=1&destination=%E6%B0%B8%E6%96%B0%E9%90%98%E9%8C%B6%20%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A3%AB%E6%9E%97%E5%8D%80%E5%BF%A0%E8%AA%A0%E8%B7%AF%E4%B8%80%E6%AE%B582%E8%99%9F&hl=zh-TW",
   "store.cortina.url":
-    "https://www.patek.com/zh/销售点/亚洲/中国台湾地区/台北市/patek-philippe-boutique-taipei-by-cortina-watch",
+    "https://www.google.com/maps/dir/?api=1&destination=%E9%AB%98%E7%99%BB%E9%90%98%E9%8C%B6%E7%99%BE%E9%81%94%E7%BF%A1%E9%BA%97%E5%B0%88%E8%B3%A3%E5%BA%97%20%E5%8F%B0%E5%8C%97%E5%B8%82%E4%BF%A1%E7%BE%A9%E5%8D%80%E5%B8%82%E5%BA%9C%E8%B7%AF45%E8%99%9F%20%E5%8F%B0%E5%8C%97101%E8%B3%BC%E7%89%A9%E4%B8%AD%E5%BF%832%E6%A8%93&hl=zh-TW",
   "store.kingSign.url":
-    "https://www.patek.com/zh/销售点/亚洲/中国台湾地区/台北市/patek-philippe-boutique-taipei-by-king-sign-watch",
+    "https://www.google.com/maps/dir/?api=1&destination=%E9%87%91%E7%94%9F%E5%84%80%E9%90%98%E9%8C%B6%E7%99%BE%E9%81%94%E7%BF%A1%E9%BA%97%E5%B0%88%E8%B3%A3%E5%BA%97%20%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A4%A7%E5%AE%89%E5%8D%80%E5%BF%A0%E5%AD%9D%E6%9D%B1%E8%B7%AF%E5%9B%9B%E6%AE%B5231-1%E8%99%9F&hl=zh-TW",
   "store.nineTwo.url":
-    "https://www.patek.com/zh/销售点/亚洲/中国台湾地区/台北市/patek-philippe-boutique-taipei-by-nine-two-watch",
+    "https://www.google.com/maps/dir/?api=1&destination=%E4%B9%9D%E4%BA%8C%E9%90%98%E9%8C%B6%E7%99%BE%E9%81%94%E7%BF%A1%E9%BA%97%E5%B0%88%E8%B3%A3%E5%BA%97%20%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A4%A7%E5%90%8C%E5%8D%80%E5%BB%B6%E5%B9%B3%E5%8C%97%E8%B7%AF%E4%B8%80%E6%AE%B5109%E8%99%9F&hl=zh-TW",
 
   "footer.address": "台北市士林區忠誠路一段 82 號 (第一銀行旁)",
   "footer.terms": "服務條款",

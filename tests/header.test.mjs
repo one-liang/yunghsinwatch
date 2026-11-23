@@ -25,7 +25,6 @@ function setup({
   reduced = false,
   desktop = true,
   missing = false,
-  brandBottom = 76,
   headerHeight = 172,
   dropdownTop = 112,
   spacingTo = null,
@@ -42,7 +41,7 @@ function setup({
   let languageChanged;
   // 展開時背景高 headerHeight（預設 172），子選單 li 頂端在 dropdownTop；
   // 收合時背景一律 88px 高、li 頂端在 18。
-  const bottoms = { background: [headerHeight, 88], "brand-text": [brandBottom, brandBottom] };
+  const bottoms = { background: [headerHeight, 88] };
   const heights = { background: [headerHeight, 88] };
   const tops = { dropdown: [dropdownTop, 18] };
   const parts = Object.fromEntries(
@@ -217,22 +216,14 @@ test("header expands and collapses with identical timing and easing without layo
   assert.equal(timeline.options.defaults.ease, "none", "easing belongs to the directional tween");
   assert.ok(timeline.tweens.every(({ position }) => position === 0));
   assert.ok(timeline.tweens.every(({ values }) => values.force3D === true));
-  const brand = timeline.tweens.find(
-    ({ target }) => target === env.parts[".site-header__brand-text"]
-  );
-  assert.ok(
-    brand.values.duration > 0 && brand.values.duration <= 0.4,
-    "brand must remain hidden until nav clears it on expansion"
-  );
 });
 
-test("taller translated brand text waits longer for navigation clearance", () => {
-  const regular = setup({ brandBottom: 76 });
-  const taller = setup({ brandBottom: 86 });
-  const fadeDuration = (env) =>
-    env.timelines[0].tweens.find(({ target }) => target === env.parts[".site-header__brand-text"])
-      .values.duration;
-  assert.ok(fadeDuration(taller) < fadeDuration(regular));
+// Figma 11/20（Mockup comment #33）：品牌區只剩 Logo，Logo 下方的品牌文字與它的淡出補間一起拿掉。
+test("brand is logo-only, so the timeline no longer fades brand text", () => {
+  const env = setup();
+  const targets = env.timelines[0].tweens.map(({ target }) => target);
+  assert.ok(!targets.includes(env.parts[".site-header__brand-text"]));
+  assert.ok(targets.includes(env.parts[".site-header__logo"]));
 });
 
 test("mid-page initialization and restored position synchronize without playing", () => {
