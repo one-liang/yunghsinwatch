@@ -394,10 +394,11 @@
     const { gsap, CustomEase } = window;
     const background = header.querySelector(".site-header__background");
     const logo = header.querySelector(".site-header__logo");
+    const scrollLogo = header.querySelector(".site-header__scroll-logo");
     const nav = header.querySelector(".site-header__nav > ul");
     const dropdown = header.querySelector(".site-header__dropdown");
-    const parts = [logo, nav, header.querySelector(".site-header__actions")].filter(Boolean);
-    const targets = [...parts, background].filter(Boolean);
+    const parts = [nav, header.querySelector(".site-header__actions")].filter(Boolean);
+    const targets = [...parts, background, logo, scrollLogo].filter(Boolean);
     let scrolled = null;
     let ticking = false;
     let timeline = null;
@@ -431,6 +432,8 @@
       }
       header.classList.add("has-header-motion");
       const backgroundFrom = background.getBoundingClientRect().height;
+      const logoRect = logo?.getBoundingClientRect();
+      const headerTop = background.getBoundingClientRect().top;
       const submenuFrom = dropdown && measureSubmenuTop();
       const spacingFrom = readSpacing();
       header.classList.add("is-measuring-spacing");
@@ -455,13 +458,30 @@
             force3D: true,
             x: end.left + end.width / 2 - (start.left + start.width / 2),
             y: end.top + end.height / 2 - (start.top + start.height / 2),
-            ...(part === logo
-              ? { scaleX: end.width / start.width, scaleY: end.height / start.height }
-              : {}),
           },
           0
         );
       });
+      if (logo && logoRect) {
+        timeline.to(
+          logo,
+          {
+            force3D: true,
+            y: headerTop - logoRect.bottom,
+            autoAlpha: 0,
+            duration: TRANSITION_DURATION / 2,
+          },
+          0
+        );
+      }
+      if (scrollLogo) {
+        timeline.to(
+          scrollLogo,
+          // 不補 transform：垂直置中用的 translateY(-50%) 寫在 CSS。
+          { autoAlpha: 1, duration: TRANSITION_DURATION / 2 },
+          TRANSITION_DURATION / 2
+        );
+      }
       const spacingChanged = SPACING.filter((name) => spacingFrom[name] !== spacingTo[name]);
       if (spacingChanged.length) {
         const pick = (values) =>
