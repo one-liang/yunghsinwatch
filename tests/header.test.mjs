@@ -45,28 +45,30 @@ function setup({
   const heights = { background: [headerHeight, 88] };
   const tops = { dropdown: [dropdownTop, 18] };
   const parts = Object.fromEntries(
-    ["background", "brand-text", "logo", "nav > ul", "actions", "dropdown"].map((name) => [
-      `.site-header__${name}`,
-      events({
-        getBoundingClientRect() {
-          reads++;
-          // 和 CSS 一樣：量測中、或沒有 timeline 時的捲動狀態都是收合布局。
-          const compact =
-            classes.has("is-measuring-compact") ||
-            (classes.has("is-scrolled") && !classes.has("has-header-motion"));
-          const state = compact ? 1 : 0;
-          // 「展開布局＋收合間距」只改水平位置，用 spacedLeft 模擬間距變窄造成的位移。
-          const spaced = classes.has("is-measuring-spacing");
-          return {
-            left: compact ? 80 : spaced ? spacedLeft : 0,
-            top: tops[name]?.[state] ?? (compact ? 16 : 100),
-            width: compact ? 106 : 140,
-            height: heights[name]?.[state] ?? (compact ? 56 : 74),
-            bottom: bottoms[name]?.[state] ?? 174,
-          };
-        },
-      }),
-    ])
+    ["background", "brand-text", "logo", "scroll-logo", "nav > ul", "actions", "dropdown"].map(
+      (name) => [
+        `.site-header__${name}`,
+        events({
+          getBoundingClientRect() {
+            reads++;
+            // 和 CSS 一樣：量測中、或沒有 timeline 時的捲動狀態都是收合布局。
+            const compact =
+              classes.has("is-measuring-compact") ||
+              (classes.has("is-scrolled") && !classes.has("has-header-motion"));
+            const state = compact ? 1 : 0;
+            // 「展開布局＋收合間距」只改水平位置，用 spacedLeft 模擬間距變窄造成的位移。
+            const spaced = classes.has("is-measuring-spacing");
+            return {
+              left: compact ? 80 : spaced ? spacedLeft : 0,
+              top: tops[name]?.[state] ?? (compact ? 16 : 100),
+              width: compact ? 106 : 140,
+              height: heights[name]?.[state] ?? (compact ? 56 : 74),
+              bottom: bottoms[name]?.[state] ?? 174,
+            };
+          },
+        }),
+      ]
+    )
   );
   // header.css 的間距變數：展開值，以及收合間距（量測中或沒有 timeline 時的捲動狀態）的值。
   // 預設兩者相同，等於 2XL。
@@ -214,16 +216,33 @@ test("header expands and collapses with identical timing and easing without layo
   assert.equal(env.timelines.length, 1);
   assert.equal(timeline.options.defaults.duration, 1);
   assert.equal(timeline.options.defaults.ease, "none", "easing belongs to the directional tween");
-  assert.ok(timeline.tweens.every(({ position }) => position === 0));
-  assert.ok(timeline.tweens.every(({ values }) => values.force3D === true));
+  const moves = timeline.tweens.filter(
+    ({ target }) =>
+      target !== env.parts[".site-header__logo"] &&
+      target !== env.parts[".site-header__scroll-logo"]
+  );
+  assert.ok(moves.every(({ position }) => position === 0));
+  assert.ok(moves.every(({ values }) => values.force3D === true));
 });
 
-// Figma 11/20（Mockup comment #33）：品牌區只剩 Logo，Logo 下方的品牌文字與它的淡出補間一起拿掉。
-test("brand is logo-only, so the timeline no longer fades brand text", () => {
+// 換 Logo（參考 patekboutiquesanfrancisco.com）：原本的 Logo 不再移動縮放到左側，
+// 前半段往上移出 header 並淡出，後半段下滑後的 Logo 在「時計系列」左邊淡入。
+test("logo swaps instead of moving: the full logo leaves upward, the scroll logo fades in", () => {
   const env = setup();
-  const targets = env.timelines[0].tweens.map(({ target }) => target);
+  const { tweens } = env.timelines[0];
+  const targets = tweens.map(({ target }) => target);
   assert.ok(!targets.includes(env.parts[".site-header__brand-text"]));
-  assert.ok(targets.includes(env.parts[".site-header__logo"]));
+  const logo = tweens.find(({ target }) => target === env.parts[".site-header__logo"]);
+  assert.equal(logo.position, 0);
+  assert.equal(logo.values.autoAlpha, 0);
+  assert.equal(logo.values.duration, 0.5);
+  assert.equal(logo.values.y, 100 - 174, "moves its bottom edge up to the header top");
+  assert.equal("x" in logo.values || "scaleX" in logo.values, false);
+  const scrollLogo = tweens.find(({ target }) => target === env.parts[".site-header__scroll-logo"]);
+  assert.equal(scrollLogo.position, 0.5, "fades in after the full logo is gone");
+  assert.equal(scrollLogo.values.autoAlpha, 1);
+  assert.equal(scrollLogo.values.duration, 0.5);
+  assert.equal("y" in scrollLogo.values, false, "CSS owns its vertical centering transform");
 });
 
 test("mid-page initialization and restored position synchronize without playing", () => {
@@ -369,8 +388,8 @@ test("collapsed spacing tweens on the header and transforms start from the space
   assert.equal(spacing.to["--site-header-cta-px"], "0.5rem");
   assert.equal(spacing.to["--site-header-actions-gap"], "1rem");
   // 間距變窄時版面本身已移動 10px，transform 只補剩下的：收合中心減「展開布局＋收合間距」的中心。
-  const logo = timeline.tweens.find(({ target }) => target === env.parts[".site-header__logo"]);
-  assert.equal(logo.values.x, 80 + 106 / 2 - (10 + 140 / 2));
+  const nav = timeline.tweens.find(({ target }) => target === env.parts[".site-header__nav > ul"]);
+  assert.equal(nav.values.x, 80 + 106 / 2 - (10 + 140 / 2));
   assert.equal(env.classes.has("is-measuring-spacing"), false);
   assert.equal(env.classes.has("is-measuring-compact"), false);
 
@@ -405,7 +424,10 @@ test("CSS sets desktop spacing by variables with Figma's collapsed LG and XL val
     lg,
     /--site-header-link-px: 1rem;\s*--site-header-cta-px: 0\.5rem;\s*--site-header-actions-gap: 1rem;/
   );
-  assert.match(lg, /flex: 1;\s*margin-inline-start: 2rem;/);
+  // 換 Logo 後 2XL 以下收合選單靠左，左邊留出下滑後 Logo（106px）與 16px 間距。
+  const belowWide = block(String.raw`\(min-width: 64rem\) and \(max-width: 95\.9375rem\)`);
+  assert.match(belowWide, /flex: 1;/);
+  assert.match(belowWide, /margin-inline: calc\(106px \+ 1rem\) 0;/);
   const xl = block(String.raw`\(min-width: 80rem\) and \(max-width: 95\.9375rem\)`);
   assert.match(xl, /--site-header-actions-gap: 1\.5rem;/);
 });

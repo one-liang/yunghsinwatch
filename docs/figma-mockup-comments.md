@@ -797,3 +797,194 @@ Figma 未定義底線粗細與間距，沿用瀏覽器預設。
 > 只有維修保養頁更改
 
 - [x] 依 Figma 更新維修保養頁的標題字級（只改這頁，其他頁的同類標題不動；`service.css` 或頁面內 class）
+
+---
+
+# 第三輪：11/24 修改（#47～#54）
+
+- 擷取日期：2026-11-24。範圍是 #46 以後 Ping 的 comment，共 8 則，都沒有回覆，也都還沒 resolve
+- 其中 #47、#48 是 11/23 留的，第二輪擷取時漏掉了，一併收在這輪；#49～#54 是 11/24 新增
+- `#` 編號：延續第二輪，依建立時間順推，回 Figma 對照時請以留言內容為準
+- #48 在 Style Guide 頁（`94:242`）的 Footer frame，其餘在 Mockup 頁（`149:98`）
+- 排序和前兩輪一樣，依 frame 在畫布上的位置排，由上到下
+- Layer 是用 pin 座標換算到 frame 內的位置比對出來的；「目前程式」是擷取當下對照 repo 的狀態
+
+## 進度總覽（第三輪）
+
+- [x] #48 【全站 Footer】英文版字型全部改為 Inter
+- [x] #49 【時計系列】「POCKET WATCHES」改為「Pocket Watches」
+- [x] #53 【單系列列表】錶名隱藏「腕錶」（整個頁面）
+- [x] #52 【單錶介紹頁】錶名隱藏「腕錶」
+- [x] #54 【單錶介紹頁】推薦其他腕錶的錶名隱藏「腕錶」
+- [x] #51 【我們的團隊】Description 內文更改
+- [x] #50 【我們的團隊】英文版 Description 內文更改
+- [x] #47 【關於永新】英文版所有英文靠左對齊
+
+---
+
+## 實作說明（第三輪）
+
+驗證：`npm run check` 通過（66 個測試、26 頁、2012 個本地引用）；Header 用 Playwright 在 1024、1280、1536 寬
+中英文實際捲動量測。
+
+- **#48 Footer**：連結列（服務條款／隱私權政策／Cookie 偏好）加 `en:font-label`，英文版改 Inter；
+  地址、電話、mail、版權原本就是 Inter。字級 14/22 與中文相同，只換字型。
+- **#49 時計系列**：卡片標題寫死在 `collection.html`，改為「Pocket Watches」，中英文共用。
+- **#52～#54 拿掉「腕錶」／「WATCH」**：`series.watchName`、`model.recommendWatchName` 中英文都改為
+  「GOLDEN ELLIPSE」；單錶頁錶名後的 `model.nameSuffix` span 與字典 key 一起刪除。區塊標題「推薦其他腕錶」、
+  頁面 `<title>`／meta description 不在 comment 範圍，維持原樣。
+- **#50 #51 我們的團隊 Description**：`team.intro.body` 改用 `data-i18n-html`，第一行 `<strong>` 粗體標題、
+  `
+` 斷行；英文版內文兩段（Figma 是單純換行，沒有段距）。英文版加 `en:text-left`（Figma EN 靠左），中文維持置中。
+  英文照 Figma 用「Yung-Hsin」。
+- **#47 關於永新英文版**：四段內文（創辦人、2025 新裝、服務、傳承）加 `en:text-left`；
+  Figma 的頁首標題與「Earn trust through integrity…」標題仍置中，所以只改內文。
+
+### 【全站 Header】捲動時換 Logo（使用者 11/24 指示）
+
+參考 https://www.patekboutiquesanfrancisco.com/ ：該站下滑後上排（含大 Logo）捲出畫面，選單列左側的小 Logo
+（`.scrollLogo`）以 opacity 淡入。這裡改成：
+
+- 原本置中的 Logo 不再移動縮放到左上角；timeline 前半段（0.5 秒）往上移出 header 並淡出（`autoAlpha`），
+  後半段（0.5 秒）在「時計系列」左邊 16px 淡入另一個 Logo（106×56，同 Figma Header_Scroll 尺寸）。
+  往上滑時 timeline 倒回，順序相反：小 Logo 先淡出，大 Logo 再從上方回來。
+- 小 Logo 是選單 `ul` 裡的第一個 `li.site-header__scroll-logo`，絕對定位在 `ul` 左外側，展開時不影響選單置中；
+  隱藏時 `visibility: hidden`，不能點也不在無障礙樹裡。
+- 選單、右側按鈕與背景沿用原本的補間收到 88px 一列。2XL 收合時選單維持置中；2XL 以下寬度不夠
+  （英文選單會壓到右側按鈕，1280 寬差 5px），所以選單靠左，左邊留出小 Logo 的位置。
+- 沒有動畫時（減少動態、GSAP 未載入）捲動後直接隱藏大 Logo、顯示小 Logo。
+- `tests/header.test.mjs` 改為檢查換 Logo 的補間（大 Logo 不再有 x／scale）與 2XL 以下的靠左規則。
+
+---
+
+## 23. Style Guide / Footer（`676:4569`）
+
+### #48 【全站 Footer】英文版字型都是 Inter
+
+- Layer：`Footer`（pin 在 frame 下半部，英文版 Footer 附近）
+- 留言日期：2026-11-23
+
+> Footer 英文版的字型都是 Inter
+
+目前程式：`src/components/footer/footer.html` 的地址有 `en:type-label-nav-sm`，電話與 mail 已是 `type-label-nav-sm`，
+但下方連結列（`ul`）是 `type-body-sm`（Noto Sans TC），英文版沒有切換字型。
+
+- [x] 英文版 Footer 所有文字改用 Inter（逐一檢查地址、電話、mail、連結列、版權），中文版不動
+- [x] 實作前讀 Footer_EN 的 font size／line-height，對應既有 `type-label-*` utility
+
+## 24. Collection_EN（`1032:12267`）
+
+### #49 【時計系列】更改文字
+
+- Layer：`Collection_EN > Content > Sort > Collection Card / XL`（第 10 張，Pocket Watches，`1522:13394`）
+- 留言日期：2026-11-24
+
+> 11/24 更改文字
+
+Figma 中英文版（`1522:13394`、`1527:9017`）卡片標題都是「Pocket Watches」，和其他系列一樣首字大寫。
+
+目前程式：`src/pages/collection.html` 寫死 `POCKET WATCHES`（全大寫），中英文共用。
+
+- [x] 卡片標題改為「Pocket Watches」（中英文版）
+
+## 25. Series Page / 2XL（`302:185`）
+
+### #53 【單系列列表】隱藏「腕錶」（整個頁面）
+
+- Layer：`Series Page / 2XL > Content > Watch > Watch Card`（第 1 列第 2 張，錶名處）
+- 留言日期：2026-11-24
+
+> 11/24 隱藏"腕錶"(整個頁面)
+
+Figma 現在的錶卡只剩型號與「GOLDEN ELLIPSE」。
+
+目前程式：16 張錶卡都用 `series.watchName`，中文「GOLDEN ELLIPSE 腕錶」、英文「GOLDEN ELLIPSE WATCH」。
+
+- [x] 中文 `series.watchName` 拿掉「腕錶」，整頁 16 張卡一起生效
+- [x] 英文版的「WATCH」一起拿掉（依你的指示）
+
+## 26. Model Page / 2XL（`313:82`）
+
+### #52 【單錶介紹頁】隱藏「腕錶」
+
+- Layer：`Model Page / 2XL > Content > Top > Watch Info`（型號下方的錶名）
+- 留言日期：2026-11-24
+
+> 11/24 隱藏"腕錶"
+
+Figma 現在是「5204G-010」下方只寫「GOLDEN ELLIPSE」。
+
+目前程式：錶名後面接 `model.nameSuffix`（中文「 腕錶」、英文「 WATCH」），
+`collection-model.html` 與 `collection-model-2.html` 共用。
+
+- [x] 拿掉錶名後的「腕錶」（`model.nameSuffix`，兩個單錶頁都生效）
+- [x] 英文版「WATCH」一起拿掉；頁面 `<title>`／meta description 裡的「腕錶」不在畫面上，先保留
+
+### #54 【單錶介紹頁】推薦錶款隱藏「腕錶」
+
+- Layer：`Model Page / 2XL > Content > Recommend > Watch > Watch Card`（第 2 張，錶名處）
+- 留言日期：2026-11-24
+
+> 11/24 隱藏"腕錶"
+
+Figma 推薦區的錶卡錶名只剩「GOLDEN ELLIPSE」；區塊標題「推薦其他腕錶」不變。
+
+目前程式：推薦錶卡用 `model.recommendWatchName`，中文「GOLDEN ELLIPSE 腕錶」、英文「GOLDEN ELLIPSE WATCH」。
+
+- [x] 中文 `model.recommendWatchName` 拿掉「腕錶」
+- [x] 英文 `model.recommendWatchName` 一併拿掉「WATCH」
+
+## 27. Our Team_EN（`743:2835`）
+
+### #50 【我們的團隊】英文版更改內容
+
+- Layer：`Our Team_EN > Content > Description / 2XL > Text > EN`（`1522:13997`）
+- 留言日期：2026-11-24
+
+> 11/24 更改內容
+
+Figma 新內文（Noto Serif TC 18/32、字距 1px，第一行粗體標題，靠左）：
+
+> **A Castle of Time, Where Heritage and Legacy Endure**
+> Since 1995, Yung-Hsin Watch has enjoyed a longstanding partnership with Patek Philippe, built on shared values and a mutual commitment to excellence. In 2004, Yung-Hsin Watch relocated to No. 82, Zhongcheng Road, Tianmu, Taipei, where it established its very own watchmaking castle, reflecting its dedication to cultivating Taiwan’s high-end watch market.
+> In 2013, Taiwan’s first Patek Philippe boutique featuring the brand’s new retail concept was inaugurated at this prestigious location. Through its refreshed brand environment, the boutique showcases Patek Philippe’s exceptional watchmaking craftsmanship and enduring spirit of heritage passed down through generations. More than a distinctive symbol of luxury in Tianmu, it also marks an important chapter in the development of Taiwan’s fine watchmaking culture.
+
+目前程式：`team.intro.body`（`src/i18n/en.mjs`）還是「Since 1986, Yung Hsin Watch has established…」的舊文，沒有粗體標題。
+
+- [x] 更新英文 `team.intro.body`：新增粗體標題（改用 `data-i18n-html` 帶 `<strong>`），內文分兩段（用 `\n`）
+- [ ] 注意新文用「Yung-Hsin」（有連字號），和網站其他地方的「Yung Hsin」不一致，實作時照 Figma 或先問 Ping
+
+## 28. Our Team / 2XL（`455:1394`）
+
+### #51 【我們的團隊】更改內容
+
+- Layer：`Our Team / 2XL > Content > Description / 2XL > Text > CH`（`1522:13900`）
+- 留言日期：2026-11-24
+
+> 11/24 更改內容
+
+Figma 新內文（Noto Serif TC 18/32、字距 1px，第一行粗體標題，置中）：
+
+> **一座鐘錶城堡，承載品牌傳承與時間的故事**
+> 永新鐘錶自1995年起與百達翡麗攜手合作，開啟深厚而長遠的夥伴關係。2004年，永新鐘錶遷址至台北天母忠誠路82號，於這座人文薈萃的城市一隅，打造專屬的鐘錶城堡，展現深耕高級鐘錶市場的堅定承諾。2013年，全台首間百達翡麗全新形象專館於此落成，以嶄新的品牌空間，呈現百達翡麗卓越的製錶工藝與世代傳承的品牌精神。不僅成為天母獨具特色的奢華地標，更為台灣高級鐘錶文化寫下重要篇章。
+
+目前程式：`team.intro.body`（`src/i18n/zh.mjs`）還是「永新鐘錶1986 年起深耕台北天母多年…」的舊文。
+
+- [x] 更新中文 `team.intro.body`：新增粗體標題（同 #50 改用 `data-i18n-html`），內文一段
+- [x] 依新的文字量對照 Figma 區塊高度（2XL Description 501px）
+
+## 29. About Yung-Hsin_EN（`933:12307`）
+
+### #47 【關於永新】此頁所有英文都靠左對齊
+
+- Layer：`About Yung-Hsin_EN > Content > Description / 2XL`（pin 在第一個 Description）
+- 留言日期：2026-11-23
+
+> 11/20
+> 此頁所有英文都靠左對齊
+
+目前程式：`src/pages/about.html` 的 Description、兩張 About Card 文字、下方 Description 都是 `text-center`，
+英文版沒有切換。
+
+- [x] 英文版整頁內文改靠左（`en:text-left`），中文版維持置中
+- [x] 標題（Heading Banner）要不要也靠左，對照 Figma About Yung-Hsin_EN 再決定

@@ -18,10 +18,12 @@
     const { gsap, CustomEase } = window;
     const background = header.querySelector(".site-header__background");
     const logo = header.querySelector(".site-header__logo");
+    const scrollLogo = header.querySelector(".site-header__scroll-logo");
     const nav = header.querySelector(".site-header__nav > ul");
     const dropdown = header.querySelector(".site-header__dropdown");
-    const parts = [logo, nav, header.querySelector(".site-header__actions")].filter(Boolean);
-    const targets = [...parts, background].filter(Boolean);
+    // 選單與右側按鈕從展開位置移到收合位置；Logo 不跟著移動，改成換一個 Logo（見 rebuild）。
+    const parts = [nav, header.querySelector(".site-header__actions")].filter(Boolean);
+    const targets = [...parts, background, logo, scrollLogo].filter(Boolean);
     let scrolled = null;
     let ticking = false;
     let timeline = null;
@@ -67,6 +69,8 @@
 
       header.classList.add("has-header-motion");
       const backgroundFrom = background.getBoundingClientRect().height;
+      const logoRect = logo?.getBoundingClientRect();
+      const headerTop = background.getBoundingClientRect().top;
       const submenuFrom = dropdown && measureSubmenuTop();
       const spacingFrom = readSpacing();
       // 間距補間時，元素在展開布局裡本身就會跟著移動、改變寬度；transform 只補從
@@ -95,13 +99,32 @@
             force3D: true,
             x: end.left + end.width / 2 - (start.left + start.width / 2),
             y: end.top + end.height / 2 - (start.top + start.height / 2),
-            ...(part === logo
-              ? { scaleX: end.width / start.width, scaleY: end.height / start.height }
-              : {}),
           },
           0
         );
       });
+      // 換 Logo（參考 patekboutiquesanfrancisco.com）：前半段原本的 Logo 往上移出 header 並淡出，
+      // 後半段下滑後的 Logo 在「時計系列」左邊淡入。往上滑時 timeline 倒回，順序也跟著相反。
+      if (logo && logoRect) {
+        timeline.to(
+          logo,
+          {
+            force3D: true,
+            y: headerTop - logoRect.bottom,
+            autoAlpha: 0,
+            duration: TRANSITION_DURATION / 2,
+          },
+          0
+        );
+      }
+      if (scrollLogo) {
+        timeline.to(
+          scrollLogo,
+          // 不補 transform：垂直置中用的 translateY(-50%) 寫在 CSS。
+          { autoAlpha: 1, duration: TRANSITION_DURATION / 2 },
+          TRANSITION_DURATION / 2
+        );
+      }
       // 間距以版面補間（只有 header 內部重排），只放有變的變數；2XL 收合前後相同，就不補間。
       const spacingChanged = SPACING.filter((name) => spacingFrom[name] !== spacingTo[name]);
       if (spacingChanged.length) {
