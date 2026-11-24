@@ -20,11 +20,12 @@
       <!-- Banner（Figma 11/20 Mockup comment #41）：3 張輪播、每 2 秒切換，每張連到對應錶款（#38～#40，demo 站）。
            比例依各斷點 Figma（Index / SM 393×350、LG 1024×576、XL 1280×720、2XL 1536×800）：
            平常是 16:9，和 Banner 原圖同比例，圖片不會被裁切；2XL（1536px）以上改 1536:800、不設高度上限，
-           寬螢幕等比放大（原本固定 800px 高，螢幕越寬圖上下被裁得越多）。窄螢幕 16:9 會矮於 350px 時
-           由 min-height 撐到 350px，底圖依 Figma SM 放大 1.1 倍並貼齊底緣，16:9 夠高（622px 寬）以上不放大。
+           寬螢幕等比放大（原本固定 800px 高，螢幕越寬圖上下被裁得越多）。
+           手機也維持 16:9（393 寬約 221px 高）：Figma SM 是 350px 高，但新 Banner 圖本身壓字，撐到 350px
+           會把圖左右裁掉約四成、字被切到，所以不設最小高度、不放大。
            用 aspect-ratio 而不是 vw，捲軸寬度不會讓比例跑掉。 -->
       <section
-        class="home-hero-swiper swiper aspect-video min-h-[350px] w-full rounded-[4px] bg-black text-white 2xl:aspect-[1536/800]"
+        class="home-hero-swiper swiper aspect-video w-full rounded-[4px] bg-black text-white 2xl:aspect-[1536/800]"
       >
         <div class="swiper-wrapper">
           <a
@@ -34,7 +35,7 @@
             rel="noopener"
           >
             <img
-              class="absolute inset-0 size-full origin-bottom scale-110 object-cover min-[622px]:scale-100"
+              class="absolute inset-0 size-full object-cover"
               src="../assets/images/home/hero-5738g.jpg"
               alt=""
             />
@@ -68,7 +69,7 @@
             rel="noopener"
           >
             <img
-              class="absolute inset-0 size-full origin-bottom scale-110 object-cover min-[622px]:scale-100"
+              class="absolute inset-0 size-full object-cover"
               src="../assets/images/home/hero-7043g.jpg"
               alt=""
             />
@@ -102,7 +103,7 @@
             rel="noopener"
           >
             <img
-              class="absolute inset-0 size-full origin-bottom scale-110 object-cover min-[622px]:scale-100"
+              class="absolute inset-0 size-full object-cover"
               src="../assets/images/home/hero-7340-1r.jpg"
               alt=""
             />
