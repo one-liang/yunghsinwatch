@@ -740,6 +740,9 @@
   .text-center {
     text-align: center;
   }
+  .text-left {
+    text-align: left;
+  }
   .type-body-base {
     font-family: var(--font-body);
     font-size: 1rem;
@@ -2156,7 +2159,7 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
 .site-header__accordion.is-open .site-header__accordion-panel {
   grid-template-rows: 1fr;
 }
-.site-header__accordion.is-open > div {
+.site-header__accordion.is-open > [data-accordion-toggle] {
   color: var(--color-brown-dark);
 }
 .site-header__accordion.is-open .site-header__caret {

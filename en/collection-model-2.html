@@ -189,25 +189,23 @@
               </a>
             </li>
             <li class="site-header__accordion" data-accordion>
-              <div
-                class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] en:type-label-nav-lg"
+              <button
+                class="flex h-[76px] w-full cursor-pointer items-center py-4 pr-5 pl-8 text-left type-body-xl tracking-[1.5px] transition-colors hover:text-brown-dark en:type-label-nav-lg"
+                type="button"
+                aria-expanded="false"
+                aria-controls="site-header-drawer-submenu"
+                data-accordion-toggle
               >
-                <a class="flex-1 transition-colors hover:text-brown-dark" href="#">
-                  <span>BOUTIQUE</span>
-                </a>
-                <button
-                  class="flex cursor-pointer items-center p-2.5 transition-colors hover:text-brown-dark"
-                  type="button"
-                  data-accordion-toggle
-                >
+                <span class="flex-1">BOUTIQUE</span>
+                <span class="flex items-center p-2.5">
                   <svg class="site-header__caret size-6 shrink-0" viewBox="0 0 24 24" fill="none">
                     <path
                       d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
                       fill="currentColor"
                     />
                   </svg>
-                </button>
-              </div>
+                </span>
+              </button>
               <div class="site-header__accordion-panel" id="site-header-drawer-submenu">
                 <ul class="bg-brown-light/16">
                   <li>
