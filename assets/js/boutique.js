@@ -397,8 +397,8 @@
     const scrollLogo = header.querySelector(".site-header__scroll-logo");
     const nav = header.querySelector(".site-header__nav > ul");
     const dropdown = header.querySelector(".site-header__dropdown");
-    const parts = [nav, header.querySelector(".site-header__actions")].filter(Boolean);
-    const targets = [...parts, background, logo, scrollLogo].filter(Boolean);
+    const parts = [scrollLogo, nav, header.querySelector(".site-header__actions")].filter(Boolean);
+    const targets = [...parts, background, logo].filter(Boolean);
     let scrolled = null;
     let ticking = false;
     let timeline = null;
@@ -477,7 +477,6 @@
       if (scrollLogo) {
         timeline.to(
           scrollLogo,
-          // 不補 transform：垂直置中用的 translateY(-50%) 寫在 CSS。
           { autoAlpha: 1, duration: TRANSITION_DURATION / 2 },
           TRANSITION_DURATION / 2
         );
