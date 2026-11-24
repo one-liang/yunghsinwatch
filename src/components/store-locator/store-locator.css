@@ -5,9 +5,10 @@
    只能引用 HTML 裡確實出現過的 token。這裡用的 --color-brown-warm 由本組件的
    切換鈕（text-brown-warm / border-brown-warm）帶出來，其餘同理。 */
 
+/* 面板捲到頂／底後交回整頁捲動（Lenis allowNestedScroll，見 src/js/global/motion.js），
+   所以不設 overscroll-behavior: contain，也不加 data-lenis-prevent。 */
 .store-locator__panel {
   overflow-y: auto;
-  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--color-brown-warm) transparent;
 }
