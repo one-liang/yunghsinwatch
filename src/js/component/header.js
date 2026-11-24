@@ -21,9 +21,10 @@
     const scrollLogo = header.querySelector(".site-header__scroll-logo");
     const nav = header.querySelector(".site-header__nav > ul");
     const dropdown = header.querySelector(".site-header__dropdown");
-    // 選單與右側按鈕從展開位置移到收合位置；Logo 不跟著移動，改成換一個 Logo（見 rebuild）。
-    const parts = [nav, header.querySelector(".site-header__actions")].filter(Boolean);
-    const targets = [...parts, background, logo, scrollLogo].filter(Boolean);
+    // 選單、右側按鈕與下滑後的 Logo 從展開位置移到收合位置（Figma Header_Scroll）。
+    // 原本置中的 Logo 不跟著移動，改成換一個 Logo（見 rebuild）。
+    const parts = [scrollLogo, nav, header.querySelector(".site-header__actions")].filter(Boolean);
+    const targets = [...parts, background, logo].filter(Boolean);
     let scrolled = null;
     let ticking = false;
     let timeline = null;
@@ -104,7 +105,7 @@
         );
       });
       // 換 Logo（參考 patekboutiquesanfrancisco.com）：前半段原本的 Logo 往上移出 header 並淡出，
-      // 後半段下滑後的 Logo 在「時計系列」左邊淡入。往上滑時 timeline 倒回，順序也跟著相反。
+      // 後半段下滑後的 Logo 在 Header_Scroll 的 Logo 位置淡入。往上滑時 timeline 倒回，順序也跟著相反。
       if (logo && logoRect) {
         timeline.to(
           logo,
@@ -120,7 +121,6 @@
       if (scrollLogo) {
         timeline.to(
           scrollLogo,
-          // 不補 transform：垂直置中用的 translateY(-50%) 寫在 CSS。
           { autoAlpha: 1, duration: TRANSITION_DURATION / 2 },
           TRANSITION_DURATION / 2
         );

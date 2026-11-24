@@ -1,6 +1,7 @@
 /* ---------- 桌機（lg 以上） ---------- */
 
-.site-header__nav {
+.site-header__nav,
+.site-header__scroll-logo {
   display: none;
 }
 
@@ -66,19 +67,19 @@
   }
 
   .site-header__nav > ul {
-    position: relative;
     width: max-content;
     margin-inline: auto;
   }
 
-  /* 下滑後的 Logo：貼在「時計系列」左邊 16px，平常透明且不可點，由 header.js 淡入。 */
+  /* 下滑後的 Logo：展開時脫離排列、透明且不可點，先放在收合後的位置（左內距 48px、
+     88px 高的列裡垂直置中），淡入時不會滑動；實際位置仍由 header.js 量收合布局後補正。 */
   .site-header__scroll-logo {
     position: absolute;
-    top: 50%;
-    right: calc(100% + 1rem);
+    top: 1rem;
+    left: 3rem;
+    display: block;
     visibility: hidden;
     opacity: 0;
-    transform: translateY(-50%);
   }
 
   .site-header__menu-link,
@@ -106,28 +107,36 @@
     height: 88px;
   }
 
-  /* 收合時原本的 Logo 不在畫面上（動畫中由 header.js 往上淡出），選單在 88px 內垂直置中、
-     水平維持置中，下滑後的 Logo 跟著選單出現在「時計系列」左邊。 */
+  /* 收合布局依 Figma Header_Scroll：Logo（106×56）在最左、選單在中間、語系與按鈕在最右。
+     原本置中的 Logo 不參與收合布局（動畫中由 header.js 往上淡出），由下滑後的 Logo 佔它的位置。 */
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__brand {
     display: none;
   }
 
-  /* compact 僅用於一次性端點量測與無套件 fallback，不在動畫中切換布局。 */
-  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__nav {
-    top: 0;
-    display: flex;
-    align-items: center;
-    height: 88px;
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
+    .site-header__scroll-logo {
+    position: static;
   }
 
   .site-header.is-scrolled:not(.has-header-motion) .site-header__scroll-logo {
     visibility: visible;
     opacity: 1;
   }
+
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
+    .site-header__actions {
+    margin-inline-start: 0;
+  }
+
+  /* compact 僅用於一次性端點量測與無套件 fallback，不在動畫中切換布局。 */
+  .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__nav {
+    position: static;
+    inset: auto;
+  }
 }
 
 /* 收合間距：is-measuring-spacing 是 header.js 量測「展開布局＋收合間距」用的。
-   LG 依 Figma Header_Scroll / LG：連結 16px、按鈕 8px、語系與按鈕間距 16px。 */
+   LG 依 Figma Header_Scroll / LG：連結 16px、按鈕 8px、語系與按鈕間距 16px，選單接在 Logo 右側 32px 處靠左排。 */
 @media (min-width: 64rem) and (max-width: 79.9375rem) {
   .site-header:is(
     .is-measuring-spacing,
@@ -138,20 +147,16 @@
     --site-header-cta-px: 0.5rem;
     --site-header-actions-gap: 1rem;
   }
-}
 
-/* 2XL 以下寬度不夠讓收合選單置中（英文選單會壓到右側按鈕），所以選單靠左，左邊留出下滑後 Logo 的
-   位置（106px＋間距 16px），Logo 仍然貼在「時計系列」左邊。2XL 維持置中。 */
-@media (min-width: 64rem) and (max-width: 95.9375rem) {
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion)) .site-header__nav {
-    position: static;
     flex: 1;
+    margin-inline-start: 2rem;
   }
 
   .site-header:is(.is-measuring-compact, .is-scrolled:not(.has-header-motion))
     .site-header__nav
     > ul {
-    margin-inline: calc(106px + 1rem) 0;
+    margin-inline: 0;
   }
 }
 

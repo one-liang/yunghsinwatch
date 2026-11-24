@@ -846,14 +846,17 @@ Figma 未定義底線粗細與間距，沿用瀏覽器預設。
 （`.scrollLogo`）以 opacity 淡入。這裡改成：
 
 - 原本置中的 Logo 不再移動縮放到左上角；timeline 前半段（0.5 秒）往上移出 header 並淡出（`autoAlpha`），
-  後半段（0.5 秒）在「時計系列」左邊 16px 淡入另一個 Logo（106×56，同 Figma Header_Scroll 尺寸）。
+  後半段（0.5 秒）在 Figma Header_Scroll 的 Logo 位置淡入另一個 Logo。
   往上滑時 timeline 倒回，順序相反：小 Logo 先淡出，大 Logo 再從上方回來。
-- 小 Logo 是選單 `ul` 裡的第一個 `li.site-header__scroll-logo`，絕對定位在 `ul` 左外側，展開時不影響選單置中；
-  隱藏時 `visibility: hidden`，不能點也不在無障礙樹裡。
-- 選單、右側按鈕與背景沿用原本的補間收到 88px 一列。2XL 收合時選單維持置中；2XL 以下寬度不夠
-  （英文選單會壓到右側按鈕，1280 寬差 5px），所以選單靠左，左邊留出小 Logo 的位置。
+- 小 Logo 的位置依 Figma `Header_Scroll / 2XL`（`407:222`）：106×56，在 1280 容器最左邊、88px 列裡垂直置中；
+  選單在 Logo 與右側按鈕之間，LG 選單接在 Logo 右側 32px 靠左排（和改動前的收合布局相同）。
+  第一版曾把 Logo 貼在「時計系列」左邊、選單維持置中，和設計稿不符，已改回設計稿位置。
+- 小 Logo 是 bar 裡獨立的 `a.site-header__scroll-logo`：展開時絕對定位在收合後的位置、`visibility: hidden`，
+  不能點也不在無障礙樹裡；收合布局量測時才佔排列位置，header.js 依量測補正位移。行動版不顯示。
+- 2XL 量測（含捲軸）：Logo x 120／y 16、選單 433～909、按鈕 1115～1400，與 Figma 的 128、443～915、
+  1124～1408 只差捲軸寬度的一半。
 - 沒有動畫時（減少動態、GSAP 未載入）捲動後直接隱藏大 Logo、顯示小 Logo。
-- `tests/header.test.mjs` 改為檢查換 Logo 的補間（大 Logo 不再有 x／scale）與 2XL 以下的靠左規則。
+- `tests/header.test.mjs` 改為檢查換 Logo 的補間（大 Logo 不再有 x／scale，小 Logo 補位移與淡入）。
 
 ---
 

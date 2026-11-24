@@ -216,11 +216,7 @@ test("header expands and collapses with identical timing and easing without layo
   assert.equal(env.timelines.length, 1);
   assert.equal(timeline.options.defaults.duration, 1);
   assert.equal(timeline.options.defaults.ease, "none", "easing belongs to the directional tween");
-  const moves = timeline.tweens.filter(
-    ({ target }) =>
-      target !== env.parts[".site-header__logo"] &&
-      target !== env.parts[".site-header__scroll-logo"]
-  );
+  const moves = timeline.tweens.filter(({ values }) => !("autoAlpha" in values));
   assert.ok(moves.every(({ position }) => position === 0));
   assert.ok(moves.every(({ values }) => values.force3D === true));
 });
@@ -238,11 +234,17 @@ test("logo swaps instead of moving: the full logo leaves upward, the scroll logo
   assert.equal(logo.values.duration, 0.5);
   assert.equal(logo.values.y, 100 - 174, "moves its bottom edge up to the header top");
   assert.equal("x" in logo.values || "scaleX" in logo.values, false);
-  const scrollLogo = tweens.find(({ target }) => target === env.parts[".site-header__scroll-logo"]);
-  assert.equal(scrollLogo.position, 0.5, "fades in after the full logo is gone");
-  assert.equal(scrollLogo.values.autoAlpha, 1);
-  assert.equal(scrollLogo.values.duration, 0.5);
-  assert.equal("y" in scrollLogo.values, false, "CSS owns its vertical centering transform");
+  const scrollTweens = tweens.filter(
+    ({ target }) => target === env.parts[".site-header__scroll-logo"]
+  );
+  const fade = scrollTweens.find(({ values }) => "autoAlpha" in values);
+  assert.equal(fade.position, 0.5, "fades in after the full logo is gone");
+  assert.equal(fade.values.autoAlpha, 1);
+  assert.equal(fade.values.duration, 0.5);
+  // 和選單、按鈕一樣量收合布局，移到 Figma Header_Scroll 的 Logo 位置（不縮放）。
+  const move = scrollTweens.find(({ values }) => "x" in values);
+  assert.equal(move.position, 0);
+  assert.equal("scaleX" in move.values, false);
 });
 
 test("mid-page initialization and restored position synchronize without playing", () => {
@@ -425,9 +427,7 @@ test("CSS sets desktop spacing by variables with Figma's collapsed LG and XL val
     /--site-header-link-px: 1rem;\s*--site-header-cta-px: 0\.5rem;\s*--site-header-actions-gap: 1rem;/
   );
   // 換 Logo 後 2XL 以下收合選單靠左，左邊留出下滑後 Logo（106px）與 16px 間距。
-  const belowWide = block(String.raw`\(min-width: 64rem\) and \(max-width: 95\.9375rem\)`);
-  assert.match(belowWide, /flex: 1;/);
-  assert.match(belowWide, /margin-inline: calc\(106px \+ 1rem\) 0;/);
+  assert.match(lg, /flex: 1;\s*margin-inline-start: 2rem;/);
   const xl = block(String.raw`\(min-width: 80rem\) and \(max-width: 95\.9375rem\)`);
   assert.match(xl, /--site-header-actions-gap: 1\.5rem;/);
 });

@@ -11,19 +11,18 @@
       />
     </a>
 
+    <!-- 下滑後的 Logo（參考 patekboutiquesanfrancisco.com 的換 Logo 方式）：原本置中的 Logo 往上淡出，
+         這個 Logo 在 Figma Header_Scroll 的位置（選單左側、容器最左邊，106×56）淡入。見 header.js。 -->
+    <a class="site-header__scroll-logo shrink-0" href="./index.html" tabindex="-1">
+      <img
+        class="block h-14 w-[106px] max-w-none"
+        src="@assets/images/logo-patek-philippe-dark.svg"
+        alt="Patek Philippe"
+      />
+    </a>
+
     <nav class="site-header__nav">
       <ul class="flex items-center justify-center">
-        <!-- 下滑後的 Logo（參考 patekboutiquesanfrancisco.com）：原本置中的 Logo 往上淡出，
-             這個 Logo 在「時計系列」左邊淡入；絕對定位，不影響選單置中。見 header.js。 -->
-        <li class="site-header__scroll-logo">
-          <a class="block" href="./index.html" tabindex="-1">
-            <img
-              class="h-14 w-[106px] max-w-none"
-              src="@assets/images/logo-patek-philippe-dark.svg"
-              alt="Patek Philippe"
-            />
-          </a>
-        </li>
         <li>
           <a
             class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:text-brown-dark en:type-label-nav-md"
