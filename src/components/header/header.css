@@ -316,7 +316,7 @@
 }
 
 /* Figma 行動版選單展開時，「專賣店」整列（文字與箭頭）改為 Brown/Dark。 */
-.site-header__accordion.is-open > div {
+.site-header__accordion.is-open > [data-accordion-toggle] {
   color: var(--color-brown-dark);
 }
 
