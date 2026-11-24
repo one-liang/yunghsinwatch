@@ -2164,7 +2164,6 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
 }
 .store-locator__panel {
   overflow-y: auto;
-  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--color-brown-warm) transparent;
 }
