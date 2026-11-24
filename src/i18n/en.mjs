@@ -111,7 +111,7 @@ export default {
   "series.headingSuffix": " COLLECTION",
   "series.description":
     "Delve into the fascinating universe of the Golden Ellipse, the second oldest watch in the Patek Philippe collection after the Calatrava.",
-  "series.watchName": "GOLDEN ELLIPSE WATCH",
+  "series.watchName": "GOLDEN ELLIPSE",
   "series.discoverTitle": "Explore More",
   "series.discover.prev": "Previous collection",
   "series.discover.next": "Next collection",
@@ -119,10 +119,9 @@ export default {
   "model.meta.title": "Golden Ellipse 5204G-010 | Yung Hsin Watch",
   "model.meta.description":
     "Discover the Patek Philippe Golden Ellipse 5204G-010, pairing an olive green sunburst dial with a white gold case in perfectly harmonious proportions.",
-  "model.nameSuffix": " WATCH",
   "model.description":
     "CHR 29-535 PS Q manually wound movement with split-seconds chronograph and perpetual calendar. Two column wheels and a horizontal clutch. The 30-minute instantaneous counter sits at 3 o'clock and the small seconds at 9 o'clock. Seven patented innovations, six of them dedicated to the chronograph and one to the split-seconds mechanism. Navy blue sunburst dial with twin apertures at 12 o'clock for the day and month, a moon-phase display at 6 o'clock and the date shown by a hand. Tachymeter scale printed in white. 40 mm white gold case with a fully polished finish. Navy blue composite strap with a fabric pattern and contrasting red stitching, fitted with a patented white gold fold-over clasp. An additional dark blue alligator strap is supplied, continuing Patek Philippe's long tradition of astronomical timepieces.",
-  "model.recommendWatchName": "GOLDEN ELLIPSE WATCH",
+  "model.recommendWatchName": "GOLDEN ELLIPSE",
   "model.recommendTitle": "YOU MAY ALSO LIKE",
   "model.gallery.prev": "Previous image",
   "model.gallery.next": "Next image",
@@ -174,7 +173,7 @@ export default {
   "team.hero.title": "Our Team",
   "team.intro.logoAlt": "Yung Hsin Watch",
   "team.intro.body":
-    "Since 1986, Yung Hsin Watch has established a deep-rooted presence in Taipei’s Tianmu district. Originally founded under the name Rong An Watch, the company was later renamed Yung Hsin Watch. It was here, in this culturally rich and vibrant neighborhood, that Yung Hsin began its journey of partnership with Patek Philippe. In 2013, Yung Hsin expanded its presence with the opening of Taiwan’s first Patek Philippe Boutique. Featuring a new boutique concept, the space conveyed Patek Philippe’s exceptional craftsmanship and enduring spirit of heritage, while also embodying the Yung Hsin family’s own legacy—a milestone of profound significance.",
+    '<strong class="font-bold">A Castle of Time, Where Heritage and Legacy Endure</strong>\nSince 1995, Yung-Hsin Watch has enjoyed a longstanding partnership with Patek Philippe, built on shared values and a mutual commitment to excellence. In 2004, Yung-Hsin Watch relocated to No. 82, Zhongcheng Road, Tianmu, Taipei, where it established its very own watchmaking castle, reflecting its dedication to cultivating Taiwan’s high-end watch market.\nIn 2013, Taiwan’s first Patek Philippe boutique featuring the brand’s new retail concept was inaugurated at this prestigious location. Through its refreshed brand environment, the boutique showcases Patek Philippe’s exceptional watchmaking craftsmanship and enduring spirit of heritage passed down through generations. More than a distinctive symbol of luxury in Tianmu, it also marks an important chapter in the development of Taiwan’s fine watchmaking culture.',
 
   // 職稱：後六位成員都是銷售顧問，共用同一個 key。
   "team.role.gm": "General Manager",
