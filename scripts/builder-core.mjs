@@ -14,6 +14,8 @@ const HTML_COMPONENT_TAG_RE = /<c-([a-z][a-z0-9]*(?:-[a-z0-9]+)*)\s*\/>/g;
 const HTML_ANY_COMPONENT_TAG_RE = /<c-([a-z][a-z0-9]*(?:-[a-z0-9]+)*)([^>]*)>/g;
 const CSS_URL_RE = /url\(\s*(["']?)([^"')]+)\1\s*\)/g;
 const HTML_ASSET_ATTR_RE = /\b(src|href|poster)=("([^"]*)"|'([^']*)')/g;
+// srcset（<img>、<source>）是逗號分隔的「網址 描述子」清單，每個網址分開改寫。
+const HTML_SRCSET_ATTR_RE = /\b(srcset)=("([^"]*)"|'([^']*)')/g;
 
 export function normalizePath(filePath) {
   return filePath.split(path.sep).join("/");
@@ -376,26 +378,43 @@ export function rewriteHtmlAssetUrls({
   mode,
   outDir = path.join(rootDir, "dist"),
 }) {
-  return html.replace(
-    HTML_ASSET_ATTR_RE,
-    (match, attrName, quotedValue, doubleValue, singleValue) => {
+  // 單一網址改寫；不在 assetsDir 內（外部網址、錨點等）回傳 null，呼叫端保留原值。
+  const rewriteUrl = (value) => {
+    const resolved = resolveLocalAssetUrl(value, sourceHtmlPath, rootDir, assetsDir);
+    if (!resolved) return null;
+
+    const assetRelative = normalizePath(path.relative(assetsDir, resolved.filePath));
+
+    if (mode === "dev") {
+      return `/assets/${assetRelative}${resolved.suffix}`;
+    }
+
+    const outputAssetPath = path.join(outDir, "assets", assetRelative);
+    return `${toHtmlRelativeUrl(path.dirname(targetHtmlPath), outputAssetPath)}${resolved.suffix}`;
+  };
+
+  return html
+    .replace(HTML_ASSET_ATTR_RE, (match, attrName, quotedValue, doubleValue, singleValue) => {
       const value = doubleValue ?? singleValue ?? "";
       const quote = quotedValue.startsWith("'") ? "'" : '"';
-      const resolved = resolveLocalAssetUrl(value, sourceHtmlPath, rootDir, assetsDir);
-      if (!resolved) return match;
+      const rewritten = rewriteUrl(value);
+      if (rewritten === null) return match;
 
-      const assetRelative = normalizePath(path.relative(assetsDir, resolved.filePath));
+      return `${attrName}=${quote}${rewritten}${quote}`;
+    })
+    .replace(HTML_SRCSET_ATTR_RE, (match, attrName, quotedValue, doubleValue, singleValue) => {
+      const value = doubleValue ?? singleValue ?? "";
+      const quote = quotedValue.startsWith("'") ? "'" : '"';
+      const candidates = value.split(",").map((candidate) => {
+        const trimmed = candidate.trim();
+        if (!trimmed) return trimmed;
+        const [url, ...descriptors] = trimmed.split(/\s+/);
+        const rewritten = rewriteUrl(url);
+        return [rewritten ?? url, ...descriptors].join(" ");
+      });
 
-      if (mode === "dev") {
-        return `${attrName}=${quote}/assets/${assetRelative}${resolved.suffix}${quote}`;
-      }
-
-      const outputAssetPath = path.join(outDir, "assets", assetRelative);
-      const buildUrl = `${toHtmlRelativeUrl(path.dirname(targetHtmlPath), outputAssetPath)}${resolved.suffix}`;
-
-      return `${attrName}=${quote}${buildUrl}${quote}`;
-    }
-  );
+      return `${attrName}=${quote}${candidates.filter(Boolean).join(", ")}${quote}`;
+    });
 }
 
 export function injectPageAssets(html, { cssHref, jsSrc }) {

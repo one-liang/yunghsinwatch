@@ -20,8 +20,9 @@
       <!-- Banner（Figma 11/20 Mockup comment #41）：3 張輪播、每 2 秒切換，每張連到對應錶款（#38～#40，demo 站）。
            尺寸依 Figma 11/27 comment #59：客戶會提供桌機 1920×900（32:15）、手機 900×800（9:8）的圖，
            高度不固定、隨螢幕寬度等比縮放（Ping 回覆「高度全給它 auto」）。MD（768px）以上 32:15，以下 9:8。
-           新圖還沒到，暫時沿用 16:9 的舊圖（object-cover，桌機上下、手機左右會被裁）；
-           新圖到了再分別放桌機與手機版的圖。用 aspect-ratio 而不是 vw，捲軸寬度不會讓比例跑掉。 -->
+           圖檔來自 Google 雲端「1-首頁」（11/27 上傳的「改-0X」與「手機-0X」）：
+           MD 以上用 hero-*.jpg（1920×900），以下用 hero-*-mobile.jpg（1800×1600，原圖 5062×4500 縮小），
+           以 <picture> 依斷點切換，手機只會下載手機版的圖。用 aspect-ratio 而不是 vw，捲軸寬度不會讓比例跑掉。 -->
       <section
         class="home-hero-swiper swiper aspect-[9/8] w-full rounded-[4px] bg-black text-white md:aspect-[32/15]"
       >
@@ -32,11 +33,14 @@
             target="_blank"
             rel="noopener"
           >
-            <img
-              class="absolute inset-0 size-full object-cover"
-              src="../assets/images/home/hero-5738g.jpg"
-              alt=""
-            />
+            <picture>
+              <source media="(min-width: 48rem)" srcset="../assets/images/home/hero-5738g.jpg" />
+              <img
+                class="absolute inset-0 size-full object-cover"
+                src="../assets/images/home/hero-5738g-mobile.jpg"
+                alt=""
+              />
+            </picture>
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
               <!-- 文字先隱藏（Mockup comment #41：新 Banner 圖本身已壓字），之後要恢復拿掉 hidden 即可。 -->
@@ -66,11 +70,14 @@
             target="_blank"
             rel="noopener"
           >
-            <img
-              class="absolute inset-0 size-full object-cover"
-              src="../assets/images/home/hero-7043g.jpg"
-              alt=""
-            />
+            <picture>
+              <source media="(min-width: 48rem)" srcset="../assets/images/home/hero-7043g.jpg" />
+              <img
+                class="absolute inset-0 size-full object-cover"
+                src="../assets/images/home/hero-7043g-mobile.jpg"
+                alt=""
+              />
+            </picture>
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
               <!-- 文字先隱藏（Mockup comment #41：新 Banner 圖本身已壓字），之後要恢復拿掉 hidden 即可。 -->
@@ -100,11 +107,14 @@
             target="_blank"
             rel="noopener"
           >
-            <img
-              class="absolute inset-0 size-full object-cover"
-              src="../assets/images/home/hero-7340-1r.jpg"
-              alt=""
-            />
+            <picture>
+              <source media="(min-width: 48rem)" srcset="../assets/images/home/hero-7340-1r.jpg" />
+              <img
+                class="absolute inset-0 size-full object-cover"
+                src="../assets/images/home/hero-7340-1r-mobile.jpg"
+                alt=""
+              />
+            </picture>
 
             <div class="relative z-10 mx-auto h-full w-full max-w-[1536px]">
               <!-- 文字先隱藏（Mockup comment #41：新 Banner 圖本身已壓字），之後要恢復拿掉 hidden 即可。 -->
