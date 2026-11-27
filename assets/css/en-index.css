@@ -345,6 +345,9 @@
   .hidden {
     display: none;
   }
+  .aspect-\[9\/8\] {
+    aspect-ratio: 9/8;
+  }
   .aspect-video {
     aspect-ratio: var(--aspect-video);
   }
@@ -1139,6 +1142,11 @@
       white-space: nowrap;
     }
   }
+  .md\:aspect-\[32\/15\] {
+    @media (width >= 48rem) {
+      aspect-ratio: 32/15;
+    }
+  }
   .lg\:-top-10 {
     @media (width >= 64rem) {
       top: calc(var(--spacing) * -10);
@@ -1563,11 +1571,6 @@
   .\32xl\:left-32 {
     @media (width >= 96rem) {
       left: calc(var(--spacing) * 32);
-    }
-  }
-  .\32xl\:aspect-\[1536\/800\] {
-    @media (width >= 96rem) {
-      aspect-ratio: 1536/800;
     }
   }
   .\32xl\:flex-row {
