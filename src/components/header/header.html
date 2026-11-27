@@ -1,30 +1,31 @@
-<header class="site-header sticky top-0 z-40 text-white" data-site-header>
-  <div class="site-header__background absolute inset-0 bg-black" aria-hidden="true"></div>
+<header class="site-header sticky top-0 z-40 text-brown-warm" data-site-header>
+  <div class="site-header__background absolute inset-0 bg-background" aria-hidden="true"></div>
   <div
     class="site-header__bar mx-auto flex h-[68px] w-full max-w-[86rem] items-center justify-between px-5 lg:h-[112px] lg:px-12"
   >
-    <a
-      class="site-header__brand flex min-w-0 items-center gap-4 lg:shrink-0 lg:gap-10"
-      href="./index.html"
-    >
+    <a class="site-header__brand flex shrink-0 items-center" href="./index.html">
       <img
-        class="site-header__logo h-11 w-[83px] shrink-0 lg:h-[74px] lg:w-[140px]"
-        src="@assets/images/logo-patek-philippe-light.svg"
+        class="site-header__logo h-11 w-[83px] shrink-0 lg:h-[76px] lg:w-[144px]"
+        src="@assets/images/logo-patek-philippe-dark.svg"
         alt="Patek Philippe"
       />
-      <span
-        class="site-header__brand-text flex min-w-0 flex-col justify-center text-center type-heading-brand-sm tracking-[1px] lg:type-heading-brand-lg lg:whitespace-nowrap xl:type-heading-md en:type-display-xs lg:en:type-display-sm xl:en:type-display-sm"
-      >
-        <span class="site-header__brand-line" data-i18n="brand.line1">永新鐘錶百達翡麗專賣店</span>
-        <span class="site-header__brand-line" data-i18n="brand.line2"></span>
-      </span>
+    </a>
+
+    <!-- 下滑後的 Logo（參考 patekboutiquesanfrancisco.com 的換 Logo 方式）：原本置中的 Logo 往上淡出，
+         這個 Logo 在 Figma Header_Scroll 的位置（選單左側、容器最左邊，106×56）淡入。見 header.js。 -->
+    <a class="site-header__scroll-logo shrink-0" href="./index.html" tabindex="-1">
+      <img
+        class="block h-14 w-[106px] max-w-none"
+        src="@assets/images/logo-patek-philippe-dark.svg"
+        alt="Patek Philippe"
+      />
     </a>
 
     <nav class="site-header__nav">
       <ul class="flex items-center justify-center">
         <li>
           <a
-            class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:text-brand-gold en:type-label-nav-md"
+            class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:text-brown-dark en:type-label-nav-md"
             href="./collection.html"
           >
             <span data-i18n="nav.collection">時計系列</span>
@@ -32,7 +33,7 @@
         </li>
         <li class="site-header__dropdown relative">
           <button
-            class="site-header__menu-link flex cursor-pointer items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:text-brand-gold en:type-label-nav-md"
+            class="site-header__menu-link flex cursor-pointer items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:text-brown-dark en:type-label-nav-md"
             type="button"
             data-dropdown-toggle
           >
@@ -45,12 +46,12 @@
             </svg>
           </button>
           <ul
-            class="site-header__submenu absolute left-1/2 z-10 min-w-full bg-[#303030]"
+            class="site-header__submenu absolute left-1/2 z-10 min-w-full border-t border-brown-warm bg-background"
             id="site-header-submenu"
           >
             <li>
               <a
-                class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:bg-black/40 hover:text-brand-gold en:type-label-nav-md"
+                class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:bg-brown-light/16 hover:text-brown-dark en:type-label-nav-md"
                 href="./boutique.html"
                 data-i18n="nav.boutique.store"
               >
@@ -59,7 +60,7 @@
             </li>
             <li>
               <a
-                class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:bg-black/40 hover:text-brand-gold en:type-label-nav-md"
+                class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:bg-brown-light/16 hover:text-brown-dark en:type-label-nav-md"
                 href="./team.html"
                 data-i18n="nav.boutique.team"
               >
@@ -68,7 +69,7 @@
             </li>
             <li>
               <a
-                class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:bg-black/40 hover:text-brand-gold en:type-label-nav-md"
+                class="block px-10 py-4 text-center type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:bg-brown-light/16 hover:text-brown-dark en:type-label-nav-md"
                 href="./about.html"
                 data-i18n="nav.boutique.about"
               >
@@ -79,7 +80,7 @@
         </li>
         <li>
           <a
-            class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:text-brand-gold en:type-label-nav-md"
+            class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:text-brown-dark en:type-label-nav-md"
             href="./service.html"
           >
             <span data-i18n="nav.service">維修保養</span>
@@ -87,7 +88,7 @@
         </li>
         <li>
           <a
-            class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:text-brand-gold en:type-label-nav-md"
+            class="site-header__menu-link flex items-center gap-1.5 px-6 py-3 type-body-base tracking-[1.5px] whitespace-nowrap transition-colors hover:text-brown-dark en:type-label-nav-md"
             href="./contact.html"
           >
             <span data-i18n="nav.contact">聯絡我們</span>
@@ -99,21 +100,21 @@
     <div class="site-header__actions hidden shrink-0 items-center gap-10 lg:flex">
       <div class="flex items-center">
         <a
-          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-body-base tracking-[1px] transition-colors hover:text-brand-gold"
+          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-body-base tracking-[1px] transition-colors hover:text-brown-dark"
           data-lang-switch="zh"
         >
           <span data-i18n="lang.zh">中文</span>
         </a>
         <span class="h-5 w-px shrink-0 bg-[#d4d4d4]"></span>
         <a
-          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors hover:text-brand-gold"
+          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors hover:text-brown-dark"
           data-lang-switch="en"
         >
           <span data-i18n="lang.en">EN</span>
         </a>
       </div>
       <button
-        class="site-header__cta flex cursor-pointer items-center justify-center border border-brand-gold bg-brand-gold px-4 py-[11px] text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+        class="site-header__cta flex cursor-pointer items-center justify-center border border-brown-warm bg-brown-warm px-4 py-[11px] text-center type-body-sm whitespace-nowrap text-white en:type-label-nav-sm"
         type="button"
         data-booking-open
         data-i18n="cta.booking"
@@ -123,7 +124,7 @@
     </div>
 
     <button
-      class="flex cursor-pointer items-center p-2.5 transition-colors hover:text-brand-gold lg:hidden"
+      class="flex cursor-pointer items-center p-2.5 text-brown-dark lg:hidden"
       type="button"
       data-drawer-open
     >
@@ -145,14 +146,14 @@
   </div>
 
   <div
-    class="site-header__drawer fixed inset-0 z-50 flex flex-col bg-black text-white"
+    class="site-header__drawer fixed inset-0 z-50 flex flex-col bg-background text-brown-warm"
     id="site-header-drawer"
     data-header-drawer
     data-lenis-prevent
   >
     <div class="flex h-[68px] shrink-0 items-center justify-end px-5">
       <button
-        class="flex cursor-pointer items-center p-2.5 transition-colors hover:text-brand-gold"
+        class="flex cursor-pointer items-center p-2.5 text-brown-dark"
         type="button"
         data-drawer-close
       >
@@ -173,37 +174,36 @@
       <ul>
         <li>
           <a
-            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors hover:text-brand-gold en:type-label-nav-lg"
+            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors hover:text-brown-dark en:type-label-nav-lg"
             href="./collection.html"
           >
             <span data-i18n="nav.collection">時計系列</span>
           </a>
         </li>
         <li class="site-header__accordion" data-accordion>
-          <div
-            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] en:type-label-nav-lg"
+          <!-- 整列（文字與箭頭）都是展開子選單的按鈕，不是連結：按下去展開／收合，不關閉選單。 -->
+          <button
+            class="flex h-[76px] w-full cursor-pointer items-center py-4 pr-5 pl-8 text-left type-body-xl tracking-[1.5px] transition-colors hover:text-brown-dark en:type-label-nav-lg"
+            type="button"
+            aria-expanded="false"
+            aria-controls="site-header-drawer-submenu"
+            data-accordion-toggle
           >
-            <a class="flex-1 transition-colors hover:text-brand-gold" href="#">
-              <span data-i18n="nav.boutique">品牌專賣店</span>
-            </a>
-            <button
-              class="flex cursor-pointer items-center p-2.5 transition-colors hover:text-brand-gold"
-              type="button"
-              data-accordion-toggle
-            >
+            <span class="flex-1" data-i18n="nav.boutique">品牌專賣店</span>
+            <span class="flex items-center p-2.5">
               <svg class="site-header__caret size-6 shrink-0" viewBox="0 0 24 24" fill="none">
                 <path
                   d="M3.89154 9.6416C3.55569 9.97745 3.55569 10.5225 3.89154 10.8584L11.3915 18.3584C11.7274 18.6942 12.2725 18.6942 12.6083 18.3584L20.1083 10.8584C20.4442 10.5225 20.4442 9.97745 20.1083 9.6416C19.7725 9.30575 19.2274 9.30575 18.8915 9.6416L11.9999 16.5332L5.10833 9.6416C4.77248 9.30575 4.22739 9.30575 3.89154 9.6416Z"
                   fill="currentColor"
                 />
               </svg>
-            </button>
-          </div>
+            </span>
+          </button>
           <div class="site-header__accordion-panel" id="site-header-drawer-submenu">
-            <ul class="bg-[#333333]">
+            <ul class="bg-brown-light/16">
               <li>
                 <a
-                  class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors hover:text-brand-gold en:type-label-nav-lg"
+                  class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors hover:text-brown-dark en:type-label-nav-lg"
                   href="./boutique.html"
                 >
                   <span data-i18n="nav.boutique.store">精品店</span>
@@ -211,7 +211,7 @@
               </li>
               <li>
                 <a
-                  class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors hover:text-brand-gold en:type-label-nav-lg"
+                  class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors hover:text-brown-dark en:type-label-nav-lg"
                   href="./team.html"
                 >
                   <span data-i18n="nav.boutique.team">我們的團隊</span>
@@ -219,7 +219,7 @@
               </li>
               <li>
                 <a
-                  class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors hover:text-brand-gold en:type-label-nav-lg"
+                  class="flex h-[76px] items-center py-4 pr-5 pl-14 type-body-xl tracking-[1.5px] transition-colors hover:text-brown-dark en:type-label-nav-lg"
                   href="./about.html"
                 >
                   <span data-i18n="nav.boutique.about">關於永新</span>
@@ -230,7 +230,7 @@
         </li>
         <li>
           <a
-            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors hover:text-brand-gold en:type-label-nav-lg"
+            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors hover:text-brown-dark en:type-label-nav-lg"
             href="./service.html"
           >
             <span data-i18n="nav.service">維修保養</span>
@@ -238,7 +238,7 @@
         </li>
         <li>
           <a
-            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors hover:text-brand-gold en:type-label-nav-lg"
+            class="flex h-[76px] items-center py-4 pr-5 pl-8 type-body-xl tracking-[1.5px] transition-colors hover:text-brown-dark en:type-label-nav-lg"
             href="./contact.html"
           >
             <span data-i18n="nav.contact">聯絡我們</span>
@@ -250,21 +250,21 @@
     <div class="flex flex-1 items-end justify-between px-5 py-8">
       <div class="flex items-center gap-2">
         <a
-          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-body-base tracking-[1px] transition-colors hover:text-brand-gold"
+          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-body-base tracking-[1px] transition-colors hover:text-brown-dark"
           data-lang-switch="zh"
         >
           <span data-i18n="lang.zh">中文</span>
         </a>
         <span class="h-5 w-px shrink-0 bg-[#d4d4d4]"></span>
         <a
-          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors hover:text-brand-gold"
+          class="site-header__lang-link relative cursor-pointer px-6 py-3 type-label-lang-md tracking-[1.5px] transition-colors hover:text-brown-dark"
           data-lang-switch="en"
         >
           <span data-i18n="lang.en">EN</span>
         </a>
       </div>
       <button
-        class="site-header__cta flex w-40 cursor-pointer items-center justify-center border border-brand-gold bg-brand-gold px-2 py-3 text-center type-body-sm whitespace-nowrap text-black en:type-label-nav-sm"
+        class="site-header__cta flex w-40 cursor-pointer items-center justify-center border border-brand-gold bg-brown-warm px-2 py-3 text-center type-body-sm whitespace-nowrap text-white en:type-label-nav-sm"
         type="button"
         data-booking-open
         data-i18n="cta.booking"

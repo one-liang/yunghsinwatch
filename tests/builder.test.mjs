@@ -307,6 +307,51 @@ test("rewrites html asset urls for direct-open dist pages", async () => {
   }
 });
 
+test("rewrites each candidate url inside srcset", async () => {
+  const root = await makeFixture();
+
+  try {
+    const options = {
+      sourceHtmlPath: path.join(root, "src/pages/index.html"),
+      rootDir: root,
+      assetsDir: path.join(root, "src/assets"),
+      targetHtmlPath: path.join(root, "dist/en/index.html"),
+    };
+    const html = `<source media="(min-width: 48rem)" srcset="../assets/images/logo.svg?v=2 1x, @assets/images/logo.svg 2x">`;
+
+    assert.equal(
+      rewriteHtmlAssetUrls({ ...options, html, mode: "build" }),
+      `<source media="(min-width: 48rem)" srcset="../assets/images/logo.svg?v=2 1x, ../assets/images/logo.svg 2x">`
+    );
+    assert.equal(
+      rewriteHtmlAssetUrls({ ...options, html, mode: "dev" }),
+      `<source media="(min-width: 48rem)" srcset="/assets/images/logo.svg?v=2 1x, /assets/images/logo.svg 2x">`
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("leaves external and out-of-assets srcset candidates untouched", async () => {
+  const root = await makeFixture();
+
+  try {
+    const html = `<img srcset="https://example.com/a.jpg 1x, ../../../private.png 2x" src="x">`;
+    const rewritten = rewriteHtmlAssetUrls({
+      html,
+      sourceHtmlPath: path.join(root, "src/pages/index.html"),
+      rootDir: root,
+      assetsDir: path.join(root, "src/assets"),
+      targetHtmlPath: path.join(root, "dist/index.html"),
+      mode: "build",
+    });
+
+    assert.equal(rewritten, html);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("vite config uses localhost port 3000 and ignores generated folders", async () => {
   const viteConfig = await import(`../vite.config.js?t=${Date.now()}`);
   const config = viteConfig.default;

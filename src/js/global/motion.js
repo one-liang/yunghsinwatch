@@ -69,6 +69,9 @@
           wheelMultiplier: 1,
           syncTouch: false,
           anchors: true,
+          // 頁面內可捲動的區塊（例如精品店門市資訊面板）還能捲時先捲自己，捲到底再接著捲整頁；
+          // 需要完全鎖住捲動的彈窗、抽屜仍用 data-lenis-prevent。
+          allowNestedScroll: true,
           prevent: (node) => node.hasAttribute("data-lenis-prevent"),
         });
         lenis.on("scroll", ScrollTrigger.update);

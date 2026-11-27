@@ -74,7 +74,8 @@ html.lenis.lenis-smooth [data-lenis-prevent] iframe {
   src: url("../assets/fonts/noto-serif-tc-chinese-traditional-500-normal.woff2") format("woff2");
 }
 
-/* 600 只有首頁圖文卡片的標題用到（Figma Featured Card：Noto Serif TC SemiBold，修改清單 #15）。 */
+/* 600：首頁圖文卡片的標題（Figma Featured Card：Noto Serif TC SemiBold，修改清單 #15），
+   以及維修保養頁英文版的服務分類（Mockup comment #36）。 */
 @font-face {
   font-family: "Noto Serif TC";
   font-style: normal;

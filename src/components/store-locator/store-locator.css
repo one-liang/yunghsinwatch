@@ -5,9 +5,10 @@
    只能引用 HTML 裡確實出現過的 token。這裡用的 --color-brown-warm 由本組件的
    切換鈕（text-brown-warm / border-brown-warm）帶出來，其餘同理。 */
 
+/* 面板捲到頂／底後交回整頁捲動（Lenis allowNestedScroll，見 src/js/global/motion.js），
+   所以不設 overscroll-behavior: contain，也不加 data-lenis-prevent。 */
 .store-locator__panel {
   overflow-y: auto;
-  overscroll-behavior: contain;
   scrollbar-width: thin;
   scrollbar-color: var(--color-brown-warm) transparent;
 }
@@ -174,24 +175,8 @@
   margin-block-start: 3rem;
 }
 
-.store-locator__hours-toggle {
-  display: flex;
-  width: 100%;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.5rem;
-  color: var(--color-brown-warm);
-  text-align: start;
-  cursor: pointer;
-}
-
-.store-locator__hours-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
 .store-locator__hours-title {
+  color: var(--color-brown-warm);
   font-family: var(--font-label);
   font-size: 1rem;
   font-weight: 500;
@@ -199,25 +184,21 @@
   letter-spacing: 1px;
 }
 
-.store-locator__hours-status {
+/* 永新的營業時間（Mockup comment #31 回覆的文字，字典以 \n 斷行；英文第二行設計稿為粗體）。 */
+.store-locator__hours-note {
+  margin-block-start: 0.75rem;
+  color: var(--color-brown-warm);
   font-family: var(--font-body);
   font-size: 0.875rem;
   line-height: 1.375rem;
 }
 
-.store-locator__hours-status:empty {
-  display: none;
+:lang(en) .store-locator__hours-note {
+  font-family: var(--font-label);
 }
 
-.store-locator__hours-chevron {
-  width: 1.5rem;
-  height: 1.5rem;
-  flex-shrink: 0;
-  transition: transform 0.3s ease-out;
-}
-
-.store-locator__hours-toggle[aria-expanded="true"] .store-locator__hours-chevron {
-  transform: rotate(180deg);
+.store-locator__hours-note strong {
+  font-weight: 600;
 }
 
 .store-locator__hours-table {
