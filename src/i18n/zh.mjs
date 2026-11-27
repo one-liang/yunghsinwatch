@@ -527,7 +527,7 @@ export default {
   "store.day.sat": "星期六",
   "store.day.sun": "星期日",
   "store.yungHsin.url":
-    "https://www.google.com/maps/dir/?api=1&destination=%E6%B0%B8%E6%96%B0%E9%90%98%E9%8C%B6%20%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A3%AB%E6%9E%97%E5%8D%80%E5%BF%A0%E8%AA%A0%E8%B7%AF%E4%B8%80%E6%AE%B582%E8%99%9F&hl=zh-TW",
+    "https://www.google.com/maps/dir/?api=1&destination=Patek%20Philippe%20Boutique%20Taipei%20by%20Yung%20Hsin%20Watch%20%E5%8F%B0%E5%8C%97%E5%B8%82%E5%A3%AB%E6%9E%97%E5%8D%80%E5%BF%A0%E8%AA%A0%E8%B7%AF%E4%B8%80%E6%AE%B582%E8%99%9F&hl=zh-TW",
   "store.cortina.url":
     "https://www.google.com/maps/dir/?api=1&destination=%E9%AB%98%E7%99%BB%E9%90%98%E9%8C%B6%E7%99%BE%E9%81%94%E7%BF%A1%E9%BA%97%E5%B0%88%E8%B3%A3%E5%BA%97%20%E5%8F%B0%E5%8C%97%E5%B8%82%E4%BF%A1%E7%BE%A9%E5%8D%80%E5%B8%82%E5%BA%9C%E8%B7%AF45%E8%99%9F%20%E5%8F%B0%E5%8C%97101%E8%B3%BC%E7%89%A9%E4%B8%AD%E5%BF%832%E6%A8%93&hl=zh-TW",
   "store.kingSign.url":

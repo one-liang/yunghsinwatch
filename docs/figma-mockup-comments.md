@@ -991,3 +991,110 @@ Figma 新內文（Noto Serif TC 18/32、字距 1px，第一行粗體標題，置
 
 - [x] 英文版整頁內文改靠左（`en:text-left`），中文版維持置中
 - [x] 標題（Heading Banner）要不要也靠左，對照 Figma About Yung-Hsin_EN 再決定
+
+---
+
+# 第四輪：11/27 修改（#55～#59）
+
+- 擷取日期：2026-11-27。範圍是 Ping 在 11/27 留的 5 則 comment 加 1 則回覆（台北時間 10:57～11:30），都還沒 resolve
+- 同日 Ping 把第一～三輪（11/20 以前）的 comment 都標成已解決
+- `#` 編號：延續第三輪，依建立時間順推
+- 全部在 Mockup 頁（`149:98`）；Layer 一樣是用 pin 座標換算到 frame 內的位置比對出來的
+
+## 進度總覽（第四輪）
+
+- [x] #55 【我們的團隊】Logo 寬度改為 225px
+- [x] #56 【我們的團隊】手機版 Logo 寬度改為 175px
+- [x] #57 【我們的團隊】英文版 Description 內文更改
+- [x] #58 【關於永新】英文版第一張 About Card 內文更改
+- [ ] #59 【首頁】Banner 換成新尺寸的圖（桌機 1920×900、手機 900×800），高度隨螢幕縮放（等新圖）
+
+---
+
+## 實作說明（第四輪）
+
+驗證：`npm run check` 通過；團隊頁 Logo 在 393、1280 寬量測尺寸。
+
+- **#55 #56 團隊頁 Logo**：沿用原本的斷點（XL 以上／以下），XL 以上 225×81、以下 175×63，
+  比例與 Figma `Logo / YH` 相同（2XL 225×81、SM 175×63）。Logo 到內文的間距不變（XL 以上 32px、以下 24px，和 Figma 相同）。
+- **#57 團隊頁英文內文**：Figma 新版英文是單一段落、**沒有**粗體標題（`1522:13997`，7 行），
+  所以英文 `team.intro.body` 拿掉 `<strong>` 標題與換行；中文版維持原樣（comment 註明只改英文）。
+- **#58 關於永新英文內文**：`about.renewal.body`（第一張 About Card，2025 新裝）換成 Figma `933:12318` 的新文，縮短為一段。
+
+## 30. Our Team_EN（`743:2835`）
+
+### #55 【我們的團隊】Logo 寬度改為 225px
+
+- Layer：`Our Team_EN > Content > Description / 2XL > Logo / YH`（`1522:14087`，225×81）
+- 留言日期：2026-11-27
+
+> 11/27 更改Logo大小
+> 寬度 225px
+
+目前程式：`src/pages/team.html` 的 Logo XL 以上 300×109、以下 250×91。
+
+- [x] XL 以上改為 225×81
+
+### #57 【我們的團隊】英文版更改內文
+
+- Layer：`Our Team_EN > Content > Description / 2XL > Text > EN`（`1522:13997`）
+- 留言日期：2026-11-27
+
+> 11/27 更改此段內文(只有英文)
+
+Figma 新內文（Noto Serif TC 18/32、字距 1px、靠左，沒有粗體標題）：
+
+> Since 1995, Yung-Hsin Watch has shared a longstanding partnership with Patek Philippe, built on mutual values and a commitment to excellence. In 2004, it relocated to No. 82, Zhongcheng Road, Tianmu, Taipei, establishing its signature watchmaking castle. In 2013, Taiwan’s first Patek Philippe boutique featuring the brand’s new retail concept opened at this location, showcasing the Maison’s exceptional craftsmanship and heritage while marking a significant milestone in Taiwan’s fine watchmaking culture.
+
+- [x] 更新英文 `team.intro.body`，拿掉粗體標題，改為一段
+
+## 31. Our Team / SM（`803:8543`）
+
+### #56 【我們的團隊】手機版 Logo 寬度改為 175px
+
+- Layer：`Our Team / SM > Content > Description / MD > Logo / YH`（`1522:14116`，175×63）
+- 留言日期：2026-11-27
+
+> 11/27 更改Logo大小
+> 手機版-寬度 175px
+
+- [x] XL 以下改為 175×63
+
+## 32. About Yung-Hsin_EN（`933:12307`）
+
+### #58 【關於永新】英文版更改內文
+
+- Layer：`About Yung-Hsin_EN > Content > Card > About Card > Text > EN`（`933:12318`，第一張卡片）
+- 留言日期：2026-11-27
+
+> 11/27 更改此段內文(只有英文)
+
+Figma 新內文：
+
+> In 2025, the Yung Hsin Patek Philippe Boutique unveiled its renewed interior, marking a new chapter in its longstanding partnership with Patek Philippe. Embracing the brand’s latest global design concept, the boutique combines bird’s-eye maple, Indian rosewood, brown marble, and brass accents to create an atmosphere of timeless elegance. Enhanced natural lighting and spacious displays elevate the viewing experience, while the second-floor VIP room offers an intimate and refined European-inspired setting for appreciating fine timepieces.
+
+- [x] 更新英文 `about.renewal.body`
+
+## 33. Index / 2XL（`933:14354`）
+
+### #59 【首頁】Banner 圖片尺寸
+
+- Layer：`Index / 2XL > Banner`（pin 在 Banner 中間）
+- 留言日期：2026-11-27
+
+> 11/27 更改 Banner 圖片尺寸(以下是他們會給的圖片尺寸)
+> 桌機 - 1920\*900
+> 手機 - 900\*800
+
+Ping 回覆：
+
+> 高度全給它 auto 吧，就按照螢幕尺寸縮放
+
+試算表同時要求「首頁橫幅請改回原本的尺寸，更換圖檔已上傳於(修改\_1126檔案夾)，並請提供手機版的橫幅尺寸」
+（見 `docs/sheet-revisions.md` 的 2026-11-27 項目）。桌機 1920×900 就是 32:15，和 11/20 以前的 LG 比例相同。
+
+目前程式：`src/pages/index.html` 的 Banner 是 16:9（2XL 1536:800），三張圖都是 2400×1350。
+
+- [ ] 拿到新圖後，桌機圖 32:15、手機圖 9:8，各自等比縮放、不裁切，用 `<picture>` 依斷點切換
+- [ ] 手機圖用到 767px 為止（撐到 1023px 時 9:8 會高達約 909px）
+- [ ] 新圖在 Google 雲端「修改\_1126」資料夾，本機還沒有，要先取得

@@ -173,7 +173,7 @@ export default {
   "team.hero.title": "Our Team",
   "team.intro.logoAlt": "Yung Hsin Watch",
   "team.intro.body":
-    '<strong class="font-bold">A Castle of Time, Where Heritage and Legacy Endure</strong>\nSince 1995, Yung-Hsin Watch has enjoyed a longstanding partnership with Patek Philippe, built on shared values and a mutual commitment to excellence. In 2004, Yung-Hsin Watch relocated to No. 82, Zhongcheng Road, Tianmu, Taipei, where it established its very own watchmaking castle, reflecting its dedication to cultivating Taiwan’s high-end watch market.\nIn 2013, Taiwan’s first Patek Philippe boutique featuring the brand’s new retail concept was inaugurated at this prestigious location. Through its refreshed brand environment, the boutique showcases Patek Philippe’s exceptional watchmaking craftsmanship and enduring spirit of heritage passed down through generations. More than a distinctive symbol of luxury in Tianmu, it also marks an important chapter in the development of Taiwan’s fine watchmaking culture.',
+    "Since 1995, Yung-Hsin Watch has shared a longstanding partnership with Patek Philippe, built on mutual values and a commitment to excellence. In 2004, it relocated to No. 82, Zhongcheng Road, Tianmu, Taipei, establishing its signature watchmaking castle. In 2013, Taiwan’s first Patek Philippe boutique featuring the brand’s new retail concept opened at this location, showcasing the Maison’s exceptional craftsmanship and heritage while marking a significant milestone in Taiwan’s fine watchmaking culture.",
 
   // 職稱：後六位成員都是銷售顧問，共用同一個 key。
   "team.role.gm": "General Manager",
@@ -209,7 +209,7 @@ export default {
   "about.founders.body":
     "Founder Mr. Lai Chien-Fa and Ms. Chuang Mei-Ling have worked hand in hand with their second-generation successor and current General Manager, Henry, to uphold Yung Hsin Watch’s longstanding commitment to “integrity and service.” Over the years, this philosophy has cultivated an unparalleled level of trust among discerning collectors of fine timepieces, becoming the most precious and irreplaceable foundation of Yung Hsin’s journey.",
   "about.renewal.body":
-    "In 2025, the Yung Hsin Patek Philippe Boutique unveiled a new look, marking another significant chapter in the longstanding partnership between Yung Hsin Watch and Patek Philippe. The new interior faithfully adopts Patek Philippe’s latest global design concept, seamlessly bringing together the spirit of heritage and a contemporary client experience. Bird’s-eye maple and Indian rosewood are paired with brown marble and brass accents, forming a refined palette of deep, classic browns that creates an atmosphere of understated elegance, warmth, and sophistication. The boutique’s freestanding architectural structure welcomes abundant natural light, while the increased spacing between the interior display cases enhances the comfort and ease of viewing the timepieces. On the second floor, the VIP room features a warm European-inspired aesthetic and an atmosphere of exceptional refinement, offering clients an intimate and tranquil setting in which to appreciate fine watches.",
+    "In 2025, the Yung Hsin Patek Philippe Boutique unveiled its renewed interior, marking a new chapter in its longstanding partnership with Patek Philippe. Embracing the brand’s latest global design concept, the boutique combines bird’s-eye maple, Indian rosewood, brown marble, and brass accents to create an atmosphere of timeless elegance. Enhanced natural lighting and spacious displays elevate the viewing experience, while the second-floor VIP room offers an intimate and refined European-inspired setting for appreciating fine timepieces.",
   "about.service.body":
     "Yung Hsin Watch treasures every encounter with its clients. Through professional expertise and warm, attentive service, it is committed to creating a distinctive and privileged experience for every guest, cultivating relationships built on long-term trust—an authentic expression of the values shared by Yung Hsin Watch and Patek Philippe.",
   "about.legacy.body":
@@ -538,7 +538,7 @@ export default {
   "store.day.sat": "Saturday",
   "store.day.sun": "Sunday",
   "store.yungHsin.url":
-    "https://www.google.com/maps/dir/?api=1&destination=Yung%20Hsin%20Watch%2C%20No.%2082%2C%20Sec.%201%2C%20Jhongcheng%20Rd.%2C%2011148%20Taipei%2C%20Taiwan&hl=en",
+    "https://www.google.com/maps/dir/?api=1&destination=Patek%20Philippe%20Boutique%20Taipei%20by%20Yung%20Hsin%20Watch%2C%20No.%2082%2C%20Sec.%201%2C%20Jhongcheng%20Rd.%2C%2011148%20Taipei%2C%20Taiwan&hl=en",
   "store.cortina.url":
     "https://www.google.com/maps/dir/?api=1&destination=Patek%20Philippe%20Boutique%20Taipei%20by%20Cortina%20Watch%2C%20Taipei%20101%20Mall%202F%2C%20No.%2045%2C%20Shihfu%20Rd.%2C%2011049%20Taipei%2C%20Taiwan&hl=en",
   "store.kingSign.url":
